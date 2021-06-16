@@ -122,7 +122,8 @@ def check_ban_evade(v):
 			g.db.add(ma)
 
 		g.db.commit()
-		abort(403)
+		try: abort(403)
+		except Exception as e: print(e)
 
 	else:
 		v.ban_evade +=1
