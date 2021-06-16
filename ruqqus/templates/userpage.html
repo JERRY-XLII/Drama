@@ -43,7 +43,7 @@
 							<a href="{{u.profile_url}}"><img src="{{u.profile_url}}" class="profile-pic profile-pic-100 mb-5"></a>
 						</div>
 						<div class="ml-3 w-100">
-							{% if u.is_banned %}<h1 style="color:red;"> [BANNED USER]</h1>{% end if %}
+							{% if u.is_banned %}<h1 style="color:red;"> [BANNED USER]</h1>{% endif %}
 							<div class="d-flex align-items-center mt-1 mb-2">
 								<h1 class="h3 mb-0" style="color: #{{u.namecolor}}">{{u.username}}</h1>
 								{% if u.username != u.original_username %}
