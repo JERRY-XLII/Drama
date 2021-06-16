@@ -196,7 +196,7 @@ def mod_step_down(bid, board, v):
 		board_id=board.id
 		)
 	g.db.add(ma) 
-	u.admin_level = 0
+	v.admin_level = 0
 	return "", 204
 
 
