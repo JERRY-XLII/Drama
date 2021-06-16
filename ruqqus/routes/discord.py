@@ -131,13 +131,8 @@ def discord_redirect(v):
 
 		add_role(v, "feedback")
 
-		add_role(v, "linked")
-		
-		if v.is_banned and v.unban_utc==0:
-			add_role(v, "banned")
-
-		if v.has_premium:
-			add_role(v, "premium")
+		if v.true_score > 100: add_role(v, "linked")
+		else: add_role(v, "norep")
 		
 	else:
 		return jsonify(x.json())

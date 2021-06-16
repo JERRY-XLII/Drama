@@ -10,15 +10,11 @@ BOT_TOKEN = environ.get("DISCORD_BOT_TOKEN",'').rstrip()
 AUTH = environ.get("DISCORD_AUTH",'').rstrip()
 
 ROLES={
-	"banned":  "700694275905814591",
-	"member":  "727255602648186970",
-	"nick":	"730493039176450170",
 	"linked":  "849621030926286920",
-	"realid":  "779904545194508290",
-	"premium": "780084870176702484",
 	"admin": "846509661288267776",
 	"feedback": "850716291714383883",
 	"newuser": "854783259229421589",
+	"norep": "850971811918512208",
 	}
 
 def discord_wrap(f):
