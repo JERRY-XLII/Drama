@@ -145,9 +145,6 @@ def discord_redirect(v):
 		##if user is already a member, remove old roles and update nick
 		delete_role(v, "nick")
 
-		if v.real_id:
-			add_role(v, "realid")
-
 
 		url=f"https://discord.com/api/guilds/{SERVER_ID}/members/{v.discord_id}"
 		data={

@@ -879,8 +879,7 @@ class User(Base, Stndrd, Age_times):
 			if self.has_profile:
 				self.del_profile()
 
-			add_role(self, "banned")
-			delete_role(self, "member")
+			delete_role(self, "linked")
 
 		self.is_banned = admin.id if admin else 1046
 		if reason:
@@ -898,8 +897,6 @@ class User(Base, Stndrd, Age_times):
 
 		self.is_banned = 0
 		self.unban_utc = 0
-
-		delete_role(self, "banned")
 
 		g.db.add(self)
 
@@ -1045,8 +1042,6 @@ class User(Base, Stndrd, Age_times):
 			self.coin_balance -=1
 			self.premium_expires_utc = now + 60*60*24*7
 
-			add_role(self, "premium")
-
 			g.db.add(self)
 
 			return True
@@ -1054,7 +1049,6 @@ class User(Base, Stndrd, Age_times):
 		else:
 
 			if self.premium_expires_utc:
-				delete_role(self, "premium")
 				self.premium_expires_utc=0
 				g.db.add(self)
 
