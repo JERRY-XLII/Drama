@@ -94,13 +94,18 @@ def badges(v):
 @app.route("/leaderboard", methods=["GET"])
 @auth_desired
 def leaderboard(v):
+	li = leaderboard2()
+	return render_template("leaderboard.html", v=v, users1=li[0], users2=li[1], users3=li[2], users4=li[3])
+
+@cache.memoize(600)
+def leaderboard2():
 	users = g.db.query(User)
 	users1 = [x for x in users.order_by(User.stored_karma.desc()).all()][:50]
 	users2 = [x for x in users.order_by(User.follower_count.desc()).all()][:10]
 	users3 = sorted(list(users1), key=lambda x: x.post_count, reverse=True)[:10]
 	users4 = sorted(list(users1), key=lambda x: x.comment_count, reverse=True)[:10]
 	users1 = users1[:25]
-	return render_template("leaderboard.html", v=v, users1=users1, users2=users2, users3=users3, users4=users4)
+	return [users1, users2, users3, users4]
 
 @app.route("/blocks", methods=["GET"])
 @auth_desired
