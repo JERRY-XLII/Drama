@@ -47,7 +47,7 @@
 						</a>
 				</button>
 {% if v %}
-				<button type="button" class="col px-0 pr-3 btn btn-dead m-0">
+				<button type="button" class="col px-0 btn btn-dead m-0">
 						<a href="{{v.permalink}}" class="text-decoration-none" role="button">
 								<div class="text-center {% if request.path==v.permalink %}text-purple{% else %}text-muted{% endif %}">
 										<i class="fas fa-user-circle text-lg d-block"></i>
@@ -56,7 +56,7 @@
 						</a>
 				</button>
 {% else %}
-				<button type="button" class="col px-0 pr-3 btn btn-dead m-0">
+				<button type="button" class="col px-0 btn btn-dead m-0">
 						<a href="/signup" class="text-decoration-none" role="button">
 								<div class="text-center text-muted">
 										<i class="fas fa-user-plus text-lg d-block"></i>
