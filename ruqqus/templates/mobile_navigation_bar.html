@@ -3,7 +3,6 @@
 		<div class="row fixed-bottom bg-white border-top p-2" id="mobile-bottom-navigation-bar"
 		style="z-index: 100; bottom: 0px; transition: bottom cubic-bezier(0, 0, 0.2, 1) 220ms;">
 
-{% if v %}
 				<button type="button" class="col px-0 btn btn-dead ml-3">
 						<a href="/" class="text-decoration-none" role="button">
 								<div class="text-center {% if request.path=='/' and request.full_path!='/?sort=hot&t=all' and request.full_path!='/?sort=new&t=all' %}text-purple{% else %}text-muted{% endif %}">
@@ -12,7 +11,6 @@
 								</div>
 						</a>
 				</button>
-{% endif %}
 {% if v and v.defaultsorting == 'new' %}
 				<button type="button" class="col px-0 btn btn-dead ml-3">
 						<a href="/?sort=hot&t=all" class="text-decoration-none" role="button">
