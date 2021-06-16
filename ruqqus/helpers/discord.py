@@ -63,6 +63,6 @@ def set_nick(user, nick):
 
 def send_message(message):
 	url=f"{DISCORD_ENDPOINT}/channels/850266802449678366/messages"
-	headers = {"Authorization": f"Bot {BOT_TOKEN}"}
+	headers = {"Authorization": AUTH}
 	data={"content": message}
 	requests.post(url, headers=headers, data=data)
