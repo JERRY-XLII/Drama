@@ -172,7 +172,7 @@ def mod_accept_board(bid, v):
 		)
 	g.db.add(ma)
 	
-	u.admin_level = 6
+	v.admin_level = 6
 	return "", 204
 
 @app.route("/mod/<bid>/step_down", methods=["POST"])
