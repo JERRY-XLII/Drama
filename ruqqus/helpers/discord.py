@@ -5,7 +5,6 @@ import threading
 SERVER_ID = environ.get("DISCORD_SERVER_ID",'').rstrip()
 CLIENT_ID = environ.get("DISCORD_CLIENT_ID",'').rstrip()
 CLIENT_SECRET = environ.get("DISCORD_CLIENT_SECRET",'').rstrip()
-DISCORD_ENDPOINT = "https://discordapp.com/api"
 BOT_TOKEN = environ.get("DISCORD_BOT_TOKEN",'').rstrip()
 AUTH = environ.get("DISCORD_AUTH",'').rstrip()
 
@@ -37,32 +36,32 @@ def discord_wrap(f):
 @discord_wrap
 def add_role(user, role_name):
 	role_id = ROLES[role_name]
-	url = f"{DISCORD_ENDPOINT}/guilds/{SERVER_ID}/members/{user.discord_id}/roles/{role_id}"
+	url = f"https://discordapp.com/api/guilds/{SERVER_ID}/members/{user.discord_id}/roles/{role_id}"
 	headers = {"Authorization": f"Bot {BOT_TOKEN}"}
 	requests.put(url, headers=headers)
 
 @discord_wrap
 def delete_role(user, role_name):
 	role_id = ROLES[role_name]
-	url = f"{DISCORD_ENDPOINT}/guilds/{SERVER_ID}/members/{user.discord_id}/roles/{role_id}"
+	url = f"https://discordapp.com/api/guilds/{SERVER_ID}/members/{user.discord_id}/roles/{role_id}"
 	headers = {"Authorization": f"Bot {BOT_TOKEN}"}
 	requests.delete(url, headers=headers)
 
 @discord_wrap
 def remove_user(user):
-	url=f"{DISCORD_ENDPOINT}/guilds/{SERVER_ID}/members/{user.discord_id}"
+	url=f"https://discordapp.com/api/guilds/{SERVER_ID}/members/{user.discord_id}"
 	headers = {"Authorization": f"Bot {BOT_TOKEN}"}
 	requests.delete(url, headers=headers)
 
 @discord_wrap
 def set_nick(user, nick):
-	url=f"{DISCORD_ENDPOINT}/guilds/{SERVER_ID}/members/{user.discord_id}"
+	url=f"https://discordapp.com/api/guilds/{SERVER_ID}/members/{user.discord_id}"
 	headers = {"Authorization": f"Bot {BOT_TOKEN}"}
 	data={"nick": nick}
 	requests.patch(url, headers=headers, json=data)
 
 def send_message(message):
-	url=f"{DISCORD_ENDPOINT}/channels/850266802449678366/messages"
+	url=f"https://discordapp.com/api/channels/850266802449678366/messages"
 	headers = {"Authorization": AUTH}
 	data={"content": message}
 	requests.post(url, headers=headers, data=data)
