@@ -158,8 +158,8 @@
 				<p>&nbsp;</p>
 				
 				<small class="btn btn-secondary format d-inline-block m-0" for="file-upload-reply-{{c.fullname}}">
-					<div id="filename-show-reply-{{c.base36id}}"><i class="far fa-image"></i></div>
-					<input id="file-upload-reply-{{c.fullname}}" type="file" name="file" accept="image/*" onchange="document.getElementById('filename-show-reply-{{c.base36id}}').innerHTML=document.getElementById('file-upload-reply-{{c.fullname}}').files[0].name;" hidden>
+					<div id="filename-edit-reply-{{c.base36id}}"><i class="far fa-image"></i></div>
+					<input id="file-edit-reply-{{c.fullname}}" type="file" name="file" accept="image/*" onchange="document.getElementById('filename-edit-reply-{{c.base36id}}').innerHTML=document.getElementById('file-edit-reply-{{c.fullname}}').files[0].name;" hidden>
 				</small>
 					
 				 <a id="cancel-edit-{{c.base36id}}" href="javascript:void(0)" onclick="toggleEdit('{{c.base36id}}')" class="btn btn-link text-muted ml-auto cancel-form">Cancel</a> 
