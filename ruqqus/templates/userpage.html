@@ -256,13 +256,6 @@
 									<input id="user-ban-submit" type="submit" class="btn btn-warning" value="Ban user" disabled>
 								</form>
 							{% endif %}
-						{% endif %}
-						
-					 {% elif v and v.id == u.id %}
-						<a href="/settings/profile" class="btn btn-secondary">Edit profile</a>
-					 {% endif %}
-					 
-					 {% if v and v.id != u.id and v.admin_level > 0 %}
 						<pre></pre>
 						{% if u.nuked %}
 						<form action="/admin/unnuke_user" method="post">
