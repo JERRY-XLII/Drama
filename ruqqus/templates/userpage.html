@@ -204,14 +204,72 @@
 	<div class="row border-bottom">
 		<div class="col">
 			<div style="margin-top: -34px;">
-				{% if u.is_banned %}
-					<h1 style="color:red;">[BANNED USER]</h1>
-					<h5 style="color:red;">{% if u.ban_reason %} Reason: {{u.ban_reason}}. {% endif %}</h5>
-					<pre></pre>
-				{% endif %}
 				<a href="{{u.profile_url}}"><img src="{{u.profile_url}}" class="profile-pic-65 bg-white border-2 border-white mb-2"></a>
 			</div>
-			<div class="mt-n3 py-3">				
+			<div class="mt-n3 py-3">
+				<a class="text-black"><h1 class="h5 d-inline-block" style="color: #{{u.namecolor}}">{{u.username}}</h1></a>
+				
+				{% if u.username != u.original_username %}
+					<span>
+						<i class="fad fa-user-tag text-info align-middle ml-2" data-toggle="tooltip" data-placement="bottom" title="Original Username: @{{u.original_username}}"></i>
+					</span>
+				{% endif %}
+				{% if v and v.has_follower(u) and not v.is_nofollow %}
+				<span class="badge badge-secondary text-small align-middle mx-1">Follows you</span>
+				{% endif %}
+				{% if u.customtitle %}<p style="color: #{{u.titlecolor}}">{{u.customtitle | safe}}</p>{% endif %}
+				<div class="text-small mb-2">{{u.true_score}} Dramacoins</div>
+				{% if u.bio_html %}
+				<p class="text-muted text-break">{{u.bio_html | safe}}</p>
+				{% endif %}
+				{% if u.follower_count >=1 and not u.is_nofollow %}
+				<a href="/@{{u.username}}/followers" class="font-weight-bold">{{u.follower_count}} follower{{'s' if u.follower_count != 1 else ''}}</a>
+				<pre></pre>
+				{% endif %}
+				<div class="mb-3">
+						{% for b in u.badges %}
+						{% include "badge.html" %}
+						{% else %}
+						{% endfor %}
+				</div>
+				{% if v and v.id == u.id %}
+					 <a href="/settings/profile" class="btn btn-secondary btn-sm">Edit profile</a>
+				{% endif %}
+				{% if v and v.id != u.id %}
+					<div id="button-unsub-mobile" {% if not is_following %}class="d-none"{% endif %}><a href="/@{{u.username}}/message" class="btn btn-primary">Message</a><span> </span><a class="btn btn-secondary" href="javascript:void(0)" onclick="post('/api/unfollow/{{u.username}}', callback=function(){document.getElementById('button-unsub-mobile').classList.toggle('d-none');document.getElementById('button-sub-mobile').classList.toggle('d-none');})">Unfollow</a>{% if v.admin_level > 0 %}<span> </span><a class="btn btn-secondary" href="javascript:void(0)" onclick="post_toast('/api/ban_user/{{u.id}}?toast=1')">Ban</a>{% endif %}</div>
+					<div id="button-sub-mobile" {% if is_following %}class="d-none"{% endif %}><a href="/@{{u.username}}/message" class="btn btn-primary">Message</a>{% if not u.is_nofollow and not u.is_blocked %}<span> </span><a class="btn btn-primary" href="javascript:void(0)" onclick="post('/api/follow/{{u.username}}', callback=function(){document.getElementById('button-unsub-mobile').classList.toggle('d-none');document.getElementById('button-sub-mobile').classList.toggle('d-none');})">Follow</a>{% endif %}{% if v.admin_level > 0 %}<span> </span>{% if u.is_banned %}<a class="btn btn-secondary" href="javascript:void(0)" onclick="post_toast('/api/unban_user/{{u.id}}?toast=1')">Unban</a>{% else %}<a class="btn btn-primary" href="javascript:void(0)" onclick="post_toast('/api/ban_user/{{u.id}}?toast=1')">Ban</a>{% endif %}{% endif %}</div>
+					 {% if v.admin_level > 0 %}
+						<pre></pre>
+						{% if u.nuked %}
+						<form action="/admin/unnuke_user" method="post">
+							<input type="hidden" name="formkey", value="{{v.formkey}}">
+							<input type="hidden" name="user" value="{{u.username}}">
+							<input type="submit" class="btn btn-success" value="Approve User's Content">
+						</form>
+						{% else %}
+						<form action="/admin/nuke_user" method="post">
+							<input type="hidden" name="formkey", value="{{v.formkey}}">
+							<input type="hidden" name="user" value="{{u.username}}">
+							<input type="submit" class="btn btn-danger" value="Remove User's Content">
+						</form>
+						{% endif %}
+						<pre></pre>
+						<p>User ID: {{u.id}}</p>
+						{% if u.is_private %}
+							<p>User has private mode enabled.</p>
+						{% endif %}
+						{% if u.is_suspended %}
+							<p>Banned by: <a href="{{u.banned_by.permalink}}">@{{u.banned_by.username}}</a></p>
+						{% endif %}
+						<p>Alts:</p>
+						<ul>
+							{% for account in u.alts %}
+							<li><a href="{{account.permalink}}">@{{account.username}}</a>{% if account._is_manual %} [m]{% endif %}</li>
+							{% endfor %}
+						</ul>
+					{% endif %}
+				{% endif %}
+				
 
 				
 			</div>
