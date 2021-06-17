@@ -251,19 +251,6 @@
 						
 						 {% if v.admin_level > 0 %}
 							<pre></pre>
-							{% if u.is_banned %}
-								<form action="/api/unban_user/{{u.id}}" method="post">
-									<input type="hidden" name="formkey", value="{{v.formkey}}">
-									<input type="submit" class="btn btn-success" value="Unban user">
-								</form>
-							{% else %}
-								<form action="/api/ban_user/{{u.id}}" method="post">
-									<input type="hidden" name="formkey" value="{{v.formkey}}">
-									<input id="user-ban-reason" type="text" class="form-control" name="reason" placeholder="Ban Reason" onchange="document.getElementById('user-ban-submit2').disabled=false">
-									<input id="user-ban-days" type="number" class="form-control" name="days" placeholder="Days (blank = permanent)">
-									<input id="user-ban-submit2" type="submit" class="btn btn-warning" value="Ban user" disabled>
-								</form>
-							{% endif %}
 						<pre></pre>
 						{% if u.nuked %}
 						<form action="/admin/unnuke_user" method="post">
