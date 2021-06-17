@@ -45,8 +45,7 @@
 						<div class="ml-3 w-100">
 							{% if u.is_banned %}
 								<h1 style="color:red;">[BANNED USER]</h1>
-								<h5 style="color:red;">{% if u.ban_reason %} Reason: {{u.ban_reason}}. {% endif %}</h5>
-								<pre></pre>
+								{% if u.ban_reason %}<h5 style="color:red;"> Reason: {{u.ban_reason}}.</h5><pre></pre>{% endif %}
 							{% endif %}
 							<div class="d-flex align-items-center mt-1 mb-2">
 								<h1 class="h3 mb-0" style="color: #{{u.namecolor}}">{{u.username}}</h1>
