@@ -45,7 +45,7 @@
 						<div class="ml-3 w-100">
 							{% if u.is_banned %}
 								<h1 style="color:red;">[BANNED USER]</h1>
-								<h5 style="color:red;">{% if u.ban_reason %} Reason: {{u.ban_reason}} {% endif %}</h5>
+								<h5 style="color:red;">{% if u.ban_reason %} Reason: {{u.ban_reason}}. {% endif %}</h5>
 							{% endif %}
 							<div class="d-flex align-items-center mt-1 mb-2">
 								<h1 class="h3 mb-0" style="color: #{{u.namecolor}}">{{u.username}}</h1>
@@ -204,6 +204,10 @@
 	<div class="row border-bottom">
 		<div class="col">
 			<div style="margin-top: -34px;">
+				{% if u.is_banned %}
+					<h1 style="color:red;">[BANNED USER]</h1>
+					<h5 style="color:red;">{% if u.ban_reason %} Reason: {{u.ban_reason}}. {% endif %}</h5>
+				{% endif %}
 				<a href="{{u.profile_url}}"><img src="{{u.profile_url}}" class="profile-pic-65 bg-white border-2 border-white mb-2"></a>
 			</div>
 			<div class="mt-n3 py-3">
