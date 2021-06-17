@@ -25,8 +25,8 @@
 {% for user in users %}
 	<tr>
 		<td style="font-weight:bold;">{{users.index(user)+1}}</td>
-		<td style="font-size:8px;"><a style="color:#{{user.namecolor}}; font-weight:bold;" href="/@{{user.username}}">{{user.username}}</a></td>
-		<td style="font-size:8px;"><a style="color:#{{user.banned_by.namecolor}}; font-weight:bold;" href="/@{{user.banned_by.username}}">{{user.banned_by.username}}</a></td>
+		<td style="font-size:10px;"><a style="color:#{{user.namecolor}}; font-weight:bold;" href="/@{{user.username}}">{{user.username}}</a></td>
+		<td style="font-size:10px;"><a style="color:#{{user.banned_by.namecolor}}; font-weight:bold;" href="/@{{user.banned_by.username}}">{{user.banned_by.username}}</a></td>
 	</tr>
 {% endfor %}
 </table>
