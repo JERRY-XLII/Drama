@@ -13685,3 +13685,9 @@ div.deleted.banned {
 .sortingbarmargin {
 	margin-top: 10px !important;
 }
+
+@media (min-width: 576px) {
+	.sex {
+	font-size: 8px;
+	}
+}
