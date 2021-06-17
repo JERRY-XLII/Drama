@@ -258,6 +258,7 @@
 								<input id="user-ban-submit2" type="submit" class="btn btn-warning" value="Ban user" disabled>
 							</form>
 						{% endif %}
+						<pre></pre>
 						{% if u.nuked %}
 						<form action="/admin/unnuke_user" method="post">
 							<input type="hidden" name="formkey", value="{{v.formkey}}">
