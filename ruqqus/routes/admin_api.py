@@ -33,7 +33,7 @@ def ban_user(user_id, v):
 	# check for number of days for suspension
 	days = int(request.form.get("days")) if request.form.get('days') else 0
 	reason = request.form.get("reason", "")
-	message = request.form.get("message", "")
+	message = request.form.get("reason", "")
 
 	if not user:
 		abort(400)
