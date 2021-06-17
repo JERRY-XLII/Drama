@@ -111,11 +111,34 @@
 				<div class="d-flex justify-content-between align-items-center">
 					<div>
 					 {% if v and v.id != u.id %}
-						 <div id="button-unsub" {% if not is_following %}class="d-none"{% endif %}><a href="/@{{u.username}}/message" class="btn btn-primary">Message</a><span> </span><a class="btn btn-secondary" href="javascript:void(0)" onclick="post('/api/unfollow/{{u.username}}', callback=function(){document.getElementById('button-unsub').classList.toggle('d-none');document.getElementById('button-sub').classList.toggle('d-none');})">Unfollow</a>{% if v.admin_level > 0 %}<span> </span><a class="btn btn-secondary" href="javascript:void(0)" onclick="post_toast('/api/ban_user/{{u.id}}?toast=1')">Ban</a>{% endif %}</div>
-						 <div id="button-sub" {% if is_following %}class="d-none"{% endif %}><a href="/@{{u.username}}/message" class="btn btn-primary">Message</a>{% if not u.is_nofollow and not u.is_blocked %}<span> </span><a class="btn btn-primary" href="javascript:void(0)" onclick="post('/api/follow/{{u.username}}', callback=function(){document.getElementById('button-unsub').classList.toggle('d-none');document.getElementById('button-sub').classList.toggle('d-none');})">Follow</a>{% endif %}{% if v.admin_level > 0 %}<span> </span>{% if u.is_banned %}<a class="btn btn-secondary" href="javascript:void(0)" onclick="post_toast('/api/unban_user/{{u.id}}?toast=1')">Unban</a>{% else %}<a class="btn btn-secondary" href="javascript:void(0)" onclick="post_toast('/api/ban_user/{{u.id}}?toast=1')">Ban</a>{% endif %}{% endif %}</div>
+						 <div id="button-unsub" class="d-none"{% endif %}><a href="/@{{u.username}}/message" class="btn btn-primary">Message</a><span> </span>
+						 
+						 {% if is_following %}
+							<a class="btn btn-secondary" href="javascript:void(0)" onclick="post('/api/unfollow/{{u.username}}', callback=function(){document.getElementById('button-unsub').classList.toggle('d-none');document.getElementById('button-sub').classList.toggle('d-none');})">Unfollow</a>
+						 {% elif not u.is_nofollow and not u.is_blocked %}
+							<a class="btn btn-primary" href="javascript:void(0)" onclick="post('/api/follow/{{u.username}}', callback=function(){document.getElementById('button-unsub').classList.toggle('d-none');document.getElementById('button-sub').classList.toggle('d-none');})">Follow</a>
+						 {% endif %}
+						 						 
+						 {% if v.admin_level > 0 %}
+							{% if u.is_banned %}
+								<form action="/api/unban_user/{{u.id}}" method="post">
+									<input type="hidden" name="formkey", value="{{v.formkey}}">
+									<input type="submit" class="btn btn-success" value="Unban user">
+								</form>
+							{% else %}
+								<form action="/api/ban_user/{{u.id}}" method="post">
+									<input type="hidden" name="formkey" value="{{v.formkey}}">
+									<input id="user-ban-message" type="text" class="form-control" name="message" placeholder="Ban Message Reason" onchange="document.getElementById('user-ban-submit').disabled=false">
+									<input id="user-ban-reason" type="text" class="form-control" name="reason" placeholder="Ban Reason (public)" onchange="document.getElementById('user-ban-submit').disabled=false">
+									<input id="user-ban-days" type="number" class="form-control" name="days" placeholder="Days (blank = permanent)">
+									<input id="user-ban-submit" type="submit" class="btn btn-warning" value="Ban user" disabled>
+								</form>
+							{% endif %}
+
 					 {% elif v and v.id == u.id %}
 						<a href="/settings/profile" class="btn btn-secondary">Edit profile</a>
 					 {% endif %}
+					 
 					 {% if v and v.id != u.id and v.admin_level > 0 %}
 						<pre></pre>
 						{% if u.nuked %}
