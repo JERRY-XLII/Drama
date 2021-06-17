@@ -13473,7 +13473,9 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
 		background-color: #F5F7FA; }
 
 	.comment-section > .comment {
-		padding-left: 0; }
+		padding-left: 0; 
+		margin-left: -35px;
+		}
 
 	.comment {
 		margin-top: 1.5rem; }
