@@ -1,33 +1,31 @@
 {% macro single_comment(c, level=1) %}
 <!---beginning of comment {{c.id}}--->
 
-('file-upload-reply-{{c.fullname}}').files[0].name
-
 {% if v.can_submit_image %}
 <script>
 document.onpaste = function(event) {
 	f=document.getElementById('file-upload-reply-{{c.fullname}}');
 	f.files = event.clipboardData.files;
-	$('#filename-show-reply-{{c.base36id}}').text('image.png');
+	('#filename-show-reply-{{c.base36id}}').text('image.png');
 
 	var fileReader = new FileReader();
 	fileReader.readAsDataURL(f.files[0]);
 	fileReader.addEventListener("load", function () {
-		$('#image-preview').attr('src', this.result);
+		('#image-preview').attr('src', this.result);
 });  
 	
-	$('#file-upload-reply-{{c.fullname}}').attr('required', false);
+	('#file-upload-reply-{{c.fullname}}').attr('required', false);
 
 }
 
-$('#file-upload-reply-{{c.fullname}}').on('change', function(e){
+('#file-upload-reply-{{c.fullname}}').on('change', function(e){
 	f=document.getElementById('file-upload-reply-{{c.fullname}}');
-	$('#filename-show-reply-{{c.base36id}}').text($('#file-upload-reply-{{c.fullname}}')[0].files[0].name);
+	('#filename-show-reply-{{c.base36id}}').text(('#file-upload-reply-{{c.fullname}}')[0].files[0].name);
 
 	var fileReader = new FileReader();
 	fileReader.readAsDataURL(f.files[0]);
 	fileReader.addEventListener("load", function () {
-		$('#image-preview').attr('src', this.result);
+		('#image-preview').attr('src', this.result);
 });})
 
 </script>
