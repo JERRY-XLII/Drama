@@ -12400,7 +12400,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 	display: none; }
 
 .jumbotron-guild {
-    padding-bottom: 0px;
+    padding: 0px;
 	position: relative;
 	background-repeat: no-repeat;
 	background-size: cover;
