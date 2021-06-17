@@ -13870,7 +13870,9 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
 		background-color: #000000; }
 
 	.comment-section > .comment {
-		padding-left: 0; }
+		padding-left: 0; 
+		margin-left: -10px;
+		}
 
 	.comment {
 		margin-top: 1.5rem; }
