@@ -14072,7 +14072,7 @@ div.deleted.banned {
 	margin-top: 10px !important;
 }
 
-@media (min-width: 576px) {
+@media (max-width: 576px) {
 	.sex {
 	font-size: 8px;
 	}
