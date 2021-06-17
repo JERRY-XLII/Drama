@@ -82,7 +82,7 @@ def check_ban_evade(v):
 		return
 	
 	if random.randint(0,30) < v.ban_evade:
-		v.ban(reason="Evading a site-wide ban")
+		v.ban(reason="Ban evasion")
 		send_notification(v, "Your Drama account has been permanently suspended for the following reason:\n\n> ban evasion")
 
 		for post in g.db.query(Submission).filter_by(author_id=v.id).all():
