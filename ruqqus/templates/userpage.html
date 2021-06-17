@@ -207,6 +207,7 @@
 				{% if u.is_banned %}
 					<h1 style="color:red;">[BANNED USER]</h1>
 					<h5 style="color:red;">{% if u.ban_reason %} Reason: {{u.ban_reason}}. {% endif %}</h5>
+					<pre></pre>
 				{% endif %}
 				<a href="{{u.profile_url}}"><img src="{{u.profile_url}}" class="profile-pic-65 bg-white border-2 border-white mb-2"></a>
 			</div>
