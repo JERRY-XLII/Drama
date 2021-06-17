@@ -1,12 +1,6 @@
 {% macro single_comment(c, level=1) %}
 <!---beginning of comment {{c.id}}--->
 
-					<label class="btn btn-secondary format d-inline-block m-0" for="file-upload-reply-{{c.fullname}}">
-						<div id="filename-show-reply-{{c.base36id}}"><i class="far fa-image"></i></div>
-						<input id="file-upload-reply-{{c.fullname}}" type="file" name="file" accept="image/*" onchange="document.getElementById('filename-show-reply-{{c.base36id}}').innerHTML=document.getElementById('file-upload-reply-{{c.fullname}}').files[0].name;" hidden>
-					</label>
-
-
 {% if v.can_submit_image %}
 <script>
 document.onpaste = function(event) {
@@ -22,8 +16,6 @@ document.onpaste = function(event) {
 	
 	$('#file-upload-reply-{{c.fullname}}').attr('required', false);
 
-	checkForRequired();
-
 }
 
 $('#file-upload-reply-{{c.fullname}}').on('change', function(e){
@@ -34,10 +26,8 @@ $('#file-upload-reply-{{c.fullname}}').on('change', function(e){
 	fileReader.readAsDataURL(f.files[0]);
 	fileReader.addEventListener("load", function () {
 		$('#image-preview').attr('src', this.result);
-});  
+});})
 
-	checkForRequired();
-})
 </script>
 {% endif %}
 
@@ -546,3 +536,4 @@ $('#file-upload-reply-{{c.fullname}}').on('change', function(e){
 		<i class="fas fa-exclamation-circle mr-2"></i><span id="comment-error-text"></span>
 	</div>
 </div>
+</body>
