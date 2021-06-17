@@ -940,7 +940,9 @@ def submit_post(v):
 	new_post.downvotes = new_post.downs
 	g.db.add(new_post)
 	try: g.db.flush()
-	except Exception as e: print(e)
+	except Exception as e:
+		g.db.rollback()
+		print(e)
 	new_post.score_disputed = new_post.rank_fiery
 	new_post.score_top = new_post.score
 	new_post.score_best = new_post.rank_best

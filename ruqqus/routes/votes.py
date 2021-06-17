@@ -97,7 +97,9 @@ def api_vote_post(post_id, x, v):
 			post.score_top = post.score
 			post.score_best = post.rank_best
 			g.db.add(post)
-		except Exception as e: print(e)
+		except Exception as e:
+			g.db.rollback()
+			print(e)
 	g.db.commit()
 
 	return "", 204
@@ -156,7 +158,9 @@ def api_vote_comment(comment_id, x, v):
 	g.db.flush()
 
 	try: comment.score_disputed=comment.rank_fiery
-	except Exception as e: print(e)
+	except Exception as e:
+		g.db.rollback()
+		print(e)
 	comment.score_hot = comment.rank_hot
 	comment.score_top = comment.score
 
