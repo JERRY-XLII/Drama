@@ -673,20 +673,25 @@ def edit_comment(cid, v):
 	notify_users = set()
 	soup = BeautifulSoup(body_html, features="html.parser")
 	mentions = soup.find_all("a", href=re.compile("^/@(\w+)"))
-	for mention in mentions:
-		username = mention["href"].split("@")[1]
+	
+	if len(mentions) > 0:
+		notifs = g.db.query(Notification)
+		for mention in mentions:
+			username = mention["href"].split("@")[1]
 
-		user = g.db.query(User).filter_by(username=username).first()
+			user = g.db.query(User).filter_by(username=username).first()
 
-		if user:
-			if v.any_block_exists(user):
-				continue
-			if user.id != v.id:
-				notify_users.add(user.id)
+			if user:
+				if v.any_block_exists(user):
+					continue
+				if user.id != v.id:
+					notify_users.add(user.id)
 
-	for x in notify_users:
-		n = Notification(comment_id=c.id, user_id=x)
-		g.db.add(n)
+		for x in notify_users:
+			notif = notifs.filter_by(comment_id=c.id, user_id=x).first()
+			if not notif:
+				n = Notification(comment_id=c.id, user_id=x)
+				g.db.add(n)
 
 	return jsonify({"html": c.body_html})
 
