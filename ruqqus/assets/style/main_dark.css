@@ -13488,16 +13488,13 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
 		padding-top: 0.5rem; }
 
 	.comment .comment-collapse::before {
-	content: "";
-	position: absolute;
-	font-family: "Font Awesome 5 Pro";
-	border-left: 2px solid #CBD5E0;
-	font-size: 1rem;
-	color: #FF66AC;
-	display: inline-block;
-	height: 100%;
-	cursor: pointer;
-	width: 10px; }
+		content: "\f056";
+		position: static;
+		font-size: 10px;
+		font-weight: 900;
+		border: none;
+		margin-left: 0.25rem;
+	}
 
 	.comment.collapsed .comment-body:hover {
 		opacity: 0.5; }
