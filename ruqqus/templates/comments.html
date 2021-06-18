@@ -243,9 +243,9 @@
 							<a class="dropdown-item" href="javascript:void(0)" onclick="toggleEdit('{{c.base36id}}')"><i class="fas fa-edit fa-fw"></i>Edit</a>
 
 							{% if c.deleted_utc > 0 %}
-							<a class="dropdown-item" href="javascript:void(0)" onclick="post('/undelete/comment/{{c.base36id}}', function(){window.location.reload(true);})"><i class="fas fa-trash-alt fa-fw"></i>Undelete</a>
+								<a class="dropdown-item" href="javascript:void(0)" onclick="post('/undelete/comment/{{c.base36id}}', function(){window.location.reload(true);})"><i class="fas fa-trash-alt fa-fw"></i>Undelete</a>
 							{% else %}
-							<a class="dropdown-item" href="javascript:void(0)" data-toggle="modal" data-target="#deleteCommentModal" onclick="delete_commentModal('{{c.base36id}}')"><i class="fas fa-trash-alt fa-fw"></i>Delete</a>
+								<a class="dropdown-item" href="javascript:void(0)" data-toggle="modal" data-target="#deleteCommentModal" onclick="delete_commentModal('{{c.base36id}}')"><i class="fas fa-trash-alt fa-fw"></i>Delete</a>
 							{% endif %}
 
 							{% endif %}
@@ -422,9 +422,9 @@
 
 
 					{% if c.deleted_utc > 0 %}
-					<li class="list-group-item"><a class="d-block" href="javascript:void(0)" onclick="post('/undelete/comment/{{c.base36id}}', function(){window.location.reload(true);})"><i class="fas fa-trash-alt"></i>Undelete</a></li>
+						<li class="list-group-item"><a class="d-block" href="javascript:void(0)" onclick="post('/undelete/comment/{{c.base36id}}', function(){window.location.reload(true);})"><i class="fas fa-trash-alt"></i>Undelete</a></li>
 					{% else %}
-					<li class="list-group-item"><a class="d-block" href="javascript:void(0)" data-toggle="modal" data-target="#deleteCommentModal" onclick="delete_commentModal('{{c.base36id}}')"><i class="fas fa-trash-alt"></i>Delete</a></li>
+						<li class="list-group-item"><a class="d-block" href="javascript:void(0)" data-toggle="modal" data-target="#deleteCommentModal" onclick="delete_commentModal('{{c.base36id}}')"><i class="fas fa-trash-alt"></i>Delete</a></li>
 					{% endif %}
 
 
