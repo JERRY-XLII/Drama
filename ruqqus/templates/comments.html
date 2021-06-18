@@ -365,18 +365,6 @@
 						<div id="filename-show-reply-{{c.base36id}}"><i class="far fa-image"></i></div>
 						<input id="file-upload-reply-{{c.fullname}}" type="file" name="file" accept="image/*" onchange="document.getElementById('filename-show-reply-{{c.base36id}}').innerHTML=document.getElementById('file-upload-reply-{{c.fullname}}').files[0].name;" hidden>
 					</label>
-					
-<!-- 					&nbsp;&nbsp;
-					<div class="custom-control custom-checkbox">
-							<input type="checkbox" class="custom-control-input" id="nsfwCheck-{{c.fullname}}" name="over_18" form="reply-to-t3_{{c.base36id}}">
-							<label class="custom-control-label" for="nsfwCheck-{{c.fullname}}">+18</label>
-					</div>
-					&nbsp;&nbsp;
-					<div class="custom-control custom-checkbox">
-							<input type="checkbox" class="custom-control-input" id="nsflCheck-{{c.fullname}}" name="is_nsfl" form="reply-to-t3_{{c.base36id}}">
-							<label class="custom-control-label" for="nsflCheck-{{c.fullname}}">NSFL</label>
-					</div>
- -->
 					<a href="javascript:void(0)" onclick="document.getElementById('reply-to-{{c.base36id}}').classList.add('d-none')" class="btn btn-link text-muted ml-auto cancel-form">Cancel</a> 
 					<a id="save-reply-to-{{c.fullname}}" class="btn btn-primary text-white ml-2" onclick="post_comment('{{c.fullname}}');" href="javascript:void(0)">Comment</a> 
 				</div> 

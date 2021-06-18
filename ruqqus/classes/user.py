@@ -363,25 +363,10 @@ class User(Base, Stndrd, Age_times):
 
 	@cache.memoize(300)
 	def commentlisting(self, v=None, page=1):
-		comments = self.comments.options(
-			lazyload('*')).filter(Comment.parent_submission is not None).join(Comment.post)
-
-		if not (v and v.over_18):
-			comments = comments.filter(Submission.over_18 == False)
-
-		if v and v.hide_offensive:
-			comments = comments.filter(Comment.is_offensive == False)
-			
-		if v and v.hide_bot:
-			comments = comments.filter(Comment.is_bot == False)
-
-		if v and not v.show_nsfl:
-			comments = comments.filter(Submission.is_nsfl == False)
+		comments = self.comments.options(lazyload('*')).filter(Comment.parent_submission is not None).join(Comment.post)
 
 		if (not v) or v.id != self.id or v.admin_level < 3:
 			comments = comments.filter(Comment.deleted_utc == 0)
-
-		if not (v and (v.admin_level >= 3 or v.id == self.id)):
 			comments = comments.filter(Comment.is_banned == False)
 
 		if v and v.admin_level >= 4:

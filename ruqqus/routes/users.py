@@ -212,8 +212,7 @@ def u_username_comments(username, v=None):
 
 	# check for wrong cases
 
-	if username != user.username:
-		return redirect(f'{user.url}/comments')
+	if username != user.username: return redirect(f'{user.url}/comments')
 
 	u = user
 
@@ -222,13 +221,6 @@ def u_username_comments(username, v=None):
 												u=u,
 												v=v),
 				'api': lambda: {"error": f"That username is reserved for: {u.reserved}"}
-				}
-
-	if u.is_deleted and (not v or v.admin_level < 3):
-		return {'html': lambda: render_template("userpage_deleted.html",
-												u=u,
-												v=v),
-				'api': lambda: {"error": "That user deactivated their account."}
 				}
 
 	if u.is_private and (not v or (v.id != u.id and v.admin_level < 3)):
@@ -265,13 +257,9 @@ def u_username_comments(username, v=None):
 	is_following = (v and user.has_follower(v))
 
 	board = get_board(1)
-	nsfw = (v and v.over_18) or session_over18(board)
-	nsfl = (v and v.show_nsfl) or session_isnsfl(board)
 	return {"html": lambda: render_template("userpage_comments.html",
 											u=user,
 											v=v,
-											nsfw=nsfw,
-											nsfl=nsfl,
 											listing=listing,
 											page=page,
 											next_exists=next_exists,
