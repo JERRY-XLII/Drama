@@ -365,7 +365,7 @@ class User(Base, Stndrd, Age_times):
 	def commentlisting(self, v=None, page=1):
 		comments = self.comments.options(lazyload('*')).filter(Comment.parent_submission is not None).join(Comment.post)
 
-		if (not v) or v.id != self.id or v.admin_level < 3:
+		if (not v) or (v.id != self.id and v.admin_level == 0):
 			comments = comments.filter(Comment.deleted_utc == 0)
 			comments = comments.filter(Comment.is_banned == False)
 
