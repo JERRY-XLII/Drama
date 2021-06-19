@@ -667,25 +667,25 @@ def edit_comment(cid, v):
 			name = f'comment/{c.base36id}/{secrets.token_urlsafe(8)}'
 			url = upload_file(name, file)
 
-			body = request.form.get("body") + f"\n\n![]({url})"
-			with CustomRenderer(post_id=parent_id) as renderer:
+			body += f"\n\n![]({url})"
+			with CustomRenderer(post_id=c.parent_submission) as renderer:
 				body_md = renderer.render(mistletoe.Document(body))
 			body_html = sanitize(body_md, linkgen=True)
 			
-			#csam detection
-			def del_function():
-				delete_file(name)
-				c.is_banned=True
-				g.db.add(c)
-				g.db.commit()
+			# #csam detection
+			# def del_function():
+				# delete_file(name)
+				# c.is_banned=True
+				# g.db.add(c)
+				# g.db.commit()
 				
-			csam_thread=threading.Thread(target=check_csam_url, 
-										 args=(f"https://s3.eu-central-1.amazonaws.com/i.ruqqus.ga/{name}", 
-											   v, 
-											   del_function
-											  )
-										)
-			csam_thread.start()
+			# csam_thread=threading.Thread(target=check_csam_url, 
+										 # args=(f"https://s3.eu-central-1.amazonaws.com/i.ruqqus.ga/{name}", 
+											   # v, 
+											   # del_function
+											  # )
+										# )
+			# csam_thread.start()
 
 	c.body = body
 	c.body_html = body_html
