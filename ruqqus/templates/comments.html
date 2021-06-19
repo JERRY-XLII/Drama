@@ -34,10 +34,10 @@
 
 
 		{% if render_replies %} 
-			{% if level<8 %}
+			{% if level<7 %}
 				<div id="replies-of-{{c.base36id}}" class="">
 					{% set standalone=False %}
-					{% for reply in c.children %}
+					{% for reply in c.child_comments %}
 						{{single_comment(reply, level=level+1)}}
 					{% endfor %}
 				</div>
@@ -379,9 +379,9 @@
 
 
 	{% if render_replies %} 
-		{% if level<8 %}
+		{% if level < 7 %}
 			<div id="replies-of-{{c.base36id}}" class="">
-				{% for reply in c.children %}
+				{% for reply in c.child_comments %}
 					{{single_comment(reply, level=level+1)}}
 				{% endfor %}
 			</div>
