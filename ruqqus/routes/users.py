@@ -185,6 +185,14 @@ def u_username(username, v=None):
 	next_exists = (len(ids) == 26)
 	ids = ids[0:25]
 
+   # If page 1, check for sticky
+	if page == 1:
+		sticky = []
+		sticky = g.db.query(Submission).filter_by(pinned=True).all()
+		if sticky:
+			for p in sticky:
+				ids = [p.id] + ids
+
 	listing = get_posts(ids, v=v, sort="new")
 
 	return {'html': lambda: render_template("userpage.html",

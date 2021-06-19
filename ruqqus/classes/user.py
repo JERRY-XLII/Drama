@@ -330,7 +330,7 @@ class User(Base, Stndrd, Age_times):
 	@cache.memoize(300)
 	def userpagelisting(self, v=None, page=1):
 
-		submissions = g.db.query(Submission.id).options(lazyload('*')).filter_by(author_id=self.id)
+		submissions = g.db.query(Submission.id).options(lazyload('*')).filter_by(author_id=self.id, pinned=False)
 
 		if not (v and (v.admin_level >= 3 or v.id == self.id)):
 			submissions = submissions.filter_by(deleted_utc=0)

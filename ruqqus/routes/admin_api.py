@@ -198,15 +198,21 @@ def api_sticky_post(post_id, v):
 
 	post = g.db.query(Submission).filter_by(id=base36decode(post_id)).first()
 	if post:
-		if post.stickied:
-			post.stickied = False
-			g.db.add(post)
-			return "", 204
+		post.stickied = not (post.stickied)
+		g.db.add(post)
 
-	post.stickied = True
-	g.db.add(post)
 	return "", 204
 
+@app.route("/api/pin/<post_id>", methods=["POST"])
+@auth_required
+def api_pin_post(post_id, v):
+
+	post = g.db.query(Submission).filter_by(id=base36decode(post_id)).first()
+	if post:
+		post.pinned = not (post.pinned)
+		g.db.add(post)
+
+	return "", 204
 
 @app.route("/api/ban_comment/<c_id>", methods=["post"])
 @admin_level_required(1)
