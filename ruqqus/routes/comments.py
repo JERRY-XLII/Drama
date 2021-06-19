@@ -658,8 +658,11 @@ def edit_comment(cid, v):
 		g.db.commit()
 		return jsonify({"error": "Too much spam!"}), 403
 
+	print("sogga")
 	if v.true_score >= 0:
+		print"bingus")
 		if request.files.get("file"):
+			print("floppa")
 			file=request.files["file"]
 			if not file.content_type.startswith('image/'):
 				return jsonify({"error": "That wasn't an image!"}), 400
