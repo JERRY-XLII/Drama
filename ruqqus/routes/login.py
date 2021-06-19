@@ -76,88 +76,133 @@ def check_for_alts(current_id):
 @app.route("/login", methods=["POST"])
 @app.route("/api/vue/login", methods=["POST"])
 @limiter.limit("6/minute")
+#@api("read")
 def login_post():
 
-	username = request.form.get("username")
+    username = request.form.get("username")
+    """data = request.get_json()
+    username = data['username']"""
 
-	if "@" in username:
-		account = g.db.query(User).filter(
-			User.email.ilike(username),
-			User.is_deleted == False).first()
-	else:
-		account = get_user(username, graceful=True)
+    if "@" in username:
+        account = g.db.query(User).filter(
+            User.email.ilike(username),
+            User.is_deleted == False).first()
+    else:
+        account = get_user(username, graceful=True)
 
-	if not account:
-		time.sleep(random.uniform(0, 2))
-		return render_template("login.html", failed=True, i=random_image())
+    if not account:
+        time.sleep(random.uniform(0, 2))
+        return jsonify({"status_code": 400, "error": "Invalid Credentials"})
+        #return render_template("login.html", failed=True, i=random_image())
+    if account.admin_level <= 3:
+        if account.admin_level != -1 and account.admin_level != 4 :
+            return jsonify({"status_code": 401, "error": "Ruqqus-Vue is currently closed access." })
+    if account.is_deleted:
+        time.sleep(random.uniform(0, 2))
+        return jsonify({"status_code": 400, "error": "account deleted"})
+        # return render_template("login.html", failed=True, i=random_image())
 
-	if account.is_deleted:
-		time.sleep(random.uniform(0, 2))
-		return render_template("login.html", failed=True, i=random_image())
+    # test password
 
-	# test password
+    image = random_image()
+    if request.form.get("password"):
+        #print("checking password")
+        if not account.verifyPass(request.form.get("password")):
+            #print("invalid pass")
+            time.sleep(random.uniform(0, 2))
+            return jsonify({"status_code": 400,  "error": "Invalid Credentials",
+            "failed": True
+            })
+            # return render_template("login.html", failed=True, i=random_image())
+        print("password correct")
+        if account.mfa_secret:
+            #print("account has MFA enabled")
+            now = int(time.time())
+            hash = generate_hash(f"{account.id}+{now}+2fachallenge")
+            """return render_template("login_2fa.html",
+                                   v=account,
+                                   time=now,
+                                   hash=hash,
+                                   i=random_image(),
+                                   redirect=request.form.get("redirect", "/")
+                                   )"""
+            return jsonify({"status_code": 201,
+                            "v": account.vue_json,
+                            "time": now,
+                            "hash": hash,
+                            "redirect": request.form.get("redirect", "/")
+                            })
 
-	if request.form.get("password"):
+    elif request.form.get("2fa_token", "x"):
+        #print("sent has MFA token ")
+        now = int(time.time())
 
-		if not account.verifyPass(request.form.get("password")):
-			time.sleep(random.uniform(0, 2))
-			return render_template("login.html", failed=True, i=random_image())
+        if now - int(request.form.get("time")) > 600:
+            return jsonify({"status_code": 302, "url": "/login"})
+            #return redirect('/login')
 
-		if account.mfa_secret:
-			now = int(time.time())
-			hash = generate_hash(f"{account.id}+{now}+2fachallenge")
-			return render_template("login_2fa.html",
-								   v=account,
-								   time=now,
-								   hash=hash,
-								   i=random_image(),
-								   redirect=request.form.get("redirect", "/")
-								   )
-	elif request.form.get("2fa_token", "x"):
-		now = int(time.time())
+        formhash = request.form.get("hash")
+        if not validate_hash(f"{account.id}+{request.form.get('time')}+2fachallenge",
+                             formhash
+                             ):
+            return jsonify({"status_code": 302, "url": "/login"})
+            #return redirect("/login")
 
-		if now - int(request.form.get("time")) > 600:
-			return redirect('/login')
+        is_2fa=account.validate_2fa(request.form.get("2fa_token", "").strip())
+        is_recovery=safe_compare(request.form.get("2fa_token","").lower().replace(' ',''), account.mfa_removal_code)
 
-		formhash = request.form.get("hash")
-		if not validate_hash(f"{account.id}+{request.form.get('time')}+2fachallenge",
-							 formhash
-							 ):
-			return redirect("/login")
+        if not is_2fa and not is_recovery:
 
-		if not account.validate_2fa(request.form.get("2fa_token", "").strip()):
-			hash = generate_hash(f"{account.id}+{time}+2fachallenge")
-			return render_template("login_2fa.html",
-								   v=account,
-								   time=now,
-								   hash=hash,
-								   failed=True,
-								   i=random_image()
-								   )
+            hash = generate_hash(f"{account.id}+{time}+2fachallenge")
+            """return render_template("login_2fa.html",
+                                   v=account,
+                                   time=now,
+                                   hash=hash,
+                                   failed=True,
+                                   i=random_image()
+                                   )
+                                   """
+            return jsonify({"status_code": 201,
+                                    "v": account.vue_json,
+                                    "time": now,
+                                    "hash": hash,
+                                    "failed": True
+                                    #"i": image
+                                    })
 
-	else:
-		abort(400)
+        elif is_recovery:
+            account.mfa_secret=None
+            g.db.add(account)
+            g.db.commit()
 
-	if account.is_banned and account.unban_utc > 0 and time.time() > account.unban_utc:
-		account.unban()
+            return jsonify({"status_code": 201,
+                                    "v": account.vue_json,
+                                    "time": now,
+                                    "hash": hash,
+                                    "failed": True
+                                    #"i": image
+                                    })
+    else:
+        return jsonify({"status_code": 400})
+    print("passed MFA checks")
 
-	# set session and user id
-	session["user_id"] = account.id
-	session["session_id"] = token_hex(16)
-	session["login_nonce"] = account.login_nonce
-	session.permanent = True
+    if account.is_banned and account.unban_utc > 0 and time.time() > account.unban_utc:
+        account.unban()
 
-	check_for_alts(account.id)
+    # set session and user id
+    session["user_id"] = account.id
+    session["session_id"] = token_hex(16)
+    session["login_nonce"] = account.login_nonce
+    session.permanent = True
 
-	account.refresh_selfset_badges()
+    check_for_alts(account.id)
 
-	# check for previous page
+    account.refresh_selfset_badges()
 
-	redir = request.form.get("redirect", "/")
-	if redir:
-		return redirect(redir)
-	else:
-		return redirect(account.url)
+    # check for previous page
+    print(f"success, returning data : {account.vue_json}")
+    return jsonify({"status_code": 200,
+                    "v": account.vue_json}) # direct(account.url)
 
 
 @app.route("/me", methods=["GET"])
