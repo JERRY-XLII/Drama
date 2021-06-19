@@ -188,7 +188,7 @@ def u_username(username, v=None):
    # If page 1, check for sticky
 	if page == 1:
 		sticky = []
-		sticky = g.db.query(Submission).filter_by(is_pinned=True).all()
+		sticky = g.db.query(Submission).filter_by(is_pinned=True, author_id=u.id).all()
 		if sticky:
 			for p in sticky:
 				ids = [p.id] + ids
