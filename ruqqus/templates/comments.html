@@ -143,7 +143,7 @@
 			{% if c.parent_submission %}
 			{% if v and v.id==c.author_id and (standalone or is_allowed_to_comment) %}
 			<div id="comment-edit-{{c.base36id}}" class="d-none comment-write collapsed child">
-			 <form id="comment-edit-form-{{c.base36id}}" action="/edit_comment/{{c.base36id}}" method="post" class="input-group">
+			 <form id="comment-edit-form-{{c.base36id}}" action="/edit_comment/{{c.base36id}}" method="post" class="input-group" enctype="multipart/form-data"> 
 				<input type="hidden" name="formkey" value="{{v.formkey}}">
 				<textarea id="comment-edit-body-{{c.base36id}}" name="body" form="comment-edit-form-{{c.base36id}}" class="comment-box form-control rounded" id="edit-box-comment-{{c.base36id}}" aria-label="With textarea" placeholder="Add your comment..." rows="3">{{c.body}}</textarea> 
 				<div class="comment-format"> 
