@@ -151,7 +151,7 @@ def auth_desired(f):
 			resp.headers.add("Cache-Control", "private")
 			resp.headers.add(
 				"Access-Control-Allow-Origin",
-				app.config["SERVER_NAME"])
+				"*")
 		else:
 			resp.headers.add("Cache-Control", "public")
 		return resp
@@ -185,7 +185,7 @@ def auth_required(f):
 		resp.headers.add("Cache-Control", "private")
 		resp.headers.add(
 			"Access-Control-Allow-Origin",
-			app.config["SERVER_NAME"])
+			"*")
 		return resp
 
 	wrapper.__name__ = f.__name__
@@ -218,7 +218,7 @@ def is_not_banned(f):
 		resp.headers.add("Cache-Control", "private")
 		resp.headers.add(
 			"Access-Control-Allow-Origin",
-			app.config["SERVER_NAME"])
+			"*")
 		return resp
 
 	wrapper.__name__ = f.__name__
@@ -362,7 +362,7 @@ def admin_level_required(x):
 			resp.headers.add("Cache-Control", "private")
 			resp.headers.add(
 				"Access-Control-Allow-Origin",
-				app.config["SERVER_NAME"])
+				"*")
 			return resp
 
 		wrapper.__name__ = f.__name__
@@ -408,7 +408,7 @@ def no_cors(f):
 
 		resp = make_response(f(*args, **kwargs))
 		resp.headers.add("Access-Control-Allow-Origin",
-						 app.config["SERVER_NAME"]
+						 "*"
 						 )
 
 		return resp
@@ -463,7 +463,7 @@ def api(*scopes, no_ban=False):
 				resp.headers.add("Cache-Control", "private")
 				resp.headers.add(
 					"Access-Control-Allow-Origin",
-					app.config["SERVER_NAME"])
+					"*")
 				return resp
 
 			else:

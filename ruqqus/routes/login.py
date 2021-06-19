@@ -27,6 +27,7 @@ valid_password_regex = re.compile("^.{8,100}$")
 
 
 @app.route("/login", methods=["GET"])
+@app.route("/api/vue/login", methods=["GET"])
 @no_cors
 @auth_desired
 def login_get(v):
