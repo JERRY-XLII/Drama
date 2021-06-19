@@ -660,7 +660,7 @@ def edit_comment(cid, v):
 
 	print("sogga")
 	if v.true_score >= 0:
-		print"bingus")
+		print("bingus")
 		if request.files.get("file"):
 			print("floppa")
 			file=request.files["file"]
