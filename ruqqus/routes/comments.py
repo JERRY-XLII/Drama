@@ -658,6 +658,35 @@ def edit_comment(cid, v):
 		g.db.commit()
 		return jsonify({"error": "Too much spam!"}), 403
 
+	if v.true_score >= 0:
+		if request.files.get("file"):
+			file=request.files["file"]
+			if not file.content_type.startswith('image/'):
+				return jsonify({"error": "That wasn't an image!"}), 400
+			
+			name = f'comment/{c.base36id}/{secrets.token_urlsafe(8)}'
+			url = upload_file(name, file)
+
+			body = request.form.get("body") + f"\n\n![]({url})"
+			with CustomRenderer(post_id=parent_id) as renderer:
+				body_md = renderer.render(mistletoe.Document(body))
+			body_html = sanitize(body_md, linkgen=True)
+			
+			#csam detection
+			def del_function():
+				delete_file(name)
+				c.is_banned=True
+				g.db.add(c)
+				g.db.commit()
+				
+			csam_thread=threading.Thread(target=check_csam_url, 
+										 args=(f"https://s3.eu-central-1.amazonaws.com/i.ruqqus.ga/{name}", 
+											   v, 
+											   del_function
+											  )
+										)
+			csam_thread.start()
+
 	c.body = body
 	c.body_html = body_html
 
