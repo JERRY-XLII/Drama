@@ -103,7 +103,7 @@
 
 						<div class="post-meta text-left x-scroll" style="overflow-x: scroll;">{% if b %}<a href="{{p.board.permalink}}">+{{p.board.name}}</a>&nbsp;{% endif %}
 							{% if p.stickied %}<i class="fas fa-thumbtack text-admin fa-rotate--45" data-toggle="tooltip" data-placement="bottom" title="Pinned post"></i>&nbsp;{% endif %}
-							{% if p.pinned and request.path.startswith('/@') %}<i class="fas fa-thumbtack text-admin fa-rotate--45" data-toggle="tooltip" data-placement="bottom" title="Pinned to profile"></i>&nbsp;{% endif %}
+							{% if p.is_pinned and request.path.startswith('/@') %}<i class="fas fa-thumbtack text-admin fa-rotate--45" data-toggle="tooltip" data-placement="bottom" title="Pinned to profile"></i>&nbsp;{% endif %}
 							{% if p.over_18 %}<span class="badge badge-danger text-small-extra mr-1">+18</span>{% endif %}
 							{% if p.is_nsfl %}<span class="badge text-black border-danger border-1 text-small-extra">nsfl</span>&nbsp;{% endif %}
 							{% if p.private %}<span class="text-warning"><i class="far fa-eye-slash text-small mr-1"></i>unlisted</span>&nbsp;{% endif %}
@@ -122,7 +122,7 @@
 				<div class="post-meta text-left d-none d-md-block mb-md-2">
 					{% if p.board_id %}{% if b %}<span class="font-weight-bold"><a href="{{p.board.permalink}}" class="text-black"><img src="{{p.board.profile_url}}" class="profile-pic-20 align-top mr-1">+{{p.board.name}}</a></span>&nbsp;{% endif %}{% endif %}
 					{% if p.stickied %}<i class="fas fa-thumbtack text-admin fa-rotate--45" data-toggle="tooltip" data-placement="bottom" title="Pinned post"></i>&nbsp;{% endif %}
-					{% if p.pinned and request.path.startswith('/@') %}<i class="fas fa-thumbtack text-admin fa-rotate--45" data-toggle="tooltip" data-placement="bottom" title="Pinned to profile"></i>&nbsp;{% endif %}
+					{% if p.is_pinned and request.path.startswith('/@') %}<i class="fas fa-thumbtack text-admin fa-rotate--45" data-toggle="tooltip" data-placement="bottom" title="Pinned to profile"></i>&nbsp;{% endif %}
 					{% if p.is_pinned %}<i class="fas fa-thumbtack text-info fa-rotate--45" data-toggle="tooltip" data-placement="bottom" title="Pinned to +{{p.board.name}}"></i>&nbsp;{% endif %}
 					{% if p.author.is_deleted %}[deleted account]{% else %}&nbsp;<a href="{{p.author.permalink}}" style="color: #{{p.author.namecolor}}; font-weight: bold;" class="user-name"><img src="{{p.author.profile_url}}" class="profile-pic-20">&nbsp;&nbsp;{{p.author.username}}</a><span style="color: #{{p.author.titlecolor}}">{% if p.author.customtitle %}&nbsp;&nbsp;{{p.author.customtitle | safe}}{% endif %}</span>
 					<span data-toggle="tooltip" data-placement="bottom"  title="{{p.created_datetime}}">&nbsp;{{p.age_string}}</span>
@@ -170,7 +170,7 @@
 						{% endif %}
 
 						{% if v and v.id==p.author_id %}
-						<li class="list-inline-item"><a href="javascript:void(0)" onclick="post('/api/pin/{{p.base36id}}', function(){window.location.reload(true);})"><i class="fas fa-thumbtack"></i>{% if p.pinned %}Unpin from your profile{% else %}Pin to your profile{% endif %}</a></li>
+						<li class="list-inline-item"><a href="javascript:void(0)" onclick="post('/api/pin/{{p.base36id}}', function(){window.location.reload(true);})"><i class="fas fa-thumbtack"></i>{% if p.is_pinned %}Unpin from your profile{% else %}Pin to your profile{% endif %}</a></li>
 						{% if p.is_deleted %}
 							<li class="list-inline-item"><a href="javascript:void(0)" onclick="post('/undelete_post/{{p.base36id}}', function(){window.location.reload(true);})"><i class="fas fa-trash-alt"></i>Undelete</a></li>
 						{% else %}
@@ -319,7 +319,7 @@
 					<button class="btn btn-link btn-block btn-lg text-left text-muted" data-toggle="modal" data-dismiss="modal" data-target="#reportPostModal" onclick="report_postModal('{{p.base36id}}','{{'@'+p.author.username if not p.author.is_deleted else '[deleted account]'}}','{{p.board.name}}')" class="d-block"><i class="far fa-flag text-center text-muted mr-3"></i>Flag</button>
 					{% endif %}
 					{% if v and v.id==p.author_id %}
-						<button class="btn btn-link btn-block btn-lg text-info text-left" id="pin-post-{{p.base36id}}" href="javascript:void(0)" onclick="post('/api/pin/{{p.base36id}}',callback=function(){window.location.reload(true);})"><i class="fas fa-thumbtack text-center text-muted mr-3"></i>{% if p.pinned %}Unpin from your profile{% else %}Pin to your profile{% endif %}</button>
+						<button class="btn btn-link btn-block btn-lg text-info text-left" id="pin-post-{{p.base36id}}" href="javascript:void(0)" onclick="post('/api/pin/{{p.base36id}}',callback=function(){window.location.reload(true);})"><i class="fas fa-thumbtack text-center text-muted mr-3"></i>{% if p.is_pinned %}Unpin from your profile{% else %}Pin to your profile{% endif %}</button>
 						{% if p.is_deleted %}
 							<button class="btn btn-link btn-block btn-lg text-left text-muted" href="javascript:void(0)" onclick="post('/undelete_post/{{p.base36id}}', function(){window.location.reload(true);})"><i class="far fa-trash-alt text-center text-muted mr-3"></i>Undelete</button>
 						{% else %}

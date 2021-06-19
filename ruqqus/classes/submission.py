@@ -61,7 +61,7 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
 	distinguished_board = relationship("Board", lazy="joined", primaryjoin="Board.id==Submission.gm_distinguish")
 	created_str = Column(String(255), default=None)
 	stickied = Column(Boolean, default=False)
-	pinned = Column(Boolean, default=False)
+	is_pinned = Column(Boolean, default=False)
 	private = Column(Boolean, default=False)
 	_comments = relationship(
 		"Comment",

@@ -209,7 +209,7 @@ def api_pin_post(post_id, v):
 
 	post = g.db.query(Submission).filter_by(id=base36decode(post_id)).first()
 	if post:
-		post.pinned = not (post.pinned)
+		post.is_pinned = not (post.is_pinned)
 		g.db.add(post)
 
 	return "", 204
