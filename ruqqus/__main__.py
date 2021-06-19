@@ -34,8 +34,6 @@ from redis import BlockingConnectionPool
 
 from werkzeug.middleware.proxy_fix import ProxyFix
 
-from flask_cors import CORS
-
 _version = "2.35.62"
 
 app = Flask(__name__,
@@ -379,8 +377,3 @@ def after_request(response):
 def www_redirect(path):
 
     return redirect(f"https://{app.config['SERVER_NAME']}/{path}")
-
-CORS(app)
-@app.route("/")
-def helloWorld():
-  return "Hello, cross-origin-world!"
