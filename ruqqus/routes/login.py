@@ -74,6 +74,7 @@ def check_for_alts(current_id):
 
 @no_cors
 @app.route("/login", methods=["POST"])
+@app.route("/api/vue/login", methods=["POST"])
 @limiter.limit("6/minute")
 def login_post():
 
