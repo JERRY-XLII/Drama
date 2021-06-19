@@ -407,9 +407,7 @@ def no_cors(f):
 			return "This page may not be embedded in other webpages.", 403
 
 		resp = make_response(f(*args, **kwargs))
-		resp.headers.add("Access-Control-Allow-Origin",
-						 "*"
-						 )
+		resp.headers.add("Access-Control-Allow-Origin","*")
 
 		return resp
 
