@@ -1861,7 +1861,7 @@ comment_edit=function(id){
 
 	form.append('formkey', formkey());
 	form.append('body', document.getElementById('comment-edit-body-'+id).value);
-
+	form.append('file', document.getElementById('file-edit-reply-'+id).files[0]);
 
 	var xhr = new XMLHttpRequest();
 	xhr.open("post", "/edit_comment/"+id);

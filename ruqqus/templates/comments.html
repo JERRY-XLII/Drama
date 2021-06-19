@@ -29,7 +29,7 @@
 						<div id="comment-banned-warning" class="comment-text text-danger text-small">
 								{% if c.is_banned and c.ban_reason %}Reason: {{c.ban_reason}}{% endif %}
 						</div>
-				 </div>
+				</div>
 
 
 
@@ -143,29 +143,31 @@
 			{% if c.parent_submission %}
 			{% if v and v.id==c.author_id and (standalone or is_allowed_to_comment) %}
 			<div id="comment-edit-{{c.base36id}}" class="d-none comment-write collapsed child">
-			 <form id="comment-edit-form-{{c.base36id}}" action="/edit_comment/{{c.base36id}}" method="post" class="input-group" enctype="multipart/form-data"> 
-				<input type="hidden" name="formkey" value="{{v.formkey}}">
-				<textarea id="comment-edit-body-{{c.base36id}}" name="body" form="comment-edit-form-{{c.base36id}}" class="comment-box form-control rounded" id="edit-box-comment-{{c.base36id}}" aria-label="With textarea" placeholder="Add your comment..." rows="3">{{c.body}}</textarea> 
-				<div class="comment-format"> 
-				 <small class="format pl-0"><i class="fas fa-bold" aria-hidden="true" onclick="makeBold('comment-edit-body-{{c.base36id}}')" data-toggle="tooltip" data-placement="bottom" title="Bold"></i></small> 
-				 <small class="format"><i class="fas fa-italic" aria-hidden="true" onclick="makeItalics('comment-edit-body-{{c.base36id}}')" data-toggle="tooltip" data-placement="bottom" title="Italicize"></i></small> 
-				 <small class="format"><i class="fas fa-quote-right" aria-hidden="true" onclick="makeQuote('comment-edit-body-{{c.base36id}}')" data-toggle="tooltip" data-placement="bottom" title="Quote"></i></small>
-				 <small class="btn btn-secondary format d-inline-block m-0"><span class="font-weight-bolder text-uppercase" aria-hidden="true" onclick="getGif();commentForm('comment-edit-body-{{c.base36id}}')" data-toggle="modal" data-target="#gifModal" data-toggle="tooltip" data-placement="bottom"  title="Add GIF">GIF</span></small>
-				<p>&nbsp;</p>
-				 <small class="btn btn-secondary format d-inline-block m-0"><i class="fas fa-smile-beam" aria-hidden="true" onclick="commentForm('comment-edit-body-{{c.base36id}}');loadEmojis()" data-toggle="modal" data-target="#emojiModal" data-toggle="tooltip" data-placement="bottom"  title="Add EMOJI"></i></small>
-				<p>&nbsp;</p>
-				
-				<label class="btn btn-secondary format d-inline-block m-0" for="file-edit-reply-{{c.fullname}}">
-					<div id="filename-edit-reply-{{c.base36id}}"><i class="far fa-image"></i></div>
-					<input id="file-edit-reply-{{c.fullname}}" type="file" name="file" accept="image/*" onchange="document.getElementById('filename-edit-reply-{{c.base36id}}').innerHTML=document.getElementById('file-edit-reply-{{c.fullname}}').files[0].name;" hidden>
-				</label>
-					
-				 <a id="cancel-edit-{{c.base36id}}" href="javascript:void(0)" onclick="toggleEdit('{{c.base36id}}')" class="btn btn-link text-muted ml-auto cancel-form">Cancel</a> 
-				 <a href="javascript:void(0)" form="comment-edit-form-{{c.base36id}}" class="btn btn-primary ml-2" onclick="comment_edit('{{c.base36id}}')">Save Edit</a> </div> </form>
-			 </div>
-			 {% endif %}
+				<form id="comment-edit-form-{{c.base36id}}" action="/edit_comment/{{c.base36id}}" method="post" class="input-group" enctype="multipart/form-data"> 
+					<input type="hidden" name="formkey" value="{{v.formkey}}">
+					<textarea id="comment-edit-body-{{c.base36id}}" name="body" form="comment-edit-form-{{c.base36id}}" class="comment-box form-control rounded" id="edit-box-comment-{{c.base36id}}" aria-label="With textarea" placeholder="Add your comment..." rows="3">{{c.body}}</textarea> 
+					<div class="comment-format"> 
+						<small class="format pl-0"><i class="fas fa-bold" aria-hidden="true" onclick="makeBold('comment-edit-body-{{c.base36id}}')" data-toggle="tooltip" data-placement="bottom" title="Bold"></i></small> 
+						<small class="format"><i class="fas fa-italic" aria-hidden="true" onclick="makeItalics('comment-edit-body-{{c.base36id}}')" data-toggle="tooltip" data-placement="bottom" title="Italicize"></i></small> 
+						<small class="format"><i class="fas fa-quote-right" aria-hidden="true" onclick="makeQuote('comment-edit-body-{{c.base36id}}')" data-toggle="tooltip" data-placement="bottom" title="Quote"></i></small>
+						<small class="btn btn-secondary format d-inline-block m-0"><span class="font-weight-bolder text-uppercase" aria-hidden="true" onclick="getGif();commentForm('comment-edit-body-{{c.base36id}}')" data-toggle="modal" data-target="#gifModal" data-toggle="tooltip" data-placement="bottom"  title="Add GIF">GIF</span></small>
+						<p>&nbsp;</p>
+						<small class="btn btn-secondary format d-inline-block m-0"><i class="fas fa-smile-beam" aria-hidden="true" onclick="commentForm('comment-edit-body-{{c.base36id}}');loadEmojis()" data-toggle="modal" data-target="#emojiModal" data-toggle="tooltip" data-placement="bottom"  title="Add EMOJI"></i></small>
+						<p>&nbsp;</p>
+						
+						<label class="btn btn-secondary format d-inline-block m-0" for="file-edit-reply-{{c.base36id}}">
+							<div id="filename-edit-reply-{{c.base36id}}"><i class="far fa-image"></i></div>
+							<input id="file-edit-reply-{{c.base36id}}" type="file" name="file" accept="image/*" onchange="document.getElementById('filename-edit-reply-{{c.base36id}}').innerHTML=document.getElementById('file-edit-reply-{{c.base36id}}').files[0].name;" hidden>
+						</label>
 
-			 <div id="comment-{{c.base36id}}-actions" class="comment-actions{% if voted==1 %} upvoted{% elif voted==-1 %} downvoted{% endif %}">
+						<a id="cancel-edit-{{c.base36id}}" href="javascript:void(0)" onclick="toggleEdit('{{c.base36id}}')" class="btn btn-link text-muted ml-auto cancel-form">Cancel</a> 
+						<a href="javascript:void(0)" form="comment-edit-form-{{c.base36id}}" class="btn btn-primary ml-2" onclick="comment_edit('{{c.base36id}}')">Save Edit</a> 
+					</div> 
+				</form>
+			</div>
+			{% endif %}
+
+			<div id="comment-{{c.base36id}}-actions" class="comment-actions{% if voted==1 %} upvoted{% elif voted==-1 %} downvoted{% endif %}">
 				<ul class="list-inline text-right text-md-left">
 
 					{% if v and request.path.startswith('/@') and v.admin_level == 0%}
@@ -290,9 +292,9 @@
 						{% endif %}
 						{% if v and c.post and c.is_guildmaster('access') %}
 							{% if v.id!=c.author_id and not c.author.is_deleted and c.original_board_id==c.post.board_id %}
-								 {% if c.author.is_banned %}
+								{% if c.author.is_banned %}
 								<a class="dropdown-item text-danger" id="unexile-comment-{{c.base36id}}" href="javascript:void(0)" onclick="post_toast('/api/unban_user/{{c.author_id}}?toast=1')"><i class="fas fa-user-minus fa-fw text-danger"></i>Unban user</a>
-								 {% else %}
+								{% else %}
 								<a class="dropdown-item text-danger" id="exile-comment-{{c.base36id}}" href="javascript:void(0)" onclick="post_toast('/api/ban_user/{{c.author_id}}?toast=1')"><i class="fas fa-user-minus fa-fw text-danger"></i>Ban user</a>
 								{% endif %}
 							{% endif %}
@@ -428,7 +430,7 @@
 					{% endif %}
 
 
-				 {% endif %}
+				{% endif %}
 
 					{% if v and c.parent_submission and (c.author_id==v.id or v.admin_level > 0) %}
 					<li class="list-group-item"><a class="d-block" href="javascript:void(0)" onclick="post('/api/toggle_comment_nsfw/{{c.base36id}}', function(){window.location.reload(true);})"><i class="fas fa-eye-evil"></i>Toggle +18</a></li>
@@ -465,11 +467,11 @@
 					{% endif %}
 					{% if v and c.post and c.is_guildmaster('access') %}
 						{% if c.author_id != v.id and not c.author.is_deleted and c.original_board_id==c.post.board_id %}
-								 {% if c.author.is_banned %}
-								 <li class="list-group-item"><a class="d-block text-danger" id="unexile-comment2-{{c.base36id}}" href="javascript:void(0)" onclick="post_toast('/api/unban_user/{{c.author_id}}?toast=1')"><i class="fas fa-user-minus fa-fw text-danger"></i>Unban user</a></li>
-								 {% else %}
-								 <li class="list-group-item"><a class="d-block text-danger" id="exile-comment2-{{c.base36id}}" href="javascript:void(0)" onclick="post_toast('/api/ban_user/{{c.author_id}}?toast=1')"><i class="fas fa-user-minus fa-fw text-danger"></i>Ban user</a></li>
-								 {% endif %}
+								{% if c.author.is_banned %}
+								<li class="list-group-item"><a class="d-block text-danger" id="unexile-comment2-{{c.base36id}}" href="javascript:void(0)" onclick="post_toast('/api/unban_user/{{c.author_id}}?toast=1')"><i class="fas fa-user-minus fa-fw text-danger"></i>Unban user</a></li>
+								{% else %}
+								<li class="list-group-item"><a class="d-block text-danger" id="exile-comment2-{{c.base36id}}" href="javascript:void(0)" onclick="post_toast('/api/ban_user/{{c.author_id}}?toast=1')"><i class="fas fa-user-minus fa-fw text-danger"></i>Ban user</a></li>
+								{% endif %}
 						{% endif %}
 					{% endif %}	
 
