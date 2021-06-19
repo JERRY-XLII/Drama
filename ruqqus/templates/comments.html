@@ -37,11 +37,11 @@
 			{% if level<8 %}
 				<div id="replies-of-{{c.base36id}}" class="">
 					{% set standalone=False %}
-					{% for reply in c.replies %}
+					{% for reply in c.child_comments %}
 						{{single_comment(reply, level=level+1)}}
 					{% endfor %}
 				</div>
-			{% else %}
+			{% elif c.child_comments %}
 				<div id="morecomment-{{c.base36id}}" class="mt-2 more-comments text-small">
 					<a href="{{c.permalink}}"{% if c.author.is_private %} rel="nofollow"{% endif %}>More comments <i class="fas fa-long-arrow-right ml-1"></i></a>
 				</div>
@@ -381,11 +381,11 @@
 	{% if render_replies %} 
 		{% if level<8 %}
 			<div id="replies-of-{{c.base36id}}" class="">
-				{% for reply in c.replies %}
+				{% for reply in c.child_comments %}
 					{{single_comment(reply, level=level+1)}}
 				{% endfor %}
 			</div>
-		{% else %}
+		{% elif c.child_comments %}
 			<div id="morecomment-{{c.base36id}}" class="mt-2 more-comments text-small">
 				<a href="{{c.permalink}}"{% if c.author.is_private %} rel="nofollow"{% endif %}>More comments <i class="fas fa-long-arrow-right ml-1"></i></a>
 			</div>
