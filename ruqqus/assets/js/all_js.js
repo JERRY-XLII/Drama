@@ -1299,10 +1299,9 @@ var imgLink = document.getElementById("desktop-expanded-image-wrap-link");
 
 var inlineImage = document.getElementById("desktop-expanded-image");
 
-inlineImage.src = image;
-
-linkText.href = link;
-imgLink.href=link;
+inlineImage.src = image.replace("100w.gif", "giphy.gif");
+linkText.href = image;
+imgLink.href=image;
 
 if (image.includes("i.ruqqus.ga")) {
 	linkText.textContent = 'Go to website';
