@@ -225,7 +225,7 @@ def default_cat_cookie():
 @api("read")
 def front_all(v):
 
-	if v.is_banned: return {"html": lambda: render_template("seized.html"), "api": lambda: "Seized by law enforcement."}
+	if v and v.is_banned: return {"html": lambda: render_template("seized.html"), "api": lambda: "Seized by law enforcement."}
 				
 	page = int(request.args.get("page") or 1)
 
