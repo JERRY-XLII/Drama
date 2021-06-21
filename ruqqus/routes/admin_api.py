@@ -677,7 +677,7 @@ def admin_nuke_user(v):
 			kind="ban_comment",
 			user_id=v.id,
 			target_comment_id=comment.id,
-			board_id=comment.post.board_id,
+			board_id=1,
 			)
 		g.db.add(ma)
 
@@ -716,7 +716,7 @@ def admin_nunuke_user(v):
 			kind="unban_comment",
 			user_id=v.id,
 			target_comment_id=comment.id,
-			board_id=comment.post.board_id,
+			board_id=1,
 			)
 		g.db.add(ma)
 
