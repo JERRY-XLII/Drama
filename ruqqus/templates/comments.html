@@ -42,7 +42,13 @@
 					{% endfor %}
 				</div>
 			{% elif c.child_comments %}
-				<div id="morecomment-{{c.base36id}}" class="mt-2 more-comments text-small">
+				<div id="replies-of-{{c.base36id}}" class="d-none d-md-block">
+					{% set standalone=False %}
+					{% for reply in c.child_comments %}
+						{{single_comment(reply, level=level+1)}}
+					{% endfor %}
+				</div>
+				<div id="morecomment-{{c.base36id}}" class="d-block d-md-none mt-2 more-comments text-small">
 					<a href="{{c.permalink}}"{% if c.author.is_private %} rel="nofollow"{% endif %}>More comments <i class="fas fa-long-arrow-right ml-1"></i></a>
 				</div>
 			{% endif %}
