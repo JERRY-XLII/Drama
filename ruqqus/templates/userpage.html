@@ -119,12 +119,12 @@
 					 {% if v and v.id != u.id and v.admin_level > 0 %}
 						<pre></pre>
 						{% if u.is_banned %}
-							<form action="/api/unban_user/{{u.id}}" method="post">
+							<form action="/api/unban_user/{{u.id}}" method="post" action="">
 								<input type="hidden" name="formkey", value="{{v.formkey}}">
 								<input type="submit" class="btn btn-success" value="Unban user">
 							</form>
 						{% else %}
-							<form action="/api/ban_user/{{u.id}}" method="post">
+							<form action="/api/ban_user/{{u.id}}" method="post" action="">
 								<input type="hidden" name="formkey" value="{{v.formkey}}">
 								<input id="user-ban-reason" style="font-size:11px;" type="text" class="form-control" name="reason" placeholder="Ban Reason" onchange="document.getElementById('user-ban-submit').disabled=false">
 								<input id="user-ban-days" style="font-size:11px;" type="number" class="form-control" name="days" placeholder="Days (blank = permanent)">
