@@ -275,6 +275,12 @@ def searchcommentlisting(criteria, v=None, page=1, t="None", sort="top"):
 
 	comments = g.db.query(Comment).options(lazyload('*')).join(Comment.comment_aux,)
 
+	if 'q' in criteria:
+		words=criteria['q'].split()
+		words=[SubmissionAux.title.ilike('%'+x+'%') for x in words]
+		words=tuple(words)
+		comments=comments.filter(*words)
+
 	if not(v and v.admin_level >= 3):
 		comments = comments.filter(
 			Comment.deleted_utc == 0,
