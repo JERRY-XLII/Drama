@@ -294,20 +294,20 @@ def searchcommentlisting(criteria, v=None, page=1, t="None", sort="top"):
 			cutoff = 0
 		comments = comments.filter(Comment.created_utc >= cutoff)
 
-	comments=comments.options(contains_eager(Comment.submission_aux),)
+	comments=comments.options(contains_eager(Comment.comment_aux),)
 
 	if sort == "hot":
-		comments = comments.order_by(Submission.score_hot.desc())
+		comments = comments.order_by(Comment.score_hot.desc())
 	elif sort == "new":
-		comments = comments.order_by(Submission.created_utc.desc())
+		comments = comments.order_by(Comment.created_utc.desc())
 	elif sort == "old":
-		comments = comments.order_by(Submission.created_utc.asc())
+		comments = comments.order_by(Comment.created_utc.asc())
 	elif sort == "controversial":
-		comments = comments.order_by(Submission.score_disputed.desc())
+		comments = comments.order_by(Comment.score_disputed.desc())
 	elif sort == "top":
-		comments = comments.order_by(Submission.score_top.desc())
+		comments = comments.order_by(Comment.score_top.desc())
 	elif sort == "bottom":
-		comments = comments.order_by(Submission.score_top.asc())
+		comments = comments.order_by(Comment.score_top.asc())
 
 	total = comments.count()
 	comments = [x for x in posts.offset(25 * (page - 1)).limit(26).all()]
