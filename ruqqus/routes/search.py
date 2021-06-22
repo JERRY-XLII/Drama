@@ -310,7 +310,7 @@ def searchcommentlisting(criteria, v=None, page=1, t="None", sort="top"):
 		comments = comments.order_by(Comment.score_top.asc())
 
 	total = comments.count()
-	comments = [x for x in posts.offset(25 * (page - 1)).limit(26).all()]
+	comments = [x for x in comments.offset(25 * (page - 1)).limit(26).all()]
 
 	return total, [x.id for x in comments]
 	
