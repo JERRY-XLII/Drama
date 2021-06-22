@@ -180,7 +180,7 @@ def searchlisting(criteria, v=None, page=1, t="None", sort="top", b=None):
 @cache.memoize(300)
 def searchcommentlisting(criteria, v=None, page=1, t="None", sort="top"):
 
-	comments = g.db.query(Comment).options(lazyload('*')).join(Comment.comment_aux,).filter((not parent_submission))
+	comments = g.db.query(Comment).options(lazyload('*')).filter(Comment.parent_submission is not None).join(Comment.comment_aux)
 
 	if 'q' in criteria:
 		words=criteria['q'].split()
