@@ -162,13 +162,13 @@
 			<div class="flex-row box-shadow-bottom d-flex justify-content-center justify-content-md-between align-items-center">
 				<ul class="nav settings-nav">
 					<li class="nav-item">
-						<a class="nav-link active" href="/search">Posts</a>
+						<a class="nav-link{% if request.path.endswith('/posts') %} active{% endif %}" href="/search/posts">Posts</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="/search/comments/?sort={{sort}}&q={{query | urlencode}}&t={{time_filter}}">Comments</a>
+						<a class="nav-link{% if request.path.endswith('/comments') %} active{% endif %}" href="/search/comments/?sort={{sort}}&q={{query | urlencode}}&t={{time_filter}}">Comments</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="/search/users?q={{query | urlencode}}">Users</a>
+						<a class="nav-link{% if request.path.endswith('/users') %} active{% endif %}" href="/search/users?q={{query | urlencode}}">Users</a>
 					</li>
 				</ul>
 			</div>

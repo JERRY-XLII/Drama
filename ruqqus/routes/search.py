@@ -177,7 +177,7 @@ def searchlisting(criteria, v=None, page=1, t="None", sort="top", b=None):
 	return total, [x.id for x in posts]
 
 
-@app.route("/search", methods=["GET"])
+@app.route("/search/posts", methods=["GET"])
 @app.route("/api/v1/search", methods=["GET"])
 @app.route("/api/vue/search")
 @auth_desired
