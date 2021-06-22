@@ -17,7 +17,7 @@
 
 {% block PseudoSubmitForm %}{% endblock %}
 
-{% if not request.path.endswith('/users')}
+{% if not request.path.endswith('/users') %}
 	{% block navbar %}
 		<div class="font-weight-bold py-3">Search</div>
 
