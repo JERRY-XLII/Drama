@@ -3,7 +3,7 @@
 {% block pagetype %}search{% endblock %}
 
 {% block title %}
-<title>Search {% if b %}+{{b.name}} {% endif %}for "{{query}}" - Drama"</title> <!-- include dynamic jinja-generated text in title -->
+<title>Search for "{{query}}" - Drama"</title> <!-- include dynamic jinja-generated text in title -->
 <meta name="description" content="{{total}} result{{'s' if total != 1 else ''}}">
 {% endblock %}
 
@@ -17,7 +17,7 @@
 
 {% block PseudoSubmitForm %}{% endblock %}
 
-{% if not request.path.endswith('/users') %}
+{% if not '/users/' in request.path %}
 	{% block navbar %}
 		<div class="font-weight-bold py-3">Search</div>
 
@@ -99,6 +99,8 @@
 
 <!-- Post filters bar visible only on medium devices or larger-->
 
+{% if not '/users/' in request.path %}
+
 <div class="flex-row tab-bar sticky d-none">
 
 	<ul class="nav post-nav mr-auto">
@@ -170,12 +172,13 @@
 						<a class="nav-link{% if  '/comments/' in request.path %} active{% endif %}" href="/search/comments/?sort={{sort}}&q={{query | urlencode}}&t={{time_filter}}">Comments</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link{% if  '/users/' in request.path %} active{% endif %}" href="/search/users?q={{query | urlencode}}">Users</a>
+						<a class="nav-link{% if  '/users/' in request.path %} active{% endif %}" href="/search/users/?sort={{sort}}&q={{query | urlencode}}&t={{time_filter}}">Users</a>
 					</li>
 				</ul>
 			</div>
 		</div>
 	</div>
+	{% endif %}
 
 	<div class="row no-gutters">
 
@@ -189,6 +192,7 @@
 		</div>
 	</div>
 
+	{% if not '/users/' in request.path %}
 	<div class="row fixed-top bg-white border-top d-inline-flex d-md-none py-2 px-3" id="fixed-bar-mobile" style="z-index: 100; top: 49px; transition: top cubic-bezier(0, 0, 0.2, 1) 220ms;">
 
 		<div class="col">
@@ -250,7 +254,7 @@
 		</div>
 
 	</div>
-
+	{% endif %}
 	{% endblock %}
 
 	{% block pagenav %}
