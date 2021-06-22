@@ -95,16 +95,6 @@ def searchlisting(criteria, v=None, page=1, t="None", sort="top", b=None):
 				)
 			)
 
-
-	if not (v and v.over_18):
-		posts = posts.filter(Submission.over_18 == False)
-
-	if v and v.hide_offensive:
-		posts = posts.filter(Submission.is_offensive == False)
-		
-	if v and v.hide_bot:
-		posts = posts.filter(Submission.is_bot == False)
-
 	if not(v and v.admin_level >= 3):
 		posts = posts.filter(
 			Submission.deleted_utc == 0,
@@ -198,66 +188,6 @@ def search(v, search_type="posts"):
 
 	page = max(1, int(request.args.get("page", 1)))
 
-	if query.startswith("+"):
-
-		# guild search stuff here
-		sort = request.args.get("sort", "subs").lower()
-	
-		term=query.lstrip('+')
-		term=term.replace('\\','')
-		term=term.replace('_','\_')
-
-		boards = g.db.query(Board).filter(
-			Board.name.ilike(f'%{term}%'))
-
-		if not(v and v.over_18):
-			boards = boards.filter_by(over_18=False)
-
-		if not (v and v.admin_level >= 3):
-			boards = boards.filter_by(is_banned=False)
-
-		if v:
-			joined = g.db.query(Subscription).filter_by(user_id=v.id, is_active=True).subquery()
-
-			boards=boards.join(
-				joined,
-				joined.c.board_id==Board.id,
-				isouter=True
-				)
-
-			boards=boards.order_by(
-				Board.name.ilike(term).desc(),
-				joined.c.id.is_(None).asc(),
-				Board.stored_subscriber_count.desc(),
-				)
-
-
-
-		else:
-
-			boards = boards.order_by(
-				Board.name.ilike(term).desc(), 
-				Board.stored_subscriber_count.desc()
-				)
-
-		total = boards.count()
-
-		boards = [x for x in boards.offset(25 * (page - 1)).limit(26)]
-		next_exists = (len(boards) == 26)
-		boards = boards[0:25]
-
-		return {"html":lambda:render_template("search_boards.html",
-							   v=v,
-							   query=query,
-							   total=total,
-							   page=page,
-							   boards=boards,
-							   sort=sort,
-							   next_exists=next_exists
-							   ),
-				"api":lambda:jsonify({"data":[x.json for x in boards]})
-				}
-
 	elif query.startswith("@"):
 			
 		term=query.lstrip('@')
@@ -340,48 +270,81 @@ def search(v, search_type="posts"):
 				"api":lambda:jsonify({"data":[x.json for x in posts]})
 				}
 
+@cache.memoize(300)
+def searchcommentlisting(criteria, v=None, page=1, t="None", sort="top"):
 
-@app.route("/+<name>/search", methods=["GET"])
+	comments = g.db.query(Comment).options(lazyload('*')).join(Comment.comment_aux,)
+
+	if not(v and v.admin_level >= 3):
+		comments = comments.filter(
+			Comment.deleted_utc == 0,
+			Comment.is_banned == False)
+
+	if t:
+		now = int(time.time())
+		if t == 'day':
+			cutoff = now - 86400
+		elif t == 'week':
+			cutoff = now - 604800
+		elif t == 'month':
+			cutoff = now - 2592000
+		elif t == 'year':
+			cutoff = now - 31536000
+		else:
+			cutoff = 0
+		comments = comments.filter(Comment.created_utc >= cutoff)
+
+	comments=comments.options(contains_eager(Comment.submission_aux),)
+
+	if sort == "hot":
+		comments = comments.order_by(Submission.score_hot.desc())
+	elif sort == "new":
+		comments = comments.order_by(Submission.created_utc.desc())
+	elif sort == "old":
+		comments = comments.order_by(Submission.created_utc.asc())
+	elif sort == "controversial":
+		comments = comments.order_by(Submission.score_disputed.desc())
+	elif sort == "top":
+		comments = comments.order_by(Submission.score_top.desc())
+	elif sort == "bottom":
+		comments = comments.order_by(Submission.score_top.asc())
+
+	total = comments.count()
+	comments = [x for x in posts.offset(25 * (page - 1)).limit(26).all()]
+
+	return total, [x.id for x in comments]
+	
+@app.route("/search/comments", methods=["GET"])
+@app.route("/api/v1/search/comments", methods=["GET"])
+@app.route("/api/vue/search/comments")
 @auth_desired
-def search_guild(name, v, search_type="posts"):
+@api("read")
+def searchcomments(v):
 
+	query = request.args.get("q", '').lstrip().rstrip()
 
-	query=request.args.get("q","").lstrip().rstrip()
+	page = max(1, int(request.args.get("page", 1)))
 
-	if query.startswith(("+","@")):
-		return redirect(f"/search?q={quote(query)}")
-
-	b = get_guild(name, graceful=True)
-	if not b:
-		abort(404)
-
-	if b.is_banned:
-		return render_template("board_banned.html", v=v, b=b)
-
-	page=max(1, int(request.args.get("page", 1)))
-
-	sort=request.args.get("sort", "hot").lower()
-	
-	
+	sort = request.args.get("sort", "top").lower()
 	t = request.args.get('t', 'all').lower()
 
-	#posts search
+	criteria=searchparse(query)
+	total, ids = searchcommentlisting(criteria, v=v, page=page, t=t, sort=sort)
 
-	total, ids = searchlisting(searchparse(query), v=v, page=page, t=t, sort=sort, b=b)
+	next_exists = (len(ids) == 26)
+	ids = ids[0:25]
 
-	next_exists=(len(ids)==26)
-	ids=ids[0:25]
+	comments = get_comments(ids, v=v)
 
-	posts=get_posts(ids, v=v)
-
-	return render_template("search.html",
-				   v=v,
-				   query=query,
-				   total=total,
-				   page=page,
-				   listing=posts,
-					   sort=sort,
+	return {"html":lambda:render_template("search_comments.html",
+						   v=v,
+						   query=query,
+						   total=total,
+						   page=page,
+						   comments=comments,
+						   sort=sort,
+						   time_filter=t,
 						   next_exists=next_exists,
-			   time_filter=t,
-						   b=b
-				   )
+						   ),
+			"api":lambda:jsonify({"data":[x.json for x in comments]})
+			}
