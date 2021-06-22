@@ -277,7 +277,7 @@ def searchcommentlisting(criteria, v=None, page=1, t="None", sort="top"):
 
 	if 'q' in criteria:
 		words=criteria['q'].split()
-		words=[SubmissionAux.title.ilike('%'+x+'%') for x in words]
+		words=[CommentAux.title.ilike('%'+x+'%') for x in words]
 		words=tuple(words)
 		comments=comments.filter(*words)
 
