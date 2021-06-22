@@ -177,99 +177,6 @@ def searchlisting(criteria, v=None, page=1, t="None", sort="top", b=None):
 	return total, [x.id for x in posts]
 
 
-@app.route("/search/posts", methods=["GET"])
-@app.route("/api/v1/search", methods=["GET"])
-@app.route("/api/vue/search")
-@auth_desired
-@api("read")
-def search(v, search_type="posts"):
-
-	query = request.args.get("q", '').lstrip().rstrip()
-
-	page = max(1, int(request.args.get("page", 1)))
-
-	if query.startswith("@"):
-			
-		term=query.lstrip('@')
-		term=term.replace('\\','')
-		term=term.replace('_','\_')
-		
-		now=int(time.time())
-		users=g.db.query(User).filter(
-			User.username.ilike(f'%{term}%'))
-		
-		
-		if not (v and v.admin_level >= 3):
-			users=users.filter(
-			User.is_private==False,
-			User.is_deleted==False,
-			or_(
-				User.is_banned==0,
-				User.unban_utc<now
-			)
-		)
-		users=users.order_by(User.username.ilike(term).desc(), User.stored_subscriber_count.desc())
-		
-		total=users.count()
-		
-		users=[x for x in users.offset(25 * (page-1)).limit(26)]
-		next_exists=(len(users)==26)
-		users=users[0:25]
-		
-		
-		
-		return {"html":lambda:render_template("search_users.html",
-					   v=v,
-					   query=query,
-					   total=total,
-					   page=page,
-					   users=users,
-					   next_exists=next_exists
-					  ),
-				"api":lambda:jsonify({"data":[x.json for x in users]})
-				}
-				   
-	
-
-	else:
-		sort = request.args.get("sort", "top").lower()
-		t = request.args.get('t', 'all').lower()
-
-
-
-		# posts search
-
-		criteria=searchparse(query)
-		total, ids = searchlisting(criteria, v=v, page=page, t=t, sort=sort)
-
-		next_exists = (len(ids) == 26)
-		ids = ids[0:25]
-
-		posts = get_posts(ids, v=v)
-
-		if v and v.admin_level>3 and "domain" in criteria:
-			domain=criteria['domain']
-			domain_obj=get_domain(domain)
-		else:
-			domain=None
-			domain_obj=None
-
-		return {"html":lambda:render_template("search.html",
-							   v=v,
-							   query=query,
-							   total=total,
-							   page=page,
-							   listing=posts,
-							   sort=sort,
-							   time_filter=t,
-							   next_exists=next_exists,
-							   domain=domain,
-							   domain_obj=domain_obj,
-							   reasons=REASONS
-							   ),
-				"api":lambda:jsonify({"data":[x.json for x in posts]})
-				}
-
 @cache.memoize(300)
 def searchcommentlisting(criteria, v=None, page=1, t="None", sort="top"):
 
@@ -319,7 +226,56 @@ def searchcommentlisting(criteria, v=None, page=1, t="None", sort="top"):
 	comments = [x for x in comments.offset(25 * (page - 1)).limit(26).all()]
 
 	return total, [x.id for x in comments]
-	
+
+@app.route("/search/posts", methods=["GET"])
+@app.route("/api/v1/search", methods=["GET"])
+@app.route("/api/vue/search")
+@auth_desired
+@api("read")
+def searchposts(v, search_type="posts"):
+
+	query = request.args.get("q", '').lstrip().rstrip()
+
+	page = max(1, int(request.args.get("page", 1)))
+
+	sort = request.args.get("sort", "top").lower()
+	t = request.args.get('t', 'all').lower()
+
+
+
+	# posts search
+
+	criteria=searchparse(query)
+	total, ids = searchlisting(criteria, v=v, page=page, t=t, sort=sort)
+
+	next_exists = (len(ids) == 26)
+	ids = ids[0:25]
+
+	posts = get_posts(ids, v=v)
+
+	if v and v.admin_level>3 and "domain" in criteria:
+		domain=criteria['domain']
+		domain_obj=get_domain(domain)
+	else:
+		domain=None
+		domain_obj=None
+
+	return {"html":lambda:render_template("search.html",
+						   v=v,
+						   query=query,
+						   total=total,
+						   page=page,
+						   listing=posts,
+						   sort=sort,
+						   time_filter=t,
+						   next_exists=next_exists,
+						   domain=domain,
+						   domain_obj=domain_obj,
+						   reasons=REASONS
+						   ),
+			"api":lambda:jsonify({"data":[x.json for x in posts]})
+			}
+
 @app.route("/search/comments", methods=["GET"])
 @app.route("/api/v1/search/comments", methods=["GET"])
 @app.route("/api/vue/search/comments")
@@ -353,4 +309,54 @@ def searchcomments(v):
 						   next_exists=next_exists,
 						   ),
 			"api":lambda:jsonify({"data":[x.json for x in comments]})
+			}
+			
+@app.route("/search/users", methods=["GET"])
+@app.route("/api/v1/search/users", methods=["GET"])
+@app.route("/api/vue/search/users")
+@auth_desired
+@api("read")
+def searchusers(v, search_type="posts"):
+
+	query = request.args.get("q", '').lstrip().rstrip()
+
+	page = max(1, int(request.args.get("page", 1)))
+			
+	term=query.lstrip('@')
+	term=term.replace('\\','')
+	term=term.replace('_','\_')
+	
+	now=int(time.time())
+	users=g.db.query(User).filter(
+		User.username.ilike(f'%{term}%'))
+	
+	
+	if not (v and v.admin_level >= 3):
+		users=users.filter(
+		User.is_private==False,
+		User.is_deleted==False,
+		or_(
+			User.is_banned==0,
+			User.unban_utc<now
+		)
+	)
+	users=users.order_by(User.username.ilike(term).desc(), User.stored_subscriber_count.desc())
+	
+	total=users.count()
+	
+	users=[x for x in users.offset(25 * (page-1)).limit(26)]
+	next_exists=(len(users)==26)
+	users=users[0:25]
+	
+	
+	
+	return {"html":lambda:render_template("search_users.html",
+				   v=v,
+				   query=query,
+				   total=total,
+				   page=page,
+				   users=users,
+				   next_exists=next_exists
+				  ),
+			"api":lambda:jsonify({"data":[x.json for x in users]})
 			}
