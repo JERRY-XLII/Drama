@@ -188,7 +188,7 @@ def search(v, search_type="posts"):
 
 	page = max(1, int(request.args.get("page", 1)))
 
-	elif query.startswith("@"):
+	if query.startswith("@"):
 			
 		term=query.lstrip('@')
 		term=term.replace('\\','')
