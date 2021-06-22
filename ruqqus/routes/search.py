@@ -327,19 +327,8 @@ def searchusers(v, search_type="posts"):
 	term=term.replace('_','\_')
 	
 	now=int(time.time())
-	users=g.db.query(User).filter(
-		User.username.ilike(f'%{term}%'))
+	users=g.db.query(User).filter(User.username.ilike(f'%{term}%'))
 	
-	
-	if not (v and v.admin_level >= 3):
-		users=users.filter(
-		User.is_private==False,
-		User.is_deleted==False,
-		or_(
-			User.is_banned==0,
-			User.unban_utc<now
-		)
-	)
 	users=users.order_by(User.username.ilike(term).desc(), User.stored_subscriber_count.desc())
 	
 	total=users.count()
