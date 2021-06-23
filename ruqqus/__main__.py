@@ -377,8 +377,3 @@ def after_request(response):
 def www_redirect(path):
 
     return redirect(f"https://{app.config['SERVER_NAME']}/{path}")
-	
-@app.route("/<path:path>")
-@auth_desired
-def seized(path, v):
-	if v and v.is_banned and not v.unban_utc: return {"html": lambda: render_template("seized.html"), "api": lambda: "Domain name seized by law enforcement."}
