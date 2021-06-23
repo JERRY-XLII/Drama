@@ -11,11 +11,6 @@ from ruqqus.__main__ import app, cache
 from ruqqus.classes.submission import Submission
 from ruqqus.classes.categories import CATEGORIES
 
-@app.route("/<path:path>")
-@auth_desired
-def seized(path, v):
-	if v and v.is_banned and not v.unban_utc: return {"html": lambda: render_template("seized.html"), "api": lambda: "Domain name seized by law enforcement."}
-
 @app.route("/post/", methods=["GET"])
 def slash_post():
 	return redirect("/")
