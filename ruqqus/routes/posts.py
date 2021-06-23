@@ -53,7 +53,7 @@ def publish(pid, v):
 	return "", 204
 
 @app.route("/submit", methods=["GET"])
-@is_not_banned
+@auth_required
 @no_negative_balance("html")
 def submit_get(v):
 	if v and v.is_banned and not v.unban_utc: return {"html": lambda: render_template("seized.html"), "api": lambda: "Domain name seized by law enforcement."}
