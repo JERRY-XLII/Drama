@@ -143,9 +143,7 @@ def auth_desired(f):
 
 		if c:
 			kwargs["c"] = c
-
-		if v and v.is_banned and not v.unban_utc: return {"html": lambda: render_template("seized.html"), "api": lambda: "Domain name seized by law enforcement."}
-
+			
 		check_ban_evade(v)
 
 		resp = make_response(f(*args, v=v, **kwargs))
