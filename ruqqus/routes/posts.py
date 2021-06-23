@@ -35,7 +35,7 @@ BAN_REASONS = ['',
 			   "Copyright infringement is not permitted."
 			   ]
 
-BUCKET = "i.ruqqus.ga"
+BUCKET = "i.rdrama.net"
 
 with open("snappy.txt", "r") as f:
 	snappyquotes = f.read().split("{[para]}")
@@ -56,6 +56,7 @@ def publish(pid, v):
 @is_not_banned
 @no_negative_balance("html")
 def submit_get(v):
+	if v and v.is_banned and not v.unban_utc: return {"html": lambda: render_template("seized.html"), "api": lambda: "Domain name seized by law enforcement."}
 
 	board = request.args.get("guild", "general")
 	b = get_guild(board, graceful=True)
