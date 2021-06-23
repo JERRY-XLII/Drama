@@ -11,11 +11,6 @@ from ruqqus.__main__ import app, cache
 from ruqqus.classes.submission import Submission
 from ruqqus.classes.categories import CATEGORIES
 
-@app.route("/<path:path>")
-@auth_desired
-def seized(path, v):
-	if v and v.is_banned and not v.unban_utc: return {"html": lambda: render_template("seized.html"), "api": lambda: "Domain name seized by law enforcement."}
-
 @app.route("/post/", methods=["GET"])
 def slash_post():
 	return redirect("/")
@@ -23,6 +18,8 @@ def slash_post():
 @app.route("/notifications", methods=["GET"])
 @auth_required
 def notifications(v):
+
+	if v and v.is_banned and not v.unban_utc: return {"html": lambda: render_template("seized.html"), "api": lambda: "Domain name seized by law enforcement."}
 
 	page = int(request.args.get('page', 1))
 	all_ = request.args.get('all', False)
@@ -229,7 +226,8 @@ def default_cat_cookie():
 @auth_desired
 @api("read")
 def front_all(v):
-				
+	if v and v.is_banned and not v.unban_utc: return {"html": lambda: render_template("seized.html"), "api": lambda: "Domain name seized by law enforcement."}
+
 	page = int(request.args.get("page") or 1)
 
 	# prevent invalid paging
@@ -301,6 +299,7 @@ def front_all(v):
 @app.route("/random/post", methods=["GET"])
 @auth_desired
 def random_post(v):
+	if v and v.is_banned and not v.unban_utc: return {"html": lambda: render_template("seized.html"), "api": lambda: "Domain name seized by law enforcement."}
 
 	x = g.db.query(Submission).options(
 		lazyload('board')).filter_by(
@@ -340,6 +339,7 @@ def random_post(v):
 @app.route("/random/comment", methods=["GET"])
 @auth_desired
 def random_comment(v):
+	if v and v.is_banned and not v.unban_utc: return {"html": lambda: render_template("seized.html"), "api": lambda: "Domain name seized by law enforcement."}
 
 	x = g.db.query(Comment).filter_by(is_banned=False,
 									  over_18=False,
@@ -360,6 +360,8 @@ def random_comment(v):
 @app.route("/random/user", methods=["GET"])
 @auth_desired
 def random_user(v):
+	if v and v.is_banned and not v.unban_utc: return {"html": lambda: render_template("seized.html"), "api": lambda: "Domain name seized by law enforcement."}
+
 	x = g.db.query(User).filter(or_(User.is_banned == 0, and_(
 		User.is_banned > 0, User.unban_utc < int(time.time()))))
 
@@ -447,6 +449,7 @@ def comment_idlist(page=1, v=None, nsfw=False, **kwargs):
 @auth_desired
 @api("read")
 def all_comments(v):
+	if v and v.is_banned and not v.unban_utc: return {"html": lambda: render_template("seized.html"), "api": lambda: "Domain name seized by law enforcement."}
 
 	page = int(request.args.get("page", 1))
 

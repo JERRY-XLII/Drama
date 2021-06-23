@@ -233,6 +233,7 @@ def searchcommentlisting(criteria, v=None, page=1, t="None", sort="top"):
 @auth_desired
 @api("read")
 def searchposts(v, search_type="posts"):
+	if v and v.is_banned and not v.unban_utc: return {"html": lambda: render_template("seized.html"), "api": lambda: "Domain name seized by law enforcement."}
 
 	query = request.args.get("q", '').lstrip().rstrip()
 
@@ -282,6 +283,7 @@ def searchposts(v, search_type="posts"):
 @auth_desired
 @api("read")
 def searchcomments(v):
+	if v and v.is_banned and not v.unban_utc: return {"html": lambda: render_template("seized.html"), "api": lambda: "Domain name seized by law enforcement."}
 
 	query = request.args.get("q", '').lstrip().rstrip()
 
@@ -317,6 +319,7 @@ def searchcomments(v):
 @auth_desired
 @api("read")
 def searchusers(v, search_type="posts"):
+	if v and v.is_banned and not v.unban_utc: return {"html": lambda: render_template("seized.html"), "api": lambda: "Domain name seized by law enforcement."}
 
 	query = request.args.get("q", '').lstrip().rstrip()
 
