@@ -153,9 +153,9 @@
 					<input type="hidden" name="formkey" value="{{v.formkey}}">
 					<textarea id="comment-edit-body-{{c.base36id}}" name="body" form="comment-edit-form-{{c.base36id}}" class="comment-box form-control rounded" id="edit-box-comment-{{c.base36id}}" aria-label="With textarea" placeholder="Add your comment..." rows="3">{{c.body}}</textarea> 
 					<div class="comment-format"> 
-						<small class="format pl-0"><i class="fas fa-bold" aria-hidden="true" onclick="makeBold('comment-edit-body-{{c.base36id}}')" data-toggle="tooltip" data-placement="bottom" title="Bold"></i></small> 
-						<small class="format"><i class="fas fa-italic" aria-hidden="true" onclick="makeItalics('comment-edit-body-{{c.base36id}}')" data-toggle="tooltip" data-placement="bottom" title="Italicize"></i></small> 
-						<small class="format"><i class="fas fa-quote-right" aria-hidden="true" onclick="makeQuote('comment-edit-body-{{c.base36id}}')" data-toggle="tooltip" data-placement="bottom" title="Quote"></i></small>
+						<a href="javascript:void(0)" class="format pl-0"><i class="fas fa-bold" aria-hidden="true" onclick="makeBold('comment-edit-body-{{c.base36id}}')" data-toggle="tooltip" data-placement="bottom" title="Bold"></i></a> 
+						<a href="javascript:void(0)" class="format"><i class="fas fa-italic" aria-hidden="true" onclick="makeItalics('comment-edit-body-{{c.base36id}}')" data-toggle="tooltip" data-placement="bottom" title="Italicize"></i></a> 
+						<a href="javascript:void(0)" class="format"><i class="fas fa-quote-right" aria-hidden="true" onclick="makeQuote('comment-edit-body-{{c.base36id}}')" data-toggle="tooltip" data-placement="bottom" title="Quote"></i></a>
 						<small class="btn btn-secondary format d-inline-block m-0"><span class="font-weight-bolder text-uppercase" aria-hidden="true" onclick="getGif();commentForm('comment-edit-body-{{c.base36id}}')" data-toggle="modal" data-target="#gifModal" data-toggle="tooltip" data-placement="bottom"  title="Add GIF">GIF</span></small>
 						<p>&nbsp;</p>
 						<small class="btn btn-secondary format d-inline-block m-0"><i class="fas fa-smile-beam" aria-hidden="true" onclick="commentForm('comment-edit-body-{{c.base36id}}');loadEmojis()" data-toggle="modal" data-target="#emojiModal" data-toggle="tooltip" data-placement="bottom"  title="Add EMOJI"></i></small>

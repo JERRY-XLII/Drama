@@ -537,9 +537,9 @@
 			<textarea id="reply-form-body-{{p.fullname}}" class="comment-box form-control rounded" id="comment-form" name="body" form="reply-to-{{p.fullname}}" aria-label="With textarea" placeholder="Add your comment..." rows="1"></textarea>
 			{% endif %}
 			<div class="comment-format">
-				<small class="format pl-0"><i class="fas fa-bold" onclick="makeBold('reply-form-body-{{p.fullname}}')" data-toggle="tooltip" data-placement="bottom"  title="Bold"></i></small>
-				<small class="format"><i class="fas fa-italic" onclick="makeItalics('reply-form-body-{{p.fullname}}')" data-toggle="tooltip" data-placement="bottom"  title="Italicize"></i></small>
-				<small class="format"><i class="fas fa-quote-right" onclick="makeQuote('reply-form-body-{{p.fullname}}')" data-toggle="tooltip" data-placement="bottom"  title="Quote"></i></small>
+				<a href="javascript:void(0)" class="format pl-0"><i class="fas fa-bold" onclick="makeBold('reply-form-body-{{p.fullname}}')" data-toggle="tooltip" data-placement="bottom"  title="Bold"></i></a>
+				<a href="javascript:void(0)"><i class="fas fa-italic" onclick="makeItalics('reply-form-body-{{p.fullname}}')" data-toggle="tooltip" data-placement="bottom"  title="Italicize"></i></a>
+				<a href="javascript:void(0)"><i class="fas fa-quote-right" onclick="makeQuote('reply-form-body-{{p.fullname}}')" data-toggle="tooltip" data-placement="bottom"  title="Quote"></i></a>
 				<label class="btn btn-secondary format d-inline-block m-0" for="gif-reply-btn-{{p.fullname}}">
 					<span id="gif-reply-btn-{{p.fullname}}" class="font-weight-bolder text-uppercase" onclick="getGif();commentForm('reply-form-body-{{p.fullname}}')" aria-hidden="true" data-toggle="modal" data-target="#gifModal" data-toggle="tooltip" data-placement="bottom" title="Add GIF">GIF</span>
 				</label> 
