@@ -56,7 +56,7 @@ def publish(pid, v):
 @auth_required
 @no_negative_balance("html")
 def submit_get(v):
-	if v and v.is_banned and not v.unban_utc: return {"html": lambda: render_template("seized.html"), "api": lambda: "Domain name seized by law enforcement."}
+	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
 
 	board = request.args.get("guild", "general")
 	b = get_guild(board, graceful=True)

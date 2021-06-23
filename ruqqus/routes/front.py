@@ -19,7 +19,7 @@ def slash_post():
 @auth_required
 def notifications(v):
 
-	if v and v.is_banned and not v.unban_utc: return {"html": lambda: render_template("seized.html"), "api": lambda: "Domain name seized by law enforcement."}
+	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
 
 	page = int(request.args.get('page', 1))
 	all_ = request.args.get('all', False)
