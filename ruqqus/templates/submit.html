@@ -133,7 +133,7 @@
 
 												<div class="input-group">
 
-														<textarea id="submitformbody" form="submitform" id="post-text" class="form-control rounded" aria-label="With textarea" placeholder="Optional if you have a link or an image." rows="5" name="body" oninput="charLimit('post-text','character-count-submit-text-form');checkForRequired()" maxlength="10000" required>{{text}}</textarea>
+														<textarea form="submitform" id="post-text" class="form-control rounded" aria-label="With textarea" placeholder="Optional if you have a link or an image." rows="5" name="body" oninput="charLimit('post-text','character-count-submit-text-form');checkForRequired()" maxlength="10000" required>{{text}}</textarea>
 
 														<span class="position-absolute text-small font-weight-bold" id="character-count-submit-text-form" style="right: 1rem; bottom: 0.5rem; z-index: 3;"></span>
 
@@ -146,21 +146,21 @@
 												</div>
 												<p></p>
 												<small class="btn btn-secondary format d-inline-block m-0">
-												<i class="fas fa-bold" aria-hidden="true" onclick="makeBold('submitformbody')" data-toggle="tooltip" data-placement="bottom" title="Bold"></i>
+												<i class="fas fa-bold" aria-hidden="true" onclick="makeBold('post-text')" data-toggle="tooltip" data-placement="bottom" title="Bold"></i>
 												</small>
 												&nbsp; 
 												<small class="btn btn-secondary format d-inline-block m-0">
-												<i class="fas fa-italic" aria-hidden="true" onclick="makeItalics('submitformbody')" data-toggle="tooltip" data-placement="bottom" title="Italicize"></i>
+												<i class="fas fa-italic" aria-hidden="true" onclick="makeItalics('post-text')" data-toggle="tooltip" data-placement="bottom" title="Italicize"></i>
 												</small>
 												&nbsp; 
 												<small class="btn btn-secondary format d-inline-block m-0">
-												<i class="fas fa-quote-right" aria-hidden="true" onclick="makeQuote('submitformbody')" data-toggle="tooltip" data-placement="bottom" title="Quote"></i>
+												<i class="fas fa-quote-right" aria-hidden="true" onclick="makeQuote('post-text')" data-toggle="tooltip" data-placement="bottom" title="Quote"></i>
 												</small>
 												&nbsp;
-												<small class="btn btn-secondary format d-inline-block m-0"><span class="font-weight-bolder text-uppercase" aria-hidden="true" onclick="getGif();commentForm('submitformbody')" data-toggle="modal" data-target="#gifModal" data-toggle="tooltip" data-placement="bottom"  title="Add GIF">GIF</span></small>
+												<small class="btn btn-secondary format d-inline-block m-0"><span class="font-weight-bolder text-uppercase" aria-hidden="true" onclick="getGif();commentForm('post-text')" data-toggle="modal" data-target="#gifModal" data-toggle="tooltip" data-placement="bottom"  title="Add GIF">GIF</span></small>
 												&nbsp;
 												<label class="btn btn-secondary format d-inline-block m-0" for="emoji-reply-btn">
-													<div id="emoji-reply-btn" onclick="commentForm('submitformbody');loadEmojis()" aria-hidden="true" data-toggle="modal" data-target="#emojiModal" data-toggle="tooltip" data-placement="bottom" title="Add EMOJI"><i class="fas fa-smile-beam"></i></div>
+													<div id="emoji-reply-btn" onclick="commentForm('post-text');loadEmojis()" aria-hidden="true" data-toggle="modal" data-target="#emojiModal" data-toggle="tooltip" data-placement="bottom" title="Add EMOJI"><i class="fas fa-smile-beam"></i></div>
 												</label>
 
 												<div class="form-text text-small"><a href="/formatting" target="_blank">Formatting help</a></div>
