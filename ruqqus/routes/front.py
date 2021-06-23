@@ -167,6 +167,7 @@ def frontlist(v=None, sort="hot", page=1,t="all", ids_only=True, filter_words=''
 			posts=posts.filter(not_(SubmissionAux.title.ilike(f'%{word}%')))
 
 	if t != 'all': 
+		cutoff = 0
 		now = int(time.time())
 		if t == 'day':
 			cutoff = now - 86400
