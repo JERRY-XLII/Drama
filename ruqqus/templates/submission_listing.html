@@ -208,8 +208,8 @@
 							{% endif %}
 
 							{% if not v.id==p.author_id %}
-								<li class="list-inline-item {% if p.is_blocking %} d-none{% endif %}"><a id="block-user-{{p.base36id}}" href="javascript:void(0)" onclick="post_toast('/settings/block?username={{p.author.username}}', callback=function(){document.getElementById('block-user-{{p.base36id}}').classList.toggle('d-none');document.getElementById('unblock-user-{{p.base36id}}').classList.toggle('d-none');})"><i class="fas fa-user-slash"></i>Block user</a></li>
-								<li class="list-inline-item {% if not p.is_blocking %} d-none{% endif %}"><a id="unblock-user-{{p.base36id}}" href="javascript:void(0)" onclick="post_toast('/settings/unblock?username={{p.author.username}}', callback=function(){document.getElementById('block-user-{{p.base36id}}').classList.toggle('d-none');document.getElementById('unblock-user-{{p.base36id}}').classList.toggle('d-none');})"><i class="fas fa-user-slash"></i>Unblock user</a></li>
+								<li id="block-user-{{p.base36id}}" class="list-inline-item {% if p.is_blocking %} d-none{% endif %}"><a href="javascript:void(0)" onclick="post_toast('/settings/block?username={{p.author.username}}', callback=function(){document.getElementById('block-user-{{p.base36id}}').classList.toggle('d-none');document.getElementById('unblock-user-{{p.base36id}}').classList.toggle('d-none');})"><i class="fas fa-user-slash"></i>Block user</a></li>
+								<li id="unblock-user-{{p.base36id}}" class="list-inline-item {% if not p.is_blocking %} d-none{% endif %}"><a href="javascript:void(0)" onclick="post_toast('/settings/unblock?username={{p.author.username}}', callback=function(){document.getElementById('block-user-{{p.base36id}}').classList.toggle('d-none');document.getElementById('unblock-user-{{p.base36id}}').classList.toggle('d-none');})"><i class="fas fa-user-slash"></i>Unblock user</a></li>
 							{% endif %}
 
 							{% if v.admin_level >=3 and v.id!=p.author_id %}
