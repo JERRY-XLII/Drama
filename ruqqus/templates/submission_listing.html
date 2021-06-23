@@ -194,36 +194,33 @@
 
 						{% if v %}
 
-						{% if v.admin_level >=3 %}
-						{% if p.is_banned or p.active_flags %}
-						<li class="list-inline-item"><a class="text-success" id="moderate-post-{{p.base36id}}" href="javascript:void(0)" onclick="approvePost('{{p.base36id}}')"><i class="fas fa-check text-success"></i>Approve</a></li>
-						{% endif %}
-						{% if not p.is_banned or p.active_flags %}
-						<li class="list-inline-item"><a id="moderate-post-{{p.base36id}}" href="javascript:void(0)" onclick="removePost('{{p.base36id}}')"><i class="fas fa-ban"></i>Remove</a></li>
-						{% endif %}
-						{% endif %}
+							{% if v.admin_level >=3 %}
+								{% if p.is_banned or p.active_flags %}
+									<li class="list-inline-item"><a class="text-success" id="moderate-post-{{p.base36id}}" href="javascript:void(0)" onclick="approvePost('{{p.base36id}}')"><i class="fas fa-check text-success"></i>Approve</a></li>
+								{% endif %}
+								{% if not p.is_banned or p.active_flags %}
+									<li class="list-inline-item"><a id="moderate-post-{{p.base36id}}" href="javascript:void(0)" onclick="removePost('{{p.base36id}}')"><i class="fas fa-ban"></i>Remove</a></li>
+								{% endif %}
+							{% endif %}
 
-						{% if v.admin_level >= 4 and p.oauth_app %}
-						<li class="list-inline-item"><a href="{{p.oauth_app.permalink}}" ><i class="fas fa-code"></i>API App</a></li>
-						{% endif %}
+							{% if v.admin_level >= 4 and p.oauth_app %}
+								<li class="list-inline-item"><a href="{{p.oauth_app.permalink}}" ><i class="fas fa-code"></i>API App</a></li>
+							{% endif %}
 
-						{% if not v.id==p.author_id and not p.is_blocking%}
-						<li class="list-inline-item"><a id="block-user-{{p.base36id}}" href="javascript:void(0)" onclick="post_toast('/settings/block?username={{p.author.username}}', callback=function(){document.getElementById('block-user-{{p.base36id}}').classList.toggle('d-none');document.getElementById('unblock-user-{{p.base36id}}').classList.toggle('d-none');})"><i class="fas fa-user-slash"></i>Block user</a></li>
-						{% endif %}
-						
-						{% if not v.id==p.author_id and p.is_blocking%}
-						<li class="list-inline-item"><a id="unblock-user-{{p.base36id}}" href="javascript:void(0)" onclick="post_toast('/settings/unblock?username={{p.author.username}}', callback=function(){document.getElementById('block-user-{{p.base36id}}').classList.toggle('d-none');document.getElementById('unblock-user-{{p.base36id}}').classList.toggle('d-none');})"><i class="fas fa-user-slash"></i>Unblock user</a></li>
-						{% endif %}
+							{% if not v.id==p.author_id %}
+								<li class="list-inline-item {% if p.is_blocking %} d-none{% endif %}"><a id="block-user-{{p.base36id}}" href="javascript:void(0)" onclick="post_toast('/settings/block?username={{p.author.username}}', callback=function(){document.getElementById('block-user-{{p.base36id}}').classList.toggle('d-none');document.getElementById('unblock-user-{{p.base36id}}').classList.toggle('d-none');})"><i class="fas fa-user-slash"></i>Block user</a></li>
+								<li class="list-inline-item {% if not p.is_blocking %} d-none{% endif %}"><a id="unblock-user-{{p.base36id}}" href="javascript:void(0)" onclick="post_toast('/settings/unblock?username={{p.author.username}}', callback=function(){document.getElementById('block-user-{{p.base36id}}').classList.toggle('d-none');document.getElementById('unblock-user-{{p.base36id}}').classList.toggle('d-none');})"><i class="fas fa-user-slash"></i>Unblock user</a></li>
+							{% endif %}
 
-						{% if v.admin_level >=3 and v.id!=p.author_id %}
-						{% if p.author.is_banned %}
-						<li class="list-inline-item"><a id="unexile2-user-{{p.base36id}}" href="javascript:void(0)" onclick="post_toast('/api/unban_user/{{p.author_id}}')"
-						><i class="fas fa-user-slash text-danger"></i>Unban user</a></li>
-						{% else %}
-						<li class="list-inline-item"><a id="exile2-user-{{p.base36id}}" href="javascript:void(0)" onclick="post_toast('/api/ban_user/{{p.author_id}}')"
-						><i class="fas fa-user-slash text-danger"></i>Ban user</a></li>
-						{% endif %}
-						{% endif %}
+							{% if v.admin_level >=3 and v.id!=p.author_id %}
+								{% if p.author.is_banned %}
+									<li class="list-inline-item"><a id="unexile2-user-{{p.base36id}}" href="javascript:void(0)" onclick="post_toast('/api/unban_user/{{p.author_id}}')"
+									><i class="fas fa-user-slash text-danger"></i>Unban user</a></li>
+								{% else %}
+									<li class="list-inline-item"><a id="exile2-user-{{p.base36id}}" href="javascript:void(0)" onclick="post_toast('/api/ban_user/{{p.author_id}}')"
+									><i class="fas fa-user-slash text-danger"></i>Ban user</a></li>
+								{% endif %}
+							{% endif %}
 						{% endif %}
 												
 			</ul>
@@ -362,7 +359,7 @@
 
 					{% endif %}
 
-					{% if v and not v.id==p.author_id and	p.deleted_utc == 0 and not p.author.is_deleted %}
+					{% if v and not v.id==p.author_id %}
 						<button id="block-user-button-{{p.base36id}}" class="btn btn-link btn-block btn-lg text-left text-danger{% if p.is_blocking %} d-none{% endif %}" data-dismiss="modal" onclick="post_toast('/settings/block?username={{p.author.username}}', callback=function(){document.getElementById('block-user-button-{{p.base36id}}').classList.toggle('d-none');document.getElementById('unblock-user-button-{{p.base36id}}').classList.toggle('d-none');})"
 						><i class="fas fa-user-slash mr-3"></i>Block user</button>
 						<button id="unblock-user-button-{{p.base36id}}" class="btn btn-link btn-block btn-lg text-left text-danger{% if not p.is_blocking %} d-none{% endif %}" data-dismiss="modal" onclick="post_toast('/settings/unblock?username={{p.author.username}}', callback=function(){document.getElementById('block-user-button-{{p.base36id}}').classList.toggle('d-none');document.getElementById('unblock-user-button-{{p.base36id}}').classList.toggle('d-none');})"
