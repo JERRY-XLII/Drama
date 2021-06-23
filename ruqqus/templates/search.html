@@ -17,10 +17,9 @@
 
 {% block PseudoSubmitForm %}{% endblock %}
 
-{% if 1>2 %}
-	{% block navbar %}
-		<div class="font-weight-bold py-3">Search</div>
-
+{% block navbar %}
+	<div class="font-weight-bold py-3">Search</div>
+	{% if 1>2 %}
 		<div class="d-flex align-items-center">
 			<div class="text-small font-weight-bold mr-2">Filter by</div>
 			<div class="dropdown dropdown-actions">
@@ -64,9 +63,8 @@
 				</div>
 			</div>
 		</div>
+	{% endif %}
 	{% endblock %}
-{% endif %}
-
 
 {% block content %}
 <!-- Search text -->
