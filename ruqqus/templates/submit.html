@@ -130,7 +130,7 @@
 
 												<div class="input-group">
 
-														<textarea form="submitform" id="post-text" class="form-control rounded" aria-label="With textarea" placeholder="Optional if you have a link or an image." rows="5" name="body" oninput="charLimit('post-text','character-count-submit-text-form');checkForRequired()" maxlength="10000" required>{{text}}</textarea>
+														<textarea id="submitformbody" form="submitform" id="post-text" class="form-control rounded" aria-label="With textarea" placeholder="Optional if you have a link or an image." rows="5" name="body" oninput="charLimit('post-text','character-count-submit-text-form');checkForRequired()" maxlength="10000" required>{{text}}</textarea>
 
 														<span class="position-absolute text-small font-weight-bold" id="character-count-submit-text-form" style="right: 1rem; bottom: 0.5rem; z-index: 3;"></span>
 
@@ -141,17 +141,17 @@
 																<small class="format"><i class="fas fa-link"></i></small>
 														</div>
 												</div>
-												
+												<p></p>
 												<a class="format pl-0" href="javascript:void(0)" format="">
-												<i class="fas fa-bold" aria-hidden="true" onclick="makeBold('submitform')" data-toggle="tooltip" data-placement="bottom" title="Bold"></i>
+												<i class="fas fa-bold" aria-hidden="true" onclick="makeBold('submitformbody')" data-toggle="tooltip" data-placement="bottom" title="Bold"></i>
 												</a>
 												&nbsp; 
 												<a class="format pl-0" href="javascript:void(0)" format="">
-												<i class="fas fa-italic" aria-hidden="true" onclick="makeItalics('submitform')" data-toggle="tooltip" data-placement="bottom" title="Italicize"></i>
+												<i class="fas fa-italic" aria-hidden="true" onclick="makeItalics('submitformbody')" data-toggle="tooltip" data-placement="bottom" title="Italicize"></i>
 												</a>
 												&nbsp; 
 												<a class="format pl-0" href="javascript:void(0)" format="">
-												<i class="fas fa-quote-right" aria-hidden="true" onclick="makeQuote('submitform')" data-toggle="tooltip" data-placement="bottom" title="Quote"></i>
+												<i class="fas fa-quote-right" aria-hidden="true" onclick="makeQuote('submitformbody')" data-toggle="tooltip" data-placement="bottom" title="Quote"></i>
 												</a>
 								
 												<div class="form-text text-small"><a href="/formatting" target="_blank">Formatting help</a></div>
