@@ -27,7 +27,7 @@ BAN_REASONS = ['',
 @app.route("/@<username>/message", methods=["GET"])
 @auth_required
 def message1(v, username):
-	if v and v.is_banned and not v.unban_utc: return {"html": lambda: render_template("seized.html"), "api": lambda: "Domain name seized by law enforcement."}
+	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
 
 	user = get_user(username, v=v)
 	if user.is_blocking: return jsonify({"error": "You're blocking this user."}), 403
@@ -121,7 +121,7 @@ def redditor_moment_redirect(username):
 @app.route("/@<username>/followers", methods=["GET"])
 @auth_required
 def followers(username, v):
-	if v and v.is_banned and not v.unban_utc: return {"html": lambda: render_template("seized.html"), "api": lambda: "Domain name seized by law enforcement."}
+	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
 
 	u = get_user(username, v=v)
 	users = [x.user for x in u.followers]
@@ -132,7 +132,7 @@ def followers(username, v):
 @auth_desired
 @api("read")
 def u_username(username, v=None):
-	if v and v.is_banned and not v.unban_utc: return {"html": lambda: render_template("seized.html"), "api": lambda: "Domain name seized by law enforcement."}
+	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
 
 	# username is unique so at most this returns one result. Otherwise 404
 
@@ -215,7 +215,7 @@ def u_username(username, v=None):
 @auth_desired
 @api("read")
 def u_username_comments(username, v=None):
-	if v and v.is_banned and not v.unban_utc: return {"html": lambda: render_template("seized.html"), "api": lambda: "Domain name seized by law enforcement."}
+	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
 
 	# username is unique so at most this returns one result. Otherwise 404
 

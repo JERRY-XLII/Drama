@@ -56,7 +56,7 @@ def comment_cid_api_redirect(cid=None, pid=None):
 @api("read")
 def post_pid_comment_cid(cid, pid=None, anything=None, v=None):
 
-	if v and v.is_banned and not v.unban_utc: return {"html": lambda: render_template("seized.html"), "api": lambda: "Domain name seized by law enforcement."}
+	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
 
 	try: cid = int(cid)
 	except Exception as e: pass

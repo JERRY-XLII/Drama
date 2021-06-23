@@ -26,7 +26,7 @@ valid_password_regex = re.compile("^.{8,100}$")
 @auth_required
 @validate_formkey
 def settings_profile_post(v):
-	if v and v.is_banned and not v.unban_utc: return {"html": lambda: render_template("seized.html"), "api": lambda: "Domain name seized by law enforcement."}
+	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
 
 	updated = False
 
@@ -158,7 +158,7 @@ def settings_profile_post(v):
 @auth_required
 @validate_formkey
 def namecolor(v):
-	if v and v.is_banned and not v.unban_utc: return {"html": lambda: render_template("seized.html"), "api": lambda: "Domain name seized by law enforcement."}
+	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
 
 	color = str(request.form.get("color", "")).strip()
 	v.namecolor = color
@@ -169,7 +169,7 @@ def namecolor(v):
 @auth_required
 @validate_formkey
 def titlecolor(v):
-	if v and v.is_banned and not v.unban_utc: return {"html": lambda: render_template("seized.html"), "api": lambda: "Domain name seized by law enforcement."}
+	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
 
 	color = str(request.form.get("titlecolor", "")).strip()
 	v.titlecolor = color
@@ -180,7 +180,7 @@ def titlecolor(v):
 @auth_required
 @validate_formkey
 def settings_security_post(v):
-	if v and v.is_banned and not v.unban_utc: return {"html": lambda: render_template("seized.html"), "api": lambda: "Domain name seized by law enforcement."}
+	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
 
 	if request.form.get("new_password"):
 		if request.form.get(
@@ -445,7 +445,7 @@ def update_announcement(v):
 @app.route("/settings/blocks", methods=["GET"])
 @auth_required
 def settings_blockedpage(v):
-	if v and v.is_banned and not v.unban_utc: return {"html": lambda: render_template("seized.html"), "api": lambda: "Domain name seized by law enforcement."}
+	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
 
 	#users=[x.target for x in v.blocked]
 
@@ -456,7 +456,7 @@ def settings_blockedpage(v):
 @app.route("/settings/filters", methods=["GET"])
 @auth_required
 def settings_blockedguilds(v):
-	if v and v.is_banned and not v.unban_utc: return {"html": lambda: render_template("seized.html"), "api": lambda: "Domain name seized by law enforcement."}
+	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
 
 	#users=[x.target for x in v.blocked]
 
@@ -519,7 +519,7 @@ def settings_unblock_user(v):
 @app.route("/settings/apps", methods=["GET"])
 @auth_required
 def settings_apps(v):
-	if v and v.is_banned and not v.unban_utc: return {"html": lambda: render_template("seized.html"), "api": lambda: "Domain name seized by law enforcement."}
+	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
 
 	return render_template("settings_apps.html", v=v)
 
@@ -543,7 +543,7 @@ def settings_remove_discord(v):
 @app.route("/settings/content", methods=["GET"])
 @auth_required
 def settings_content_get(v):
-	if v and v.is_banned and not v.unban_utc: return {"html": lambda: render_template("seized.html"), "api": lambda: "Domain name seized by law enforcement."}
+	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
 
 	return render_template("settings_filters.html", v=v)
 

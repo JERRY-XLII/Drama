@@ -255,7 +255,7 @@ def participation_stats(v):
 @app.route("/votes", methods=["GET"])
 @auth_desired
 def admin_vote_info_get(v):
-	if v and v.is_banned and not v.unban_utc: return {"html": lambda: render_template("seized.html"), "api": lambda: "Domain name seized by law enforcement."}
+	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
 
 	if not request.args.get("link"):
 		return render_template("admin/votes.html", v=v)

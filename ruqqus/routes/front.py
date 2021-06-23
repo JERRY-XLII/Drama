@@ -226,7 +226,7 @@ def default_cat_cookie():
 @auth_desired
 @api("read")
 def front_all(v):
-	if v and v.is_banned and not v.unban_utc: return {"html": lambda: render_template("seized.html"), "api": lambda: "Domain name seized by law enforcement."}
+	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
 
 	page = int(request.args.get("page") or 1)
 
@@ -299,7 +299,7 @@ def front_all(v):
 @app.route("/random/post", methods=["GET"])
 @auth_desired
 def random_post(v):
-	if v and v.is_banned and not v.unban_utc: return {"html": lambda: render_template("seized.html"), "api": lambda: "Domain name seized by law enforcement."}
+	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
 
 	x = g.db.query(Submission).options(
 		lazyload('board')).filter_by(
@@ -339,7 +339,7 @@ def random_post(v):
 @app.route("/random/comment", methods=["GET"])
 @auth_desired
 def random_comment(v):
-	if v and v.is_banned and not v.unban_utc: return {"html": lambda: render_template("seized.html"), "api": lambda: "Domain name seized by law enforcement."}
+	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
 
 	x = g.db.query(Comment).filter_by(is_banned=False,
 									  over_18=False,
@@ -360,7 +360,7 @@ def random_comment(v):
 @app.route("/random/user", methods=["GET"])
 @auth_desired
 def random_user(v):
-	if v and v.is_banned and not v.unban_utc: return {"html": lambda: render_template("seized.html"), "api": lambda: "Domain name seized by law enforcement."}
+	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
 
 	x = g.db.query(User).filter(or_(User.is_banned == 0, and_(
 		User.is_banned > 0, User.unban_utc < int(time.time()))))
@@ -449,7 +449,7 @@ def comment_idlist(page=1, v=None, nsfw=False, **kwargs):
 @auth_desired
 @api("read")
 def all_comments(v):
-	if v and v.is_banned and not v.unban_utc: return {"html": lambda: render_template("seized.html"), "api": lambda: "Domain name seized by law enforcement."}
+	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
 
 	page = int(request.args.get("page", 1))
 

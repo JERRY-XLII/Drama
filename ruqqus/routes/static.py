@@ -22,7 +22,7 @@ def oauthhelp(v):
 @app.route("/contact", methods=["GET"])
 @auth_desired
 def contact(v):
-	if v and v.is_banned and not v.unban_utc: return {"html": lambda: render_template("seized.html"), "api": lambda: "Domain name seized by law enforcement."}
+	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
 
 	return render_template("contact.html", v=v)
 
@@ -55,7 +55,7 @@ def robots_txt():
 @app.route("/settings", methods=["GET"])
 @auth_required
 def settings(v):
-	if v and v.is_banned and not v.unban_utc: return {"html": lambda: render_template("seized.html"), "api": lambda: "Domain name seized by law enforcement."}
+	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
 
 	return redirect("/settings/profile")
 
@@ -63,7 +63,7 @@ def settings(v):
 @app.route("/settings/profile", methods=["GET"])
 @auth_required
 def settings_profile(v):
-	if v and v.is_banned and not v.unban_utc: return {"html": lambda: render_template("seized.html"), "api": lambda: "Domain name seized by law enforcement."}
+	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
 
 	return render_template("settings_profile.html",
 						   v=v)
@@ -72,7 +72,7 @@ def settings_profile(v):
 @app.route("/titles", methods=["GET"])
 @auth_desired
 def titles(v):
-	if v and v.is_banned and not v.unban_utc: return {"html": lambda: render_template("seized.html"), "api": lambda: "Domain name seized by law enforcement."}
+	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
 
 	titles = [x for x in g.db.query(Title).order_by(text("id asc")).all()]
 	return render_template("/titles.html",
@@ -82,7 +82,7 @@ def titles(v):
 @app.route("/badges", methods=["GET"])
 @auth_desired
 def badges(v):
-	if v and v.is_banned and not v.unban_utc: return {"html": lambda: render_template("seized.html"), "api": lambda: "Domain name seized by law enforcement."}
+	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
 
 	badges = [
 		x for x in g.db.query(BadgeDef).order_by(
@@ -94,7 +94,7 @@ def badges(v):
 @app.route("/leaderboard", methods=["GET"])
 @auth_desired
 def leaderboard(v):
-	if v and v.is_banned and not v.unban_utc: return {"html": lambda: render_template("seized.html"), "api": lambda: "Domain name seized by law enforcement."}
+	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
 
 	users = g.db.query(User).options(lazyload('*'))
 	users1 = [x for x in users.order_by(User.stored_karma.desc()).all()][:50]
@@ -107,7 +107,7 @@ def leaderboard(v):
 @app.route("/blocks", methods=["GET"])
 @auth_desired
 def blocks(v):
-	if v and v.is_banned and not v.unban_utc: return {"html": lambda: render_template("seized.html"), "api": lambda: "Domain name seized by law enforcement."}
+	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
 
 	blocks=g.db.query(UserBlock).all()
 	users = []
@@ -121,7 +121,7 @@ def blocks(v):
 @app.route("/banned", methods=["GET"])
 @auth_desired
 def banned(v):
-	if v and v.is_banned and not v.unban_utc: return {"html": lambda: render_template("seized.html"), "api": lambda: "Domain name seized by law enforcement."}
+	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
 
 	users = [x for x in g.db.query(User).filter(User.is_banned != 0).all()]
 	return render_template("banned.html", v=v, users=users)
@@ -129,7 +129,7 @@ def banned(v):
 @app.route("/formatting", methods=["GET"])
 @auth_desired
 def formatting(v):
-	if v and v.is_banned and not v.unban_utc: return {"html": lambda: render_template("seized.html"), "api": lambda: "Domain name seized by law enforcement."}
+	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
 
 	return render_template("formatting.html", v=v)
 	
@@ -140,7 +140,7 @@ def brave():
 @app.route("/badmins", methods=["GET"])
 @auth_desired
 def help_admins(v):
-	if v and v.is_banned and not v.unban_utc: return {"html": lambda: render_template("seized.html"), "api": lambda: "Domain name seized by law enforcement."}
+	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
 
 	admins = g.db.query(User).filter(
 		User.admin_level > 1,
@@ -163,7 +163,7 @@ def help_admins(v):
 @app.route("/settings/security", methods=["GET"])
 @auth_required
 def settings_security(v):
-	if v and v.is_banned and not v.unban_utc: return {"html": lambda: render_template("seized.html"), "api": lambda: "Domain name seized by law enforcement."}
+	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
 
 	return render_template("settings_security.html",
 						   v=v,
