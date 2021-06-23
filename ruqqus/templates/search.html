@@ -17,7 +17,7 @@
 
 {% block PseudoSubmitForm %}{% endblock %}
 
-{% if not '/users/' in request.path %}
+{% if not 'users' in request.path %}
 	{% block navbar %}
 		<div class="font-weight-bold py-3">Search</div>
 
@@ -160,6 +160,7 @@
 		</div>
 
 	</div>
+	{% endif %}
 
 	<div class="row no-gutters">
 		<div class="col">
@@ -178,7 +179,6 @@
 			</div>
 		</div>
 	</div>
-	{% endif %}
 
 	<div class="row no-gutters">
 
