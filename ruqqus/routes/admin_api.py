@@ -69,6 +69,8 @@ def ban_user(user_id, v):
 	g.db.add(ma)
 	g.db.commit()
 
+	if request.args.get("notoast"): return (redirect(user.url), user)
+
 	return jsonify({"message": f"@{user.username} was banned"})
 
 
@@ -95,7 +97,8 @@ def unban_user(user_id, v):
 		)
 	g.db.add(ma)
 	g.db.commit()
-
+	
+	if request.args.get("notoast"): return (redirect(user.url), user)
 	return jsonify({"message": f"@{user.username} was unbanned"})
 
 @app.route("/api/ban_post/<post_id>", methods=["POST"])
