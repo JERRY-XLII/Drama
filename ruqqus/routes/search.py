@@ -324,7 +324,8 @@ def searchusers(v, search_type="posts"):
 	query = request.args.get("q", '').lstrip().rstrip()
 
 	page = max(1, int(request.args.get("page", 1)))
-			
+	sort = request.args.get("sort", "top").lower()
+	t = request.args.get('t', 'all').lower()
 	term=query.lstrip('@')
 	term=term.replace('\\','')
 	term=term.replace('_','\_')
@@ -348,6 +349,8 @@ def searchusers(v, search_type="posts"):
 				   total=total,
 				   page=page,
 				   users=users,
+				   sort=sort,
+				   time_filter=t,
 				   next_exists=next_exists
 				  ),
 			"api":lambda:jsonify({"data":[x.json for x in users]})
