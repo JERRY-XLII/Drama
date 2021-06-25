@@ -7,7 +7,6 @@ from .discord import *
 from .errors import *
 from .flagging import *
 from .front import *
-from .giphy import *
 from .login import *
 from .oauth import *
 from .posts import *
