@@ -302,8 +302,7 @@ def front_all(v):
 def random_post(v):
 	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
 
-	score=p.upvotes-p.downvotes
-	x = g.db.query(Submission).filter(Submission.deleted_utc == 0, Submission.is_banned == False, Submission.score > 20)
+	x = g.db.query(Submission).filter(Submission.deleted_utc == 0, Submission.is_banned == False, Submission.score_top > 20)
 
 	total = x.count()
 	n = random.randint(0, total - 1)
