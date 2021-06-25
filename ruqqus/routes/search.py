@@ -158,19 +158,19 @@ def searchlisting(criteria, v=None, page=1, t="None", sort="top", b=None):
 		)
 
 	if sort == "hot":
-		posts = posts.order_by(Submission.score_hot.desc())
+		posts = posts.order_by(Submission.score_hot.desc()).all()
 	elif sort == "new":
-		posts = posts.order_by(Submission.created_utc.desc())
+		posts = posts.order_by(Submission.created_utc.desc()).all()
 	elif sort == "old":
-		posts = posts.order_by(Submission.created_utc.asc())
+		posts = posts.order_by(Submission.created_utc.asc()).all()
 	elif sort == "controversial":
-		posts = posts.order_by(Submission.score_disputed.desc())
+		posts = posts.order_by(Submission.score_disputed.desc()).all()
 	elif sort == "top":
-		posts = posts.order_by(Submission.score_top.desc())
+		posts = posts.order_by(Submission.score_top.desc()).all()
 	elif sort == "bottom":
-		posts = posts.order_by(Submission.score_top.asc())
+		posts = posts.order_by(Submission.score_top.asc()).all()
 	elif sort == "comments":
-		posts = posts.order_by(Submission.comment_count.desc())
+		posts = posts.order_by(Submission.comment_count.desc()).all()
 	elif sort == "random":
 		posts = posts.all()
 		posts = random.sample(posts, k=len(posts))
@@ -178,7 +178,9 @@ def searchlisting(criteria, v=None, page=1, t="None", sort="top", b=None):
 		abort(400)
 
 	total = posts.count()
-	posts = [x for x in posts.offset(25 * (page - 1)).limit(26).all()]
+
+	slice = 25 * (page - 1)
+	posts = posts[slice:26]
 
 	return total, [x.id for x in posts]
 
