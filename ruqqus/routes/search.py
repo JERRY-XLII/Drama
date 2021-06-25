@@ -173,11 +173,11 @@ def searchlisting(criteria, v=None, page=1, t="None", sort="top", b=None):
 		posts = posts.order_by(Submission.comment_count.desc()).all()
 	elif sort == "random":
 		posts = posts.all()
-		posts = list(random.sample(posts, k=len(posts)))
+		posts = random.sample(posts, k=len(posts))
 	else:
 		abort(400)
 
-	total = len(list(posts))
+	total = len(posts)
 
 	slice = 25 * (page - 1)
 	posts = posts[slice:26]
