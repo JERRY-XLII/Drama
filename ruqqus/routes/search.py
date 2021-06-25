@@ -38,8 +38,7 @@ def searchparse(text):
 	return criteria
 
 
-
-@cache.memoize(1)
+@cache.memoize(300)
 def searchlisting(criteria, v=None, page=1, t="None", sort="top", b=None):
 
 	posts = g.db.query(Submission).options(
