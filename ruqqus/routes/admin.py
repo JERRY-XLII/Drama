@@ -146,18 +146,19 @@ def badge_grant_get(v):
 def badge_grant_post(v):
 
 	user = get_user(request.form.get("username"), graceful=True)
-	if not user:
-		return redirect("/badge_grant?error=no_user")
+	if not user: return redirect("/badge_grant?error=no_user")
 
 	badge_id = int(request.form.get("badge_id"))
-
-	if user.has_badge(badge_id):
-		return redirect("/badge_grant?error=already_owned")
 
 	badge = g.db.query(BadgeDef).filter_by(id=badge_id).first()
 	if badge.kind != 3:
 		abort(403)
 
+	if user.has_badge(badge_id):
+		g.db.query(Badge).filter_by(badge_id=badge_id, user_id=user.id,).first()
+		g.db.commit()
+		return redirect(user.permalink)
+	
 	new_badge = Badge(badge_id=badge_id,
 					  user_id=user.id,
 					  created_utc=int(time.time())
