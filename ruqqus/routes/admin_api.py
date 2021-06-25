@@ -55,7 +55,7 @@ def ban_user(user_id, v):
 
 
 	for x in user.alts:
-		if not x.is_deleted and x.admin_level == 0:
+		if x.admin_level == 0:
 			x.ban(admin=v, reason=reason)
 
 	send_notification(user, text)
@@ -85,6 +85,10 @@ def unban_user(user_id, v):
 		abort(400)
 
 	user.unban()
+
+	for x in user.alts:
+		if x.admin_level == 0:
+			x.unban()
 
 	send_notification(user,
 					  "Your Drama account has been reinstated. Please carefully review and abide by the [rules](/post/2510) to ensure that you don't get suspended again.")

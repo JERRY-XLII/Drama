@@ -13331,7 +13331,7 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
 		padding: 0.25rem 0.75rem; }
 
 	#frontpage, #search, #guild {
-		padding-top: 98px; }
+		padding-top: 0px; }
 
 	#search .search-results.card {
 		border-bottom: 1px solid #e3e3e3;
@@ -13479,7 +13479,9 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
 		}
 
 	.comment {
-		margin-top: 1.5rem; }
+		margin-top: 1.5rem;
+		border-left: 2px solid #808080;
+		}
 
 	.comment .comment-collapse {
 		padding-right: 0; }
