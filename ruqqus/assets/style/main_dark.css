@@ -10479,6 +10479,7 @@ body.using-mouse :focus {
 	outline: none; }
 
 #settings, #submit {
+	padding-top: 49px;
 	background-color: #ffffff; }
 
 #page {
