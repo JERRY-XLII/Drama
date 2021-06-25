@@ -1,4 +1,4 @@
-{% extends "default2.html" %}
+{% extends "default.html" %}
 
 {% block sidebarblock %}{% endblock %}
 {% block sidebarLeftblock %}{% endblock %}
@@ -9,15 +9,16 @@
 {% endblock %}
 
 {% block content %}
+<pre></pre>
 {% filter markdown %}
-# Admin Tools
+### Admin Tools
 
 * [Flagged Posts](/admin/flagged/posts)
 * [Flagged Comments](/admin/flagged/comments)
 * [Image Feed](/admin/image_posts)
 * [Removed Feed](/admin/removed)
 * [Users Feed](/admin/users)
-* [Remove image from imgur and from cloudflare cache](/admin/image_purge)
+* [Remove image from cloudflare cache](/admin/image_purge)
 * [Perceptive Hash Image Ban](/admin/image_ban)
 * [Single item via url](votes)
 * [Multi Vote Analysis](/admin/alt_votes)
