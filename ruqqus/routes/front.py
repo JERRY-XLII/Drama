@@ -297,7 +297,7 @@ def front_all(v):
 								   )
 			}
 
-@app.route("/random/post", methods=["GET"])
+@app.route("/random", methods=["GET"])
 @auth_desired
 def random_post(v):
 	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
