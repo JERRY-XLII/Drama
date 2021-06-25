@@ -177,7 +177,7 @@ def searchlisting(criteria, v=None, page=1, t="None", sort="top", b=None):
 	else:
 		abort(400)
 
-	total = 66
+	total = len(list(posts))
 
 	slice = 25 * (page - 1)
 	posts = posts[slice:26]
