@@ -377,8 +377,12 @@ def get_post_with_comments(pid, sort_type="top", v=None):
 			comments = comms.order_by(Comment.score_hot.desc()).all()
 		elif sort_type == "top":
 			comments = comms.order_by(Comment.score_top.desc()).all()
+		elif sort_type == "bottom":
+			comments = comms.order_by(Comment.score_top.asc()).all()
 		elif sort_type == "new":
 			comments = comms.order_by(Comment.created_utc.desc()).all()
+		elif sort_type == "old":
+			comments = comms.order_by(Comment.created_utc.asc()).all()
 		elif sort_type == "controversial":
 			comments = comms.order_by(Comment.score_disputed.desc()).all()
 		elif sort_type == "random":
