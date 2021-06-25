@@ -13475,16 +13475,13 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
 
 	.comment-section > .comment {
 		padding-left: 0; 
-		margin-left: -28px;
+		margin-left: -20px;
 		}
 
 	.comment {
 		margin-top: 1.5rem;
 		border-left: 2px solid #808080;
 		}
-
-	.comment .comment-collapse {
-		padding-right: 0; }
 
 	.comment.collapsed .user-info {
 		padding-top: 0.5rem; }
@@ -13693,9 +13690,3 @@ div.deleted.banned {
 	font-size: 10.75px;
 	}
 }
-
-@media (max-width: 767.98px) {
-.comment {
-    margin-top: 1.5rem;
-    border-left: 2px solid #808080 !important;
-}}
