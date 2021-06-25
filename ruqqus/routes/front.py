@@ -202,6 +202,8 @@ def frontlist(v=None, sort="hot", page=1,t="all", ids_only=True, filter_words=''
 		posts = posts.order_by(Submission.score_top.asc())
 	elif sort == "comments":
 		posts = posts.order_by(Submission.comment_count.desc())
+	elif sort == "random":
+		posts = random.sample(posts.all(), k=len(c))
 	else:
 		abort(400)
 

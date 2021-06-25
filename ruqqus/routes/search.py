@@ -8,6 +8,7 @@ from sqlalchemy import *
 from flask import *
 from ruqqus.classes.domains import reasons as REASONS
 from ruqqus.__main__ import app, cache
+import random
 
 
 
@@ -170,6 +171,10 @@ def searchlisting(criteria, v=None, page=1, t="None", sort="top", b=None):
 		posts = posts.order_by(Submission.score_top.asc())
 	elif sort == "comments":
 		posts = posts.order_by(Submission.comment_count.desc())
+	elif sort == "random":
+		posts = random.sample(posts.all(), k=len(c))
+	else:
+		abort(400)
 
 	total = posts.count()
 	posts = [x for x in posts.offset(25 * (page - 1)).limit(26).all()]
