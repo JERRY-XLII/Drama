@@ -280,7 +280,7 @@ def board_css(board_fullname, x):
 		with open(os.path.join(os.path.expanduser('~'), "ruqqus/ruqqus/assets/style/board_main.scss"), "r") as file:
 			raw = file.read()
 	except FileNotFoundError:
-		return redirect(f"{app.config['SERVER_NAME']}/assets/style/main.css")
+		return redirect("/assets/style/main.css")
 
 	# This doesn't use python's string formatting because
 	# of some odd behavior with css files
@@ -289,7 +289,7 @@ def board_css(board_fullname, x):
 	try:
 		resp = Response(sass.compile(string=scss), mimetype='text/css')
 	except sass.CompileError:
-		return redirect(f"{app.config['SERVER_NAME']}/assets/style/main.css")
+		return redirect("/assets/style/main.css")
 
 	resp.headers.add("Cache-Control", "public")
 
