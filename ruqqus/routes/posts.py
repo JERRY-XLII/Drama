@@ -537,12 +537,12 @@ def submit_post(v):
 			try:
 				embed = eval(domain_obj.embed_function)(url)
 			except BaseException:
-				embed = ""
+				embed = None
 		else:
-			embed = ""
+			embed = None
 	else:
 
-		embed = ""
+		embed = None
 
 	# board
 	board_name = request.form.get("board", "general")
