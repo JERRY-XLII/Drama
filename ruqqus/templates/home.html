@@ -48,13 +48,13 @@
 						{{sort | capitalize}}
 					</button>
 					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 31px, 0px);">
-						{% if not sort=="hot" %}<a class="dropdown-item" href="?sort=hot&t={{time_filter}}"><i class="fas fa-fire mr-2"></i>Hot</a>{% endif %}
-						{% if not sort=="top" %}<a class="dropdown-item" href="?sort=top&t={{time_filter}}"><i class="fas fa-arrow-alt-circle-up mr-2"></i>Top</a>{% endif %}
-						{% if not sort=="bottom" %}<a class="dropdown-item" href="?sort=bottom&t={{time_filter}}"><i class="fas fa-arrow-alt-circle-down mr-2"></i>Bottom</a>{% endif %}
-						{% if not sort=="new" %}<a class="dropdown-item" href="?sort=new&t={{time_filter}}"><i class="fas fa-sparkles mr-2"></i>New</a>{% endif %}
-						{% if not sort=="old" %}<a class="dropdown-item" href="?sort=old&t={{time_filter}}"><i class="fas fa-book mr-2"></i>Old</a>{% endif %}
-						{% if not sort=="controversial" %}<a class="dropdown-item" href="?sort=controversial&t={{time_filter}}"><i class="fas fa-bullhorn mr-2"></i>Controversial</a>{% endif %}
-						{% if not sort=="comments" %}<a class="dropdown-item" href="?sort=comments&t={{time_filter}}"><i class="fas fa-comments mr-2"></i>Comments</a>{% endif %}
+						{% if sort != "hot" %}<a class="dropdown-item" href="?sort=hot&t={{time_filter}}"><i class="fas fa-fire mr-2"></i>Hot</a>{% endif %}
+						{% if sort != "top" %}<a class="dropdown-item" href="?sort=top&t={{time_filter}}"><i class="fas fa-arrow-alt-circle-up mr-2"></i>Top</a>{% endif %}
+						{% if sort != "bottom" %}<a class="dropdown-item" href="?sort=bottom&t={{time_filter}}"><i class="fas fa-arrow-alt-circle-down mr-2"></i>Bottom</a>{% endif %}
+						{% if sort != "new" %}<a class="dropdown-item" href="?sort=new&t={{time_filter}}"><i class="fas fa-sparkles mr-2"></i>New</a>{% endif %}
+						{% if sort != "old" %}<a class="dropdown-item" href="?sort=old&t={{time_filter}}"><i class="fas fa-book mr-2"></i>Old</a>{% endif %}
+						{% if sort != "controversial" %}<a class="dropdown-item" href="?sort=controversial&t={{time_filter}}"><i class="fas fa-bullhorn mr-2"></i>Controversial</a>{% endif %}
+						{% if sort != "comments" %}<a class="dropdown-item" href="?sort=comments&t={{time_filter}}"><i class="fas fa-comments mr-2"></i>Comments</a>{% endif %}
 					</div>
 				</div>
 			</div>
@@ -161,13 +161,13 @@
 									{{sort | capitalize}}
 								</button>
 								<div class="dropdown-menu" id="mobileSortDropdown" aria-labelledby="dropdownMenuButtonMobile" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 31px, 0px);">
-									{% if not sort=="hot" %}<a class="dropdown-item" href="?sort=hot&t={{time_filter}}"><i class="fas fa-fire text-primary mr-3"></i>Hot</a>{% endif %}
-									{% if not sort=="top" %}<a class="dropdown-item" href="?sort=top&t={{time_filter}}"><i class="fas fa-arrow-alt-circle-up text-primary mr-3"></i>Top</a>{% endif %}
-									{% if not sort=="bottom" %}<a class="dropdown-item" href="?sort=bottom&t={{time_filter}}"><i class="fas fa-arrow-alt-circle-down text-primary mr-3"></i>Bottom</a>{% endif %}
-									{% if not sort=="new" %}<a class="dropdown-item" href="?sort=new&t={{time_filter}}"><i class="fas fa-sparkles text-primary mr-3"></i>New</a>{% endif %}
-									{% if not sort=="old" %}<a class="dropdown-item" href="?sort=old&t={{time_filter}}"><i class="fas fa-book text-primary mr-3"></i>Old</a>{% endif %}
-									{% if not sort=="controversial" %}<a class="dropdown-item" href="?sort=controversial&t={{time_filter}}"><i class="fas fa-bullhorn text-primary mr-3"></i>Controversial</a>{% endif %}
-									{% if not sort=="comments" %}<a class="dropdown-item" href="?sort=comments&t={{time_filter}}"><i class="fas fa-comments text-primary mr-3"></i>Comments</a>{% endif %}
+									{% if sort != "hot" %}<a class="dropdown-item" href="?sort=hot&t={{time_filter}}"><i class="fas fa-fire text-primary mr-3"></i>Hot</a>{% endif %}
+									{% if sort != "top" %}<a class="dropdown-item" href="?sort=top&t={{time_filter}}"><i class="fas fa-arrow-alt-circle-up text-primary mr-3"></i>Top</a>{% endif %}
+									{% if sort != "bottom" %}<a class="dropdown-item" href="?sort=bottom&t={{time_filter}}"><i class="fas fa-arrow-alt-circle-down text-primary mr-3"></i>Bottom</a>{% endif %}
+									{% if sort != "new" %}<a class="dropdown-item" href="?sort=new&t={{time_filter}}"><i class="fas fa-sparkles text-primary mr-3"></i>New</a>{% endif %}
+									{% if sort != "old" %}<a class="dropdown-item" href="?sort=old&t={{time_filter}}"><i class="fas fa-book text-primary mr-3"></i>Old</a>{% endif %}
+									{% if sort != "controversial" %}<a class="dropdown-item" href="?sort=controversial&t={{time_filter}}"><i class="fas fa-bullhorn text-primary mr-3"></i>Controversial</a>{% endif %}
+									{% if sort != "comments" %}<a class="dropdown-item" href="?sort=comments&t={{time_filter}}"><i class="fas fa-comments text-primary mr-3"></i>Comments</a>{% endif %}
 								</div>
 							</div>
 
