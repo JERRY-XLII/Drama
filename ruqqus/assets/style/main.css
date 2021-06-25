@@ -14076,3 +14076,9 @@ div.deleted.banned {
 	font-size: 10.75px;
 	}
 }
+
+@media (max-width: 767.98px) {
+.comment {
+    margin-top: 1.5rem;
+    border-left: 2px solid #808080 !important;
+}}
