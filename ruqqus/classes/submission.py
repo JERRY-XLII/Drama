@@ -232,9 +232,6 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
 		# return template
 		is_allowed_to_comment = self.board.can_comment(
 			v) and not self.is_archived
-		
-	#	if request.args.get("sort", "Hot") != "new":
-	#		self.replies = [x for x in self.replies if x.is_pinned] + [x for x in self.replies if not x.is_pinned]
 
 		nsfw = v and v.over_18
 		nsfl = v and v.show_nsfl
@@ -243,8 +240,7 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
 							   nsfw=nsfw,
 							   nsfl=nsfl,
 							   p=self,
-							   sort=request.args.get(
-								   "sort", "top").capitalize(),
+							   sort=request.args.get("sort", "top"),
 							   linked_comment=comment,
 							   comment_info=comment_info,
 							   is_allowed_to_comment=is_allowed_to_comment,
