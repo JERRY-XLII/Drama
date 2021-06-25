@@ -12,7 +12,7 @@
 
 
 
-<div id="comment-{{c.base36id}}" class="comment">
+<div id="comment-{{c.base36id}}" class="comment rounded">
 
 
 		<span class="comment-collapse" onclick="collapse_comment('{{c.base36id}}')"></span>
@@ -96,9 +96,9 @@
 </div>
 {% endif %}
 
-<div id="comment-{{c.base36id}}" class="comment{% if standalone and level==1 %} mt-0{% endif %}{% if c.collapse_for_user(v) or (standalone and c.over_18) %} collapsed{% endif %}">
+<div id="comment-{{c.base36id}}" class="comment rounded{% if standalone and level==1 %} mt-0{% endif %}{% if c.collapse_for_user(v) or (standalone and c.over_18) %} collapsed{% endif %}">
 
-	<span class="mr-2 d-block d-md-none">&nbsp;&nbsp;&nbsp;</span>
+	<span class="mr-2 d-block d-md-none">{% if level==1 %}&nbsp;{% else %}&nbsp;&nbsp;&nbsp;{% endif %}</span>
 
 	<span class="comment-collapse d-md-block d-none" onclick="collapse_comment('{{c.base36id}}')"></span>
 
