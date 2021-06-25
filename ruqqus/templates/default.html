@@ -211,7 +211,7 @@
 
  </head>
 
- <body id="{% block pagetype %}frontpage{% endblock %}" class="">
+ <body id="{% block pagetype %}frontpage{% endblock %}" {% if '/comments' in request.full_path %}style="padding-top:30px;"{% endif %}>
 
 	{% if request.path=='/' and g.system and g.timestamp>session.get('tooltip_last_dismissed',0)+60*60*24 and (g.system.endswith('/chrome') or g.system.endswith('/other')) %}
 	<div class="row fixed-top" style="z-index:2000" id="mobile-prompt-row">
