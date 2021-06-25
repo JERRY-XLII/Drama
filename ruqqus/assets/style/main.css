@@ -10822,7 +10822,7 @@ body.using-mouse :focus {
 	outline: none; }
 
 #settings, #submit {
-	padding-top: 49px;
+	padding-top: 98px;
 	background-color: #000000; }
 
 #page {
@@ -13726,7 +13726,6 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
 		background-color: #000000; }
 
 	#frontpage, #search, #guild {
-		padding-top: 0;
 		background-color: #000000; }
 
 	#search .search-results.card {
