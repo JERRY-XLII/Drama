@@ -10479,7 +10479,7 @@ body.using-mouse :focus {
 	outline: none; }
 
 #settings, #submit {
-	padding-top: 49px;
+	padding-top: 98px;
 	background-color: #ffffff; }
 
 #page {
@@ -13329,6 +13329,9 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
 
 	.mobile-nav-icon {
 		padding: 0.25rem 0.75rem; }
+
+	#frontpage, #search, #guild {
+		padding-top: 0px; }
 
 	#search .search-results.card {
 		border-bottom: 1px solid #e3e3e3;

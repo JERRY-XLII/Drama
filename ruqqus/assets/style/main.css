@@ -13726,6 +13726,7 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
 		background-color: #000000; }
 
 	#frontpage, #search, #guild {
+		padding-top: 0;
 		background-color: #000000; }
 
 	#search .search-results.card {
