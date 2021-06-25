@@ -172,7 +172,8 @@ def searchlisting(criteria, v=None, page=1, t="None", sort="top", b=None):
 	elif sort == "comments":
 		posts = posts.order_by(Submission.comment_count.desc())
 	elif sort == "random":
-		posts = random.sample(posts.all(), k=len(c))
+		posts = posts.all()
+		posts = random.sample(posts, k=len(posts))
 	else:
 		abort(400)
 
