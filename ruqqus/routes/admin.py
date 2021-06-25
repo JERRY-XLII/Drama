@@ -155,7 +155,7 @@ def badge_grant_post(v):
 		abort(403)
 
 	if user.has_badge(badge_id):
-		g.db.query(Badge).filter_by(badge_id=badge_id, user_id=user.id,).first()
+		g.db.query(Badge).filter_by(badge_id=badge_id, user_id=user.id,).first().delete()
 		g.db.commit()
 		return redirect(user.permalink)
 	
@@ -165,22 +165,20 @@ def badge_grant_post(v):
 					  )
 
 	desc = request.form.get("description")
-	if desc:
-		new_badge.description = desc
+	if desc: new_badge.description = desc
 
 	url = request.form.get("url")
-	if url:
-		new_badge.url = url
+	if url: new_badge.url = url
 
 	g.db.add(new_badge)
 
 	g.db.commit()
 
 	text = f"""
-@{v.username} has given you the following profile badge:
-\n\n![]({new_badge.path})
-\n\n{new_badge.name}
-"""
+	@{v.username} has given you the following profile badge:
+	\n\n![]({new_badge.path})
+	\n\n{new_badge.name}
+	"""
 
 	send_notification(user, text)
 
