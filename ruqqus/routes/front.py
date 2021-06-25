@@ -189,30 +189,31 @@ def frontlist(v=None, sort="hot", page=1,t="all", ids_only=True, filter_words=''
 		posts = posts.filter(Submission.created_utc < lt)
 
 	if sort == "hot":
-		posts = posts.order_by(Submission.score_best.desc())
+		posts = posts.order_by(Submission.score_best.desc()).all()
 	elif sort == "new":
-		posts = posts.order_by(Submission.created_utc.desc())
+		posts = posts.order_by(Submission.created_utc.desc()).all()
 	elif sort == "old":
-		posts = posts.order_by(Submission.created_utc.asc())
+		posts = posts.order_by(Submission.created_utc.asc()).all()
 	elif sort == "controversial":
-		posts = posts.order_by(Submission.score_disputed.desc())
+		posts = posts.order_by(Submission.score_disputed.desc()).all()
 	elif sort == "top":
-		posts = posts.order_by(Submission.score_top.desc())
+		posts = posts.order_by(Submission.score_top.desc()).all()
 	elif sort == "bottom":
-		posts = posts.order_by(Submission.score_top.asc())
+		posts = posts.order_by(Submission.score_top.asc()).all()
 	elif sort == "comments":
-		posts = posts.order_by(Submission.comment_count.desc())
+		posts = posts.order_by(Submission.comment_count.desc()).all()
 	elif sort == "random":
 		posts = posts.all()
 		posts = random.sample(posts, k=len(posts))
 	else:
 		abort(400)
 
+	slice = 25 * (page - 1)
+	posts = posts[slice:26]
 	if ids_only:
-		posts = [x.id for x in posts.offset(25 * (page - 1)).limit(26).all()]
+		posts = [x.id for x in posts]
 		return posts
-	else:
-		return [x for x in posts.offset(25 * (page - 1)).limit(25).all()]
+	return posts
 
 def default_cat_cookie():
 
