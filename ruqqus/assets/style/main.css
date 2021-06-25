@@ -12328,7 +12328,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 		border-top-left-radius: 1rem; }
 
 	#frontpage, #search, #guild {
-		padding-top: 0px;
+		padding-top: 49px;
 		background-color: #000000; } }
 .dropdown-actions {
 	position: relative;
@@ -13726,7 +13726,7 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
 		background-color: #000000; }
 
 	#frontpage, #search, #guild {
-		padding-top: 0;
+		padding-top: 49px;
 		background-color: #000000; }
 
 	#search .search-results.card {

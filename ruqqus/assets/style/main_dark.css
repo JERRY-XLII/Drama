@@ -13331,7 +13331,7 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
 		padding: 0.25rem 0.75rem; }
 
 	#frontpage, #search, #guild {
-		padding-top: 0px; }
+		padding-top: 49px; }
 
 	#search .search-results.card {
 		border-bottom: 1px solid #e3e3e3;
