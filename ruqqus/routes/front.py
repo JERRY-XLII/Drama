@@ -302,79 +302,14 @@ def front_all(v):
 def random_post(v):
 	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
 
-	x = g.db.query(Submission).options(
-		lazyload('board')).filter_by(
-		is_banned=False,
-		).filter(Submission.deleted_utc == 0)
-
-	now = int(time.time())
-	cutoff = now - (60 * 60 * 24 * 180)
-	x = x.filter(Submission.created_utc >= cutoff)
-
-	if not (v and v.over_18):
-		x = x.filter_by(over_18=False)
-
-	if not (v and v.show_nsfl):
-		x = x.filter_by(is_nsfl=False)
-
-	if v and v.hide_offensive:
-		x = x.filter_by(is_offensive=False)
-		
-	if v and v.hide_bot:
-		x = x.filter_by(is_bot=False)
-
-	if v:
-		bans = g.db.query(
-			BanRelationship.board_id).filter_by(
-			user_id=v.id).subquery()
-		x = x.filter(Submission.board_id.notin_(bans))
-
-	x=x.join(Submission.board).filter(Board.is_banned==False)
+	score=p.upvotes-p.downvotes
+	x = g.db.query(Submission).filter(Submission.deleted_utc == 0, Submission.is_banned == False, Submission.score > 20)
 
 	total = x.count()
 	n = random.randint(0, total - 1)
 
 	post = x.order_by(Submission.id.asc()).offset(n).limit(1).first()
 	return redirect(post.permalink)
-
-@app.route("/random/comment", methods=["GET"])
-@auth_desired
-def random_comment(v):
-	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
-
-	x = g.db.query(Comment).filter_by(is_banned=False,
-									  over_18=False,
-									  is_nsfl=False,
-									  is_offensive=False,
-									  is_bot=False).filter(Comment.parent_submission.isnot(None))
-	if v:
-		bans = g.db.query(BanRelationship.id).filter_by(user_id=v.id).all()
-		x = x.filter(Comment.board_id.notin_([i[0] for i in bans]))
-
-	total = x.count()
-	n = random.randint(0, total - 1)
-	comment = x.order_by(Comment.id.asc()).offset(n).limit(1).first()
-
-	return redirect(comment.permalink)
-
-
-@app.route("/random/user", methods=["GET"])
-@auth_desired
-def random_user(v):
-	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
-
-	x = g.db.query(User).filter(or_(User.is_banned == 0, and_(
-		User.is_banned > 0, User.unban_utc < int(time.time()))))
-
-	x = x.filter_by(is_private=False)
-
-	total = x.count()
-	n = random.randint(0, total - 1)
-
-	user = x.offset(n).limit(1).first()
-
-	return redirect(user.permalink)
-
 
 @cache.memoize(600)
 def comment_idlist(page=1, v=None, nsfw=False, **kwargs):
