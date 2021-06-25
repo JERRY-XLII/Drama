@@ -155,7 +155,7 @@ def badge_grant_post(v):
 		abort(403)
 
 	if user.has_badge(badge_id):
-		g.db.query(Badge).filter_by(badge_id=badge_id, user_id=user.id,).first().delete()
+		g.db.query(Badge).filter_by(badge_id=badge_id, user_id=user.id,).delete()
 		g.db.commit()
 		return redirect(user.permalink)
 	
