@@ -306,17 +306,19 @@
 											rows="3" name="bio" form="profile-bio" maxlength="500">{{v.bio}}</textarea>
 										</div>
 										
-										<i style="line-height:2;" class="btn btn-secondary format d-inline-block m-0 fas fa-bold" aria-hidden="true" onclick="makeBold('bio-text')" data-toggle="tooltip" data-placement="bottom" title="Bold"></i>
-										&nbsp;
-										<i style="line-height:2;" class="btn btn-secondary format d-inline-block m-0 fas fa-italic" aria-hidden="true" onclick="makeItalics('bio-text')" data-toggle="tooltip" data-placement="bottom" title="Italicize"></i>
-										&nbsp;
-										<i style="line-height:2;" class="btn btn-secondary format d-inline-block m-0 fas fa-quote-right" aria-hidden="true" onclick="makeQuote('bio-text')" data-toggle="tooltip" data-placement="bottom" title="Quote"></i>
-										&nbsp;
-										<i class="font-weight-bolder text-uppercase btn btn-secondary format d-inline-block m-0 font-weight-bolder text-uppercase" onclick="getGif();commentForm('bio-text)" aria-hidden="true" data-toggle="modal" data-target="#gifModal" data-toggle="tooltip" data-placement="bottom" title="Add GIF">GIF</i>
-										&nbsp;
-										<i style="line-height:2;" class="btn btn-secondary format d-inline-block m-0 fas fa-smile-beam" onclick="commentForm('bio-text');loadEmojis()" aria-hidden="true" data-toggle="modal" data-target="#emojiModal" data-toggle="tooltip" data-placement="bottom" title="Add EMOJI"></i>
-										&nbsp;
-										
+										<div class="d-flex">
+											<i style="line-height:2;" class="btn btn-secondary format d-inline-block m-0 fas fa-bold" aria-hidden="true" onclick="makeBold('bio-text')" data-toggle="tooltip" data-placement="bottom" title="Bold"></i>
+											&nbsp;
+											<i style="line-height:2;" class="btn btn-secondary format d-inline-block m-0 fas fa-italic" aria-hidden="true" onclick="makeItalics('bio-text')" data-toggle="tooltip" data-placement="bottom" title="Italicize"></i>
+											&nbsp;
+											<i style="line-height:2;" class="btn btn-secondary format d-inline-block m-0 fas fa-quote-right" aria-hidden="true" onclick="makeQuote('bio-text')" data-toggle="tooltip" data-placement="bottom" title="Quote"></i>
+											&nbsp;
+											<i class="font-weight-bolder text-uppercase btn btn-secondary format d-inline-block m-0 font-weight-bolder text-uppercase" onclick="getGif();commentForm('bio-text)" aria-hidden="true" data-toggle="modal" data-target="#gifModal" data-toggle="tooltip" data-placement="bottom" title="Add GIF">GIF</i>
+											&nbsp;
+											<i style="line-height:2;" class="btn btn-secondary format d-inline-block m-0 fas fa-smile-beam" onclick="commentForm('bio-text');loadEmojis()" aria-hidden="true" data-toggle="modal" data-target="#emojiModal" data-toggle="tooltip" data-placement="bottom" title="Add EMOJI"></i>
+											&nbsp;
+										</div>
+
 										<div class="d-flex">
 											<small>Limit of 500 characters</small>
 											<input class="btn btn-primary ml-auto" id="bioSave" type="submit" value="Save Changes">
