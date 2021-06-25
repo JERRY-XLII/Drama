@@ -202,7 +202,7 @@ def frontlist(v=None, sort="hot", page=1,t="all", ids_only=True, filter_words=''
 		posts = posts.order_by(Submission.score_top.asc())
 	elif sort == "comments":
 		posts = posts.order_by(Submission.comment_count.desc())
-	elif sort == "comments":
+	elif sort == "random":
 		posts = posts.all()
 		posts = random.sample(posts, k=len(posts))
 	else:
