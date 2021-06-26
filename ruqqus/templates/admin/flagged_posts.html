@@ -25,12 +25,12 @@
 								<ul class="nav post-nav mr-auto">
 									<li class="nav-item">
 										<a class="nav-link text-center{% if request.path=="/admin/flagged/posts" %} active{% endif %}" href="/admin/flagged/posts">
-											<div class="text-small text-muted">Posts</div>
+											<div>Posts</div>
 										</a>
 									</li>
 									<li class="nav-item">
 										<a class="nav-link text-center{% if request.path=="/admin/flagged/comments" %} active{% endif %}" href="/admin/flagged/comments">
-											<div class="text-small text-muted">Comments</div>
+											<div>Comments</div>
 										</a>
 									</li>
 								</ul>
@@ -72,29 +72,8 @@
 </script>
 {% endblock %}
 
-{% block title %}
-<title>Flagged Posts</title>
-<meta name="description" content="on Drama">
-{% endblock %}
-
 {% block content %}
 <!-- Post filters bar visible only on medium devices or larger-->
-
-
-<div class="row justify-content-around mx-lg-5 d-block d-lg-none no-gutters">
-	<div class="col bg-light border-bottom rounded-md p-3">
-		<div class="profile-details">
-			<div class="media">
-			<div class="media-body">
-				<h1 class="h6 d-inline-block">Flagged Posts</h1>
-
-			</div>
-
-		</div>
-
-	</div>
-</div>
-</div>
 
 <div class="row no-gutters">
 
