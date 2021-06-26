@@ -166,9 +166,11 @@
 							<input id="file-edit-reply-{{c.base36id}}" type="file" name="file" accept="image/*" onchange="document.getElementById('filename-edit-reply-{{c.base36id}}').innerHTML=document.getElementById('file-edit-reply-{{c.base36id}}').files[0].name;" hidden>
 						</label>
 
-						<a id="cancel-edit-{{c.base36id}}" href="javascript:void(0)" onclick="toggleEdit('{{c.base36id}}')" class="btn btn-link text-muted ml-auto cancel-form">Cancel</a> 
-						<a href="javascript:void(0)" form="comment-edit-form-{{c.base36id}}" class="btn btn-primary ml-2" onclick="comment_edit('{{c.base36id}}')">Save Edit</a> 
-					</div> 
+						<a id="cancel-edit-{{c.base36id}}" href="javascript:void(0)" onclick="toggleEdit('{{c.base36id}}')" class="d-none d-md-block btn btn-link text-muted ml-auto cancel-form">Cancel</a> 
+						<a href="javascript:void(0)" form="comment-edit-form-{{c.base36id}}" class="d-none d-md-block btn btn-primary ml-2" onclick="comment_edit('{{c.base36id}}')">Save Edit</a> 
+					</div>
+					<a id="cancel-edit-{{c.base36id}}" href="javascript:void(0)" onclick="toggleEdit('{{c.base36id}}')" class="d-block d-md-none btn btn-link text-muted ml-auto cancel-form">Cancel</a> 
+					<a href="javascript:void(0)" form="comment-edit-form-{{c.base36id}}" class="d-block d-md-none btn btn-primary ml-2" onclick="comment_edit('{{c.base36id}}')">Save Edit</a> 
 				</form>
 			</div>
 			{% endif %}
