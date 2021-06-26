@@ -18,8 +18,6 @@ from .flags import Flag
 from .badwords import *
 from .comment import Comment
 from .titles import Title
-from .mod_logs import ModAction
-from .user import User
 
 class SubmissionAux(Base):
 
@@ -237,7 +235,6 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
 
 		nsfw = v and v.over_18
 		nsfl = v and v.show_nsfl
-
 		return render_template(template,
 							   v=v,
 							   nsfw=nsfw,
@@ -250,12 +247,6 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
 							   render_replies=True,
 							   b=self.board
 							   )
-
-	@property
-	def bannedby(self):
-		adminid=g.db.query(ModAction.user_id).filter_by(target_submission_id=self.id).first()
-		admin = g.db.query(User.username).filter_by(id = adminid).first()
-		return admin
 
 	@property
 	@lazy
