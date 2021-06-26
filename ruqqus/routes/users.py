@@ -52,7 +52,7 @@ def message1(v, username):
 	user = get_user(username, v=v)
 	if user.is_blocking: return jsonify({"error": "You're blocking this user."}), 403
 	if user.is_blocked: return jsonify({"error": "This user is blocking you."}), 403
-	return render_template("privatemessage.html", v=v, username=username)
+	return render_template("privatemessage.html", v=v, user=user)
 
 @app.route("/@<username>/message", methods=["POST"])
 @auth_required

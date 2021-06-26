@@ -10528,7 +10528,7 @@ body.using-mouse :focus {
 .sticky {
 	position: -webkit-sticky;
 	position: sticky;
-	top: 49px;
+	top: 45px;
 	height: auto;
 	overflow-y: auto;
 	z-index: 4; }
