@@ -135,7 +135,7 @@ def post_base36id(pid, anything=None, v=None):
 
 	if post.is_banned and v and v.admin_level >= 3:
 		adminid=g.db.query(ModAction.user_id).filter_by(target_submission_id=post.id).first()
-		admin=get_user(adminid).username
+		admin=get_account2(adminid).username
 		rendered_page =  render_template(template,
 							   v=v,
 							   p=post,
