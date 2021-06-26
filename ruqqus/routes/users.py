@@ -39,7 +39,7 @@ def leaderboard():
 	users1 = g.db.query(User).options(lazyload('*')).order_by(User.stored_karma.desc()).limit(100).all()
 	users2 = sorted(users1, key=lambda x: x.follower_count, reverse=True)[:10]
 	users3 = sorted(users1, key=lambda x: x.post_count, reverse=True)[:10]
-	users4 = sorted(lusers1, key=lambda x: x.comment_count, reverse=True)[:10]
+	users4 = sorted(users1, key=lambda x: x.comment_count, reverse=True)[:10]
 	postcount = [x.post_count for x in users3]
 	return users1[:25], users2, users3, users4, postcount
 
