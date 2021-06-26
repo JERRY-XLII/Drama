@@ -141,9 +141,6 @@ def post_base36id(pid, anything=None, v=None):
 							   p=post,
 							   admin=admin,
 							   sort=request.args.get("sort", "top"),
-							   linked_comment=comment,
-							   comment_info=comment_info,
-							   is_allowed_to_comment=is_allowed_to_comment,
 							   render_replies=True,
 							   b=post.board
 							   )
@@ -152,9 +149,6 @@ def post_base36id(pid, anything=None, v=None):
 						   v=v,
 						   p=post,
 						   sort=request.args.get("sort", "top"),
-						   linked_comment=comment,
-						   comment_info=comment_info,
-						   is_allowed_to_comment=is_allowed_to_comment,
 						   render_replies=True,
 						   b=post.board
 						   )
