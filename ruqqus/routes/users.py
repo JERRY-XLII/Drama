@@ -282,7 +282,7 @@ def u_username_comments(username, v=None):
 				}
 
 	page = int(request.args.get("page", "1"))
-	sort=request.args.get("sort","new"),
+	sort=request.args.get("sort","new")
 	t=request.args.get("t","all")
 
 	ids = user.commentlisting(
