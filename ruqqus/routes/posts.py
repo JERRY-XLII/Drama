@@ -126,35 +126,8 @@ def post_base36id(pid, anything=None, v=None):
 	
 	post.tree_comments()
 
-	if v and v.admin_level >= 3:
-		template = "submission.html"
-	elif post.is_banned:
-		template = "submission_banned.html"
-	else:
-		template = "submission.html"
-
-	if post.is_banned and v and v.admin_level >= 3:
-		adminid=g.db.query(ModAction.user_id).filter_by(target_submission_id=post.id).first()
-		admin=get_account2(adminid).username
-		rendered_page =  render_template(template,
-							   v=v,
-							   p=post,
-							   admin=admin,
-							   sort=request.args.get("sort", "top"),
-							   render_replies=True,
-							   b=post.board
-							   )
-	else:
-		rendered_page =  render_template(template,
-							   v=v,
-							   p=post,
-							   sort=request.args.get("sort", "top"),
-							   render_replies=True,
-							   b=post.board
-							   )
-
 	return {
-		"html":lambda:rendered_page,
+		"html":lambda:post.rendered_page(v=v),
 		"api":lambda:jsonify(post.json)
 		}
 
