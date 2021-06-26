@@ -27,6 +27,8 @@ BAN_REASONS = ['',
 @app.route("/leaderboard", methods=["GET"])
 @auth_desired
 def leaderboard(v):
+	cache.delete_memoized(leaderboard)
+
 	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
 	
 	users1, users2, users3, users4, postcount = leaderboard()
