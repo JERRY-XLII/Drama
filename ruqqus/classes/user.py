@@ -15,7 +15,7 @@ import ruqqus.helpers.aws as aws
 from ruqqus.helpers.discord import add_role, delete_role
 #from ruqqus.helpers.alerts import send_notification
 from .votes import Vote
-from .alts import Alt
+from .alts import Alt	
 from .titles import Title
 from .submission import Submission, SubmissionAux, SaveRelationship
 from .comment import Comment, Notification
@@ -358,33 +358,33 @@ class User(Base, Stndrd, Age_times):
 			submissions = submissions.filter(Submission.post_public == True)
 
 
-        if sort == "hot":
-            submissions = submissions.order_by(Submission.score_best.desc())
-        elif sort == "new":
-            submissions = submissions.order_by(Submission.created_utc.desc())
-        elif sort == "old":
-            submissions = submissions.order_by(Submission.created_utc.asc())
-        elif sort == "controversial":
-            submissions = submissions.order_by(Submission.score_disputed.desc())
-        elif sort == "top":
-            submissions = submissions.order_by(Submission.score_top.desc())
-        elif sort == "bottom":
-            submissions = submissions.order_by(Submission.score_top.asc())
-        elif sort == "comments":
-            submissions = submissions.order_by(Submission.comment_count.desc())
+		if sort == "hot":
+			submissions = submissions.order_by(Submission.score_best.desc())
+		elif sort == "new":
+			submissions = submissions.order_by(Submission.created_utc.desc())
+		elif sort == "old":
+			submissions = submissions.order_by(Submission.created_utc.asc())
+		elif sort == "controversial":
+			submissions = submissions.order_by(Submission.score_disputed.desc())
+		elif sort == "top":
+			submissions = submissions.order_by(Submission.score_top.desc())
+		elif sort == "bottom":
+			submissions = submissions.order_by(Submission.score_top.asc())
+		elif sort == "comments":
+			submissions = submissions.order_by(Submission.comment_count.desc())
 
-        now = int(time.time())
-        if t == 'day':
-            cutoff = now - 86400
-        elif t == 'week':
-            cutoff = now - 604800
-        elif t == 'month':
-            cutoff = now - 2592000
-        elif t == 'year':
-            cutoff = now - 31536000
-        else:
-            cutoff = 0
-        submissions = submissions.filter(Submission.created_utc >= cutoff)
+		now = int(time.time())
+		if t == 'day':
+			cutoff = now - 86400
+		elif t == 'week':
+			cutoff = now - 604800
+		elif t == 'month':
+			cutoff = now - 2592000
+		elif t == 'year':
+			cutoff = now - 31536000
+		else:
+			cutoff = 0
+		submissions = submissions.filter(Submission.created_utc >= cutoff)
 
 		listing = [x[0] for x in submissions.order_by(Submission.created_utc.desc()).offset(25 * (page - 1)).limit(26)]
 
@@ -422,29 +422,29 @@ class User(Base, Stndrd, Age_times):
 
 		comments = comments.options(contains_eager(Comment.post))
 
-        if sort == "new":
-            comments = comments.order_by(Comment.created_utc.desc())
-        elif sort == "old":
-            comments = comments.order_by(Comment.created_utc.asc())
-        elif sort == "controversial":
-            comments = comments.order_by(Comment.score_disputed.desc())
-        elif sort == "top":
-            comments = comments.order_by(Comment.score_top.desc())
-        elif sort == "bottom":
-            comments = comments.order_by(Comment.score_top.asc())
+		if sort == "new":
+			comments = comments.order_by(Comment.created_utc.desc())
+		elif sort == "old":
+			comments = comments.order_by(Comment.created_utc.asc())
+		elif sort == "controversial":
+			comments = comments.order_by(Comment.score_disputed.desc())
+		elif sort == "top":
+			comments = comments.order_by(Comment.score_top.desc())
+		elif sort == "bottom":
+			comments = comments.order_by(Comment.score_top.asc())
 
-        now = int(time.time())
-        if t == 'day':
-            cutoff = now - 86400
-        elif t == 'week':
-            cutoff = now - 604800
-        elif t == 'month':
-            cutoff = now - 2592000
-        elif t == 'year':
-            cutoff = now - 31536000
-        else:
-            cutoff = 0
-        comments = comments.filter(Comment.created_utc >= cutoff)
+		now = int(time.time())
+		if t == 'day':
+			cutoff = now - 86400
+		elif t == 'week':
+			cutoff = now - 604800
+		elif t == 'month':
+			cutoff = now - 2592000
+		elif t == 'year':
+			cutoff = now - 31536000
+		else:
+			cutoff = 0
+		comments = comments.filter(Comment.created_utc >= cutoff)
 
 		comments = comments.offset(25 * (page - 1)).limit(26)
 
