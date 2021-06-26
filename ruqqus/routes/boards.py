@@ -390,7 +390,7 @@ def board_mod_perms_change(boardname, board, v):
 	u_mod=board.has_mod_record(user)
 
 	if v_mod.id > u_mod.id:
-		return jsonify({"error":"You can't change perms on guildmasters above you."}), 403
+		return jsonify({"error":"You can't change perms on badmins above you."}), 403
 
 	#print({x:request.form.get(x) for x in request.form})
 
