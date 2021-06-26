@@ -229,21 +229,12 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
 			if "replies" not in self.__dict__ and "_preloaded_comments" in self.__dict__:
 				self.tree_comments(comment=comment)
 
-		# return template
-		is_allowed_to_comment = self.board.can_comment(
-			v) and not self.is_archived
-
-		nsfw = v and v.over_18
-		nsfl = v and v.show_nsfl
 		return render_template(template,
 							   v=v,
-							   nsfw=nsfw,
-							   nsfl=nsfl,
 							   p=self,
 							   sort=request.args.get("sort", "top"),
 							   linked_comment=comment,
 							   comment_info=comment_info,
-							   is_allowed_to_comment=is_allowed_to_comment,
 							   render_replies=True,
 							   b=self.board
 							   )
