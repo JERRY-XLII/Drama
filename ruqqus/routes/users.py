@@ -34,7 +34,8 @@ def leaderboard(v):
 
 @cache.memoize(timeout=1800)
 def leaderboard():
-	users1 = g.db.query(User).options(lazyload('*')).order_by(User.stored_karma.desc()).limit(100)
+	db = db_session()
+	users1 = db.query(User).options(lazyload('*')).order_by(User.stored_karma.desc()).limit(100)
 	users2 = sorted(list(users1), key=lambda x: x.follower_count, reverse=True)[:10]
 	users3 = sorted(list(users1), key=lambda x: x.post_count, reverse=True)[:10]
 	users4 = sorted(list(users1), key=lambda x: x.comment_count, reverse=True)[:10]
