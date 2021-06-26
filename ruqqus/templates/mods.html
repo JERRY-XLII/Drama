@@ -78,7 +78,7 @@
 				<a href="javascript:void(0)" class="btn btn-outline-primary mr-2" data-toggle="modal" data-target="#stepDownModal" onclick="step_downModal('{{v.username}}')">Resign</a>
 				{% endif %}
 				{% if me and me.perm_full %}
-				<a href="javascript:void(0)" class="btn btn-primary" data-toggle="modal" data-target="#guildmasterInviteModal"><i class="fas fa-plus mr-2"></i>Add guildmaster</a>
+				<a href="javascript:void(0)" class="btn btn-primary" data-toggle="modal" data-target="#badminInviteModal"><i class="fas fa-plus mr-2"></i>Add badmin</a>
 				{% endif %}
 			</div>
 
@@ -113,7 +113,7 @@
 									</a>
 									<div class="dropdown-menu border-0 shadow dropdown-menu-right mt-2" aria-labelledby="dropdownMoreLink" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(21px, 18px, 0px);">
 										<a class="dropdown-item" href="javascript:void(0)" data-toggle="modal" data-target="#editPermsModal" onclick="permsEdit('{{mod.user.username}}','{{mod.permlist}}')"><i class="fas fa-user-cog fa-fw"></i>Edit permissions</a>
-										<a class="dropdown-item" href="javascript:void(0)" onclick="post('/mod/{{b.base36id}}/remove/{{mod.user.username}}', callback=function(){window.location.reload(true)})"><i class="fas fa-trash-alt"></i>Remove guildmaster</a>
+										<a class="dropdown-item" href="javascript:void(0)" onclick="post('/mod/{{b.base36id}}/remove/{{mod.user.username}}', callback=function(){window.location.reload(true)})"><i class="fas fa-trash-alt"></i>Remove badmin</a>
 									</div>
 								</div>
 								{% endif %}
@@ -191,12 +191,12 @@
 </div>
 
 <!-- Badmin Invite User Modal -->
-<div class="modal fade" id="guildmasterInviteModal" tabindex="-1" role="dialog" aria-labelledby="guildmasterInviteModalTitle" aria-hidden="true">
+<div class="modal fade" id="badminInviteModal" tabindex="-1" role="dialog" aria-labelledby="badminInviteModalTitle" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered" role="document">
 		<form action="/mod/invite_mod/{{b.base36id}}" id="invite-form" method="post" onsubmit="return false;">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title">Invite user to be guildmaster</h5>
+					<h5 class="modal-title">Invite user to be badmin</h5>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true"><i class="far fa-times"></i></span>
 					</button>
@@ -220,13 +220,13 @@
 	<div class="modal-dialog modal-dialog-centered" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title">Step down as guildmaster</h5>
+				<h5 class="modal-title">Step down as badmin</h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true"><i class="far fa-times"></i></span>
 				</button>
 			</div>
 			<div class="modal-body">
-				<p>If you step down as guildmaster, you will lose full permissions to moderate this guild. This action cannot be undone.</p>
+				<p>If you step down as badmin, you will lose full permissions to moderate this guild. This action cannot be undone.</p>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-link text-muted" data-dismiss="modal">Cancel</button>
@@ -243,7 +243,7 @@
 		<div class="modal-content">
 			<form action="/+{{b.name}}/mod/edit_perms" method="post">
 			<div class="modal-header">
-				<h5 class="modal-title">Edit guildmaster permissions on @<span id="permedit-user"></span></h5>
+				<h5 class="modal-title">Edit badmin permissions on @<span id="permedit-user"></span></h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true"><i class="far fa-times"></i></span>
 				</button>
