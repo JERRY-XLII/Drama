@@ -219,19 +219,11 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
 		else:
 			template = "submission.html"
 
-		private = not self.is_public and not self.is_pinned and not self.board.can_view(
-			v)
-
-		if private and (not v or not self.author_id == v.id):
-			abort(403)
-		elif private:
-			self.__dict__["replies"] = []
-		else:
-			# load and tree comments
-			# calling this function with a comment object will do a comment
-			# permalink thing
-			if "replies" not in self.__dict__ and "_preloaded_comments" in self.__dict__:
-				self.tree_comments(comment=comment)
+		# load and tree comments
+		# calling this function with a comment object will do a comment
+		# permalink thing
+		if "replies" not in self.__dict__ and "_preloaded_comments" in self.__dict__:
+			self.tree_comments(comment=comment)
 
 		# return template
 		is_allowed_to_comment = self.board.can_comment(

@@ -112,7 +112,7 @@ def post_pid_comment_cid(cid, pid=None, anything=None, v=None):
 		context -= 1
 	top_comment = c
 
-	sort_type = request.args.get("sort", "hot")
+	sort_type = request.args.get("sort", "top")
 	# children comments
 
 	current_ids = [comment.id]
@@ -202,7 +202,7 @@ def post_pid_comment_cid(cid, pid=None, anything=None, v=None):
 
 			if sort_type == "top":
 				comments = comms.order_by(Comment.score_top.asc()).all()
-			elif sort_type == "top":
+			elif sort_type == "bottom":
 				comments = comms.order_by(Comment.score_top.desc()).all()
 			elif sort_type == "new":
 				comments = comms.order_by(Comment.created_utc.desc()).all()
