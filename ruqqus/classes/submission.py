@@ -253,7 +253,7 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
 	@property
 	def bannedby(self):
 		adminid=g.db.query(ModAction.user_id).filter_by(target_submission_id=self.id).first()
-		admin = g.db.query(User.username).filter_by(id = adminid)).first()
+		admin = g.db.query(User.username).filter_by(id = adminid).first()
 		return admin
 
 	@property
