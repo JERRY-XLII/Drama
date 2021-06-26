@@ -207,13 +207,9 @@
 				<span class="badge badge-secondary text-small align-middle mx-1">Follows you</span>
 				{% endif %}
 				{% if u.customtitle %}<p style="color: #{{u.titlecolor}}">{{u.customtitle | safe}}</p>{% endif %}
-				<div class="text-small mb-2">{{u.true_score}} Dramacoins</div>
+				<span class="font-weight-bold">{{u.true_score}}</span> Dramacoins · {% if u.follower_count >=1 and not u.is_nofollow %}<a href="/@{{u.username}}/followers" class="font-weight-bold">{{u.follower_count}} follower{{'s' if u.follower_count != 1 else ''}}</a> · {% endif %}joined <span data-toggle="tooltip" data-placement="bottom" title="" data-original-title="{{u.created_datetime}}" class="font-weight-bold">{{u.created_date}}</span>
 				{% if u.bio_html %}
 				<p class="text-muted text-break">{{u.bio_html | safe}}</p>
-				{% endif %}
-				{% if u.follower_count >=1 and not u.is_nofollow %}
-				<a href="/@{{u.username}}/followers" class="font-weight-bold">{{u.follower_count}} follower{{'s' if u.follower_count != 1 else ''}}</a>
-				<pre></pre>
 				{% endif %}
 				<div class="mb-3">
 						{% for b in u.badges %}
