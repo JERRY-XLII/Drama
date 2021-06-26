@@ -215,9 +215,7 @@ def searchcommentlisting(criteria, v=None, page=1, t="None", sort="top"):
 
 	comments=comments.options(contains_eager(Comment.comment_aux),)
 
-	if sort == "hot":
-		comments = comments.order_by(Comment.score_hot.desc())
-	elif sort == "new":
+	if sort == "new":
 		comments = comments.order_by(Comment.created_utc.desc())
 	elif sort == "old":
 		comments = comments.order_by(Comment.created_utc.asc())

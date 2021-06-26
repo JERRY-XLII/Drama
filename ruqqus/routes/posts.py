@@ -947,7 +947,6 @@ def submit_post(v):
 		print(e)
 	new_post.score_disputed = new_post.rank_fiery
 	new_post.score_top = new_post.score
-	new_post.score_best = new_post.rank_best
 	g.db.add(new_post)
 	g.db.commit()
 

@@ -313,9 +313,7 @@ class User(Base, Stndrd, Age_times):
 		if lt:
 			posts = posts.filter(Submission.created_utc < lt)
 
-		if sort == "hot":
-			posts = posts.order_by(Submission.score_best.desc())
-		elif sort == "new":
+		if sort == "new":
 			posts = posts.order_by(Submission.created_utc.desc())
 		elif sort == "controversial":
 			posts = posts.order_by(Submission.score_disputed.desc())
