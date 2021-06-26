@@ -25,7 +25,7 @@ def leaderboard():
 	users2 = [x for x in users1.order_by(User.follower_count.desc()).all()][:10]
 	users3 = sorted(list(users1), key=lambda x: x.post_count, reverse=True)[:10]
 	users4 = sorted(list(users1), key=lambda x: x.comment_count, reverse=True)[:10]
-	return users1[:25], users2, users3, users4
+	return users1.limit(25).all(), users2, users3, users4
 
 @app.route("/post/", methods=["GET"])
 def slash_post():
