@@ -32,7 +32,7 @@
 		</div>
 		{% endif %}
 
-<h5 class="article-title">Message <a style="font-weight: bold;color: #{{user.namecolor}};" href="/@{{user.username}}"><img src="/@{{user.username}}/pic/profile" class="profile-pic-20 mr-1">{{user.username}}</a></h5>
+<h5>Message <a style="font-weight: bold;color: #{{user.namecolor}};" href="/@{{user.username}}"><img src="/@{{user.username}}/pic/profile" class="profile-pic-20 mr-1">{{user.username}}</a></h5>
 {% if v and not v.is_suspended %}
 
 <form id="contactform" action="/@{{username}}/message" method="post">
