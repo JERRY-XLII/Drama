@@ -208,8 +208,9 @@ def frontlist(v=None, sort="hot", page=1,t="all", ids_only=True, filter_words=''
 	else:
 		abort(400)
 
-	slice = 25 * (page - 1)
-	posts = posts[slice:26]
+	firstrange = 25 * (page - 1)
+	secondrange = firstrange+26
+	posts = posts[firstrange:secondrange]
 	if ids_only:
 		posts = [x.id for x in posts]
 		return posts
