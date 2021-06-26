@@ -248,12 +248,6 @@ def board_about_mods(v):
 
 	board = get_guild("general")
 
-	if board.is_banned:
-		return {
-		"html":lambda:(render_template("board_banned.html", v=v, b=board), 403),
-		"api":lambda:(jsonify({"error":f"+{board.name} is banned"}), 403)
-		}
-
 	me = board.has_mod(v)
 
 	return {

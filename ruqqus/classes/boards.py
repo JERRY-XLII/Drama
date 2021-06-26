@@ -81,7 +81,7 @@ class Board(Base, Stndrd, Age_times):
 		z = [x for x in self.moderators if x.accepted and not (
 			x.user.is_deleted or (x.user.is_banned and not x.user.unban_utc))]
 
-		z = sorted(z, key=lambda x: x.id)
+		z = sorted(z, key=lambda x: x.created_utc)
 		return z
 
 	@property
@@ -89,7 +89,7 @@ class Board(Base, Stndrd, Age_times):
 
 		z = [x for x in self.moderators if x.accepted]
 
-		z = sorted(z, key=lambda x: x.id)
+		z = sorted(z, key=lambda x: x.created_utc)
 
 		z = [x.user for x in z]
 
@@ -100,14 +100,14 @@ class Board(Base, Stndrd, Age_times):
 
 		z = [x.user for x in self.moderators if x.accepted ==
 			 False and x.invite_rescinded == False]
-		z = sorted(z, key=lambda x: x.id)
+		z = sorted(z, key=lambda x: x.created_utc)
 		return z
 
 	@property
 	def mod_invites(self):
 		z = [x for x in self.moderators if x.accepted ==
 			 False and x.invite_rescinded == False]
-		z = sorted(z, key=lambda x: x.id)
+		z = sorted(z, key=lambda x: x.created_utc)
 		return z
 
 	@property
