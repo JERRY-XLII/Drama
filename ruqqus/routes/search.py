@@ -156,9 +156,7 @@ def searchlisting(criteria, v=None, page=1, t="None", sort="top", b=None):
 		contains_eager(Submission.board)
 		)
 
-	if sort == "hot":
-		posts = posts.order_by(Submission.hotscore.desc()).all()
-	elif sort == "new":
+	if sort == "new":
 		posts = posts.order_by(Submission.created_utc.desc()).all()
 	elif sort == "old":
 		posts = posts.order_by(Submission.created_utc.asc()).all()

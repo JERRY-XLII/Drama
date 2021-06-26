@@ -358,10 +358,7 @@ class User(Base, Stndrd, Age_times):
 		else:
 			submissions = submissions.filter(Submission.post_public == True)
 
-
-		if sort == "hot":
-			submissions = submissions.order_by(Submission.hotscore.desc())
-		elif sort == "new":
+		if sort == "new":
 			submissions = submissions.order_by(Submission.created_utc.desc())
 		elif sort == "old":
 			submissions = submissions.order_by(Submission.created_utc.asc())
