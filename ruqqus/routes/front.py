@@ -11,22 +11,6 @@ from ruqqus.__main__ import app, cache
 from ruqqus.classes.submission import Submission
 from ruqqus.classes.categories import CATEGORIES
 
-@app.route("/leaderboard", methods=["GET"])
-@auth_desired
-def leaderboard(v):
-	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
-	
-	users1, users2, users3, users4 = leaderboard()
-	return render_template("leaderboard.html", v=v, users1=users1, users2=users2, users3=users3, users4=users4)
-
-@cache.memoize(timeout=1800)
-def leaderboard():
-	users1 = g.db.query(User).order_by(User.stored_karma.desc()).limit(100)
-	users2 = [x for x in users1.order_by(User.follower_count.desc()).all()][:10]
-	users3 = sorted(list(users1), key=lambda x: x.post_count, reverse=True)[:10]
-	users4 = sorted(list(users1), key=lambda x: x.comment_count, reverse=True)[:10]
-	return users1.limit(25).all(), users2, users3, users4
-
 @app.route("/post/", methods=["GET"])
 def slash_post():
 	return redirect("/")
