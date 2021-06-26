@@ -208,12 +208,30 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
 	def rendered_page(self, comment=None, comment_info=None, v=None):
 
 		# check for banned
-		if v and v.admin_level >= 3: template = "submission.html"
-		elif self.is_banned: template = "submission_banned.html"
-		else: template = "submission.html"
+		if v and v.admin_level >= 3:
+			template = "submission.html"
+		elif self.is_banned:
+			template = "submission_banned.html"
+		else:
+			template = "submission.html"
 
-		if "replies" not in self.__dict__ and "_preloaded_comments" in self.__dict__:
+		private = not self.is_public and not self.is_pinned and not self.board.can_view(
+			v)
+
+		if private and (not v or not self.author_id == v.id):
+			abort(403)
+		elif private:
+			self.__dict__["replies"] = []
+		else:
+			# load and tree comments
+			# calling this function with a comment object will do a comment
+			# permalink thing
+			if "replies" not in self.__dict__ and "_preloaded_comments" in self.__dict__:
 				self.tree_comments(comment=comment)
+
+		# return template
+		is_allowed_to_comment = self.board.can_comment(
+			v) and not self.is_archived
 
 		nsfw = v and v.over_18
 		nsfl = v and v.show_nsfl
@@ -225,6 +243,7 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
 							   sort=request.args.get("sort", "top"),
 							   linked_comment=comment,
 							   comment_info=comment_info,
+							   is_allowed_to_comment=is_allowed_to_comment,
 							   render_replies=True,
 							   b=self.board
 							   )
