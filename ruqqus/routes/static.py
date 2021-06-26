@@ -99,7 +99,7 @@ def leaderboard(v):
 	users1, users2, users3, users4 = leaderboard()
 	return render_template("leaderboard.html", v=v, users1=users1, users2=users2, users3=users3, users4=users4)
 
-@cache.memoize(timeout=1500)
+@cache.memoize(timeout=1800)
 def leaderboard():
 	users = g.db.query(User).options(lazyload('*'))
 	users1 = [x for x in users.order_by(User.stored_karma.desc()).all()][:50]
