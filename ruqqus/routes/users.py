@@ -29,17 +29,17 @@ BAN_REASONS = ['',
 def leaderboard(v):
 	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
 	
-	users1, users2, users3, users4 = leaderboard()
-	return render_template("leaderboard.html", v=v, users1=users1, users2=users2, users3=users3, users4=users4)
+	users1, users2, users3, users4, postcount = leaderboard()
+	return render_template("leaderboard.html", v=v, users1=users1, users2=users2, users3=users3, users4=users4, postcount=postcount)
 
 @cache.memoize(timeout=1800)
 def leaderboard():
-	db = db_session()
-	users1 = db.query(User).options(lazyload('*')).order_by(User.stored_karma.desc()).limit(100).all()
+	users1 = g.db.query(User).options(lazyload('*')).order_by(User.stored_karma.desc()).limit(100).all()
 	users2 = sorted(users1, key=lambda x: x.follower_count, reverse=True)[:10]
 	users3 = sorted(users1, key=lambda x: x.post_count, reverse=True)[:10]
 	users4 = sorted(lusers1, key=lambda x: x.comment_count, reverse=True)[:10]
-	return users1[:25], users2, users3, users4
+	postcount = [x.post_count for x in users3]
+	return users1[:25], users2, users3, users4, postcount
 
 
 @app.route("/@<username>/message", methods=["GET"])
