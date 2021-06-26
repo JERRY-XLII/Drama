@@ -34,6 +34,10 @@ def settings_profile_post(v):
 		updated = True
 		v.hidevotedon = request.values.get("hidevotedon", None) == 'true'
 
+	if request.values.get("newtab", v.newtab) != v.newtab:
+		updated = True
+		v.newtab = request.values.get("newtab", None) == 'true'
+
 	if request.values.get("over18", v.over_18) != v.over_18:
 		updated = True
 		v.over_18 = request.values.get("over18", None) == 'true'

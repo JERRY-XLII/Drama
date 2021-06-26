@@ -55,6 +55,31 @@
 
 			</div>
 
+			<h2 class="h5">Tab Behaviour</h2>
+
+			<div class="settings-section rounded">
+			
+				<div class="d-lg-flex border-bottom">
+
+					<div class="title w-lg-25">
+						<label for="newtab">Open Threads In New Tabs </label>
+					</div>
+
+					<div class="body w-lg-100">
+
+						<div class="custom-control custom-switch">
+							<input type="checkbox" class="custom-control-input" id="newtab" name="newtab"{% if v.newtab %} checked{% endif %} onchange="post_toast('/settings/profile?newtab='+document.getElementById('newtab').checked);">
+							<label class="custom-control-label" for="newtab"></label>
+						</div>
+
+						<span class="text-small-extra text-muted">Enable if you would like to automatically open threads in new tabs.</span>
+
+					</div>
+
+				</div>
+
+			</div>
+
 
 					<h2 class="h5">Content Filters</h2>
 
@@ -69,7 +94,7 @@
 								<div class="body w-lg-100">
 
 									<div class="custom-control custom-switch">
-										<input type="checkbox" class="custom-control-input" id="hidevotedon" name="hidevotedon"{% if v.hidevotedon %} checked{% endif %} onchange="post_toast('/settings/profile?hidevotedon='+document.getElementById('hidevotedon').checked);document.getElementById('filter-nsfw-option').classList.toggle('d-none')">
+										<input type="checkbox" class="custom-control-input" id="hidevotedon" name="hidevotedon"{% if v.hidevotedon %} checked{% endif %} onchange="post_toast('/settings/profile?hidevotedon='+document.getElementById('hidevotedon').checked);">
 										<label class="custom-control-label" for="hidevotedon"></label>
 									</div>
 
