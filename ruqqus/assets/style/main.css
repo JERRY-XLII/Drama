@@ -2327,7 +2327,7 @@ textarea.form-control {
 		text-decoration: none; }
 	.btn:focus, .btn.focus {
 		outline: 0;
-		box-shadow: 0 0 0 0.2rem rgba(128, 90, 213, 0.25); }
+		box-shadow: 0 0 0 0.2rem #FF66AC }
 	.btn.disabled, .btn:disabled {
 		opacity: 0.65; }
 

@@ -1935,7 +1935,7 @@ pre {
 		background-color: #ffffff;
 		border-color: #cec0ef;
 		outline: 0;
-		box-shadow: 0 0 0 0.2rem rgba(128, 90, 213, 0.25); }
+		box-shadow: 0 0 0 0.2rem #FF66AC; }
 	.form-control::placeholder {
 		color: #718096;
 		opacity: 1; }

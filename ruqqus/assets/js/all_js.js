@@ -89,7 +89,7 @@ $('#new_email').on('input', function () {
 			let arr = emojis[i].emojis
 
 			for (j=0; j < arr.length; j++) { 
-				str += `<button class="btn m-1 p-2" onclick="getEmoji(\'${arr[j]}\')" style="width:40px; overflow: hidden;" data-toggle="tooltip" title=":${arr[j]}:" delay:="0"><img width=30 src="/assets/images/emojis/${arr[j]}.gif" alt="${arr[j]}-emoji"/></button>`;
+				str += `<button class="btn m-1 pl-1 pr-2" onclick="getEmoji(\'${arr[j]}\')" style="width:40px; overflow: hidden;" data-toggle="tooltip" title=":${arr[j]}:" delay:="0"><img width=30 src="/assets/images/emojis/${arr[j]}.gif" alt="${arr[j]}-emoji"/></button>`;
 			}
 
 			container.innerHTML = str
