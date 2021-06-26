@@ -18,6 +18,7 @@ from .flags import Flag
 from .badwords import *
 from .comment import Comment
 from .titles import Title
+from .mod_logs import ModAction
 
 class SubmissionAux(Base):
 
