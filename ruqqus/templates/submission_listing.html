@@ -142,7 +142,7 @@
 			{% if p.thumb_url %}
 			<div class="row post-img-lg mb-3">
 				<div class="col px-0">
-					<a {% if v and v.new tab %}target="_blank"{% endif %} href="{{p.permalink}}" rel="{% if p.author.is_private %}nofollow {% endif %} noopener"><img src="{{p.thumb_url}}" class="img-fluid" alt="post image"></a>
+					<a {% if v and v.newtab %}target="_blank"{% endif %} href="{{p.permalink}}" rel="{% if p.author.is_private %}nofollow {% endif %} noopener"><img src="{{p.thumb_url}}" class="img-fluid" alt="post image"></a>
 				</div>
 			</div>
 			{% endif %}
@@ -152,7 +152,7 @@
 						{% if p.body_html %}
 						<li class="list-inline-item"><a href="javascript:void(0)" class="text-expand" data-id="{{ p.base36id }}"><i class="fas fa-expand-alt mr-0 text-expand-icon-{{ p.base36id }}"></i></a></li>
 						{% endif %}
-						<li class="list-inline-item"><a {% if v and v.new tab %}target="_blank"{% endif %} href="{{p.permalink}}"><i class="fas fa-comment-dots"></i>{{p.comment_count}}</a></li>
+						<li class="list-inline-item"><a {% if v and v.newtab %}target="_blank"{% endif %} href="{{p.permalink}}"><i class="fas fa-comment-dots"></i>{{p.comment_count}}</a></li>
 
 						<li class="list-inline-item"><a href="/votes?link=https://rdrama.net{{p.permalink}}"><i class="fas fa-arrows-v"></i>Votes</a></li>
 
@@ -237,7 +237,7 @@
 <div class="card-footer d-block d-md-none mt-2">
 	<div class="post-actions">
 		<ul class="list-inline text-right d-flex">
-			<li class="list-inline-item mr-auto"><a {% if v and v.new tab %}target="_blank"{% endif %} href="{{p.permalink}}"{% if p.author.is_private %} rel="nofollow"{% endif %}><i class="fas fa-comment-dots"></i>{{p.comment_count}}</a></li>
+			<li class="list-inline-item mr-auto"><a {% if v and v.newtab %}target="_blank"{% endif %} href="{{p.permalink}}"{% if p.author.is_private %} rel="nofollow"{% endif %}><i class="fas fa-comment-dots"></i>{{p.comment_count}}</a></li>
 
 			{% if p.body_html %}
 			<li class="list-inline-item"><a href="javascript:void(0)" class="text-expand" data-id="{{ p.base36id }}"><i class="fas fa-expand-alt mr-0 text-expand-icon-{{ p.base36id }}"></i></a></li>
