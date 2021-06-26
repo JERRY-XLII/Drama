@@ -139,7 +139,7 @@ $('#new_email').on('input', function () {
 				cancelBtn.innerHTML = '<button class="btn btn-link pl-3 pr-0" id="gifs-cancel-btn" onclick="getGif();"><i class="fas fa-times text-muted"></i></button>';
 
 				let gifs = [];
-				let apiKey = "PZ2X956GNJ4C";
+				let apiKey = tenor_api_key();
 				let lmt = 25;
 				let url = "https://g.tenor.com/v1/search?q=" + searchTerm + "&key=" + apiKey + "&limit=" + lmt;
 				fetch(url)
@@ -1291,14 +1291,6 @@ else {
 // When image modal is closed
 
 $('#expandImageModal').on('hidden.bs.modal', function (e) {
-
-		// GIPHY attribution div
-
-		var attribution = document.getElementById("modal-image-attribution");
-
-		// remove the attribution
-
-		attribution.innerHTML = null;
 
 	// remove image src and link
 

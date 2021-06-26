@@ -103,6 +103,8 @@ app.config["CACHE_REDIS_URL"] = environ.get(
 app.config["CACHE_DEFAULT_TIMEOUT"] = 60
 app.config["CACHE_KEY_PREFIX"] = "flask_caching_"
 
+app.config["TENOR_KEY"]=environ.get("TENOR_KEY",'').lstrip().rstrip()
+
 #app.config["REDIS_POOL_SIZE"]=int(environ.get("REDIS_POOL_SIZE", 30))
 
 # redispool=BlockingConnectionPool(max_connections=app.config["REDIS_POOL_SIZE"])
