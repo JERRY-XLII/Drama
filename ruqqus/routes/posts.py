@@ -139,7 +139,7 @@ def post_base36id(pid, anything=None, v=None):
 		rendered_page =  render_template(template,
 							   v=v,
 							   p=post,
-							   admin=admin
+							   admin=admin,
 							   sort=request.args.get("sort", "top"),
 							   linked_comment=comment,
 							   comment_info=comment_info,
