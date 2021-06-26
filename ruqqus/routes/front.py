@@ -189,7 +189,7 @@ def frontlist(v=None, sort="hot", page=1,t="all", ids_only=True, filter_words=''
 		posts = posts.filter(Submission.created_utc < lt)
 
 	if sort == "hot":
-		posts = posts.order_by(Submission.score_best.desc()).all()
+		posts = posts.order_by(Submission.hotscore.desc()).all()
 	elif sort == "new":
 		posts = posts.order_by(Submission.created_utc.desc()).all()
 	elif sort == "old":

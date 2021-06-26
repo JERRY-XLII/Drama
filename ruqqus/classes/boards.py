@@ -195,7 +195,7 @@ class Board(Base, Stndrd, Age_times):
 			posts = posts.filter(Submission.created_utc < lt)
 
 		if sort == "hot":
-			posts = posts.order_by(Submission.score_best.desc())
+			posts = posts.order_by(Submission.hotscore.desc())
 		elif sort == "new":
 			posts = posts.order_by(Submission.created_utc.desc())
 		elif sort == "controversial":
