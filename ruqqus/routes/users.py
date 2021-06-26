@@ -200,10 +200,12 @@ def u_username(username, v=None):
 				'api': lambda: {"error": "This person is blocking you."}
 				}
 
-	page = int(request.args.get("page", "1"))
-	page = max(page, 1)
+    sort = request.args.get("sort", "new")
+    t = request.args.get("t", "all")
+    page = int(request.args.get("page", "1"))
+    page = max(page, 1)
 
-	ids = u.userpagelisting(v=v, page=page)
+    ids = u.userpagelisting(v=v, page=page, sort=sort, t=t)
 
 	# we got 26 items just to see if a next page exists
 	next_exists = (len(ids) == 26)
@@ -224,6 +226,8 @@ def u_username(username, v=None):
 											v=v,
 											listing=listing,
 											page=page,
+											sort=sort,
+											t=t,
 											next_exists=next_exists,
 											is_following=(v and u.has_follower(v))),
 			'api': lambda: jsonify({"data": [x.json for x in listing]})
@@ -277,9 +281,16 @@ def u_username_comments(username, v=None):
 				'api': lambda: {"error": "This person is blocking you."}
 				}
 
-	page = int(request.args.get("page", "1"))
+    page = int(request.args.get("page", "1"))
+	sort=request.args.get("sort","new"),
+	t=request.args.get("t","all")
 
-	ids = user.commentlisting(v=v, page=page)
+    ids = user.commentlisting(
+        v=v, 
+        page=page,
+        sort=sort,
+        t=t,
+        )
 
 	# we got 26 items just to see if a next page exists
 	next_exists = (len(ids) == 26)
@@ -295,6 +306,8 @@ def u_username_comments(username, v=None):
 											v=v,
 											listing=listing,
 											page=page,
+											sort=sort,
+											t=t,
 											next_exists=next_exists,
 											is_following=is_following,
 											standalone=True),

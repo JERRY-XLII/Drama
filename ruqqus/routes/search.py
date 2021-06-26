@@ -275,7 +275,7 @@ def searchposts(v, search_type="posts"):
 						   page=page,
 						   listing=posts,
 						   sort=sort,
-						   time_filter=t,
+						   t=t,
 						   next_exists=next_exists,
 						   domain=domain,
 						   domain_obj=domain_obj,
@@ -314,7 +314,7 @@ def searchcomments(v):
 						   page=page,
 						   comments=comments,
 						   sort=sort,
-						   time_filter=t,
+						   t=t,
 						   next_exists=next_exists,
 						   ),
 			"api":lambda:jsonify({"data":[x.json for x in comments]})
@@ -357,7 +357,7 @@ def searchusers(v, search_type="posts"):
 				   page=page,
 				   users=users,
 				   sort=sort,
-				   time_filter=t,
+				   t=t,
 				   next_exists=next_exists
 				  ),
 			"api":lambda:jsonify({"data":[x.json for x in users]})
