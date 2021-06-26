@@ -178,8 +178,9 @@ def searchlisting(criteria, v=None, page=1, t="None", sort="top", b=None):
 
 	total = len(posts)
 
-	slice = 25 * (page - 1)
-	posts = posts[slice:26]
+	firstrange = 25 * (page - 1)
+	secondrange = firstrange+26
+	posts = posts[firstrange:secondrange]
 
 	return total, [x.id for x in posts]
 

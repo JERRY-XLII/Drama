@@ -167,7 +167,7 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
 	@property
 	@lazy
 	def hotscore(self):
-		return 10000000*(self.upvotes - self.downvotes + 1)/(((self.age+3600)/1000.0)^(1.35))
+		return 10000000*(self.upvotes - self.downvotes + 1)/(((self.age+3600)/1000.0)**(1.35))
 
 	@property
 	def is_repost(self):
