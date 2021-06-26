@@ -328,7 +328,7 @@ class User(Base, Stndrd, Age_times):
 		return [x[0] for x in posts.offset(25 * (page - 1)).limit(26).all()]
 
 	@cache.memoize(300)
-	def userpagelisting(self, v=None, page=1):
+	def userpagelisting(self, v=None, page=1, sort="new", t="all"):
 
 		submissions = g.db.query(Submission.id).options(lazyload('*')).filter_by(author_id=self.id, is_pinned=False)
 
@@ -391,7 +391,7 @@ class User(Base, Stndrd, Age_times):
 		return listing
 
 	@cache.memoize(300)
-	def commentlisting(self, v=None, page=1):
+	def commentlisting(self, v=None, page=1, sort="new", t="all"):
 		comments = self.comments.options(lazyload('*')).filter(Comment.parent_submission is not None).join(Comment.post)
 
 		if (not v) or (v.id != self.id and v.admin_level == 0):
