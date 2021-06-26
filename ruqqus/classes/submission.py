@@ -19,6 +19,7 @@ from .badwords import *
 from .comment import Comment
 from .titles import Title
 from .mod_logs import ModAction
+from .users import User
 
 class SubmissionAux(Base):
 
