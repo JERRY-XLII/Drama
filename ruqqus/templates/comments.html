@@ -8,7 +8,7 @@
 
 <!--conditions under which a comment might be hidden-->
 
-{% if (c.is_banned or (c.deleted_utc > 0 and c.author.id != v.id) or c.is_blocking or c.is_blocked) and not (v and v.admin_level>0) %}
+{% if (c.is_banned or c.deleted_utc > 0 or c.is_blocking or c.is_blocked) and not (v and v.admin_level>0) and not (v and v.id==c.author_id) %}
 
 
 
@@ -22,7 +22,7 @@
 				<div id="comment-{{c.base36id}}-only" class="">
 
 						<div class="user-info">{% if standalone and c.over_18 %}<span class="badge badge-danger">+18</span> {% endif %}
-								[{% if c.is_banned and not (v and v.id==c.author_id) %}Removed by admins{% elif c.deleted_utc > 0 %}Deleted by author{% elif c.is_blocking %}You are blocking @{{c.author.username}}{% elif c.is_blocked %}This user has blocked you{% endif %}]
+								[{% if c.is_banned %}Removed by admins{% elif c.deleted_utc > 0 %}Deleted by author{% elif c.is_blocking %}You are blocking @{{c.author.username}}{% elif c.is_blocked %}This user has blocked you{% endif %}]
 						</div>
 
 
