@@ -161,7 +161,7 @@ def searchlisting(criteria, v=None, page=1, t="None", sort="top", b=None):
 	elif sort == "old":
 		posts = posts.order_by(Submission.created_utc.asc()).all()
 	elif sort == "controversial":
-		posts = posts.order_by(Submission.score_disputed).all()
+		posts = sorted(posts.all(), key=lambda x: x.score_disputed, reverse=True)
 	elif sort == "top":
 		posts = posts.order_by(Submission.score.desc()).all()
 	elif sort == "bottom":
@@ -220,7 +220,7 @@ def searchcommentlisting(criteria, v=None, page=1, t="None", sort="top"):
 	elif sort == "old":
 		comments = comments.order_by(Comment.created_utc.asc())
 	elif sort == "controversial":
-		comments = comments.order_by(Comment.score_disputed)
+		comments = sorted(comments.all(), key=lambda x: x.score_disputed, reverse=True)
 	elif sort == "top":
 		comments = comments.order_by(Comment.score.desc())
 	elif sort == "bottom":
