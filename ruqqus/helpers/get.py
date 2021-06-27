@@ -382,7 +382,7 @@ def get_post_with_comments(pid, sort_type="top", v=None):
 		elif sort_type == "old":
 			comments = comms.order_by(Comment.created_utc.asc()).all()
 		elif sort_type == "controversial":
-			comments = sorted(comments.all(), key=lambda x: x.score_disputed, reverse=True)
+			comments = sorted(comms.all(), key=lambda x: x.score_disputed, reverse=True)
 		elif sort_type == "random":
 			c = comms.all()
 			comments = random.sample(c, k=len(c))
@@ -424,7 +424,7 @@ def get_post_with_comments(pid, sort_type="top", v=None):
 		elif sort_type == "old":
 			comments = comms.order_by(Comment.created_utc.asc()).all()
 		elif sort_type == "controversial":
-			comments = sorted(comments.all(), key=lambda x: x.score_disputed, reverse=True)
+			comments = sorted(comms.all(), key=lambda x: x.score_disputed, reverse=True)
 		elif sort_type == "random":
 			c = comms.all()
 			comments = random.sample(c, k=len(c))
