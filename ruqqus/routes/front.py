@@ -212,13 +212,13 @@ def frontlist(v=None, sort="hot", page=1,t="all", ids_only=True, filter_words=''
 	secondrange = firstrange+26
 	posts = posts[firstrange:secondrange]
 	
-	words = ['r-pe', 'k-d', 'm-lest', 's-x', 'captainmeta4', 'dissident001', 'p-do', 'ladine']
+	words = ['r-pe', 'k-d', 'm-lest', 's-x', 'captainmeta4', 'dissident001', 'p-do', 'ladine', 'egypt']
 
 	if not v or v.admin_level == 0:
 		for post in posts:
 			if not v or post.author_id != v.id:
 				for word in words:
-					if word in post.title:
+					if word in post.title.lower():
 						posts.remove(post)
 						break
 
