@@ -213,13 +213,14 @@ def frontlist(v=None, sort="hot", page=1,t="all", ids_only=True, filter_words=''
 	posts = posts[firstrange:secondrange]
 	
 	words = ['r-pe', 'k-ds', 'm-lest', 'm-lests', 's-xual', 'captainmeta4', 'dissident001', 'p-do', 'p-dophiles', 'p-dophile', 'adam ladine', 'adamladine']
-	
-	for post in posts:
-		if not v or post.author_id != v.id:
-			for word in words:
-				if word in post.title:
-					posts.remove(post)
-					break
+
+	if not v or v.admin_level == 0:
+		for post in posts:
+			if not v or post.author_id != v.id:
+				for word in words:
+					if word in post.title:
+						posts.remove(post)
+						break
 
 	if ids_only:
 		posts = [x.id for x in posts]
