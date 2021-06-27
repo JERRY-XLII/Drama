@@ -52,7 +52,6 @@ class Comment(Base, Age_times, Scores, Stndrd, Fuzzing):
 	is_approved = Column(Integer, default=0)
 	approved_utc = Column(Integer, default=0)
 	creation_ip = Column(String(64), default='')
-	score_disputed = Column(Float, default=0)
 	score_hot = Column(Float, default=0)
 	score_top = Column(Integer, default=1)
 	level = Column(Integer, default=0)
@@ -116,6 +115,11 @@ class Comment(Base, Age_times, Scores, Stndrd, Fuzzing):
 	def __repr__(self):
 
 		return f"<Comment(id={self.id})>"
+
+	@property
+	@lazy
+	def score_disputed(self):
+		return self.upvotes * self.downvotes
 
 	@property
 	@lazy

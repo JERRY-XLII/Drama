@@ -85,7 +85,6 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
 	has_thumb = Column(Boolean, default=False)
 	post_public = Column(Boolean, default=True)
 	score_hot = Column(Float, default=0)
-	score_disputed = Column(Float, default=0)
 	score_top = Column(Float, default=1)
 	score_activity = Column(Float, default=0)
 	is_offensive = Column(Boolean, default=False)
@@ -168,6 +167,11 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
 	@lazy
 	def hotscore(self):
 		return 10000000*(self.upvotes - self.downvotes + 1)/(((self.age+3600)/1000)**(1.35))
+
+	@property
+	@lazy
+	def score_disputed(self):
+		return self.upvotes * self.downvotes
 
 	@property
 	def is_repost(self):
