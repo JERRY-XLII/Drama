@@ -382,7 +382,7 @@ def get_post_with_comments(pid, sort_type="top", v=None):
 		elif sort_type == "old":
 			comments = comms.order_by(Comment.created_utc.asc()).all()
 		elif sort_type == "controversial":
-			comments = sorted(comms.all(), key=lambda x: x.score_disputed, reverse=True)
+			comments = sorted(comms.all(), key=lambda x: x[0].score_disputed, reverse=True)
 		elif sort_type == "random":
 			c = comms.all()
 			comments = random.sample(c, k=len(c))
@@ -414,11 +414,7 @@ def get_post_with_comments(pid, sort_type="top", v=None):
 			and_(exile.c.target_comment_id==Comment.id, exile.c.board_id==Comment.original_board_id),
 			isouter=True
 		)
-		
-		for x in comms:
-			print(x[0])
-			break
-			
+
 		if sort_type == "top":
 			comments = comms.order_by(Comment.score.desc()).all()
 		elif sort_type == "bottom":
@@ -428,7 +424,7 @@ def get_post_with_comments(pid, sort_type="top", v=None):
 		elif sort_type == "old":
 			comments = comms.order_by(Comment.created_utc.asc()).all()
 		elif sort_type == "controversial":
-			comments = sorted(comms.all(), key=lambda x: x.score_disputed, reverse=True)
+			comments = sorted(comms.all(), key=lambda x: x[0].score_disputed, reverse=True)
 		elif sort_type == "random":
 			c = comms.all()
 			comments = random.sample(c, k=len(c))
