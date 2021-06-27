@@ -6,7 +6,7 @@ import pyotp
 import qrcode
 import io
 import gevent
-from datetime import datetime, timezone
+from datetime import datetime
 
 from ruqqus.helpers.alerts import *
 from ruqqus.helpers.wrappers import *
@@ -223,7 +223,7 @@ def u_username(username, v=None):
 	listing = get_posts(ids, v=v, sort="new")
 
 	if u.unban_utc:
-		unban = u.unban_utc.replace(tzinfo=timezone.utc).astimezone(tz=None)
+		unban = datetime.fromtimestamp(u.unban_utc).strftime('%c')
 		return {'html': lambda: render_template("userpage.html",
 												unban=unban,
 												u=u,
