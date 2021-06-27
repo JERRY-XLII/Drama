@@ -35,9 +35,10 @@ def ban_user(user_id, v):
 	reason = request.form.get("reason", "")
 	message = request.form.get("reason", "")
 
-	if not user:
-		abort(400)
+	if not user: abort(400)
 
+	if user.admin_level > 0: abort(403)
+	
 	if days > 0:
 		if message:
 			text = f"Your Drama account has been suspended for {days} days for the following reason:\n\n> {message}"
@@ -55,8 +56,8 @@ def ban_user(user_id, v):
 
 
 	for x in user.alts:
-		if x.admin_level == 0:
-			x.ban(admin=v, reason=reason)
+		if x.admin_level > 0: break
+		x.ban(admin=v, reason=reason)
 
 	send_notification(user, text)
 	
