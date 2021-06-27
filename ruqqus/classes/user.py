@@ -222,19 +222,6 @@ class User(Base, Stndrd, Age_times):
 			submissions = submissions.filter_by(deleted_utc=0)
 			submissions = submissions.filter_by(is_banned=False)
 
-		if sort == "new":
-			submissions = submissions.order_by(Submission.created_utc.desc())
-		elif sort == "old":
-			submissions = submissions.order_by(Submission.created_utc.asc())
-		elif sort == "controversial":
-			submissions = sorted(submissions.all(), key=lambda x: x.score_disputed, reverse=True)
-		elif sort == "top":
-			submissions = submissions.order_by(Submission.score.desc())
-		elif sort == "bottom":
-			submissions = submissions.order_by(Submission.score.asc())
-		elif sort == "comments":
-			submissions = submissions.order_by(Submission.comment_count.desc())
-		
 		now = int(time.time())
 		if t == 'day':
 			cutoff = now - 86400
@@ -248,9 +235,22 @@ class User(Base, Stndrd, Age_times):
 			cutoff = 0
 		submissions = submissions.filter(Submission.created_utc >= cutoff)
 
-		listing = [x[0] for x in submissions.order_by(Submission.created_utc.desc()).offset(25 * (page - 1)).limit(26)]
+		if sort == "new":
+			submissions = submissions.order_by(Submission.created_utc.desc()).all(),
+		elif sort == "old":
+			submissions = submissions.order_by(Submission.created_utc.asc()).all(),
+		elif sort == "controversial":
+			submissions = sorted(submissions.all(), key=lambda x: x.score_disputed, reverse=True)
+		elif sort == "top":
+			submissions = submissions.order_by(Submission.score.desc()).all(),
+		elif sort == "bottom":
+			submissions = submissions.order_by(Submission.score.asc()).all(),
+		elif sort == "comments":
+			submissions = submissions.order_by(Submission.comment_count.desc()).all(),
 
-		return [x.id for x in listing]
+		firstrange = 25 * (page - 1)
+		secondrange = firstrange+26
+		return [x.id for x in submissions[firstrange:secondrange]]
 
 	@cache.memoize(300)
 	def commentlisting(self, v=None, page=1, sort="new", t="all"):
@@ -284,17 +284,6 @@ class User(Base, Stndrd, Age_times):
 
 		comments = comments.options(contains_eager(Comment.post))
 
-		if sort == "new":
-			comments = comments.order_by(Comment.created_utc.desc())
-		elif sort == "old":
-			comments = comments.order_by(Comment.created_utc.asc())
-		elif sort == "controversial":
-			comments = sorted(comments.all(), key=lambda x: x.score_disputed, reverse=True)
-		elif sort == "top":
-			comments = comments.order_by(Comment.score.desc())
-		elif sort == "bottom":
-			comments = comments.order_by(Comment.score.asc())
-
 		now = int(time.time())
 		if t == 'day':
 			cutoff = now - 86400
@@ -308,10 +297,20 @@ class User(Base, Stndrd, Age_times):
 			cutoff = 0
 		comments = comments.filter(Comment.created_utc >= cutoff)
 
-		comments = comments.offset(25 * (page - 1)).limit(26)
+		if sort == "new":
+			comments = comments.order_by(Comment.created_utc.desc()).all()
+		elif sort == "old":
+			comments = comments.order_by(Comment.created_utc.asc()).all()
+		elif sort == "controversial":
+			comments = sorted(comments.all(), key=lambda x: x.score_disputed, reverse=True)
+		elif sort == "top":
+			comments = comments.order_by(Comment.score.desc()).all()
+		elif sort == "bottom":
+			comments = comments.order_by(Comment.score.asc()).all()
 
-		listing = [c.id for c in comments]
-		return listing
+		firstrange = 25 * (page - 1)
+		secondrange = firstrange+26
+		return [x.id for x in comments[firstrange:secondrange]]
 
 	@property
 	@lazy
