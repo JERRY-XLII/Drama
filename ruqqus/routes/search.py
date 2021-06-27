@@ -226,9 +226,10 @@ def searchcommentlisting(criteria, v=None, page=1, t="None", sort="top"):
 	elif sort == "bottom":
 		comments = comments.order_by(Comment.score.asc())
 
-	total = comments.count()
-	comments = [x for x in comments.offset(25 * (page - 1)).limit(26).all()]
-
+	total = len(comments)
+	firstrange = 25 * (page - 1)
+	secondrange = firstrange+26
+	comments = comments[firstrange:secondrange]
 	return total, [x.id for x in comments]
 
 @app.route("/search/posts", methods=["GET"])
