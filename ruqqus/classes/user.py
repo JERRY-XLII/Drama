@@ -316,7 +316,7 @@ class User(Base, Stndrd, Age_times):
 		if sort == "new":
 			posts = posts.order_by(Submission.created_utc.desc())
 		elif sort == "controversial":
-			posts = posts.order_by(Submission.score_disputed.desc())
+			posts = posts.order_by(Submission.score_disputed)
 		elif sort == "top":
 			posts = posts.order_by(Submission.score.desc())
 		elif sort == "comments":
@@ -361,7 +361,7 @@ class User(Base, Stndrd, Age_times):
 		elif sort == "old":
 			submissions = submissions.order_by(Submission.created_utc.asc())
 		elif sort == "controversial":
-			submissions = submissions.order_by(Submission.score_disputed.desc())
+			submissions = submissions.order_by(Submission.score_disputed)
 		elif sort == "top":
 			submissions = submissions.order_by(Submission.score.desc())
 		elif sort == "bottom":
@@ -423,7 +423,7 @@ class User(Base, Stndrd, Age_times):
 		elif sort == "old":
 			comments = comments.order_by(Comment.created_utc.asc())
 		elif sort == "controversial":
-			comments = comments.order_by(Comment.score_disputed.desc())
+			comments = comments.order_by(Comment.score_disputed)
 		elif sort == "top":
 			comments = comments.order_by(Comment.score.desc())
 		elif sort == "bottom":

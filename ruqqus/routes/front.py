@@ -195,7 +195,7 @@ def frontlist(v=None, sort="hot", page=1,t="all", ids_only=True, filter_words=''
 	elif sort == "old":
 		posts = posts.order_by(Submission.created_utc.asc()).all()
 	elif sort == "controversial":
-		posts = posts.order_by(Submission.score_disputed.desc()).all()
+		posts = posts.order_by(Submission.score_disputed).all()
 	elif sort == "top":
 		posts = posts.order_by(Submission.score.desc()).all()
 	elif sort == "bottom":
