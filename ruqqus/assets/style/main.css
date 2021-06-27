@@ -12758,7 +12758,7 @@ ul.comment-section {
 	content: "";
 	position: absolute;
 	font-family: "Font Awesome 5 Pro";
-	border-left: 4px solid #808080;
+	border-left: 2px solid #808080;
 	font-size: 1rem;
 	color: #FF66AC;
 	display: inline-block;
