@@ -416,7 +416,7 @@ def get_post_with_comments(pid, sort_type="top", v=None):
 		)
 		
 		for x in comms:
-			print(x)
+			print(x[0])
 			break
 			
 		if sort_type == "top":
