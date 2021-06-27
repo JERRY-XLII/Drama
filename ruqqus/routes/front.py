@@ -215,7 +215,7 @@ def frontlist(v=None, sort="hot", page=1,t="all", ids_only=True, filter_words=''
 	words = ['r-pe', 'k-ds', 'm-lest', 'm-lests', 's-xual', 'captainmeta4', 'dissident001', 'p-do', 'p-dophiles', 'p-dophile', 'adam ladine', 'adamladine']
 	
 	for post in posts:
-		if post.author.id != v.id:
+		if post.author_id != v.id:
 			for word in words:
 				if word in post.title:
 					posts.remove(post)
