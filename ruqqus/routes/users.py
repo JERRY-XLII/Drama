@@ -6,6 +6,7 @@ import pyotp
 import qrcode
 import io
 import gevent
+from datetime import datetime, timezone
 
 from ruqqus.helpers.alerts import *
 from ruqqus.helpers.wrappers import *
@@ -221,17 +222,32 @@ def u_username(username, v=None):
 
 	listing = get_posts(ids, v=v, sort="new")
 
+	if u.unban_utc:
+		unban = u.unban_utc.replace(tzinfo=timezone.utc).astimezone(tz=None)
+		return {'html': lambda: render_template("userpage.html",
+												unban=unban,
+												u=u,
+												v=v,
+												listing=listing,
+												page=page,
+												sort=sort,
+												t=t,
+												next_exists=next_exists,
+												is_following=(v and u.has_follower(v))),
+				'api': lambda: jsonify({"data": [x.json for x in listing]})
+				}
+
 	return {'html': lambda: render_template("userpage.html",
-											u=u,
-											v=v,
-											listing=listing,
-											page=page,
-											sort=sort,
-											t=t,
-											next_exists=next_exists,
-											is_following=(v and u.has_follower(v))),
-			'api': lambda: jsonify({"data": [x.json for x in listing]})
-			}
+										u=u,
+										v=v,
+										listing=listing,
+										page=page,
+										sort=sort,
+										t=t,
+										next_exists=next_exists,
+										is_following=(v and u.has_follower(v))),
+		'api': lambda: jsonify({"data": [x.json for x in listing]})
+		}
 
 
 @app.route("/@<username>/comments", methods=["GET"])

@@ -82,7 +82,7 @@ def check_ban_evade(v):
 		return
 	
 	if random.randint(0,30) < v.ban_evade:
-		v.ban(reason="Ban evasion")
+		v.ban(reason="ban evasion")
 		send_notification(v, "Your Drama account has been permanently suspended for the following reason:\n\n> ban evasion")
 
 		for post in g.db.query(Submission).filter_by(author_id=v.id).all():
@@ -90,7 +90,7 @@ def check_ban_evade(v):
 				continue
 
 			post.is_banned=True
-			post.ban_reason="Ban evasion. This submission's owner was banned from Drama on another account."
+			post.ban_reason="ban evasion. This submission's owner was banned from Drama on another account."
 			g.db.add(post)
 
 			ma=ModAction(
@@ -109,7 +109,7 @@ def check_ban_evade(v):
 				continue
 
 			comment.is_banned=True
-			comment.ban_reason="Ban evasion. This comment's owner was banned from Drama on another account."
+			comment.ban_reason="ban evasion. This comment's owner was banned from Drama on another account."
 			g.db.add(comment)
 
 			ma=ModAction(
