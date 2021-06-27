@@ -226,7 +226,7 @@
 					{% endif %}
 
 					{% endif %}
-					<li class="list-inline-item text-muted d-none d-md-inline-block"><a href="{{c.permalink}}{% if not c.is_top_level %}?context=6{% endif %}"{% if c.author.is_private %} rel="nofollow"{% endif %}><i class="fas fa-book-open"></i>Context</a></li>
+					<li class="list-inline-item text-muted d-none d-md-inline-block"><a href="{{c.permalink}}{% if not c.is_top_level %}?context=3{% endif %}"{% if c.author.is_private %} rel="nofollow"{% endif %}><i class="fas fa-book-open"></i>Context</a></li>
 					<li class="list-inline-item text-muted d-none d-md-inline-block"><a href="javascript:void(0);" role="button" class="copy-link" data-clipboard-text="{{c.permalink | full_link}}"><i class="fas fa-copy"></i>Copy link</a></li>
 					
 					{% if v and v.admin_level>=3 and request.path.startswith ('/admin') %}
@@ -431,7 +431,7 @@
 
 					<li class="list-group-item"><a href="javascript:void(0);" role="button" class="d-block copy-link" data-dismiss="modal" data-clipboard-text="{{c.permalink | full_link}}"><i class="fas fa-copy"></i><span>Copy link</span></a></li>
 
-					<li class="list-group-item"><a href="{{c.permalink}}{% if not c.is_top_level %}?context=6{% endif %}"{% if c.author.is_private %} rel="nofollow"{% endif %}><i class="fas fa-dna"></i>Context</a></li>
+					<li class="list-group-item"><a href="{{c.permalink}}{% if not c.is_top_level %}?context=3{% endif %}"{% if c.author.is_private %} rel="nofollow"{% endif %}><i class="fas fa-dna"></i>Context</a></li>
 					<li class="list-group-item d-none"><a href="#" class="d-block"><i class="fas fa-save"></i>Save</a></li>
 
 					{% if v and v.admin_level==0 and not v.id==c.author_id %}
