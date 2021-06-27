@@ -216,32 +216,11 @@ class User(Base, Stndrd, Age_times):
 	@cache.memoize(300)
 	def userpagelisting(self, v=None, page=1, sort="new", t="all"):
 
-		submissions = g.db.query(Submission.id).options(lazyload('*')).filter_by(author_id=self.id, is_pinned=False)
+		submissions = g.db.query(Submission).options(lazyload('*')).filter_by(author_id=self.id, is_pinned=False)
 
 		if not (v and (v.admin_level >= 3 or v.id == self.id)):
 			submissions = submissions.filter_by(deleted_utc=0)
 			submissions = submissions.filter_by(is_banned=False)
-
-		if v and v.admin_level >= 4:
-			pass
-		elif v:
-			m = g.db.query(
-				ModRelationship.board_id).filter_by(
-				user_id=v.id,
-				invite_rescinded=False).subquery()
-			c = g.db.query(
-				ContributorRelationship.board_id).filter_by(
-				user_id=v.id).subquery()
-			submissions = submissions.filter(
-				or_(
-					Submission.author_id == v.id,
-					Submission.post_public == True,
-					Submission.board_id.in_(m),
-					Submission.board_id.in_(c)
-				)
-			)
-		else:
-			submissions = submissions.filter(Submission.post_public == True)
 
 		if sort == "new":
 			submissions = submissions.order_by(Submission.created_utc.desc())
@@ -255,7 +234,7 @@ class User(Base, Stndrd, Age_times):
 			submissions = submissions.order_by(Submission.score.asc())
 		elif sort == "comments":
 			submissions = submissions.order_by(Submission.comment_count.desc())
-
+		
 		now = int(time.time())
 		if t == 'day':
 			cutoff = now - 86400
@@ -271,7 +250,7 @@ class User(Base, Stndrd, Age_times):
 
 		listing = [x[0] for x in submissions.order_by(Submission.created_utc.desc()).offset(25 * (page - 1)).limit(26)]
 
-		return listing
+		return [x.id for x in listing]
 
 	@cache.memoize(300)
 	def commentlisting(self, v=None, page=1, sort="new", t="all"):
