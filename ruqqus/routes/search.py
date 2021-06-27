@@ -216,15 +216,15 @@ def searchcommentlisting(criteria, v=None, page=1, t="None", sort="top"):
 	comments=comments.options(contains_eager(Comment.comment_aux),)
 
 	if sort == "new":
-		comments = comments.order_by(Comment.created_utc.desc())
+		comments = comments.order_by(Comment.created_utc.desc()).all()
 	elif sort == "old":
-		comments = comments.order_by(Comment.created_utc.asc())
+		comments = comments.order_by(Comment.created_utc.asc()).all()
 	elif sort == "controversial":
 		comments = sorted(comments.all(), key=lambda x: x.score_disputed, reverse=True)
 	elif sort == "top":
-		comments = comments.order_by(Comment.score.desc())
+		comments = comments.order_by(Comment.score.desc()).all()
 	elif sort == "bottom":
-		comments = comments.order_by(Comment.score.asc())
+		comments = comments.order_by(Comment.score.asc()).all()
 
 	total = len(comments)
 	firstrange = 25 * (page - 1)
