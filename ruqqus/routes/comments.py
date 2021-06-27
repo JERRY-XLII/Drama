@@ -161,15 +161,15 @@ def post_pid_comment_cid(cid, pid=None, anything=None, v=None):
 			)
 
 			if sort_type == "top":
-				comments = comms.order_by(Comment.score_top.desc()).all()
+				comments = comms.order_by(Comment.score.desc()).all()
 			elif sort_type == "bottom":
-				comments = comms.order_by(Comment.score_top.asc()).all()
+				comments = comms.order_by(Comment.score.asc()).all()
 			elif sort_type == "new":
 				comments = comms.order_by(Comment.created_utc.desc()).all()
 			elif sort_type == "old":
 				comments = comms.order_by(Comment.created_utc.asc()).all()
 			elif sort_type == "controversial":
-				comments = comms.order_by(Comment.score_disputed.asc()).all()
+				comments = sorted(comments.all(), key=lambda x: x.score_disputed, reverse=True)
 			elif sort_type == "random":
 				c = comms.all()
 				comments = random.sample(c, k=len(c))
@@ -201,15 +201,15 @@ def post_pid_comment_cid(cid, pid=None, anything=None, v=None):
 			)
 
 			if sort_type == "top":
-				comments = comms.order_by(Comment.score_top.asc()).all()
+				comments = comms.order_by(Comment.score.asc()).all()
 			elif sort_type == "bottom":
-				comments = comms.order_by(Comment.score_top.desc()).all()
+				comments = comms.order_by(Comment.score.desc()).all()
 			elif sort_type == "new":
 				comments = comms.order_by(Comment.created_utc.desc()).all()
 			elif sort_type == "old":
 				comments = comms.order_by(Comment.created_utc.asc()).all()
 			elif sort_type == "controversial":
-				comments = comms.order_by(Comment.score_disputed.asc()).all()
+				comments = sorted(comments.all(), key=lambda x: x.score_disputed, reverse=True)
 			elif sort_type == "random":
 				c = comms.all()
 				comments = random.sample(c, k=len(c))

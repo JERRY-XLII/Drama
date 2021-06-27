@@ -941,13 +941,6 @@ def submit_post(v):
 	new_post.upvotes = new_post.ups
 	new_post.downvotes = new_post.downs
 	g.db.add(new_post)
-	try: g.db.flush()
-	except Exception as e:
-		g.db.rollback()
-		print(e)
-	new_post.score_disputed = new_post.rank_fiery
-	new_post.score_top = new_post.score
-	g.db.add(new_post)
 	g.db.commit()
 
 	c = Comment(author_id=261,

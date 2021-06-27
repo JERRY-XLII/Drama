@@ -161,11 +161,11 @@ def searchlisting(criteria, v=None, page=1, t="None", sort="top", b=None):
 	elif sort == "old":
 		posts = posts.order_by(Submission.created_utc.asc()).all()
 	elif sort == "controversial":
-		posts = posts.order_by(Submission.score_disputed.desc()).all()
+		posts = sorted(posts.all(), key=lambda x: x.score_disputed, reverse=True)
 	elif sort == "top":
-		posts = posts.order_by(Submission.score_top.desc()).all()
+		posts = posts.order_by(Submission.score.desc()).all()
 	elif sort == "bottom":
-		posts = posts.order_by(Submission.score_top.asc()).all()
+		posts = posts.order_by(Submission.score.asc()).all()
 	elif sort == "comments":
 		posts = posts.order_by(Submission.comment_count.desc()).all()
 	elif sort == "random":
@@ -220,11 +220,11 @@ def searchcommentlisting(criteria, v=None, page=1, t="None", sort="top"):
 	elif sort == "old":
 		comments = comments.order_by(Comment.created_utc.asc())
 	elif sort == "controversial":
-		comments = comments.order_by(Comment.score_disputed.desc())
+		comments = sorted(comments.all(), key=lambda x: x.score_disputed, reverse=True)
 	elif sort == "top":
-		comments = comments.order_by(Comment.score_top.desc())
+		comments = comments.order_by(Comment.score.desc())
 	elif sort == "bottom":
-		comments = comments.order_by(Comment.score_top.asc())
+		comments = comments.order_by(Comment.score.asc())
 
 	total = comments.count()
 	comments = [x for x in comments.offset(25 * (page - 1)).limit(26).all()]

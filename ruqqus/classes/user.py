@@ -213,119 +213,6 @@ class User(Base, Stndrd, Age_times):
 	def age(self):
 		return int(time.time()) - self.created_utc
 
-	@cache.memoize(timeout=300)
-	def idlist(self, sort="hot", page=1, t=None, filter_words="", **kwargs):
-
-		posts = g.db.query(Submission.id).options(lazyload('*')).filter_by(is_banned=False,
-																		   deleted_utc=0,
-																		   stickied=False
-																		   )
-
-		if not self.over_18:
-			posts = posts.filter_by(over_18=False)
-
-		if self.hide_offensive:
-			posts = posts.filter_by(is_offensive=False)
-			
-		if self.hide_bot:
-			posts = posts.filter_by(is_bot=False)
-
-		if not self.show_nsfl:
-			posts = posts.filter_by(is_nsfl=False)
-
-		board_ids = g.db.query(
-			Subscription.board_id).filter_by(
-			user_id=self.id,
-			is_active=True).subquery()
-		user_ids = g.db.query(
-			Follow.user_id).filter_by(
-			user_id=self.id).join(
-			Follow.target).filter(
-				User.is_private == False,
-			User.is_nofollow == False).subquery()
-
-		posts = posts.filter(
-			or_(
-				Submission.board_id.in_(board_ids),
-				Submission.author_id.in_(user_ids)
-			)
-		)
-
-		if self.id != 1:
-			posts = posts.filter(Submission.post_public == True)
-
-		if self.admin_level < 4:
-			# admins can see everything
-
-			m = g.db.query(
-				ModRelationship.board_id).filter_by(
-				user_id=self.id,
-				invite_rescinded=False).subquery()
-			c = g.db.query(
-				ContributorRelationship.board_id).filter_by(
-				user_id=self.id).subquery()
-			posts = posts.filter(
-				or_(
-					Submission.author_id == self.id,
-					Submission.board_id.in_(m),
-					Submission.board_id.in_(c)
-				)
-			)
-
-			blocking = g.db.query(
-				UserBlock.target_id).filter_by(
-				user_id=self.id).subquery()
-			blocked = g.db.query(
-				UserBlock.user_id).filter_by(
-				target_id=self.id).subquery()
-
-			posts = posts.filter(
-				Submission.author_id.notin_(blocking),
-				Submission.author_id.notin_(blocked)
-			)
-
-		if filter_words:
-			posts=posts.join(Submission.submission_aux)
-			for word in filter_words:
-				#print(word)
-				posts=posts.filter(not_(SubmissionAux.title.ilike(f'%{word}%')))
-
-		if t:
-			now = int(time.time())
-			if t == 'day':
-				cutoff = now - 86400
-			elif t == 'week':
-				cutoff = now - 604800
-			elif t == 'month':
-				cutoff = now - 2592000
-			elif t == 'year':
-				cutoff = now - 31536000
-			else:
-				cutoff = 0
-			posts = posts.filter(Submission.created_utc >= cutoff)
-
-		gt = kwargs.get("gt")
-		lt = kwargs.get("lt")
-
-		if gt:
-			posts = posts.filter(Submission.created_utc > gt)
-
-		if lt:
-			posts = posts.filter(Submission.created_utc < lt)
-
-		if sort == "new":
-			posts = posts.order_by(Submission.created_utc.desc())
-		elif sort == "controversial":
-			posts = posts.order_by(Submission.score_disputed.desc())
-		elif sort == "top":
-			posts = posts.order_by(Submission.score_top.desc())
-		elif sort == "comments":
-			posts = posts.order_by(Submission.comment_count.desc())
-		else:
-			abort(422)
-
-		return [x[0] for x in posts.offset(25 * (page - 1)).limit(26).all()]
-
 	@cache.memoize(300)
 	def userpagelisting(self, v=None, page=1, sort="new", t="all"):
 
@@ -361,11 +248,11 @@ class User(Base, Stndrd, Age_times):
 		elif sort == "old":
 			submissions = submissions.order_by(Submission.created_utc.asc())
 		elif sort == "controversial":
-			submissions = submissions.order_by(Submission.score_disputed.desc())
+			submissions = sorted(submissions.all(), key=lambda x: x.score_disputed, reverse=True)
 		elif sort == "top":
-			submissions = submissions.order_by(Submission.score_top.desc())
+			submissions = submissions.order_by(Submission.score.desc())
 		elif sort == "bottom":
-			submissions = submissions.order_by(Submission.score_top.asc())
+			submissions = submissions.order_by(Submission.score.asc())
 		elif sort == "comments":
 			submissions = submissions.order_by(Submission.comment_count.desc())
 
@@ -423,11 +310,11 @@ class User(Base, Stndrd, Age_times):
 		elif sort == "old":
 			comments = comments.order_by(Comment.created_utc.asc())
 		elif sort == "controversial":
-			comments = comments.order_by(Comment.score_disputed.desc())
+			comments = sorted(comments.all(), key=lambda x: x.score_disputed, reverse=True)
 		elif sort == "top":
-			comments = comments.order_by(Comment.score_top.desc())
+			comments = comments.order_by(Comment.score.desc())
 		elif sort == "bottom":
-			comments = comments.order_by(Comment.score_top.asc())
+			comments = comments.order_by(Comment.score.asc())
 
 		now = int(time.time())
 		if t == 'day':
@@ -1033,7 +920,7 @@ class User(Base, Stndrd, Age_times):
 
 		
 
-		posts=g.db.query(Submission.score_top).filter_by(
+		posts=g.db.query(Submission.score).filter_by(
 			is_banned=False,
 			original_board_id=guild.id)
 
@@ -1046,7 +933,7 @@ class User(Base, Stndrd, Age_times):
 		post_rep= sum([x[0] for x in posts]) - len(list(sum([x[0] for x in posts])))
 
 
-		comments=g.db.query(Comment.score_top).filter_by(
+		comments=g.db.query(Comment.score).filter_by(
 			is_banned=False,
 			original_board_id=guild.id)
 

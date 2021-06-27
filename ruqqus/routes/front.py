@@ -195,11 +195,11 @@ def frontlist(v=None, sort="hot", page=1,t="all", ids_only=True, filter_words=''
 	elif sort == "old":
 		posts = posts.order_by(Submission.created_utc.asc()).all()
 	elif sort == "controversial":
-		posts = posts.order_by(Submission.score_disputed.desc()).all()
+		posts = sorted(posts.all(), key=lambda x: x.score_disputed, reverse=True)
 	elif sort == "top":
-		posts = posts.order_by(Submission.score_top.desc()).all()
+		posts = posts.order_by(Submission.score.desc()).all()
 	elif sort == "bottom":
-		posts = posts.order_by(Submission.score_top.asc()).all()
+		posts = posts.order_by(Submission.score.asc()).all()
 	elif sort == "comments":
 		posts = posts.order_by(Submission.comment_count.desc()).all()
 	elif sort == "random":
@@ -307,7 +307,7 @@ def front_all(v):
 def random_post(v):
 	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
 
-	x = g.db.query(Submission).filter(Submission.deleted_utc == 0, Submission.is_banned == False, Submission.score_top > 20)
+	x = g.db.query(Submission).filter(Submission.deleted_utc == 0, Submission.is_banned == False, Submission.score > 20)
 
 	total = x.count()
 	n = random.randint(0, total - 1)
