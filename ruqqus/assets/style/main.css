@@ -14028,6 +14028,10 @@ div.deleted {
 	background-color: #969600;
 	border-left: 3px solid #ffea00 !important; }
 
+div.context {
+	background-color: #8d0042;
+	border-left: 3px solid #8d0042 !important; }
+
 div.deleted.banned {
 	background-color: #964000;
 	border-left: 3px solid #964000 !important; }
