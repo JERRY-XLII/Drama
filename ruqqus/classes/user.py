@@ -236,21 +236,22 @@ class User(Base, Stndrd, Age_times):
 		submissions = submissions.filter(Submission.created_utc >= cutoff)
 
 		if sort == "new":
-			submissions = submissions.order_by(Submission.created_utc.desc()).all(),
+			submissions = submissions.order_by(Submission.created_utc.desc()).all()
 		elif sort == "old":
-			submissions = submissions.order_by(Submission.created_utc.asc()).all(),
+			submissions = submissions.order_by(Submission.created_utc.asc()).all()
 		elif sort == "controversial":
 			submissions = sorted(submissions.all(), key=lambda x: x.score_disputed, reverse=True)
 		elif sort == "top":
-			submissions = submissions.order_by(Submission.score.desc()).all(),
+			submissions = submissions.order_by(Submission.score.desc()).all()
 		elif sort == "bottom":
-			submissions = submissions.order_by(Submission.score.asc()).all(),
+			submissions = submissions.order_by(Submission.score.asc()).all()
 		elif sort == "comments":
-			submissions = submissions.order_by(Submission.comment_count.desc()).all(),
+			submissions = submissions.order_by(Submission.comment_count.desc()).all()
 
 		firstrange = 25 * (page - 1)
 		secondrange = firstrange+26
-		return [x.id for x in submissions[firstrange:secondrange]]
+		listing = [x.id for x in submissions[firstrange:secondrange]]
+		return listing
 
 	@cache.memoize(300)
 	def commentlisting(self, v=None, page=1, sort="new", t="all"):
