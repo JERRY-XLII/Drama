@@ -101,13 +101,6 @@ def api_vote_comment(comment_id, x, v):
 
 	comment = get_comment(comment_id)
 
-	if comment.is_banned:
-		return jsonify({"error":"That comment has been removed."}), 403
-	elif comment.deleted_utc > 0:
-		return jsonify({"error":"That comment has been deleted."}), 403
-	elif comment.post.is_archived:
-		return jsonify({"error":"This post and its comments are archived and can no longer be voted on."}), 403
-
 	# check for existing vote
 	existing = g.db.query(CommentVote).filter_by(
 		user_id=v.id, comment_id=comment.id).first()
