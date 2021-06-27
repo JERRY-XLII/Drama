@@ -195,7 +195,7 @@ def frontlist(v=None, sort="hot", page=1,t="all", ids_only=True, filter_words=''
 	elif sort == "old":
 		posts = posts.order_by(Submission.created_utc.asc()).all()
 	elif sort == "controversial":
-		posts = sorted(posts.all(), key=lambda x: x.score_disputed, reverse=True)
+		posts = posts.order_by(Submission.score_disputed.desc()).all()
 	elif sort == "top":
 		posts = posts.order_by(Submission.score.desc()).all()
 	elif sort == "bottom":
@@ -211,17 +211,6 @@ def frontlist(v=None, sort="hot", page=1,t="all", ids_only=True, filter_words=''
 	firstrange = 25 * (page - 1)
 	secondrange = firstrange+26
 	posts = posts[firstrange:secondrange]
-	
-	words = ['r-pe', 'k-d', 'm-lest', 's-x', 'captainmeta4', 'dissident001', 'p-do', 'ladine', 'egypt']
-
-	if not v or v.admin_level == 0:
-		for post in posts:
-			if not v or post.author_id != v.id:
-				for word in words:
-					if word in post.title.lower():
-						posts.remove(post)
-						break
-
 	if ids_only:
 		posts = [x.id for x in posts]
 		return posts

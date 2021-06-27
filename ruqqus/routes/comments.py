@@ -87,10 +87,19 @@ def post_pid_comment_cid(cid, pid=None, anything=None, v=None):
 
 				}
 
+	# check guild ban
+	board = post.board
+	if board.is_banned and v.admin_level < 3:
+		return {'html': lambda: render_template("board_banned.html",
+												v=v,
+												b=board),
+				'api': lambda: {'error': f'+{board.name} is banned.'}
+				}
+
 	post._preloaded_comments = [comment]
 
 	# context improver
-	context = min(int(request.args.get("context", 0)), 3)
+	context = min(int(request.args.get("context", 0)), 4)
 	comment_info = comment
 	c = comment
 	while context > 0 and not c.is_top_level:
@@ -160,7 +169,7 @@ def post_pid_comment_cid(cid, pid=None, anything=None, v=None):
 			elif sort_type == "old":
 				comments = comms.order_by(Comment.created_utc.asc()).all()
 			elif sort_type == "controversial":
-				comments = sorted(comments.all(), key=lambda x: x.score_disputed, reverse=True)
+				comments = comms.order_by(Comment.score_disputed.asc()).all()
 			elif sort_type == "random":
 				c = comms.all()
 				comments = random.sample(c, k=len(c))
@@ -200,7 +209,7 @@ def post_pid_comment_cid(cid, pid=None, anything=None, v=None):
 			elif sort_type == "old":
 				comments = comms.order_by(Comment.created_utc.asc()).all()
 			elif sort_type == "controversial":
-				comments = sorted(comments.all(), key=lambda x: x.score_disputed, reverse=True)
+				comments = comms.order_by(Comment.score_disputed.asc()).all()
 			elif sort_type == "random":
 				c = comms.all()
 				comments = random.sample(c, k=len(c))
