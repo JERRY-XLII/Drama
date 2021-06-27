@@ -131,8 +131,6 @@ def ban_post(post_id, v):
 
 	g.db.add(post)
 
-	cache.delete_memoized(Board.idlist, post.board)
-
 	ma=ModAction(
 		kind="ban_post",
 		user_id=v.id,
