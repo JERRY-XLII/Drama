@@ -62,13 +62,13 @@ class Age_times:
 			return "just now"
 		elif age < 3600:
 			minutes = int(age / 60)
-			return f"{minutes}m{'s' if minutes > 1 else ''} ago"
+			return f"{minutes}m ago"
 		elif age < 86400:
 			hours = int(age / 3600)
-			return f"{hours}hr{'s' if hours > 1 else ''} ago"
+			return f"{hours}hr ago"
 		elif age < 2678400:
 			days = int(age / 86400)
-			return f"{days}d{'s' if days > 1 else ''} ago"
+			return f"{days}d ago"
 
 		now = time.gmtime()
 		ctd = time.gmtime(self.created_utc)
@@ -80,10 +80,10 @@ class Age_times:
 			months -= 1
 
 		if months < 12:
-			return f"{months}mo{'s' if months > 1 else ''} ago"
+			return f"{months}mo ago"
 		else:
 			years = int(months / 12)
-			return f"{years}yr{'s' if years > 1 else ''} ago"
+			return f"{years}yr ago"
 
 	@property
 	def edited_string(self):
