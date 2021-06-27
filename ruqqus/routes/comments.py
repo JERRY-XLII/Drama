@@ -87,15 +87,6 @@ def post_pid_comment_cid(cid, pid=None, anything=None, v=None):
 
 				}
 
-	# check guild ban
-	board = post.board
-	if board.is_banned and v.admin_level < 3:
-		return {'html': lambda: render_template("board_banned.html",
-												v=v,
-												b=board),
-				'api': lambda: {'error': f'+{board.name} is banned.'}
-				}
-
 	post._preloaded_comments = [comment]
 
 	# context improver

@@ -141,11 +141,11 @@
 			<div id="comment-banned-warning" class="comment-text text-danger text-small mb-0">Reason: {{c.ban_reason}}</div>
 			{% endif %}
 
-			<div id="comment-text-{{c.base36id}}" class="comment-text mb-0">
+			<div id="comment-text-{{c.base36id}}" class="{% if comment_info and comment_info.id == c.id %}deleted{%endif%} comment-text mb-0">
 				{{c.body_html | safe}}
 				{% if not c.parent_submission and c.author_id!=1046 and c.author_id!=v.id %}<a href="/@{{c.author.username}}/message" class="btn btn-primary">Reply</a>{% endif %}
 			</div>
-
+			
 			{% if c.parent_submission %}
 			{% if v and v.id==c.author_id and (standalone or is_allowed_to_comment) %}
 			<div id="comment-edit-{{c.base36id}}" class="d-none comment-write collapsed child">
