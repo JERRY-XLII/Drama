@@ -211,6 +211,16 @@ def frontlist(v=None, sort="hot", page=1,t="all", ids_only=True, filter_words=''
 	firstrange = 25 * (page - 1)
 	secondrange = firstrange+26
 	posts = posts[firstrange:secondrange]
+	
+	words = ['r-pe', 'k-ds', 'm-lest', 'm-lests', 's-xual', 'captainmeta4', 'dissident001', 'p-do', 'p-dophiles', 'p-dophile', 'adam ladine', 'adamladine']
+	
+	for post in posts:
+		if post.author.id != v.id:
+			for word in words:
+				if word in post.title:
+					posts.remove(post)
+					break
+
 	if ids_only:
 		posts = [x.id for x in posts]
 		return posts
