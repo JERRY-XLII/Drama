@@ -414,7 +414,11 @@ def get_post_with_comments(pid, sort_type="top", v=None):
 			and_(exile.c.target_comment_id==Comment.id, exile.c.board_id==Comment.original_board_id),
 			isouter=True
 		)
-
+		
+		for x in comms:
+			print(x)
+			break
+			
 		if sort_type == "top":
 			comments = comms.order_by(Comment.score.desc()).all()
 		elif sort_type == "bottom":
