@@ -12368,10 +12368,10 @@ ul.comment-section {
 	cursor: pointer;
 	}
 
-.comment .comment-collapse:hover::before {
+.comment .comment-collapse:hover {
 	border-left-color: #FF66AC; }
 
-.comment.collapsed .comment-collapse:hover::before {
+.comment.collapsed .comment-collapse:hover {
 	color: #FF66AC; }
 
 .comment.collapsed .comment-profile, .comment.collapsed .comment-body p.text, .comment.collapsed div.comment-text, .comment.collapsed .comment-actions, .comment.collapsed .comment-write,
