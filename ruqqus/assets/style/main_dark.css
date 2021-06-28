@@ -12366,18 +12366,6 @@ ul.comment-section {
 .comment .comment-collapse {
 	padding-right: 20px; }
 
-.comment .comment-collapse2 {
-	position: absolute;
-	font-family: "Font Awesome 5 Pro";
-	font-size: 1rem;
-	color: #FF66AC;
-	display: inline-block;
-	height: 100%;
-	cursor: pointer;
-	width: 10px;
-	right: -20px;
-	}
-
 .comment .comment-collapse:hover::before {
 	border-left-color: #FF66AC; }
 
