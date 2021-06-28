@@ -34,6 +34,8 @@ def settings_profile_post(v):
 		updated = True
 		v.hidevotedon = request.values.get("hidevotedon", None) == 'true'
 
+###############
+
 	if request.values.get("newtab", v.newtab) != v.newtab:
 		updated = True
 		v.newtab = request.values.get("newtab", None) == 'true'

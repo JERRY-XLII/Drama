@@ -90,7 +90,7 @@ def check_ban_evade(v):
 				continue
 
 			post.is_banned=True
-			post.ban_reason="ban evasion. This submission's owner was banned from Drama on another account."
+			post.ban_reason="ban evasion"
 			g.db.add(post)
 
 			ma=ModAction(
@@ -109,7 +109,7 @@ def check_ban_evade(v):
 				continue
 
 			comment.is_banned=True
-			comment.ban_reason="ban evasion. This comment's owner was banned from Drama on another account."
+			comment.ban_reason="ban evasion"
 			g.db.add(comment)
 
 			ma=ModAction(
