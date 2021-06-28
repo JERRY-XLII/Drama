@@ -12752,9 +12752,7 @@ ul.comment-section {
 	color: #CFCFCF; }
 
 .comment .comment-collapse {
-	padding-right: 15px; }
-
-.comment .comment-collapse::before {
+	padding-right: 15px;
 	content: "";
 	position: absolute;
 	font-family: "Font Awesome 5 Pro";
@@ -12765,6 +12763,7 @@ ul.comment-section {
 	height: 100%;
 	cursor: pointer;
 	width: 10px;
+	right: -20px;
 	}
 
 .comment .comment-collapse:hover::before {
