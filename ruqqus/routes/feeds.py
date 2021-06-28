@@ -12,7 +12,7 @@ from ruqqus.__main__ import app, limiter
 
 
 @app.route('/rss/<sort>/<t>', methods=["GET"])
-def feeds_public(sort=None):
+def feeds_public(sort="hot", t="all"):
 
 	page = int(request.args.get("page", 1))
 
