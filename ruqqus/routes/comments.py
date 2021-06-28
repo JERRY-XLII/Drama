@@ -35,14 +35,8 @@ BUCKET=environ.get("S3_BUCKET",'i.ruqqus.ga')
 @app.route("/post_short/<pid>/<cid>/", methods=["GET"])
 def comment_cid(cid, pid=None):
 
-	try:
-		x=base36decode(cid)
-	except:
-		abort(400)
-		
-	comment = get_comment(cid)
-	if not comment.parent_submission:
-		abort(403)
+	comment = get_comment(int(cid))
+	if not comment.parent_submission: abort(403)
 	return redirect(comment.permalink)
 
 @app.route("/api/v1/post/<pid>/comment/<cid>", methods=["GET"])

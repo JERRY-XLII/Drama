@@ -121,7 +121,7 @@ def user_uid(uid):
 @app.route("/id/<uid>", methods=["GET"])
 def user_uid2(uid):
 
-	user = get_account2(uid)
+	user = get_account(int(uid))
 	return redirect(user.permalink)
 
 # Allow Id of user to be queryied, and then redirect the bot to the

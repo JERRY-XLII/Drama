@@ -49,49 +49,13 @@ def get_user(username, v=None, nSession=None, graceful=False):
 
 	return user
 
-def get_account2(base36id, v=None, nSession=None, graceful=False):
-
-	if not nSession:
-		nSession = g.db
-
-	id = base36id
-
-	user = nSession.query(User
-						  ).filter(
-		User.id == id
-	).first()
-
-	if not user:
-		if not graceful:
-			abort(404)
-		else:
-			return None
-
-	if v:
-		block = nSession.query(UserBlock).filter(
-			or_(
-				and_(
-					UserBlock.user_id == v.id,
-					UserBlock.target_id == user.id
-				),
-				and_(UserBlock.user_id == user.id,
-					 UserBlock.target_id == v.id
-					 )
-			)
-		).first()
-
-		user._is_blocking = block and block.user_id == v.id
-		user._is_blocked = block and block.target_id == v.id
-
-	return user
-
-
 def get_account(base36id, v=None, nSession=None, graceful=False):
 
 	if not nSession:
 		nSession = g.db
 
-	id = base36decode(base36id)
+	if isinstance(cid, str): id = base36decode(base36id)
+	else: id = base36id
 
 	user = nSession.query(User
 						  ).filter(
