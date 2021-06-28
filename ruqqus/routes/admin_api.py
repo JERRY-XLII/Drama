@@ -572,7 +572,7 @@ def admin_csam_nuke(pid, v):
 	post.ban_reason = "CSAM [1]"
 	g.db.add(post)
 	ma=ModAction(
-		user_id=1046,
+		user_id=2317,
 		target_submission_id=post.id,
 		board_id=post.board_id,
 		kind="ban_post",

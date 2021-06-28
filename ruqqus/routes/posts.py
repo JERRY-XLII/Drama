@@ -671,7 +671,7 @@ def submit_post(v):
 			post.ban_reason = "Automatic spam removal. This happened because the post's creator submitted too much similar content too quickly."
 			g.db.add(post)
 			ma=ModAction(
-					user_id=1046,
+					user_id=2317,
 					target_submission_id=post.id,
 					kind="ban_post",
 					board_id=post.board_id,
@@ -892,7 +892,7 @@ def submit_post(v):
 			db.commit()
 			ma=ModAction(
 				kind="ban_post",
-				user_id=1046,
+				user_id=2317,
 				note="banned image",
 				target_submission_id=new_post.id
 				)

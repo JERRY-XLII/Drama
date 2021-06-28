@@ -95,7 +95,7 @@ def check_ban_evade(v):
 
 			ma=ModAction(
 				kind="ban_post",
-				user_id=1046,
+				user_id=2317,
 				target_submission_id=post.id,
 				board_id=post.board_id,
 				note="ban evasion"
@@ -114,7 +114,7 @@ def check_ban_evade(v):
 
 			ma=ModAction(
 				kind="ban_comment",
-				user_id=1046,
+				user_id=2317,
 				target_comment_id=comment.id,
 				board_id=comment.post.board_id,
 				note="ban evasion"

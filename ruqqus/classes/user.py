@@ -751,7 +751,7 @@ class User(Base, Stndrd, Age_times):
 
 			delete_role(self, "linked")
 
-		self.is_banned = admin.id if admin else 1046
+		self.is_banned = admin.id if admin else 2317
 		if reason:
 			self.ban_reason = reason
 

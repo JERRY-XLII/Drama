@@ -336,7 +336,7 @@ def api_comment(v):
 				comment.ban_reason = "Automatic spam removal. This happened because the post's creator submitted too much similar content too quickly."
 				g.db.add(comment)
 				ma=ModAction(
-					user_id=1046,
+					user_id=2317,
 					target_comment_id=comment.id,
 					kind="ban_comment",
 					board_id=comment.post.board_id,

@@ -244,7 +244,7 @@
 
 									<form id="profile-settings" action="/settings/title_change" method="post">
 										<input type="hidden" name="formkey" value="{{v.formkey}}">
-										<input id="customtitlebody" type="text" name="title" class="form-control" placeholder='Enter a flair here' value="{{v.customtitle}}">
+										<input id="customtitlebody" type="text" name="title" class="form-control" placeholder='Enter a flair here' value="{% if v.customtitle %}{{v.customtitle}}{% endif %}">
 										<div class="d-flex mt-2">
 											<small class="format"><i class="btn btn-secondary format d-inline-block m-0 fas fa-smile-beam" onclick="commentForm('customtitlebody');loadEmojis()" aria-hidden="true" data-toggle="modal" data-target="#emojiModal" data-toggle="tooltip" data-placement="bottom"  title="Add EMOJI"></i></small>
 											&nbsp;&nbsp;&nbsp;
