@@ -99,8 +99,9 @@
 <div id="comment-{{c.base36id}}" class="comment {% if standalone and level==1 %} mt-0{% endif %}{% if c.collapse_for_user(v) or (standalone and c.over_18) %} collapsed{% endif %}">
 
 	<span class="mr-2 d-block d-md-none">&nbsp;&nbsp;</span>
-
-	<span class="comment-collapse comment-collapse2 d-md-block d-none" style="border-left: 2px solid #{{c.author.namecolor}};" onclick="collapse_comment('{{c.base36id}}')"></span>
+	<span class="comment-collapse2">.</span>
+	
+	<span class="comment-collapse d-md-block d-none" style="border-left: 2px solid #{{c.author.namecolor}};" onclick="collapse_comment('{{c.base36id}}')"></span>
 	
 	<div class="comment-body">
 
