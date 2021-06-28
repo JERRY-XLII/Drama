@@ -13881,15 +13881,6 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
 	.comment.collapsed .user-info {
 		padding-top: 0.5rem; }
 
-	.comment .comment-collapse::before {
-		content: "\f056";
-		position: static;
-		font-size: 10px;
-		font-weight: 900;
-		border: none;
-		margin-left: 0.25rem; 
-	}
-
 	.comment.collapsed .comment-body:hover {
 		opacity: 0.5; }
 

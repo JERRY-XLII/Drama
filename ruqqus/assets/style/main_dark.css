@@ -12366,17 +12366,17 @@ ul.comment-section {
 .comment .comment-collapse {
 	padding-right: 15px; }
 
-.comment .comment-collapse::before {
-	content: "";
+.comment .comment-collapse2 {
 	position: absolute;
 	font-family: "Font Awesome 5 Pro";
-	border-left: 2px solid #808080;
 	font-size: 1rem;
 	color: #FF66AC;
 	display: inline-block;
 	height: 100%;
 	cursor: pointer;
-	width: 10px; }
+	width: 10px;
+	right: -20px;
+	}
 
 .comment .comment-collapse:hover::before {
 	border-left-color: #FF66AC; }
@@ -13484,15 +13484,6 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
 
 	.comment.collapsed .user-info {
 		padding-top: 0.5rem; }
-
-	.comment .comment-collapse::before {
-		content: "\f056";
-		position: static;
-		font-size: 10px;
-		font-weight: 900;
-		border: none;
-		margin-left: 0.25rem;
-	}
 
 	.comment.collapsed .comment-body:hover {
 		opacity: 0.5; }
