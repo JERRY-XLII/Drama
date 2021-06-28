@@ -37,13 +37,13 @@ def leaderboard(v):
 
 @cache.memoize(timeout=1800)
 def leaderboard():
-	users = g.db.query(User).options(lazyload('*'))
-	users1= sorted(users, key=lambda x: x.dramacoins, reverse=True)[:25]
-	users2 = sorted(users, key=lambda x: x.follower_count, reverse=True)[:10]
-	users3 = sorted(users, key=lambda x: x.post_count, reverse=True)[:10]
-	users4 = sorted(users, key=lambda x: x.comment_count, reverse=True)[:10]
+	users = g.db.query(User).options(lazyload('*')))
+	users1= sorted(users, key=lambda x: x.dramacoins, reverse=True)[:100]
+	users2 = sorted(users1, key=lambda x: x.follower_count, reverse=True)[:10]
+	users3 = sorted(users1, key=lambda x: x.post_count, reverse=True)[:10]
+	users4 = sorted(users1, key=lambda x: x.comment_count, reverse=True)[:10]
 	postcount = [x.post_count for x in users3]
-	return users1, users2, users3, users4, postcount
+	return users1[:25], users2, users3, users4, postcount
 
 
 @app.route("/@<username>/message", methods=["GET"])
