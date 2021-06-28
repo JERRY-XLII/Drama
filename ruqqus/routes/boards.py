@@ -236,7 +236,7 @@ def mod_remove_username(bid, username, board, v):
 		)
 	g.db.add(ma)
 
-	u.admin_level = 0
+	user.admin_level = 0
 	return "", 204
 
 @app.route("/badmins", methods=["GET"])

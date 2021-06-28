@@ -216,7 +216,7 @@ def frontlist(v=None, sort="hot", page=1,t="all", ids_only=True, filter_words=''
 
 	if not v or v.admin_level == 0:
 		for post in posts:
-			if not v or post.author_id != v.id:
+			if (not (v and post.author_id == v.id)) and post.author.admin_level == 0:
 				for word in words:
 					if word in post.title.lower():
 						posts.remove(post)
