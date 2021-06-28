@@ -12754,7 +12754,6 @@ ul.comment-section {
 .comment .comment-collapse {
 	padding-right: 15px; }
 
-
 .comment .comment-collapse2 {
 	position: absolute;
 	font-family: "Font Awesome 5 Pro";
@@ -12767,19 +12766,6 @@ ul.comment-section {
 	right: -20px;
 	}
 	
-.comment .comment-collapse::before {
-	content: "";
-	position: absolute;
-	font-family: "Font Awesome 5 Pro";
-	border-left: 2px solid #808080;
-	font-size: 1rem;
-	color: #FF66AC;
-	display: inline-block;
-	height: 100%;
-	cursor: pointer;
-	width: 10px;
-	}
-
 .comment .comment-collapse:hover::before {
 	border-left-color: #FF66AC; }
 
