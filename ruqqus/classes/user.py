@@ -201,8 +201,8 @@ class User(Base, Stndrd, Age_times):
 		
 	@property
 	def nuked(self):
-		submissions = g.db.query(Submission).options(lazyload('*')).filter_by(author_id=self.id)
-		comments = g.db.query(Comment).options(lazyload('*')).filter_by(author_id=self.id)
+		submissions = g.db.query(Submission).options(lazyload('*')).filter_by(author_id=self.id).all()
+		comments = g.db.query(Comment).options(lazyload('*')).filter_by(author_id=self.id).all()
 		for p in submissions+comments:
 			if not p.is_banned: return False
 		return True
