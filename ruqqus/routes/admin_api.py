@@ -658,14 +658,6 @@ def admin_nuke_user(v):
 		post.is_banned=True
 		g.db.add(post)
 
-		ma=ModAction(
-			kind="ban_post",
-			user_id=v.id,
-			target_submission_id=post.id,
-			board_id=post.board_id,
-			)
-		g.db.add(ma)
-
 	for comment in g.db.query(Comment).filter_by(author_id=user.id).all():
 		if comment.is_banned:
 			continue
@@ -673,13 +665,13 @@ def admin_nuke_user(v):
 		comment.is_banned=True
 		g.db.add(comment)
 
-		ma=ModAction(
-			kind="ban_comment",
-			user_id=v.id,
-			target_comment_id=comment.id,
-			board_id=1,
-			)
-		g.db.add(ma)
+	ma=ModAction(
+		kind="nuke_user",
+		user_id=v.id,
+		target_user_id=user.id,
+		board_id=1,
+		)
+	g.db.add(ma)
 
 	return redirect(user.permalink)
 
@@ -697,14 +689,6 @@ def admin_nunuke_user(v):
 		post.is_banned=False
 		g.db.add(post)
 
-		ma=ModAction(
-			kind="unban_post",
-			user_id=v.id,
-			target_submission_id=post.id,
-			board_id=post.board_id,
-			)
-		g.db.add(ma)
-
 	for comment in g.db.query(Comment).filter_by(author_id=user.id).all():
 		if not comment.is_banned:
 			continue
@@ -712,13 +696,13 @@ def admin_nunuke_user(v):
 		comment.is_banned=False
 		g.db.add(comment)
 
-		ma=ModAction(
-			kind="unban_comment",
-			user_id=v.id,
-			target_comment_id=comment.id,
-			board_id=1,
-			)
-		g.db.add(ma)
+	ma=ModAction(
+		kind="unnuke_user",
+		user_id=v.id,
+		target_user_id=user.id,
+		board_id=1,
+		)
+	g.db.add(ma)
 
 	return redirect(user.permalink)
 

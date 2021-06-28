@@ -168,6 +168,18 @@ ACTIONTYPES={
 		"color": "bg-muted",
 		"title": 'unbanned user {self.target_user.username}'
 	},
+	"nuke_user":{
+		"str":'removed all content of {self.target_link}',
+		"icon":"fa-user-slash",
+		"color": "bg-danger",
+		"title": 'removed all content of {self.target_user.username}'
+	},
+	"unnuke_user":{
+		"str":'approved all content of {self.target_link}',
+		"icon": "fa-user-slash",
+		"color": "bg-muted",
+		"title": 'approved all content of {self.target_user.username}'
+	},
 	"contrib_user":{
 		"str":'added contributor {self.target_link}',
 		"icon": "fa-user-check",
