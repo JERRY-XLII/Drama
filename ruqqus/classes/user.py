@@ -333,8 +333,8 @@ class User(Base, Stndrd, Age_times):
 	@property
 	@lazy
 	def dramacoins(self):
-		posts=sum([x[0] for x in g.db.query(Submission.score).options(lazyload('*')).filter_by(author_id=self.id, is_banned=False).filter(Submission.deleted_utc > 0).all()])
-		comments=sum([x[0] for x in g.db.query(Comment.score).options(lazyload('*')).filter_by(author_id=self.id, is_banned=False).filter(Comment.deleted_utc > 0).all()])
+		posts=sum([x[0] for x in g.db.query(Submission.score).options(lazyload('*')).filter_by(author_id = self.id, is_banned = False, deleted_utc = 0).all()])
+		comments=sum([x[0] for x in g.db.query(Comment.score).options(lazyload('*')).filter_by(author_id = self.id, is_banned = False, deleted_utc = 0).all()])
 		return posts+comments
 
 	@property
