@@ -37,7 +37,7 @@ def leaderboard(v):
 
 @cache.memoize(timeout=1800)
 def leaderboard():
-	users = g.db.query(User).options(lazyload('*')))
+	users = g.db.query(User).options(lazyload('*'))
 	users1= sorted(users, key=lambda x: x.dramacoins, reverse=True)[:100]
 	users2 = sorted(users1, key=lambda x: x.follower_count, reverse=True)[:10]
 	users3 = sorted(users1, key=lambda x: x.post_count, reverse=True)[:10]
