@@ -12752,11 +12752,10 @@ ul.comment-section {
 	color: #CFCFCF; }
 
 .comment .comment-collapse {
-	padding-right: 15px;
-}
+	padding-right: 15px; }
+
 
 .comment .comment-collapse2 {
-	content: "";
 	position: absolute;
 	font-family: "Font Awesome 5 Pro";
 	font-size: 1rem;
@@ -12766,6 +12765,19 @@ ul.comment-section {
 	cursor: pointer;
 	width: 10px;
 	right: -20px;
+	}
+	
+.comment .comment-collapse::before {
+	content: "";
+	position: absolute;
+	font-family: "Font Awesome 5 Pro";
+	border-left: 2px solid #808080;
+	font-size: 1rem;
+	color: #FF66AC;
+	display: inline-block;
+	height: 100%;
+	cursor: pointer;
+	width: 10px;
 	}
 
 .comment .comment-collapse:hover::before {
