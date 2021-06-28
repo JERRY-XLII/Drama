@@ -98,7 +98,6 @@ class User(Base, Stndrd, Age_times):
 	is_deleted = Column(Boolean, default=False)
 	delete_reason = Column(String(500), default='')
 	filter_nsfw = Column(Boolean, default=False)
-	stored_karma = Column(Integer, default=0)
 	stored_subscriber_count=Column(Integer, default=0)
 	defaultsorting = Column(String, default="hot")
 	defaulttime = Column(String, default="all")
@@ -154,8 +153,6 @@ class User(Base, Stndrd, Age_times):
 		primaryjoin="PayPalTxn.user_id==User.id")
 
 	# properties defined as SQL server-side functions
-	energy = deferred(Column(Integer, server_default=FetchedValue()))
-	comment_energy = deferred(Column(Integer, server_default=FetchedValue()))
 	referral_count = deferred(Column(Integer, server_default=FetchedValue()))
 	follower_count = deferred(Column(Integer, server_default=FetchedValue()))
 
@@ -332,26 +329,13 @@ class User(Base, Stndrd, Age_times):
 		z = sorted(z, key=lambda x: x.name)
 
 		return z
-
+		
 	@property
-	@cache.memoize(timeout=3600)  # 1hr cache time for user rep
-	def karma(self):
-		return int(self.energy) - self.post_count
-
-	@property
-	@cache.memoize(timeout=3600)
-	def comment_karma(self):
-		return int(self.comment_energy) - self.comments.filter(Comment.parent_submission is not None).filter_by(is_banned=False).count()
-
-	@property
-	@cache.memoize(timeout=3600)
-	def true_score(self):
-
-		self.stored_karma=self.karma + self.comment_karma
-
-		g.db.add(self)
-		g.db.commit()
-		return self.stored_karma
+	@lazy
+	def dramacoins(self):
+		posts=sum([x[0] for x in g.db.query(Submission.score).options(lazyload('*')).filter_by(author_id=self.id, is_banned=False).filter(Submission.deleted_utc > 0).all()])
+		comments=sum([x[0] for x in g.db.query(Comment.score).options(lazyload('*')).filter_by(author_id=self.id, is_banned=False).filter(Comment.deleted_utc > 0).all()])
+		return posts+comments
 
 	@property
 	def base36id(self):
@@ -647,7 +631,7 @@ class User(Base, Stndrd, Age_times):
 	@property
 	def can_make_guild(self):
 		return False
-		#return (self.has_premium or self.true_score >= 250 or (self.created_utc <= 1592974538 and self.true_score >= 50)) and len([x for x in self.boards_modded if x.is_siegable]) < 10
+		#return (self.has_premium or self.dramacoins >= 250 or (self.created_utc <= 1592974538 and self.dramacoins >= 50)) and len([x for x in self.boards_modded if x.is_siegable]) < 10
 
 	@property
 	def can_join_gms(self):
@@ -669,16 +653,16 @@ class User(Base, Stndrd, Age_times):
 		# Has premium
 		# Has 1000 Rep, or 500 for older accounts
 		# if connecting through Tor, must have verified email
-		return (self.has_premium or self.true_score >= 0 or (
-			self.created_utc <= 1592974538 and self.true_score >= 500)) and (self.is_activated or request.headers.get("cf-ipcountry")!="T1") 
+		return (self.has_premium or self.dramacoins >= 0 or (
+			self.created_utc <= 1592974538 and self.dramacoins >= 500)) and (self.is_activated or request.headers.get("cf-ipcountry")!="T1") 
 
 	@property
 	def can_upload_avatar(self):
-		return (self.has_premium or self.true_score >= 0 or self.created_utc <= 1592974538) and (self.is_activated or request.headers.get("cf-ipcountry")!="T1")
+		return (self.has_premium or self.dramacoins >= 0 or self.created_utc <= 1592974538) and (self.is_activated or request.headers.get("cf-ipcountry")!="T1")
 
 	@property
 	def can_upload_banner(self):
-		return (self.has_premium or self.true_score >= 0 or self.created_utc <= 1592974538) and (self.is_activated or request.headers.get("cf-ipcountry")!="T1")
+		return (self.has_premium or self.dramacoins >= 0 or self.created_utc <= 1592974538) and (self.is_activated or request.headers.get("cf-ipcountry")!="T1")
 
 	@property
 	def json_raw(self):
@@ -733,18 +717,12 @@ class User(Base, Stndrd, Age_times):
 			return data
 
 		data["badges"]=[x.json_core for x in self.badges]
-		data['post_rep']= int(self.karma)
-		data['comment_rep']= int(self.comment_karma)
+		data['dramacoins']= int(self.dramacoins)
 		data['post_count']=self.post_count
 		data['comment_count']=self.comment_count
 
 		return data
 	
-
-	@property
-	def total_karma(self):
-
-		return max(self.karma + self.comment_karma, -5)
 
 	@property
 	def can_use_darkmode(self):
@@ -1003,7 +981,7 @@ class User(Base, Stndrd, Age_times):
 
 	@property
 	def can_upload_comment_image(self):
-		return self.true_score >= 0 and (request.headers.get("cf-ipcountry")!="T1" or self.is_activated)
+		return self.dramacoins >= 0 and (request.headers.get("cf-ipcountry")!="T1" or self.is_activated)
 	
 	@property
 	def can_change_name(self):

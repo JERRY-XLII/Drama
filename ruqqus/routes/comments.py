@@ -412,7 +412,7 @@ def api_comment(v):
 	g.db.add(c)
 	g.db.flush()
 	
-	if v.true_score >= 0:
+	if v.dramacoins >= 0:
 		if request.files.get("file"):
 			file=request.files["file"]
 			if not file.content_type.startswith('image/'):
@@ -655,7 +655,7 @@ def edit_comment(cid, v):
 		g.db.commit()
 		return jsonify({"error": "Too much spam!"}), 403
 
-	if v.true_score >= 0:
+	if v.dramacoins >= 0:
 		if request.files.get("file"):
 			file=request.files["file"]
 			if not file.content_type.startswith('image/'):

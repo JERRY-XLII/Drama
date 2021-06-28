@@ -712,42 +712,6 @@ def admin_test_ip(v):
 	return f"IP: {request.remote_addr}; fwd: {request.headers.get('X-Forwarded-For')}"
 
 
-@app.route("/admin/siege_count")
-@admin_level_required(3)
-def admin_siege_count(v):
-
-	board=get_guild(request.args.get("board"))
-	recent=int(request.args.get("days",0))
-
-	now=int(time.time())
-
-	cutoff=board.stored_subscriber_count//10 + min(recent, (now-board.created_utc)//(60*60*24))
-
-	uids=g.db.query(Subscription.user_id).filter_by(is_active=True, board_id=board.id).all()
-	uids=[x[0] for x in uids]
-
-	can_siege=0
-	total=0
-	for uid in uids:
-		posts=sum([x[0] for x in g.db.query(Submission.score).options(lazyload('*')).filter_by(author_id=uid).filter(Submission.created_utc>now-60*60*24*recent).all()])
-		comments=sum([x[0] for x in g.db.query(Comment.score).options(lazyload('*')).filter_by(author_id=uid).filter(   Comment.created_utc>now-60*60*24*recent).all()])
-		rep=posts+comments
-		if rep>=cutoff:
-			can_siege+=1
-		total+=1
-		print(f"{can_siege}/{total}")
-
-
-
-	return jsonify(
-		{
-		"guild":f"+{board.name}",
-		"requirement":cutoff,
-		"eligible_users":can_siege
-		}
-		)
-
-
 # @app.route('/admin/deploy', methods=["GET"])
 # @admin_level_required(3)
 # def admin_deploy(v):

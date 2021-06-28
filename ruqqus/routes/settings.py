@@ -494,7 +494,6 @@ def settings_block_user(v):
 	g.db.add(new_block)
 
 	cache.delete_memoized(v.idlist)
-	#cache.delete_memoized(Board.idlist, v=v)
 	cache.delete_memoized(frontlist, v=v)
 
 	return jsonify({"message": f"@{user.username} blocked."})
@@ -514,7 +513,6 @@ def settings_unblock_user(v):
 	g.db.delete(x)
 
 	cache.delete_memoized(v.idlist)
-	#cache.delete_memoized(Board.idlist, v=v)
 	cache.delete_memoized(frontlist, v=v)
 
 	return jsonify({"message": f"@{user.username} unblocked."})
