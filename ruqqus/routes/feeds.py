@@ -11,11 +11,10 @@ from ruqqus.helpers.get import *
 from ruqqus.__main__ import app, limiter
 
 
-@app.route('/feeds/<sort>', methods=["GET"])
+@app.route('/rss/<sort>/<t>', methods=["GET"])
 def feeds_public(sort=None):
 
 	page = int(request.args.get("page", 1))
-	t = request.args.get('t')
 
 	posts = frontlist(
 		sort=sort,
@@ -31,31 +30,6 @@ def feeds_public(sort=None):
 					)
 
 	for post in posts:
-		feed.add(post.title, post.body_html,
-				 content_type='html',
-				 author=post.author.username,
-				 url=full_link(post.permalink),
-				 updated=datetime.fromtimestamp(post.created_utc),
-				 published=datetime.fromtimestamp(post.created_utc),
-				 links=[{'href': post.url}]
-				 )
-
-	return feed.get_response()
-
-
-@app.route('/feeds/<sort>', methods=["GET"])
-def feeds_user(sort=None):
-
-	page = int(request.args.get("page", 1))
-	t = request.args.get('t')
-
-	posts = frontlist(sort=sort, page=page, t=t)
-
-	feed = AtomFeed(title=f'Top 5 {sort} Posts from ruqqus',
-					feed_url=request.url, url=request.url_root)
-
-	for post in posts:
-
 		feed.add(post.title, post.body_html,
 				 content_type='html',
 				 author=post.author.username,
