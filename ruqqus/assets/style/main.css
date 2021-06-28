@@ -12753,6 +12753,9 @@ ul.comment-section {
 
 .comment .comment-collapse {
 	padding-right: 15px;
+}
+
+.comment .comment-collapse2 {
 	content: "";
 	position: absolute;
 	font-family: "Font Awesome 5 Pro";
