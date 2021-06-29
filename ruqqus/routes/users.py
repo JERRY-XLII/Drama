@@ -35,7 +35,7 @@ def leaderboard(v):
 	users1, users2, users3, users4, postcount = leaderboard()
 	return render_template("leaderboard.html", v=v, users1=users1, users2=users2, users3=users3, users4=users4, postcount=postcount)
 
-@cache.memoize(timeout=1800)
+@cache.memoize(timeout=3600)
 def leaderboard():
 	users = g.db.query(User).options(lazyload('*'))
 	users1= sorted(users, key=lambda x: x.dramacoins, reverse=True)[:100]

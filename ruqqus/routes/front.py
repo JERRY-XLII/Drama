@@ -78,44 +78,10 @@ def frontlist(v=None, sort="hot", page=1,t="all", ids_only=True, filter_words=''
 
 	# cutoff=int(time.time())-(60*60*24*30)
 
-	posts = g.db.query(
-		Submission
-		).options(
-			lazyload('*')
-		).filter_by(
-			is_banned=False,
-			stickied=False,
-			private=False,
-		).filter(Submission.deleted_utc == 0)
+	posts = g.db.query(Submission).options(lazyload('*')).filter_by(is_banned=False,stickied=False,private=False,).filter(Submission.deleted_utc == 0)
 
-	if (v and v.hide_offensive) or not v:
-		posts = posts.filter_by(is_offensive=False)
 		
-	if v and v.hide_bot:
-		posts = posts.filter_by(is_bot=False)
-
-	if v and v.admin_level >= 4:
-		board_blocks = g.db.query(
-			BoardBlock.board_id).filter_by(
-			user_id=v.id).subquery()
-
-		posts = posts.filter(Submission.board_id.notin_(board_blocks))
-	elif v:
-		m = g.db.query(ModRelationship.board_id).filter_by(
-			user_id=v.id, invite_rescinded=False).subquery()
-		c = g.db.query(
-			ContributorRelationship.board_id).filter_by(
-			user_id=v.id).subquery()
-
-		posts = posts.filter(
-			or_(
-				Submission.author_id == v.id,
-				Submission.post_public == True,
-				Submission.board_id.in_(m),
-				Submission.board_id.in_(c)
-			)
-		)
-
+	if v and v.admin_level == 0:
 		blocking = g.db.query(
 			UserBlock.target_id).filter_by(
 			user_id=v.id).subquery()
@@ -127,39 +93,6 @@ def frontlist(v=None, sort="hot", page=1,t="all", ids_only=True, filter_words=''
 			Submission.author_id.notin_(blocked)
 		)
 
-		board_blocks = g.db.query(
-			BoardBlock.board_id).filter_by(
-			user_id=v.id).subquery()
-
-		posts = posts.filter(Submission.board_id.notin_(board_blocks))
-	else:
-		posts = posts.filter_by(post_public=True)
-
-	# board opt out of all
-	if v:
-		posts = posts.join(Submission.board).filter(
-			or_(
-				Board.all_opt_out == False,
-				Submission.board_id.in_(
-					g.db.query(
-						Subscription.board_id).filter_by(
-						user_id=v.id,
-						is_active=True).subquery()
-				)
-			)
-		)
-	else:
-
-		posts = posts.join(
-			Submission.board).filter_by(
-			all_opt_out=False)
-
-	
-	posts=posts.options(contains_eager(Submission.board))
-
-
-	#custom filter
-	#print(filter_words)
 	if v and filter_words:
 		posts=posts.join(Submission.submission_aux)
 		for word in filter_words:
@@ -226,17 +159,6 @@ def frontlist(v=None, sort="hot", page=1,t="all", ids_only=True, filter_words=''
 		posts = [x.id for x in posts]
 		return posts
 	return posts
-
-def default_cat_cookie():
-
-	output=[]
-	for cat in CATEGORIES:
-		for subcat in cat.subcats:
-			if subcat.visible:
-				output.append(subcat.id)
-
-	output += [0]
-	return output
 
 @app.route("/", methods=["GET"])
 @app.route("/api/v1/listing", methods=["GET"])

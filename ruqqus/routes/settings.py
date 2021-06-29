@@ -482,7 +482,7 @@ def settings_block_user(v):
 						  )
 	g.db.add(new_block)
 
-	cache.delete_memoized(frontlist, v=v)
+	cache.delete_memoized(frontlist)
 
 	return jsonify({"message": f"@{user.username} blocked."})
 
@@ -495,12 +495,12 @@ def settings_unblock_user(v):
 	user = get_user(request.values.get("username"))
 
 	x = v.has_block(user)
-	if not x:
-		abort(409)
+	
+	if not x: abort(409)
 
 	g.db.delete(x)
 
-	cache.delete_memoized(frontlist, v=v)
+	cache.delete_memoized(frontlist)
 
 	return jsonify({"message": f"@{user.username} unblocked."})
 
