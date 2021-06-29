@@ -390,17 +390,6 @@ def unfollow_user(username, v):
 	return "", 204
 
 
-@app.route("/api/agree_tos", methods=["POST"])
-@auth_required
-def api_agree_tos(v):
-
-	v.tos_agreed_utc = int(time.time())
-
-	g.db.add(v)
-
-	return redirect("/terms")
-
-
 @app.route("/@<username>/pic/profile")
 @limiter.exempt
 def user_profile(username):
@@ -414,11 +403,11 @@ def user_profile_uid(uid):
 	return redirect(x.profile_url)
 
 
-@app.route("/@<username>/saved", methods=["GET"])
-@app.route("/api/v1/saved", methods=["GET"])
+@app.route("/@<username>/saved/posts", methods=["GET"])
+@app.route("/api/v1/saved/posts", methods=["GET"])
 @auth_required
 @api("read")
-def saved_listing(v, username):
+def saved_posts(v, username):
 
 	page=int(request.args.get("page",1))
 
@@ -430,7 +419,7 @@ def saved_listing(v, username):
 
 	listing = get_posts(ids, v=v, sort="new")
 
-	return {'html': lambda: render_template("userpage_saved.html",
+	return {'html': lambda: render_template("userpage_saved_posts.html",
 											u=v,
 											v=v,
 											listing=listing,
@@ -439,6 +428,35 @@ def saved_listing(v, username):
 											),
 			'api': lambda: jsonify({"data": [x.json for x in listing]})
 			}
+
+
+@app.route("/@<username>/saved/comments", methods=["GET"])
+@app.route("/api/v1/saved/comments", methods=["GET"])
+@auth_required
+@api("read")
+def saved_comments(v, username):
+
+	page=int(request.args.get("page",1))
+
+	ids=v.saved_comment_idlist(page=page)
+
+	next_exists=len(ids)==26
+
+	ids=ids[0:25]
+
+	listing = get_comments(ids, v=v, sort="new")
+
+
+	return {'html': lambda: render_template("userpage_saved_comments.html",
+											u=v,
+											v=v,
+											listing=listing,
+											page=page,
+											next_exists=next_exists,
+											standalone=True),
+			'api': lambda: jsonify({"data": [x.json for x in listing]})
+			}
+
 
 def convert_file(html):
 

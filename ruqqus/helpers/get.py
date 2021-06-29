@@ -285,7 +285,7 @@ def get_posts(pids, sort="hot", v=None):
 	return sorted(output, key=lambda x: pids.index(x.id))
 
 
-def get_post_with_comments(pid, sort_type="top", v=None):
+def get_post_with_comments(pid, sort="top", v=None):
 
 	post = get_post(pid, v=v)
 
@@ -337,17 +337,17 @@ def get_post_with_comments(pid, sort_type="top", v=None):
 			isouter=True
 		)
 
-		if sort_type == "top":
+		if sort == "top":
 			comments = comms.order_by(Comment.score.desc()).all()
-		elif sort_type == "bottom":
+		elif sort == "bottom":
 			comments = comms.order_by(Comment.score.asc()).all()
-		elif sort_type == "new":
+		elif sort == "new":
 			comments = comms.order_by(Comment.created_utc.desc()).all()
-		elif sort_type == "old":
+		elif sort == "old":
 			comments = comms.order_by(Comment.created_utc.asc()).all()
-		elif sort_type == "controversial":
+		elif sort == "controversial":
 			comments = sorted(comms.all(), key=lambda x: x[0].score_disputed, reverse=True)
-		elif sort_type == "random":
+		elif sort == "random":
 			c = comms.all()
 			comments = random.sample(c, k=len(c))
 		else:
@@ -379,17 +379,17 @@ def get_post_with_comments(pid, sort_type="top", v=None):
 			isouter=True
 		)
 
-		if sort_type == "top":
+		if sort == "top":
 			comments = comms.order_by(Comment.score.desc()).all()
-		elif sort_type == "bottom":
+		elif sort == "bottom":
 			comments = comms.order_by(Comment.score.asc()).all()
-		elif sort_type == "new":
+		elif sort == "new":
 			comments = comms.order_by(Comment.created_utc.desc()).all()
-		elif sort_type == "old":
+		elif sort == "old":
 			comments = comms.order_by(Comment.created_utc.asc()).all()
-		elif sort_type == "controversial":
+		elif sort == "controversial":
 			comments = sorted(comms.all(), key=lambda x: x[0].score_disputed, reverse=True)
-		elif sort_type == "random":
+		elif sort == "random":
 			c = comms.all()
 			comments = random.sample(c, k=len(c))
 		else:
@@ -515,7 +515,7 @@ def get_comment(cid, nSession=None, v=None, graceful=False, **kwargs):
 	return x
 
 
-def get_comments(cids, v=None, nSession=None, sort_type="new",
+def get_comments(cids, v=None, nSession=None, sort="new",
 				 load_parent=False, **kwargs):
 
 	if not cids:

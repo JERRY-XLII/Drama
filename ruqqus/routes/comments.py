@@ -88,7 +88,7 @@ def post_pid_comment_cid(cid, pid=None, anything=None, v=None):
 		context -= 1
 	top_comment = c
 
-	sort_type = request.args.get("sort", "top")
+	sort = request.args.get("sort", "top")
 	# children comments
 
 	current_ids = [comment.id]
@@ -136,17 +136,17 @@ def post_pid_comment_cid(cid, pid=None, anything=None, v=None):
 				isouter=True
 			)
 
-			if sort_type == "top":
+			if sort == "top":
 				comments = comms.order_by(Comment.score.desc()).all()
-			elif sort_type == "bottom":
+			elif sort == "bottom":
 				comments = comms.order_by(Comment.score.asc()).all()
-			elif sort_type == "new":
+			elif sort == "new":
 				comments = comms.order_by(Comment.created_utc.desc()).all()
-			elif sort_type == "old":
+			elif sort == "old":
 				comments = comms.order_by(Comment.created_utc.asc()).all()
-			elif sort_type == "controversial":
+			elif sort == "controversial":
 				comments = sorted(comments.all(), key=lambda x: x.score_disputed, reverse=True)
-			elif sort_type == "random":
+			elif sort == "random":
 				c = comms.all()
 				comments = random.sample(c, k=len(c))
 			else:
@@ -176,17 +176,17 @@ def post_pid_comment_cid(cid, pid=None, anything=None, v=None):
 				isouter=True
 			)
 
-			if sort_type == "top":
+			if sort == "top":
 				comments = comms.order_by(Comment.score.asc()).all()
-			elif sort_type == "bottom":
+			elif sort == "bottom":
 				comments = comms.order_by(Comment.score.desc()).all()
-			elif sort_type == "new":
+			elif sort == "new":
 				comments = comms.order_by(Comment.created_utc.desc()).all()
-			elif sort_type == "old":
+			elif sort == "old":
 				comments = comms.order_by(Comment.created_utc.asc()).all()
-			elif sort_type == "controversial":
+			elif sort == "controversial":
 				comments = sorted(comms.all(), key=lambda x: x.score_disputed, reverse=True)
-			elif sort_type == "random":
+			elif sort == "random":
 				c = comms.all()
 				comments = random.sample(c, k=len(c))
 			else:
