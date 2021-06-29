@@ -192,8 +192,6 @@ def front_all(v):
 					page=page,
 					t=t,
 					v=v,
-					hide_offensive=(v and v.hide_offensive) or not v,
-					hide_bot=(v and v.hide_bot),
 					gt=int(request.args.get("utc_greater_than", 0)),
 					lt=int(request.args.get("utc_less_than", 0)),
 					filter_words=v.filter_words if v else [],
@@ -249,51 +247,15 @@ def random_post(v):
 	return redirect(post.permalink)
 
 @cache.memoize(600)
-def comment_idlist(page=1, v=None, nsfw=False, **kwargs):
+def comment_idlist(page=1, v=None, nsfw=False, sort="new", t="all, **kwargs):
 
-	posts = g.db.query(Submission).options(
-		lazyload('*')).join(Submission.board)
-
-	if not nsfw:
-		posts = posts.filter_by(over_18=False)
-
-	if v and not v.show_nsfl:
-		posts = posts.filter_by(is_nsfl=False)
-
-	if v and v.admin_level >= 4:
-		pass
-	elif v:
-		m = g.db.query(ModRelationship.board_id).filter_by(
-			user_id=v.id, invite_rescinded=False).subquery()
-		c = g.db.query(
-			ContributorRelationship.board_id).filter_by(
-			user_id=v.id).subquery()
-
-		posts = posts.filter(
-			or_(
-				Submission.author_id == v.id,
-				Submission.post_public == True,
-				Submission.board_id.in_(m),
-				Submission.board_id.in_(c),
-				Board.is_private == False
-			)
-		)
-	else:
-		posts = posts.filter(or_(Submission.post_public ==
-								 True, Board.is_private == False))
+	posts = g.db.query(Submission).options(lazyload('*'))
 
 	posts = posts.subquery()
 
 	comments = g.db.query(Comment).options(lazyload('*'))
 
-	if v and v.hide_offensive:
-		comments = comments.filter_by(is_offensive=False)
-		
-	if v and v.hide_bot:
-		comments = comments.filter_by(is_bot=False)
-
 	if v and v.admin_level <= 3:
-		# blocks
 		blocking = g.db.query(
 			UserBlock.target_id).filter_by(
 			user_id=v.id).subquery()
@@ -311,10 +273,20 @@ def comment_idlist(page=1, v=None, nsfw=False, **kwargs):
 
 	comments = comments.join(posts, Comment.parent_submission == posts.c.id)
 
-	comments = comments.order_by(Comment.created_utc.desc()).offset(
-		25 * (page - 1)).limit(26).all()
+	if sort == "new":
+		comments = comments.order_by(Comment.created_utc.desc()).all()
+	elif sort == "old":
+		comments = comments.order_by(Comment.created_utc.asc()).all()
+	elif sort == "controversial":
+		comments = sorted(comments.all(), key=lambda x: x.score_disputed, reverse=True)
+	elif sort == "top":
+		comments = comments.order_by(Comment.score.desc()).all()
+	elif sort == "bottom":
+		comments = comments.order_by(Comment.score.asc()).all()
 
-	return [x.id for x in comments]
+	firstrange = 25 * (page - 1)
+	secondrange = firstrange+26
+	return [x.id for x in comments[firstrange:secondrange]]
 
 
 @app.route("/comments", methods=["GET"])
@@ -326,10 +298,14 @@ def all_comments(v):
 
 	page = int(request.args.get("page", 1))
 
+	sort=request.args.get("sort", "new")
+	t=request.args.get('t', "all")
+
 	idlist = comment_idlist(v=v,
 							page=page,
-							hide_offensive=v and v.hide_offensive,
-							hide_bot=v and v.hide_bot)
+							sort=sort,
+							t=t,
+							)
 
 	comments = get_comments(idlist, v=v)
 
