@@ -15,7 +15,7 @@
 <div id="comment-{{c.base36id}}" class="comment">
 
 
-		<span class="comment-collapse" style="border-left: 2px solid #{{c.author.namecolor}};" onclick="collapse_comment('{{c.base36id}}')"></span>
+		<span class="comment-collapse" style="z-index:0; border-left: 2px solid #{{c.author.namecolor}};" onclick="collapse_comment('{{c.base36id}}')"></span>
 
 		<div class="comment-body">
 
@@ -98,7 +98,7 @@
 
 <div id="comment-{{c.base36id}}" class="comment {% if standalone and level==1 %} mt-0{% endif %}{% if c.collapse_for_user(v) or (standalone and c.over_18) %} collapsed{% endif %}">
 
-	<span class="comment-collapse" style="border-left: 2px solid #{{c.author.namecolor}};" onclick="collapse_comment('{{c.base36id}}')"></span>
+	<span class="comment-collapse" style="z-index:0; border-left: 2px solid #{{c.author.namecolor}};" onclick="collapse_comment('{{c.base36id}}')"></span>
 	
 	<div class="comment-body">
 
@@ -147,7 +147,7 @@
 			<div id="comment-edit-{{c.base36id}}" class="d-none comment-write collapsed child">
 				<form id="comment-edit-form-{{c.base36id}}" action="/edit_comment/{{c.base36id}}" method="post" class="input-group" enctype="multipart/form-data"> 
 					<input type="hidden" name="formkey" value="{{v.formkey}}">
-					<textarea id="comment-edit-body-{{c.base36id}}" name="body" form="comment-edit-form-{{c.base36id}}" class="comment-box form-control rounded" id="edit-box-comment-{{c.base36id}}" aria-label="With textarea" placeholder="Add your comment..." rows="3">{{c.body}}</textarea> 
+					<textarea style="z-index:999999;" id="comment-edit-body-{{c.base36id}}" name="body" form="comment-edit-form-{{c.base36id}}" class="comment-box form-control rounded" id="edit-box-comment-{{c.base36id}}" aria-label="With textarea" placeholder="Add your comment..." rows="3">{{c.body}}</textarea> 
 					<div class="comment-format"> 
 						<a href="javascript:void(0)" class="format pl-0"><i class="fas fa-bold" aria-hidden="true" onclick="makeBold('comment-edit-body-{{c.base36id}}')" data-toggle="tooltip" data-placement="bottom" title="Bold"></i></a> 
 						<a href="javascript:void(0)" class="format"><i class="fas fa-italic" aria-hidden="true" onclick="makeItalics('comment-edit-body-{{c.base36id}}')" data-toggle="tooltip" data-placement="bottom" title="Italicize"></i></a> 
@@ -349,7 +349,7 @@
 				<input type="hidden" name="formkey" value="{{v.formkey}}"> 
 				<input type="hidden" name="parent_fullname" value="{{c.fullname}}"> 
 				<input id="reply-form-submission-{{c.fullname}}" type="hidden" name="submission" value="{{c.post.base36id}}"> 
-				<textarea name="body" form="reply-to-t3_{{c.base36id}}" class="comment-box form-control rounded" id="reply-form-body-{{c.fullname}}" aria-label="With textarea" placeholder="Add your comment..." rows="3"></textarea> 
+				<textarea style="z-index:999999;" name="body" form="reply-to-t3_{{c.base36id}}" class="comment-box form-control rounded" id="reply-form-body-{{c.fullname}}" aria-label="With textarea" placeholder="Add your comment..." rows="3"></textarea> 
 				<div class="comment-format" id="comment-format-bar-{{c.base36id}}"> 
 					<label class="btn btn-secondary format d-inline-block m-0">
 						<i class="fas fa-bold" aria-hidden="true" onclick="makeBold('reply-form-body-{{c.fullname}}')" data-toggle="tooltip" data-placement="bottom" title="Bold"></i>
