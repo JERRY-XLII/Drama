@@ -138,7 +138,7 @@ def ban_post(post_id, v):
 		board_id=post.board_id,
 		)
 	g.db.add(ma)
-	return (redirect(post.permalink), post)
+	return "", 204
 
 
 @app.route("/api/unban_post/<post_id>", methods=["POST"])
@@ -166,7 +166,7 @@ def unban_post(post_id, v):
 
 	g.db.add(post)
 
-	return (redirect(post.permalink), post)
+	return "", 204
 
 
 @app.route("/api/distinguish/<post_id>", methods=["POST"])
