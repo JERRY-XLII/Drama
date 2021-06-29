@@ -102,7 +102,7 @@
 	
 	<div class="comment-body">
 
-		<div id="comment-{{c.base36id}}-only" class="{% if comment_info and comment_info.id == c.id %}context{%endif%}{% if c.is_banned %} banned{% endif %}{% if c.deleted_utc	%} deleted{% endif %}">
+		<div id="{% if comment_info and comment_info.id == c.id %}context{%else%}comment-{{c.base36id}}-only{% endif %}" class="{% if comment_info and comment_info.id == c.id %}context{%endif%}{% if c.is_banned %} banned{% endif %}{% if c.deleted_utc	%} deleted{% endif %}">
 
 			<div class="user-info">
 				{% if c.over_18 %}<span class="badge badge-danger text-small-extra mr-1">+18</span> {% endif %}
@@ -228,7 +228,7 @@
 					{% endif %}
 
 					{% endif %}
-					<li class="list-inline-item text-muted d-none d-md-inline-block"><a href="{{c.permalink}}{% if not c.is_top_level %}?context=3{% endif %}"{% if c.author.is_private %} rel="nofollow"{% endif %}><i class="fas fa-book-open"></i>Context</a></li>
+					<li class="list-inline-item text-muted d-none d-md-inline-block"><a href="{{c.permalink}}"{% if c.author.is_private %} rel="nofollow"{% endif %}><i class="fas fa-book-open"></i>Context</a></li>
 					<li class="list-inline-item text-muted d-none d-md-inline-block"><a href="javascript:void(0);" role="button" class="copy-link" data-clipboard-text="{{c.permalink | full_link}}"><i class="fas fa-copy"></i>Copy link</a></li>
 					
 					{% if v and v.admin_level>=3 and request.path.startswith ('/admin') %}
@@ -437,7 +437,7 @@
 
 					<li class="list-group-item"><a href="javascript:void(0);" role="button" class="d-block copy-link" data-dismiss="modal" data-clipboard-text="{{c.permalink | full_link}}"><i class="fas fa-copy"></i><span>Copy link</span></a></li>
 
-					<li class="list-group-item"><a href="{{c.permalink}}{% if not c.is_top_level %}?context=3{% endif %}"{% if c.author.is_private %} rel="nofollow"{% endif %}><i class="fas fa-dna"></i>Context</a></li>
+					<li class="list-group-item"><a href="{{c.permalink}}}"{% if c.author.is_private %} rel="nofollow"{% endif %}><i class="fas fa-dna"></i>Context</a></li>
 					<li class="list-group-item d-none"><a href="#" class="d-block"><i class="fas fa-save"></i>Save</a></li>
 
 					{% if v and v.admin_level==0 and not v.id==c.author_id %}

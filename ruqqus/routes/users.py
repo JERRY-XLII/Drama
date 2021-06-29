@@ -419,7 +419,7 @@ def saved_posts(v, username):
 
 	listing = get_posts(ids, v=v, sort="new")
 
-	return {'html': lambda: render_template("userpage_posts.html",
+	return {'html': lambda: render_template("userpage.html",
 											u=v,
 											v=v,
 											listing=listing,
