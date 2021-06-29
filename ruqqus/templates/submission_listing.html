@@ -211,9 +211,9 @@
 
 							{% if not v.id==p.author_id %}
 								{% if p.is_blocking %}
-								<li class="list-inline-item"><a href="javascript:void(0)" onclick="post('/settings/unblock?username={{p.author.username}}&notoast=1', function(){window.location.reload(true);})"><i class="fas fa-user-slash"></i>Block user</a></li>
+									<li class="list-inline-item"><a href="javascript:void(0)" onclick="post('/settings/unblock?username={{p.author.username}}&notoast=1', function(){window.location.reload(true);})"><i class="fas fa-user-slash"></i>Unblock user</a></li>
 								{% else %}
-								<li class="list-inline-item"><a href="javascript:void(0)" onclick="post('/settings/block?username={{p.author.username}}&notoast=1', function(){window.location.reload(true);})"><i class="fas fa-user-slash"></i>Unblock user</a></li>
+									<li class="list-inline-item"><a href="javascript:void(0)" onclick="post('/settings/block?username={{p.author.username}}&notoast=1', function(){window.location.reload(true);})"><i class="fas fa-user-slash"></i>Block user</a></li>
 								{% endif %}
 							{% endif %}
 
@@ -366,9 +366,9 @@
 
 					{% if v and not v.id==p.author_id %}
 						{% if p.is_blocking %}
-							<button class="list-inline-item"><a href="javascript:void(0)" onclick="post('/settings/unblock?username={{p.author.username}}&notoast=1', function(){window.location.reload(true);})"><i class="fas fa-user-slash"></i>Block user</button>
+							<button class="list-inline-item"><a href="javascript:void(0)" onclick="post('/settings/unblock?username={{p.author.username}}&notoast=1', function(){window.location.reload(true);})"><i class="fas fa-user-slash"></i>Unblock user</button>
 						{% else %}
-							<button class="list-inline-item"><a href="javascript:void(0)" onclick="post('/settings/block?username={{p.author.username}}&notoast=1', function(){window.location.reload(true);})"><i class="fas fa-user-slash"></i>Unblock user</button>
+							<button class="list-inline-item"><a href="javascript:void(0)" onclick="post('/settings/block?username={{p.author.username}}&notoast=1', function(){window.location.reload(true);})"><i class="fas fa-user-slash"></i>Block user</button>
 						{% endif %}
 					{% endif %}
 				</ul>
