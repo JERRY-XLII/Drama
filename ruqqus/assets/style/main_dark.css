@@ -13319,7 +13319,7 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
 		border-radius: 0; }
 
 	#frontpage .posts .card, #userpage .posts .card, #search .posts .card, #guild .posts .card {
-		padding: 7px 15px;
+		padding: 7px 10px;
 		border-width: 0 0 1px 0; }
 
 	#frontpage .posts .card:first-of-type, #userpage .posts .card:first-of-type, #search .posts .card:first-of-type, #guild .posts .card:first-of-type {
