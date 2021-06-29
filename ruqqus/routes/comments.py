@@ -817,7 +817,7 @@ def save_comment(cid, v):
 
 	comment=get_comment(cid)
 
-	new_save=SaveRelationship( user_id=v.id, submission_id=c.id, type=2)
+	new_save=SaveRelationship(user_id=v.id, submission_id=comment.id, type=2)
 
 	g.db.add(new_save)
 
@@ -833,7 +833,7 @@ def unsave_comment(cid, v):
 
 	comment=get_comment(cid)
 
-	save=g.db.query(SaveRelationship).filter_by(user_id=v.id, submission_id=post.id, type=2).first()
+	save=g.db.query(SaveRelationship).filter_by(user_id=v.id, submission_id=comment.id, type=2).first()
 
 	g.db.delete(save)
 
