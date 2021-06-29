@@ -14,14 +14,14 @@
 					<a class="nav-link" href="/@{{u.username}}">Posts</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link active" href="/@{{u.username}}/comments">Comments</a>
+					<a class="nav-link {% if not 'saved' in request.path %}active{% endif %}" href="/@{{u.username}}/comments">Comments</a>
 				</li>
 				{% if u.id == v.id %}
 				<li class="nav-item">
 					<a class="nav-link" href="/@{{u.username}}/saved/posts">Saved Posts</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="/@{{u.username}}/saved/comments">Saved Comments</a>
+					<a class="nav-link {% if 'saved' in request.path %}active{% endif %}" href="/@{{u.username}}/saved/comments">Saved Comments</a>
 				</li>
 				{% endif %}
 			</ul>

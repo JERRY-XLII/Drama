@@ -290,14 +290,14 @@
 		<div class="flex-row box-shadow-bottom d-flex justify-content-center justify-content-md-between align-items-center">
 			<ul class="nav settings-nav">
 				<li class="nav-item">
-					<a class="nav-link active" href="/@{{u.username}}">Posts</a>
+					<a class="nav-link {% if not 'saved' in request.path %}active{% endif %}" href="/@{{u.username}}">Posts</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="/@{{u.username}}/comments">Comments</a>
 				</li>
 				{% if u.id == v.id %}
 				<li class="nav-item">
-					<a class="nav-link" href="/@{{u.username}}/saved/posts">Saved Posts</a>
+					<a class="nav-link {% if 'saved' in request.path %}active{% endif %}" href="/@{{u.username}}/saved/posts">Saved Posts</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="/@{{u.username}}/saved/comments">Saved Comments</a>
@@ -374,14 +374,14 @@
 	<ul class="pagination pagination-sm mb-0">
 		{% if page>1 %}
 		<li class="page-item">
-			<small><a class="page-link" href="?page={{page-1}}" tabindex="-1">Prev</a></small>
+			<small><a class="page-link" href="?page={{page-1}}&sort={{sort}}&t={{t}}" tabindex="-1">Prev</a></small>
 		</li>
 		{% else %}
 		<li class="page-item disabled"><span class="page-link">Prev</span></li>
 		{% endif %}
 		{% if next_exists %}
 		<li class="page-item">
-			<small><a class="page-link" href="?page={{page+1}}">Next</a></small>
+			<small><a class="page-link" href="?page={{page+1}}&sort={{sort}}&t={{t}}">Next</a></small>
 		</li>
 		{% else %}
 		<li class="page-item disabled"><span class="page-link">Next</span></li>

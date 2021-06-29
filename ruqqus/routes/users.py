@@ -419,7 +419,7 @@ def saved_posts(v, username):
 
 	listing = get_posts(ids, v=v, sort="new")
 
-	return {'html': lambda: render_template("userpage_saved_posts.html",
+	return {'html': lambda: render_template("userpage_posts.html",
 											u=v,
 											v=v,
 											listing=listing,
@@ -447,7 +447,7 @@ def saved_comments(v, username):
 	listing = get_comments(ids, v=v, sort="new")
 
 
-	return {'html': lambda: render_template("userpage_saved_comments.html",
+	return {'html': lambda: render_template("userpage_comments.html",
 											u=v,
 											v=v,
 											listing=listing,
