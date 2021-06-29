@@ -24,10 +24,16 @@ def notifications(v):
 	page = int(request.args.get('page', 1))
 	all_ = request.args.get('all', False)
 	sent = request.args.get('sent', False)
+	subscriptions = request.args.get('sent', False)
 	if sent:
 		comments = g.db.query(Comment).filter_by(author=v).filter(Comment.parent_submission==None).order_by(Comment.created_utc.desc()).all()
 		next_exists = (len(comments) == 26)
-		comments = comments[0:25]
+		comments = comments[0:25
+	elif subscriptions:
+		cids = v.subscriptions(page=page, all_=all_)
+		next_exists = (len(cids) == 26)
+		cids = cids[0:25]
+		comments = get_comments(cids, v=v, sort="new", load_parent=True)
 	else:
 		cids = v.notification_commentlisting(page=page, all_=all_)
 		next_exists = (len(cids) == 26)

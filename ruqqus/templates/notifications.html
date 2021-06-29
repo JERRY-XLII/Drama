@@ -30,6 +30,11 @@
         </a>
       </li>
       <li class="nav-item">
+        <a class="nav-link py-3{% if request.full_path=='/notifications?subscriptions=true' %} active{% endif %}" href="/notifications?subscriptions=true">
+          Subscriptions
+        </a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link py-3{% if request.full_path=='/notifications?sent=true' %} active{% endif %}" href="/notifications?sent=true">
           Sent
         </a>

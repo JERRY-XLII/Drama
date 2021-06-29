@@ -13,7 +13,6 @@ from ruqqus.helpers.security import *
 from ruqqus.helpers.lazy import lazy
 import ruqqus.helpers.aws as aws
 from ruqqus.helpers.discord import add_role, delete_role
-#from ruqqus.helpers.alerts import send_notification
 from .votes import Vote
 from .alts import Alt	
 from .titles import Title
@@ -412,11 +411,44 @@ class User(Base, Stndrd, Age_times):
 	def __repr__(self):
 		return f"<User(username={self.username})>"
 
+
+
+	def subscriptions(self, page=1, all_=False):
+
+		notifications = self.notifications.join(Notification.comment).filter(
+			Comment.is_banned == False,
+			Comment.deleted_utc == 0,
+			"has made a new post" in Comment.body,
+			)
+
+		if not all_:
+			notifications = notifications.filter(Notification.read == False)
+
+		notifications = notifications.options(
+			contains_eager(Notification.comment)
+		)
+
+		notifications = notifications.order_by(
+			Notification.id.desc()).offset(25 * (page - 1)).limit(26)
+
+		output = []
+		for x in notifications:
+			x.read = True
+			g.db.add(x)
+			output.append(x.comment_id)
+
+		g.db.commit()
+		return output
+
+
+
 	def notification_commentlisting(self, page=1, all_=False):
 
 		notifications = self.notifications.join(Notification.comment).filter(
 			Comment.is_banned == False,
-			Comment.deleted_utc == 0)
+			Comment.deleted_utc == 0,
+			"has made a new post" not in Comment.body,
+			)
 
 		if not all_:
 			notifications = notifications.filter(Notification.read == False)
