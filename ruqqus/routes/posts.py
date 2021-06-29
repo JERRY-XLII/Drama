@@ -799,7 +799,7 @@ def submit_post(v):
 	else:
 		repost = None
 
-	if repost and request.values.get("no_repost"):
+	if repost:
 		return redirect(repost.permalink)
 
 	if request.files.get('file') and not v.can_submit_image:
