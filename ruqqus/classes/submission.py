@@ -76,9 +76,8 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
 	board_id = Column(Integer, ForeignKey("boards.id"), default=None)
 	original_board_id = Column(Integer, ForeignKey("boards.id"), default=None)
 	over_18 = Column(Boolean, default=False)
-	original_board = relationship("Board", primaryjoin="Board.id==Submission.original_board_id")
-	if not v: voted = 0
-	else: voted = relationship("Vote", primaryjoin="Vote.submission_id==Submission.id and Vote.user_id==v.id")
+	original_board = relationship(
+		"Board", primaryjoin="Board.id==Submission.original_board_id")
 	creation_ip = Column(String(64), default="")
 	mod_approved = Column(Integer, default=None)
 	accepted_utc = Column(Integer, default=0)
@@ -421,7 +420,14 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
 		if "replies" in self.__dict__:
 			data["replies"]=[x.json_core for x in self.replies]
 
+		if "_voted" in self.__dict__:
+			data["voted"] = self._voted
+
 		return data
+
+	@property
+	def voted(self):
+		return self._voted if "_voted" in self.__dict__ else 0
 
 	@property
 	def user_title(self):
