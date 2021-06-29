@@ -146,11 +146,11 @@ def sanitize(text, bio=False, linkgen=False):
 
 	text = text.replace("\ufeff", "")
 
-	if "https://streamable.com/" in sanitized:
-		if "https://streamable.com/e/" not in sanitized: sanitized = sanitized.replace("https://streamable.com/", "https://streamable.com/e/")
-		url = re.search('(https://streamable.com/e/.*?) ', sanitized).group(1)
+	if "https://streamable.com/" in text:
+		if "https://streamable.com/e/" not in text: text = text.replace("https://streamable.com/", "https://streamable.com/e/")
+		url = re.search('(https://streamable.com/e/.*?) ', text).group(1)
 		htmlsource = f'<div style="padding-top:5px; padding-bottom: 30%;"><iframe style="width: 28%; height: 75%; position: absolute;" allowfullscreen="" frameborder="0" src="{url}"></iframe></div>'
-		sanitized = sanitized.replace(url, htmlsource)
+		text = text.replace(url, htmlsource)
 
 	if linkgen:
 		if bio:
