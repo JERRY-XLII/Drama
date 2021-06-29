@@ -273,6 +273,19 @@ def comment_idlist(page=1, v=None, nsfw=False, sort="new", t="all", **kwargs):
 
 	comments = comments.join(posts, Comment.parent_submission == posts.c.id)
 
+	now = int(time.time())
+	if t == 'day':
+		cutoff = now - 86400
+	elif t == 'week':
+		cutoff = now - 604800
+	elif t == 'month':
+		cutoff = now - 2592000
+	elif t == 'year':
+		cutoff = now - 31536000
+	else:
+		cutoff = 0
+	comments = comments.filter(Comment.created_utc >= cutoff)
+
 	if sort == "new":
 		comments = comments.order_by(Comment.created_utc.desc()).all()
 	elif sort == "old":
@@ -299,7 +312,7 @@ def all_comments(v):
 	page = int(request.args.get("page", 1))
 
 	sort=request.args.get("sort", "new")
-	t=request.args.get('t', "all")
+	t=request.args.get("t", "all")
 
 	idlist = comment_idlist(v=v,
 							page=page,
