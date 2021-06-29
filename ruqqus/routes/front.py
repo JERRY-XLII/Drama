@@ -73,13 +73,57 @@ def notifications(v):
 						   render_replies=True,
 						   is_notification_page=True)
 
+
+@app.route("/notifications/posts", methods=["GET"])
+@app.route("/api/v1/notifications/posts", methods=["GET"])
+@auth_desired
+@api("read")
+def notif_posts(v):
+	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
+
+	page = int(request.args.get("page") or 1)
+	page = max(page, 1)
+	following = [x.target_id for x in v.following]
+	
+	ids = g.db.query(Submission.id).options(lazyload('*')).filter_by(is_banned=False, private=False,).filter(Submission.deleted_utc == 0, Submission.author_id.in_(following))
+
+	next_exists = (len(ids) > 25)
+	
+	firstrange = 25 * (page - 1)
+	secondrange = firstrange+26
+	ids = ids[firstrange:secondrange]
+
+	posts = get_posts(ids, sort=sort, v=v)
+	
+	posts2 = []
+	if v and v.hidevotedon:
+		for post in posts:
+			if post.voted == 0:
+				posts2.append(post)
+		posts = posts2
+		
+	return {'html': lambda: render_template("home.html",
+											v=v,
+											listing=posts,
+											next_exists=next_exists,
+											sort=sort,
+											t=t,
+											page=page,
+											CATEGORIES=CATEGORIES
+											),
+			'api': lambda: jsonify({"data": [x.json for x in posts],
+									"next_exists": next_exists
+									}
+								   )
+			}
+
+
 @cache.memoize(timeout=1500)
 def frontlist(v=None, sort="hot", page=1,t="all", ids_only=True, filter_words='', **kwargs):
 
 	# cutoff=int(time.time())-(60*60*24*30)
 
 	posts = g.db.query(Submission).options(lazyload('*')).filter_by(is_banned=False,stickied=False,private=False,).filter(Submission.deleted_utc == 0)
-
 		
 	if v and v.admin_level == 0:
 		blocking = g.db.query(
@@ -181,12 +225,6 @@ def front_all(v):
 
 	sort=request.args.get("sort", defaultsorting)
 	t=request.args.get('t', defaulttime)
-
-	#handle group cookie
-	groups = request.args.get("groups")
-	if groups:
-		session['groupids']=[int(x) for x in groups.split(',')]
-		session.modified=True
 
 	ids = frontlist(sort=sort,
 					page=page,
