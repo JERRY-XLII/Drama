@@ -316,6 +316,8 @@ def all_comments(v):
 	board = get_board(1)
 	return {"html": lambda: render_template("home_comments.html",
 											v=v,
+											sort=sort,
+											t=t,
 											page=page,
 											comments=comments,
 											standalone=True,
