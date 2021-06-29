@@ -141,10 +141,7 @@ def sanitize(text, linkgen=False):
 	text = text.replace("\ufeff", "")
 
 	if linkgen:
-		if bio:
-			sanitized = _clean_bio.clean(text)
-		else:
-			sanitized = _clean_w_links.clean(text)
+		sanitized = _clean_w_links.clean(text)
 
 		#soupify
 		soup = BeautifulSoup(sanitized, features="html.parser")
