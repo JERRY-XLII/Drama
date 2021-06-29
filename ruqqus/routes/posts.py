@@ -960,7 +960,8 @@ def submit_post(v):
 	g.db.add(c)
 	g.db.flush()
 
-	body = random.choice(snappyquotes)
+	if v.id == 995: body = "fuck off carp"
+	else: body = random.choice(snappyquotes)
 	if new_post.url:
 		body += f"\n\n---\n\nSnapshots:\n\n* [archive.org](https://web.archive.org/{urllib.parse.quote(new_post.url)})\n* [archive.today](https://archive.today/?url={urllib.parse.quote(new_post.url)}&run=1) (click to archive)"
 		gevent.spawn(archiveorg,new_post.url)
