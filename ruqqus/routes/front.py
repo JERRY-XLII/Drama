@@ -24,7 +24,7 @@ def notifications(v):
 	page = int(request.args.get('page', 1))
 	all_ = request.args.get('all', False)
 	sent = request.args.get('sent', False)
-	subscriptions = request.args.get('sent', False)
+	subscriptions = request.args.get('subscriptions', False)
 	if sent:
 		comments = g.db.query(Comment).filter_by(author=v).filter(Comment.parent_submission==None).order_by(Comment.created_utc.desc()).all()
 		next_exists = (len(comments) == 26)
