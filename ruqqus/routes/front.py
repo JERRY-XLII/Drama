@@ -28,7 +28,7 @@ def notifications(v):
 	if sent:
 		comments = g.db.query(Comment).filter_by(author=v).filter(Comment.parent_submission==None).order_by(Comment.created_utc.desc()).all()
 		next_exists = (len(comments) == 26)
-		comments = comments[0:25
+		comments = comments[0:25]
 	elif subscriptions:
 		cids = v.subscriptions(page=page, all_=all_)
 		next_exists = (len(cids) == 26)
