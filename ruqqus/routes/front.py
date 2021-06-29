@@ -247,7 +247,7 @@ def random_post(v):
 	return redirect(post.permalink)
 
 @cache.memoize(600)
-def comment_idlist(page=1, v=None, nsfw=False, sort="new", t="all, **kwargs):
+def comment_idlist(page=1, v=None, nsfw=False, sort="new", t="all", **kwargs):
 
 	posts = g.db.query(Submission).options(lazyload('*'))
 
