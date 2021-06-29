@@ -10817,9 +10817,9 @@ ol > li::before {
 
 .settings-nav .nav-link {
 	color: #718096;
-	font-size: 0.91rem;
-    font-weight: 400;
-	padding: 0.75rem 0.5rem;}
+	font-size: 1rem;
+	font-weight: 400;
+	padding: 0.75rem 1rem; }
 
 .post-nav > .nav-item > .nav-link.active {
 	color: #FF66AC; }
