@@ -484,6 +484,8 @@ def settings_block_user(v):
 
 	cache.delete_memoized(frontlist)
 
+	send_notification(user, f"@{v.username} has blocked you!")
+
 	if request.args.get("notoast"): return "", 204
 	return jsonify({"message": f"@{user.username} blocked."})
 
@@ -502,6 +504,8 @@ def settings_unblock_user(v):
 	g.db.delete(x)
 
 	cache.delete_memoized(frontlist)
+
+	send_notification(user, f"@{v.username} has unblocked you!")
 
 	if request.args.get("notoast"): return "", 204
 	return jsonify({"message": f"@{user.username} unblocked."})
