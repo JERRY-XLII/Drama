@@ -413,7 +413,7 @@ class User(Base, Stndrd, Age_times):
 
 
 
-	def subscriptions(self, page=1, all_=False):
+	def notification_subscriptions(self, page=1, all_=False):
 
 		notifications = self.notifications.join(Notification.comment).filter(
 			Comment.is_banned == False,

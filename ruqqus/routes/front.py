@@ -30,7 +30,7 @@ def notifications(v):
 		next_exists = (len(comments) == 26)
 		comments = comments[0:25]
 	elif subscriptions:
-		cids = v.subscriptions(page=page, all_=all_)
+		cids = v.notification_subscriptions(page=page, all_=all_)
 		next_exists = (len(cids) == 26)
 		cids = cids[0:25]
 		comments = get_comments(cids, v=v, sort="new", load_parent=True)
