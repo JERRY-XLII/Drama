@@ -418,7 +418,7 @@ class User(Base, Stndrd, Age_times):
 		notifications = self.notifications.join(Notification.comment).filter(
 			Comment.is_banned == False,
 			Comment.deleted_utc == 0,
-			"a" in Comment.body,
+			"a" in str(Comment.body),
 			)
 
 		if not all_:
