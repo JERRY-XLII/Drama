@@ -419,21 +419,13 @@ class User(Base, Stndrd, Age_times):
 
 	def notification_subscriptions(self, page=1, all_=False):
 
-		notifications = self.notifications.join(Notification.comment).filter(
-			Comment.is_banned == False,
-			Comment.deleted_utc == 0,
-			Comment.author_id == 2360,
-			)
-
-		if not all_:
-			notifications = notifications.filter(Notification.read == False)
+		notifications = self.notifications.join(Notification.comment).filter(Comment.author_id == 2360)
 
 		notifications = notifications.options(
 			contains_eager(Notification.comment)
 		)
 
-		notifications = notifications.order_by(
-			Notification.id.desc()).offset(25 * (page - 1)).limit(26)
+		notifications = notifications.order_by(Notification.id.desc()).offset(25 * (page - 1)).limit(26)
 
 		output = []
 		for x in notifications:
@@ -443,8 +435,6 @@ class User(Base, Stndrd, Age_times):
 
 		g.db.commit()
 		return output
-
-
 
 	def notification_commentlisting(self, page=1, all_=False):
 
