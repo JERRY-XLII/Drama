@@ -418,7 +418,7 @@ class User(Base, Stndrd, Age_times):
 		notifications = self.notifications.join(Notification.comment).filter(
 			Comment.is_banned == False,
 			Comment.deleted_utc == 0,
-			Comment.author_id == 2360,
+			"has made a new post" in str(Comment.body),
 			)
 
 		if not all_:
@@ -447,7 +447,7 @@ class User(Base, Stndrd, Age_times):
 		notifications = self.notifications.join(Notification.comment).filter(
 			Comment.is_banned == False,
 			Comment.deleted_utc == 0,
-			Comment.author_id != 2360,
+			"has made a new post" not in str(Comment.body),
 			)
 
 		if not all_:
