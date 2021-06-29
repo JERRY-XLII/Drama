@@ -100,7 +100,7 @@ def mod_invite_username(bid, board, v):
 			)
 
 		text = f"You have been invited to become an admin. You can [click here](/badmins) and accept this invitation. Or, if you weren't expecting this, you can ignore it."
-		send_notification(1046, user, text)
+		send_notification(user, text)
 
 		g.db.add(x)
 

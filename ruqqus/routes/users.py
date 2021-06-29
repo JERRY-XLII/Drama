@@ -63,7 +63,7 @@ def message2(v, username):
 	if user.is_blocking: return jsonify({"error": "You're blocking this user."}), 403
 	if user.is_blocked: return jsonify({"error": "This user is blocking you."}), 403
 	message = request.form.get("message", "")
-	send_notification(v.id, user, message)
+	send_pm(v.id, user, message)
 	return redirect('/notifications?sent=true')
 
 @app.route("/2faqr/<secret>", methods=["GET"])
@@ -368,7 +368,7 @@ def follow_user(username, v):
 	g.db.add(target)
 	g.db.commit()
 
-	send_notification(1046, target, f"@{v.username} has followed you!")
+	send_notification(target, f"@{v.username} has followed you!")
 	return "", 204
 
 

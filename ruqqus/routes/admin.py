@@ -180,7 +180,7 @@ def badge_grant_post(v):
 	\n\n{new_badge.name}
 	"""
 
-	send_notification(1046, user, text)
+	send_notification(user, text)
 
 	return redirect(user.permalink)
 

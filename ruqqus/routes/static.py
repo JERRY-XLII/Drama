@@ -34,7 +34,7 @@ def submit_contact(v):
 
 	admins = g.db.query(User).filter(User.admin_level > 0).all()
 
-	for x in admins: send_notification(v.id, x, message)
+	for x in admins: send_pm(v.id, x, message)
 
 	return render_template("contact.html", v=v, msg="Your message has been sent.")
 
