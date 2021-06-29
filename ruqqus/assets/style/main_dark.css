@@ -10518,12 +10518,12 @@ body.using-mouse :focus {
 	display: none; }
 
 #thread .custom-gutters {
-	padding: 0 15px;
+	padding: 0;
 	background-color: #ffffff; }
 
 .custom-gutters {
-	padding-left: 15px;
-	padding-right: 15px; }
+	padding-left: 0;
+	padding-right: 0; }
 
 .sticky {
 	position: -webkit-sticky;

@@ -10861,7 +10861,7 @@ body.using-mouse :focus {
 	display: none; }
 
 #thread .custom-gutters {
-	padding: 0 15px; }
+	padding: 0; }
 
 .custom-gutters {
 	padding-left: 0;
