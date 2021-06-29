@@ -34,13 +34,17 @@ _allowed_tags = tags = ['b',
 						'td',
 						'tr',
 						'ul',
-						'marquee'
+						'marquee',
+						'iframe',
+						'div'
 						]
 
 _allowed_tags_with_links = _allowed_tags + ["a",
 											"img",
 											'span',
-									        'marquee'
+									        'marquee',
+											'iframe',
+											'div'
 											]
 
 _allowed_tags_in_bio = [
@@ -56,7 +60,9 @@ _allowed_tags_in_bio = [
 	'strong',
 	'sub',
 	'sup',
-	'marquee'
+	'marquee',
+	'iframe',
+	'div'
 ]
 
 _allowed_attributes = {
@@ -139,6 +145,12 @@ _clean_bio = bleach.Cleaner(tags=_allowed_tags_in_bio,
 def sanitize(text, bio=False, linkgen=False):
 
 	text = text.replace("\ufeff", "")
+
+	if "https://streamable.com/" in sanitized:
+		if "https://streamable.com/e/" not in sanitized: sanitized = sanitized.replace("https://streamable.com/", "https://streamable.com/e/")
+		url = re.search('(https://streamable.com/e/.*?) ', sanitized).group(1)
+		htmlsource = f'<div style="padding-top:5px; padding-bottom: 30%;"><iframe style="width: 28%; height: 75%; position: absolute;" allowfullscreen="" frameborder="0" src="{url}"></iframe></div>'
+		sanitized = sanitized.replace(url, htmlsource)
 
 	if linkgen:
 		if bio:
@@ -224,12 +236,5 @@ def sanitize(text, bio=False, linkgen=False):
 	for i in re.finditer(':(.{1,30}?):', sanitized):
 		if os.path.isfile(f'/d/ruqqus/assets/images/emojis/{i.group(1)}.gif'):
 			sanitized = sanitized.replace(f':{i.group(1)}:', f'<img data-toggle="tooltip" title="{i.group(1)}" delay="0" height=20 src="/assets/images/emojis/{i.group(1)}.gif"<span>')
-
-
-	if "https://streamable.com/" in sanitized:
-		if "https://streamable.com/e/" not in sanitized: sanitized = sanitized.replace("https://streamable.com/", "https://streamable.com/e/")
-		url = re.search('(https://streamable.com/e/.*?) ', sanitized).group(1)
-		htmlsource = f'<div style="padding-top:5px; padding-bottom: 30%;"><iframe style="width: 28%; height: 75%; position: absolute;" allowfullscreen="" frameborder="0" src="{url}"></iframe></div>'
-		sanitized = sanitized.replace(url, htmlsource)
 
 	return sanitized
