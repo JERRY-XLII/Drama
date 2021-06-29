@@ -10948,7 +10948,7 @@ ol > li::before {
 	border-radius: 0.2rem; }
 
 .btn-sm, .btn-group-sm > .btn {
-	padding: 0.375rem 0.75rem;
+	padding: 0.375rem 0.5rem;
 	font-size: 12px; }
 
 .btn-lg, .btn-group-lg > .btn {
@@ -11158,10 +11158,10 @@ ol > li::before {
 
 .settings-nav .nav-link {
 	color: #8f8f90;
-	font-size: 1rem;
-	font-weight: 400;
-	padding: 0.75rem 1rem; }
-
+	font-size: 0.91rem;
+    font-weight: 400;
+	padding: 0.75rem 0.5rem;}
+	
 .post-nav > .nav-item > .nav-link.active {
 	color: #FF66AC; }
 
