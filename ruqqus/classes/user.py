@@ -418,7 +418,7 @@ class User(Base, Stndrd, Age_times):
 		notifications = self.notifications.join(Notification.comment).filter(
 			Comment.is_banned == False,
 			Comment.deleted_utc == 0,
-			Comment.body.ilike('has made a new post')))
+			Comment.body.ilike('has made a new post')
 			)
 
 		if not all_:
