@@ -85,7 +85,7 @@
 		{% else %}
 			<span class="font-weight-bold"><a href="{{c.post.permalink}}">{{c.post.title | safe}}</a></span>
 		{% endif %}
-	{% elif c.author_id==1046 %}
+	{% elif c.author_id==1046 or c.author_id==2360 %}
 	<span class="font-weight-bold">Drama Notification</span>
 	{% elif c.author_id==v.id and c.sentto %}
 	<span class="font-weight-bold">To <a  href="/@{{c.sentto}}">@{{c.sentto}}</a></span>
@@ -139,7 +139,7 @@
 
 			<div id="comment-text-{{c.base36id}}" class="comment-text mb-0">
 				{{c.body_html | safe}}
-				{% if not c.parent_submission and c.author_id!=1046 and c.author_id!=v.id %}<a href="/@{{c.author.username}}/message" class="btn btn-primary">Reply</a>{% endif %}
+				{% if not c.parent_submission and c.author_id!=1046 and c.author_id!=2360 and c.author_id!=v.id %}<a href="/@{{c.author.username}}/message" class="btn btn-primary">Reply</a>{% endif %}
 			</div>
 			
 			{% if c.parent_submission %}
