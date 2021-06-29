@@ -225,7 +225,7 @@ def sanitize(text, bio=False, linkgen=False):
 		if os.path.isfile(f'/d/ruqqus/assets/images/emojis/{i.group(1)}.gif'):
 			sanitized = sanitized.replace(f':{i.group(1)}:', f'<img data-toggle="tooltip" title="{i.group(1)}" delay="0" height=20 src="/assets/images/emojis/{i.group(1)}.gif"<span>')
 
-	if "https://streamable.com/" in sanitized:
+	if '" rel="nofollow noopener" target="_blank">https://streamable.com/' in sanitized:
 		if "https://streamable.com/e/" not in sanitized: sanitized = sanitized.replace("https://streamable.com/", "https://streamable.com/e/")
 		url = re.search('https://streamable.com/e/.*', sanitized).group()
 		htmlsource = f'<div style="padding-top:5px; padding-bottom: 30%;"><iframe style="width: 28%; height: 75%; position: absolute;" allowfullscreen="" frameborder="0" src="{url}"></iframe></div>'
