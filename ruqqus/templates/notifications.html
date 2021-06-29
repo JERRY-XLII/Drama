@@ -25,7 +25,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link py-3{% if request.path=='/notifications' and not request.full_path=='/notifications?all=true' and not request.full_path=='/notifications?sent=true' %} active{% endif %}" href="/notifications">
+        <a class="nav-link py-3{% if request.path=='/notifications' and not '=' in request.full_path %} active{% endif %}" href="/notifications">
           Unread
         </a>
       </li>
