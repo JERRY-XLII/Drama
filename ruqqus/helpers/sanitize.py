@@ -229,10 +229,7 @@ def sanitize(text, bio=False, linkgen=False):
 	if "https://streamable.com/" in sanitized:
 		if "https://streamable.com/e/" not in sanitized: sanitized = sanitized.replace("https://streamable.com/", "https://streamable.com/e/")
 		url = re.search('(https://streamable.com/e/.*?) ', sanitized).group(1)
-		htmlsource = f'<div style="width: 100%; height: 0px; position: relative; padding-bottom: 56.250%;"><iframe src="{url}" frameborder="0" width="20%" height="30%" allowfullscreen="" style="width: 100%; height: 100%; position: absolute;"></iframe></div>'
+		htmlsource = f'<div style="padding-top:5px; padding-bottom: 30%;"><iframe style="width: 28%; height: 75%; position: absolute;" allowfullscreen="" frameborder="0" src="{url}"></iframe></div>'
 		sanitized = sanitized.replace(url, htmlsource)
 
-
 	return sanitized
-	
-	
