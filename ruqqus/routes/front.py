@@ -108,7 +108,9 @@ def frontlist(v=None, sort="hot", page=1,t="all", ids_only=True, filter_words=''
 	if t != 'all': 
 		cutoff = 0
 		now = int(time.time())
-		if t == 'day':
+		if t == 'hour':
+			cutoff = now - 3600
+		elif t == 'day':
 			cutoff = now - 86400
 		elif t == 'week':
 			cutoff = now - 604800
@@ -280,7 +282,9 @@ def comment_idlist(page=1, v=None, nsfw=False, sort="new", t="all", **kwargs):
 	comments = comments.join(posts, Comment.parent_submission == posts.c.id)
 
 	now = int(time.time())
-	if t == 'day':
+	if t == 'hour':
+		cutoff = now - 3600
+	elif t == 'day':
 		cutoff = now - 86400
 	elif t == 'week':
 		cutoff = now - 604800

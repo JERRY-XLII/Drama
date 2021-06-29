@@ -212,7 +212,9 @@ class User(Base, Stndrd, Age_times):
 			submissions = submissions.filter_by(is_banned=False)
 
 		now = int(time.time())
-		if t == 'day':
+		if t == 'hour':
+			cutoff = now - 3600
+		elif t == 'day':
 			cutoff = now - 86400
 		elif t == 'week':
 			cutoff = now - 604800
@@ -275,7 +277,9 @@ class User(Base, Stndrd, Age_times):
 		comments = comments.options(contains_eager(Comment.post))
 
 		now = int(time.time())
-		if t == 'day':
+		if t == 'hour':
+			cutoff = now - 3600
+		elif t == 'day':
 			cutoff = now - 86400
 		elif t == 'week':
 			cutoff = now - 604800

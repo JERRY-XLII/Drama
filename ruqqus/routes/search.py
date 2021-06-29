@@ -138,7 +138,9 @@ def searchlisting(criteria, v=None, page=1, t="None", sort="top", b=None):
 
 	if t:
 		now = int(time.time())
-		if t == 'day':
+		if t == 'hour':
+			cutoff = now - 3600
+		elif t == 'day':
 			cutoff = now - 86400
 		elif t == 'week':
 			cutoff = now - 604800
@@ -201,7 +203,9 @@ def searchcommentlisting(criteria, v=None, page=1, t="None", sort="top"):
 
 	if t:
 		now = int(time.time())
-		if t == 'day':
+		if t == 'hour':
+			cutoff = now - 3600
+		elif t == 'day':
 			cutoff = now - 86400
 		elif t == 'week':
 			cutoff = now - 604800

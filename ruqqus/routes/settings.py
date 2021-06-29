@@ -145,7 +145,7 @@ def settings_profile_post(v):
 
 	defaulttime = request.values.get("defaulttime")
 	if defaulttime:
-		if defaulttime in ["day", "week", "month", "year", "all"]:
+		if defaulttime in ["hour", "day", "week", "month", "year", "all"]:
 			v.defaulttime = defaulttime
 			updated = True
 		else:
