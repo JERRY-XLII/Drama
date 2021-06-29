@@ -189,7 +189,7 @@ def edit_post(pid, v):
 		if badlink:
 			if badlink.autoban:
 				text = "Your Drama account has been suspended for 1 day for the following reason:\n\n> Too much spam!"
-				send_notification(v, text)
+				send_notification(1046, v, text)
 				v.ban(days=1, reason="spam")
 
 				return redirect('/notifications')
@@ -212,7 +212,7 @@ def edit_post(pid, v):
 		user = g.db.query(User).filter_by(username=username).first()
 		if user and not v.any_block_exists(user) and user.id != v.id: notify_users.add(user)
 		
-	for x in notify_users: send_notification(x, f"@{v.username} has mentioned you: https://rdrama.net{p.permalink}")
+	for x in notify_users: send_notification(1046, x, f"@{v.username} has mentioned you: https://rdrama.net{p.permalink}")
 
 	return redirect(p.permalink)
 
@@ -656,7 +656,7 @@ def submit_post(v):
 	if max(len(similar_urls), len(similar_posts)) >= threshold:
 
 		text = "Your Drama account has been suspended for 1 day for the following reason:\n\n> Too much spam!"
-		send_notification(v, text)
+		send_notification(1046, v, text)
 
 		v.ban(reason="Spamming.",
 			  days=1)
@@ -766,7 +766,7 @@ def submit_post(v):
 		if badlink:
 			if badlink.autoban:
 				text = "Your Drama account has been suspended for 1 day for the following reason:\n\n> Too much spam!"
-				send_notification(v, text)
+				send_notification(1046, v, text)
 				v.ban(days=1, reason="spam")
 
 				return redirect('/notifications')
@@ -927,13 +927,13 @@ def submit_post(v):
 		user = g.db.query(User).filter_by(username=username).first()
 		if user and not v.any_block_exists(user) and user.id != v.id: notify_users.add(user)
 		
-	for x in notify_users: send_notification(x, f"@{v.username} has mentioned you: https://rdrama.net{new_post.permalink}")
+	for x in notify_users: send_notification(1046, x, f"@{v.username} has mentioned you: https://rdrama.net{new_post.permalink}")
 		
 
 	try:
 		for follow in v.followers:
 			user = get_account(follow.user_id)
-			send_notification(user, f"@{v.username} has made a new post: https://rdrama.net{new_post.permalink}")
+			send_notification(2360, user, f"@{v.username} has made a new post: [{title}](https://rdrama.net{new_post.permalink})")
 	except Exception as e:
 		print(e)
 		pass

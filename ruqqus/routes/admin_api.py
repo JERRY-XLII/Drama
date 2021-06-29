@@ -59,7 +59,7 @@ def ban_user(user_id, v):
 		if x.admin_level > 0: break
 		x.ban(admin=v, reason=reason)
 
-	send_notification(user, text)
+	send_notification(1046, user, text)
 	
 	ma=ModAction(
 		kind="exile_user",
@@ -91,7 +91,7 @@ def unban_user(user_id, v):
 		if x.admin_level == 0:
 			x.unban()
 
-	send_notification(user,
+	send_notification(1046, user,
 					  "Your Drama account has been reinstated. Please carefully review and abide by the [rules](/post/2510) to ensure that you don't get suspended again.")
 
 	ma=ModAction(

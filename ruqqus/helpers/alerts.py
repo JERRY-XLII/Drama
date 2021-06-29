@@ -6,14 +6,14 @@ from .markdown import *
 from .sanitize import *
 
 
-def send_notification(user, text):
+def send_notification(vid, user, text):
 
 	with CustomRenderer() as renderer:
 		text_html = renderer.render(mistletoe.Document(text))
 
 	text_html = sanitize(text_html, linkgen=True)
 
-	new_comment = Comment(author_id=1046,
+	new_comment = Comment(author_id=vid,
 						  parent_submission=None,
 						  distinguish_level=6,
 						  is_offensive=False
