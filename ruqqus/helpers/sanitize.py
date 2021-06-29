@@ -148,7 +148,7 @@ def sanitize(text, bio=False, linkgen=False):
 
 	if "https://streamable.com/" in text:
 		if "https://streamable.com/e/" not in text: text = text.replace("https://streamable.com/", "https://streamable.com/e/")
-		url = re.search('(https://streamable.com/e/.*?) ', text).group(1)
+		url = re.search('https://streamable.com/e/.*', text).group()
 		htmlsource = f'<div style="padding-top:5px; padding-bottom: 30%;"><iframe style="width: 28%; height: 75%; position: absolute;" allowfullscreen="" frameborder="0" src="{url}"></iframe></div>'
 		text = text.replace(url, htmlsource)
 
