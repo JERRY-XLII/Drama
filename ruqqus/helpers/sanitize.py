@@ -136,7 +136,7 @@ _clean_bio = bleach.Cleaner(tags=_allowed_tags_in_bio,
 							)
 
 
-def sanitize(text, bio=False, linkgen=False, bio=False):
+def sanitize(text, bio=False, linkgen=False):
 
 	text = text.replace("\ufeff", "")
 
