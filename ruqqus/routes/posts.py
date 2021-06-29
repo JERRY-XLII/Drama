@@ -1115,10 +1115,7 @@ def save_post(pid, v):
 
 	post=get_post(pid)
 
-	new_save=SaveRelationship(
-		user_id=v.id,
-		submission_id=post.id
-		type=1)
+	new_save=SaveRelationship(user_id=v.id, submission_id=post.id, type=1)
 
 	g.db.add(new_save)
 
