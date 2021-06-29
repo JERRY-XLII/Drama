@@ -928,6 +928,15 @@ def submit_post(v):
 		if user and not v.any_block_exists(user) and user.id != v.id: notify_users.add(user)
 		
 	for x in notify_users: send_notification(x, f"@{v.username} has mentioned you: https://rdrama.net{new_post.permalink}")
+		
+
+	try:
+		for follow in v.followers:
+			user = get_account(follow.user_id)
+			send_notification(user, f"@{v.username} has made a new post: https://rdrama.net{new_post.permalink}")
+	except Exception as e:
+		print(e)
+		pass
 
 	new_post.upvotes = new_post.ups
 	new_post.downvotes = new_post.downs
