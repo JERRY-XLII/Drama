@@ -176,6 +176,12 @@
 
 					 <button class="btn btn-link btn-block btn-lg text-left text-muted"><a href="/votes?link=https://rdrama.net{{p.permalink}}"><i class="fas fa-arrows-v text-center text-muted mr-3"></i>Votes</a></button>
 
+					{% if v and p.id in v.saved_idlist() %}
+						<button class="btn btn-link btn-block btn-lg text-left text-muted"><a href="javascript:void(0)" onclick="post('/unsave_post/{{p.base36id}}', function(){window.location.reload(true);})"><i class="fas fa-save"></i>Unsave</a></button>
+					{% else %}
+						<button class="btn btn-link btn-block btn-lg text-left text-muted"><a href="javascript:void(0)" onclick="post('/save_post/{{p.base36id}}', function(){window.location.reload(true);})"><i class="fas fa-save"></i>Save</a></button>
+					{% endif %}
+
 					{% if v and (v.id==p.author_id or v.admin_level>=3 or p.is_guildmaster('content')) %}
 					{% if not p.board.over_18 %}
 					<button class="btn btn-link btn-block btn-lg text-left text-muted" onclick="post('/api/toggle_post_nsfw/{{p.base36id}}', function(){window.location.reload(true);})"><i class="far fa-eye-evil text-center text-muted mr-3"></i>Toggle +18</button>
@@ -348,6 +354,12 @@
 						<li class="list-inline-item"><a href="/votes?link=https://rdrama.net{{p.permalink}}"><i class="fas fa-arrows-v"></i>Votes</a></li>
 
 						<li class="list-inline-item"><a href="javascript:void(0);" role="button" class="copy-link" data-clipboard-text="{{p.permalink | full_link}}"><i class="fas fa-copy"></i>Copy link</a></li>
+
+						{% if v and p.id in v.saved_idlist() %}
+						<li class="list-inline-item"><a href="javascript:void(0)" onclick="post('/unsave_post/{{p.base36id}}', function(){window.location.reload(true);})"><i class="fas fa-save"></i>Unsave</a></li>
+						{% else %}
+						<li class="list-inline-item"><a href="javascript:void(0)" onclick="post('/save_post/{{p.base36id}}', function(){window.location.reload(true);})"><i class="fas fa-save"></i>Save</a></li>
+						{% endif %}
 
 						{% if v and v.admin_level==0 and not v.id==p.author_id %}
 						<li class="list-inline-item"><a href="javascript:void(0)" data-toggle="modal" data-dismiss="modal" data-target="#reportPostModal" onclick="report_postModal('{{p.base36id}}', '{{p.author.username}}','{{p.board.name}}')"><i class="fas fa-flag"></i>Flag</a></li>

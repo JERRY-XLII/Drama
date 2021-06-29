@@ -808,3 +808,33 @@ def mod_toggle_comment_pin(bid, cid, board, v):
 	html=str(BeautifulSoup(html, features="html.parser").find(id=f"comment-{comment.base36id}-only"))
 
 	return jsonify({"html":html})
+	
+	
+@app.route("/save_comment/<cid>", methods=["POST"])
+@auth_required
+@validate_formkey
+def save_comment(cid, v):
+
+	comment=get_comment(cid)
+
+	new_save=SaveRelationship( user_id=v.id, submission_id=c.id, type=2)
+
+	g.db.add(new_save)
+
+	try: g.db.flush()
+	except: abort(422)
+
+	return "", 204
+
+@app.route("/unsave_comment/<cid>", methods=["POST"])
+@auth_required
+@validate_formkey
+def unsave_comment(cid, v):
+
+	comment=get_comment(cid)
+
+	save=g.db.query(SaveRelationship).filter_by(user_id=v.id, submission_id=post.id, type=2).first()
+
+	g.db.delete(save)
+
+	return "", 204

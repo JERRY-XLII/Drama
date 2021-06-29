@@ -1117,14 +1117,13 @@ def save_post(pid, v):
 
 	new_save=SaveRelationship(
 		user_id=v.id,
-		submission_id=post.id)
+		submission_id=post.id
+		type=1)
 
 	g.db.add(new_save)
 
-	try:
-		g.db.flush()
-	except:
-		abort(422)
+	try: g.db.flush()
+	except: abort(422)
 
 	return "", 204
 
@@ -1135,8 +1134,8 @@ def unsave_post(pid, v):
 
 	post=get_post(pid)
 
-	save=g.db.query(SaveRelationship).filter_by(user_id=v.id, submission_id=post.id).first()
+	save=g.db.query(SaveRelationship).filter_by(user_id=v.id, submission_id=post.id, type=1).first()
 
 	g.db.delete(save)
-
+	
 	return "", 204

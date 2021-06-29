@@ -611,3 +611,4 @@ class SaveRelationship(Base, Stndrd):
 	id=Column(Integer, primary_key=true)
 	user_id=Column(Integer, ForeignKey("users.id"))
 	submission_id=Column(Integer, ForeignKey("submissions.id"))
+	type=Column(Integer)

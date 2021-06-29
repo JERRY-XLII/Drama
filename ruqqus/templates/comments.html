@@ -214,6 +214,12 @@
 
 					<li class="list-inline-item text-muted d-none d-md-inline-block"><a href="/votes?link=https://rdrama.net{{c.permalink}}"><i class="fas fa-arrows-v"></i>Votes</a></li>
 
+					{% if v and c.id in v.saved_idlist() %}
+						<li class="list-inline-item text-muted d-none d-md-inline-block"><a href="javascript:void(0)" onclick="post('/unsave_comment/{{c.base36id}}', function(){window.location.reload(true);})"><i class="fas fa-save"></i>Unsave</a></li>
+					{% else %}
+						<li class="list-inline-item text-muted d-none d-md-inline-block"><a href="javascript:void(0)" onclick="post('/save_comment/{{c.base36id}}', function(){window.location.reload(true);})"><i class="fas fa-save"></i>Save</a></li>
+					{% endif %}
+
 					{% if v %}
 					{% if standalone or is_allowed_to_comment %}
 					<li class="list-inline-item text-muted"><a href="javascript:void(0)" onclick="document.getElementById('reply-to-{{c.base36id}}').classList.remove('d-none')"><i class="fas fa-reply"
@@ -424,6 +430,12 @@
 				<ul class="list-group comment-actions">
 
 					<li class="list-group-item"><a href="/votes?link=https://rdrama.net{{c.permalink}}"><i class="fas fa-arrows-v"></i>Votes</a></li>
+
+					{% if v and c.id in v.saved_idlist() %}
+						<li class="list-inline-item"><a href="javascript:void(0)" onclick="post('/unsave_comment/{{c.base36id}}', function(){window.location.reload(true);})"><i class="fas fa-save"></i>Unsave</a></li>
+					{% else %}
+						<li class="list-inline-item"><a href="javascript:void(0)" onclick="post('/save_comment/{{c.base36id}}', function(){window.location.reload(true);})"><i class="fas fa-save"></i>Save</a></li>
+					{% endif %}
 
 					<li class="list-group-item"><a href="javascript:void(0);" role="button" class="d-block copy-link" data-dismiss="modal" data-clipboard-text="{{c.permalink | full_link}}"><i class="fas fa-copy"></i><span>Copy link</span></a></li>
 
