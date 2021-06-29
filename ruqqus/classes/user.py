@@ -820,33 +820,12 @@ class User(Base, Stndrd, Age_times):
 																		   deleted_utc=0
 																		   )
 
-		if not self.over_18:
-			posts = posts.filter_by(over_18=False)
-
-
 		saved=g.db.query(SaveRelationship.submission_id).filter(SaveRelationship.user_id==self.id).subquery()
 		posts=posts.filter(Submission.id.in_(saved))
 
 
 
-		if self.admin_level < 4:
-			# admins can see everything
-
-			m = g.db.query(
-				ModRelationship.board_id).filter_by(
-				user_id=self.id,
-				invite_rescinded=False).subquery()
-			c = g.db.query(
-				ContributorRelationship.board_id).filter_by(
-				user_id=self.id).subquery()
-			posts = posts.filter(
-				or_(
-					Submission.author_id == self.id,
-					Submission.post_public == True,
-					Submission.board_id.in_(m),
-					Submission.board_id.in_(c)
-				)
-			)
+		if self.admin_level == 0:
 
 			blocking = g.db.query(
 				UserBlock.target_id).filter_by(
@@ -863,6 +842,32 @@ class User(Base, Stndrd, Age_times):
 		posts=posts.order_by(Submission.created_utc.desc())
 		
 		return [x[0] for x in posts.offset(25 * (page - 1)).limit(26).all()]
+
+
+
+	def saved_comment_idlist(self, page=1):
+
+		comments = g.db.query(Comment.id).options(lazyload('*')).filter_by(is_banned=False, deleted_utc=0)
+
+		saved=g.db.query(SaveRelationship.submission_id).filter(SaveRelationship.user_id==self.id).subquery()
+		comments=comments.filter(Comment.id.in_(saved))
+
+		if self.admin_level == 0:
+			blocking = g.db.query(
+				UserBlock.target_id).filter_by(
+				user_id=self.id).subquery()
+			blocked = g.db.query(
+				UserBlock.user_id).filter_by(
+				target_id=self.id).subquery()
+
+			comments = comments.filter(
+				Comment.author_id.notin_(blocking),
+				Comment.author_id.notin_(blocked)
+			)
+
+		comments=comments.order_by(Comment.created_utc.desc())
+		
+		return [x[0] for x in comments.offset(25 * (page - 1)).limit(26).all()]
 
 
 
