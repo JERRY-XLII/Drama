@@ -536,8 +536,8 @@ pre {
 
 .container {
 	width: 100%;
-	padding-right: 15px;
-	padding-left: 15px;
+	padding-right: 0;
+	padding-left: 0;
 	margin-right: auto;
 	margin-left: auto; }
 	@media (min-width: 576px) {
@@ -575,8 +575,8 @@ pre {
 .row {
 	display: flex;
 	flex-wrap: wrap;
-	margin-right: -15px;
-	margin-left: -15px; }
+	margin-right: 0;
+	margin-left: 0; }
 
 .no-gutters {
 	margin-right: 0;
