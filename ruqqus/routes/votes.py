@@ -37,7 +37,7 @@ def api_vote_post(post_id, x, v):
 			Vote.created_utc > (int(time.time())-3600), 
 			Vote.vote_type==-1
 			).count()
-		if count >=15:
+		if count >=15 and v.admin_level==0:
 			return jsonify({"error": "You're doing that too much. Try again later."}), 403
 
 	post = get_post(post_id)
