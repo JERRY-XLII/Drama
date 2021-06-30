@@ -149,7 +149,7 @@ def edit_post(pid, v):
 		abort(403)
 
 	body = request.form.get("body", "")
-	#body=preprocess(body)
+	for i in re.finditer('^(https:\/\/.*\.(png|jpg|jpeg|gif))', body, re.MULTILINE): body = body.replace(i.group(1), f'![]({i.group(1)})')
 	with CustomRenderer() as renderer:
 		body_md = renderer.render(mistletoe.Document(body))
 	body_html = sanitize(body_md, linkgen=True)
@@ -711,9 +711,7 @@ def submit_post(v):
 				}
 
 	# render text
-
-	#body=preprocess(body)
-
+	for i in re.finditer('^(https:\/\/.*\.(png|jpg|jpeg|gif))', body, re.MULTILINE): body = body.replace(i.group(1), f'![]({i.group(1)})')
 	with CustomRenderer() as renderer:
 		body_md = renderer.render(mistletoe.Document(body))
 	body_html = sanitize(body_md, linkgen=True)
