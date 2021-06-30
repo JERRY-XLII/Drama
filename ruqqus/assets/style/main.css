@@ -10796,7 +10796,7 @@ html {
 		font-family: 'Inter var', sans-serif; } }
 body {
 	color: #CFCFCF;
-	padding-top: 49px;
+	padding-top: 48px;
 	background-color: #000000;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale; }
@@ -10827,7 +10827,7 @@ body.using-mouse :focus {
 	background-color: #000000; }
 
 #page {
-	padding-top: 49px;
+	padding-top: 48px;
 	background-color: #000000; }
 
 #article {
@@ -11733,9 +11733,9 @@ a:hover .link-arrow {
 .sidebar.sidebar-left {
 	position: -webkit-sticky;
 	position: sticky;
-	top: 49px;
+	top: 48px;
 	z-index: 1000;
-	height: calc(100vh - 49px);
+	height: calc(100vh - 48px);
 	overflow-y: auto;
 	overflow-x: hidden;
 	background-color: #000000 !important; }
@@ -13652,7 +13652,7 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
 
 @media (max-width: 991.98px) {
 	#frontpage, #search {
-		padding-top: 49px; } }
+		padding-top: 48px; } }
 @media (max-width: 767.98px) {
 	html {
 		font-size: 14px; }
@@ -13661,7 +13661,7 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
 		max-width: none; }
 
 	body, #settings, #notifications, #submit {
-		padding-top: 49px;
+		padding-top: 48px;
 		background-color: #000000; }
 
 	#thread, #userpage {

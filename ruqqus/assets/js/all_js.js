@@ -1395,15 +1395,15 @@ window.onload = function () {
 
 	if (topBar != null && dropdown != null) {
 		if (prevScrollpos > currentScrollPos) {
-			topBar.style.top = "49px";
+			topBar.style.top = "48px";
 			navbar.classList.remove("shadow");
 		} 
 		else if (currentScrollPos <= 125) {
-			topBar.style.top = "49px";
+			topBar.style.top = "48px";
 			navbar.classList.remove("shadow");
 		}
 		else {
-			topBar.style.top = "-49px";
+			topBar.style.top = "-48px";
 			dropdown.classList.remove('show');
 			navbar.classList.add("shadow");
 		}
