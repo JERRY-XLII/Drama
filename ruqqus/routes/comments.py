@@ -250,7 +250,7 @@ def api_comment(v):
 	if not body and not request.files.get('file'): return jsonify({"error":"You need to actually write something!"}), 400
 	
 	for i in re.finditer('^https:\/\/.*\.(png|jpg|jpeg|gif)', body, re.MULTILINE):
-		body = body.replace(group(1), f'![]({group()})')
+		body = body.replace(i.group(1), f'![]({i.group()})')
 	
 	with CustomRenderer(post_id=parent_id) as renderer: body_md = renderer.render(mistletoe.Document(body))
 	body_html = sanitize(body_md, linkgen=True)
