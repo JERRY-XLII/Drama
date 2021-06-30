@@ -788,27 +788,19 @@ def submit_post(v):
 	if url:
 		repost = g.db.query(Submission).join(Submission.submission_aux).filter(
 			SubmissionAux.url.ilike(url),
-			Submission.board_id == board.id,
 			Submission.deleted_utc == 0,
 			Submission.is_banned == False
-		).order_by(
-			Submission.id.asc()
 		).first()
 	else:
 		repost = None
-
+	
+	print(repost)
+	
 	if repost:
 		return redirect(repost.permalink)
 
 	if request.files.get('file') and not v.can_submit_image:
 		abort(403)
-
-	# offensive
-	is_offensive = False
-	for x in g.db.query(BadWord).all():
-		if (body and x.check(body)) or x.check(title):
-			is_offensive = True
-			break
 
 	new_post = Submission(
 		private=bool(request.form.get("private","")),
