@@ -578,7 +578,7 @@
 				</label> 
 				<label class="format btn btn-secondary m-0 ml-1 {% if v.dramacoins >= 0 %}d-inline-block{% else %}d-none{% endif %}" for="file-upload-reply-{{p.fullname}}">
 					<div id="filename-show-reply-{{p.base36id}}"><i class="far fa-image"></i></div>
-					<input id="file-upload-reply-{{p.fullname}}" type="file" name="file" accept="image/*" onchange="document.getElementById('filename-show-reply-{{p.base36id}}').innerHTML=document.getElementById('file-upload-reply-{{p.fullname}}').files[0].name;" hidden>
+					<input id="file-upload-reply-{{p.fullname}}" type="file" name="file" accept="image/*" onchange="document.getElementById('filename-show-reply-{{p.base36id}}').innerHTML='image';" hidden>
 				</label>
 <!-- 				<p>&nbsp;&nbsp;</p>
 				<div class="custom-control custom-checkbox">
