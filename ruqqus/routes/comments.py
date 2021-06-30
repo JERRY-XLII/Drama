@@ -280,12 +280,7 @@ def api_comment(v):
 	if existing:
 		return jsonify({"error": f"You already made that comment: {existing.permalink}"}), 409
 
-	# No commenting on deleted/removed things
-	if parent.is_banned or parent.deleted_utc > 0:
-		return jsonify(
-			{"error": "You can't comment on things that have been deleted."}), 403
-
-	if parent.author.any_block_exists(v) and not v.admin_level>=3 and not parent.post.board.has_mod(v, "content"):
+	if parent.author.any_block_exists(v) and not v.admin_level>=3:
 		return jsonify(
 			{"error": "You can't reply to users who have blocked you, or users you have blocked."}), 403
 
