@@ -145,7 +145,7 @@
 
 								<form id="profile-settings" action="/admin/title_change/{{u.id}}" method="post">
 									<input type="hidden" name="formkey" value="{{v.formkey}}">
-									<input id="customtitlebody" type="text" name="title" class="form-control" placeholder='Enter a flair here' value="{% if v.customtitle %}{{v.customtitle}}{% endif %}">
+									<input id="customtitlebody" type="text" name="title" class="form-control" placeholder='Enter a flair here' value="{% if u.customtitle %}{{u.customtitle}}{% endif %}">
 									<div class="d-flex mt-2">
 										<small class="format"><i class="btn btn-secondary format d-inline-block m-0 fas fa-smile-beam" onclick="loadEmojis('customtitlebody')" aria-hidden="true" data-toggle="modal" data-target="#emojiModal" data-toggle="tooltip" data-placement="bottom"  title="Add EMOJI"></i></small>
 										&nbsp;&nbsp;&nbsp;
@@ -297,9 +297,9 @@
 
 							<div class="w-lg-100">
 
-								<form id="profile-settings" action="/admin/title_change" method="post">
+								<form id="profile-settings" action="/admin/title_change/{{u.id}}" method="post">
 									<input type="hidden" name="formkey" value="{{v.formkey}}">
-									<input id="customtitlebody" type="text" name="title" class="form-control" placeholder='Enter a flair here' value="{% if v.customtitle %}{{v.customtitle}}{% endif %}">
+									<input id="customtitlebody" type="text" name="title" class="form-control" placeholder='Enter a flair here' value="{% if u.customtitle %}{{u.customtitle}}{% endif %}">
 									<div class="d-flex mt-2">
 										<small class="format"><i class="btn btn-secondary format d-inline-block m-0 fas fa-smile-beam" onclick="loadEmojis('customtitlebody')" aria-hidden="true" data-toggle="modal" data-target="#emojiModal" data-toggle="tooltip" data-placement="bottom"  title="Add EMOJI"></i></small>
 										&nbsp;&nbsp;&nbsp;
