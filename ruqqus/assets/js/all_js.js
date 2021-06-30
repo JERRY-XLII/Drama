@@ -1395,15 +1395,15 @@ window.onload = function () {
 
 	if (topBar != null && dropdown != null) {
 		if (prevScrollpos > currentScrollPos) {
-			topBar.style.top = "49px";
+			topBar.style.top = "48px";
 			navbar.classList.remove("shadow");
 		} 
 		else if (currentScrollPos <= 125) {
-			topBar.style.top = "49px";
+			topBar.style.top = "48px";
 			navbar.classList.remove("shadow");
 		}
 		else {
-			topBar.style.top = "-49px";
+			topBar.style.top = "-48px";
 			dropdown.classList.remove('show');
 			navbar.classList.add("shadow");
 		}
@@ -1688,9 +1688,6 @@ post_comment=function(fullname){
 	form.append('submission', document.getElementById('reply-form-submission-'+fullname).value);
 	form.append('body', document.getElementById('reply-form-body-'+fullname).value);
 	form.append('file', document.getElementById('file-upload-reply-'+fullname).files[0]);
-/* 	form.append('over_18', document.getElementById('nsfwCheck-'+fullname).checked);
-	form.append('is_nsfl', document.getElementById('nsflCheck-'+fullname).checked);
- */
 	var xhr = new XMLHttpRequest();
 	xhr.open("post", "/api/comment");
 	xhr.withCredentials=true;

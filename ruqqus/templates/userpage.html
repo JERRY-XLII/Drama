@@ -115,8 +115,32 @@
 				<div class="d-flex justify-content-between align-items-center">
 					<div>
 					 {% if v and v.id != u.id %}
-						 <div id="button-unsub" {% if not is_following %}class="d-none"{% endif %}><a href="/@{{u.username}}/message" class="btn btn-primary">Message</a><span> </span><a class="btn btn-secondary" href="javascript:void(0)" onclick="post('/api/unfollow/{{u.username}}', callback=function(){document.getElementById('button-unsub').classList.toggle('d-none');document.getElementById('button-sub').classList.toggle('d-none');})">Unfollow</a>{% if v.admin_level > 0 %}<span> </span><a class="d-none btn btn-secondary" href="javascript:void(0)" onclick="post_toast('/api/ban_user/{{u.id}}?toast=1')">Ban</a>{% endif %}</div>
-						 <div id="button-sub" {% if is_following %}class="d-none"{% endif %}><a href="/@{{u.username}}/message" class="btn btn-primary">Message</a>{% if not u.is_nofollow and not u.is_blocked %}<span> </span><a class="btn btn-primary" href="javascript:void(0)" onclick="post('/api/follow/{{u.username}}', callback=function(){document.getElementById('button-unsub').classList.toggle('d-none');document.getElementById('button-sub').classList.toggle('d-none');})">Follow</a>{% endif %}{% if v.admin_level > 0 %}<span> </span>{% if u.is_banned %}<a class="d-none btn btn-secondary" href="javascript:void(0)" onclick="post_toast('/api/unban_user/{{u.id}}?toast=1')">Unban</a>{% else %}<a class="d-none btn btn-secondary" href="javascript:void(0)" onclick="post_toast('/api/ban_user/{{u.id}}?toast=1')">Ban</a>{% endif %}{% endif %}</div>
+						{% if is_following %}
+						<a id="button-unsub" class="btn btn-secondary" href="javascript:void(0)" onclick="post('/api/unfollow/{{u.username}}', callback=function(){document.getElementById('button-unsub').classList.toggle('d-none');document.getElementById('button-sub').classList.toggle('d-none');})">Unfollow</a>
+						{% elif not u.is_nofollow and not u.is_blocked %}
+						<a id="button-sub" class="btn btn-primary" href="javascript:void(0)" onclick="post('/api/follow/{{u.username}}', callback=function(){document.getElementById('button-sub').classList.toggle('d-none');document.getElementById('button-unsub').classList.toggle('d-none');})">Follow</a>
+						{% endif %}
+						
+						
+						<a class="btn btn-primary" href="javascript:void(0)" onclick="document.getElementById('message').classList.toggle('d-none')">Message</a>
+						<form class="d-none" id="message" action="/@{{u.username}}/message" method="post">
+							<pre></pre>
+							<textarea id="input-message" form="message" name="message" rows="10" class="form-control" required></textarea>
+							<pre></pre>
+							<pre class="btn btn-secondary format d-inline-block m-0 fas fa-bold" aria-hidden="true" onclick="makeBold('input-message')" data-toggle="tooltip" data-placement="bottom" title="Bold"></pre>
+							&nbsp;
+							<pre class="btn btn-secondary format d-inline-block m-0 fas fa-italic" aria-hidden="true" onclick="makeItalics('input-message')" data-toggle="tooltip" data-placement="bottom" title="Italicize"></pre>
+							&nbsp;
+							<pre class="btn btn-secondary format d-inline-block m-0 fas fa-quote-right" aria-hidden="true" onclick="makeQuote('input-message')" data-toggle="tooltip" data-placement="bottom" title="Quote"></pre>
+							&nbsp;
+							<pre style="line-height:1;" class="btn btn-secondary format d-inline-block m-0 font-weight-bolder text-uppercase" onclick="commentForm('input-message');getGif()" aria-hidden="true" data-toggle="modal" data-target="#gifModal" data-toggle="tooltip" data-placement="bottom" title="Add GIF">GIF</pre>
+							&nbsp;
+							<pre class="btn btn-secondary format d-inline-block m-0 fas fa-smile-beam" onclick="loadEmojis('input-message')" aria-hidden="true" data-toggle="modal" data-target="#emojiModal" data-toggle="tooltip" data-placement="bottom" title="Add EMOJI"></pre>
+							&nbsp;
+							<input type="submit" value="Submit" class="btn btn-primary mt-3">
+						</form>
+
+
 					 {% elif v and v.id == u.id %}
 						<a href="/settings/profile" class="btn btn-secondary">Edit profile</a>
 					 {% endif %}
@@ -229,8 +253,34 @@
 					 <a href="/settings/profile" class="btn btn-secondary btn-sm">Edit profile</a>
 				{% endif %}
 				{% if v and v.id != u.id %}
-					<div id="button-unsub-mobile" {% if not is_following %}class="d-none"{% endif %}><a href="/@{{u.username}}/message" class="btn btn-primary">Message</a><span> </span><a class="btn btn-secondary" href="javascript:void(0)" onclick="post('/api/unfollow/{{u.username}}', callback=function(){document.getElementById('button-unsub-mobile').classList.toggle('d-none');document.getElementById('button-sub-mobile').classList.toggle('d-none');})">Unfollow</a>{% if v.admin_level > 0 %}<span> </span><a class="d-none btn btn-secondary" href="javascript:void(0)" onclick="post_toast('/api/ban_user/{{u.id}}?toast=1')">Ban</a>{% endif %}</div>
-					<div id="button-sub-mobile" {% if is_following %}class="d-none"{% endif %}><a href="/@{{u.username}}/message" class="btn btn-primary">Message</a>{% if not u.is_nofollow and not u.is_blocked %}<span> </span><a class="btn btn-primary" href="javascript:void(0)" onclick="post('/api/follow/{{u.username}}', callback=function(){document.getElementById('button-unsub-mobile').classList.toggle('d-none');document.getElementById('button-sub-mobile').classList.toggle('d-none');})">Follow</a>{% endif %}{% if v.admin_level > 0 %}<span> </span>{% if u.is_banned %}<a class="d-none btn btn-secondary" href="javascript:void(0)" onclick="post_toast('/api/unban_user/{{u.id}}?toast=1')">Unban</a>{% else %}<a class="d-none btn btn-primary" href="javascript:void(0)" onclick="post_toast('/api/ban_user/{{u.id}}?toast=1')">Ban</a>{% endif %}{% endif %}</div>
+				
+				
+
+				
+					{% if is_following %}
+					<a id="button-unsub-mobile" class="btn btn-secondary" href="javascript:void(0)" onclick="post('/api/unfollow/{{u.username}}', callback=function(){document.getElementById('button-unsub-mobile').classList.toggle('d-none');document.getElementById('button-sub-mobile').classList.toggle('d-none');})">Unfollow</a>
+					{% elif not u.is_nofollow and not u.is_blocked %}
+					<a id="button-sub-mobile" class="btn btn-primary" href="javascript:void(0)" onclick="post('/api/follow/{{u.username}}', callback=function(){document.getElementById('button-sub-mobile').classList.toggle('d-none');document.getElementById('button-unsub-mobile').classList.toggle('d-none');})">Follow</a>
+					{% endif %}
+					
+					<a class="btn btn-primary" href="javascript:void(0)" onclick="document.getElementById('message-mobile').classList.toggle('d-none')">Message</a>
+					<form class="d-none" id='message-mobile' action="/@{{u.username}}/message" method="post">
+						<pre></pre>
+						<textarea id="input-message-mobile" form="message-mobile" name="message-mobile" rows="10" class="form-control" required></textarea>
+						<pre></pre>
+						<pre class="btn btn-secondary format d-inline-block m-0 fas fa-bold" aria-hidden="true" onclick="makeBold('input-message-mobile')" data-toggle="tooltip" data-placement="bottom" title="Bold"></pre>
+						&nbsp;
+						<pre class="btn btn-secondary format d-inline-block m-0 fas fa-italic" aria-hidden="true" onclick="makeItalics('input-message-mobile')" data-toggle="tooltip" data-placement="bottom" title="Italicize"></pre>
+						&nbsp;
+						<pre class="btn btn-secondary format d-inline-block m-0 fas fa-quote-right" aria-hidden="true" onclick="makeQuote('input-message-mobile')" data-toggle="tooltip" data-placement="bottom" title="Quote"></pre>
+						&nbsp;
+						<pre style="line-height:1;" class="btn btn-secondary format d-inline-block m-0 font-weight-bolder text-uppercase" onclick="commentForm('input-message-mobile');getGif()" aria-hidden="true" data-toggle="modal" data-target="#gifModal" data-toggle="tooltip" data-placement="bottom" title="Add GIF">GIF</pre>
+						&nbsp;
+						<pre class="btn btn-secondary format d-inline-block m-0 fas fa-smile-beam" onclick="loadEmojis('input-message-mobile')" aria-hidden="true" data-toggle="modal" data-target="#emojiModal" data-toggle="tooltip" data-placement="bottom" title="Add EMOJI"></pre>
+						&nbsp;
+						<input type="submit" value="Submit" class="btn btn-primary mt-3">
+					</form>
+					
 					 {% if v.admin_level > 0 %}
 						<pre></pre>
 						{% if u.is_banned %}

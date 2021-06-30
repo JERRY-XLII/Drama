@@ -129,7 +129,25 @@
 
 			<div id="comment-text-{{c.base36id}}" class="comment-text mb-0">
 				{{c.body_html | safe}}
-				{% if not c.parent_submission and c.author_id!=1046 and c.author_id!=2360 and c.author_id!=v.id %}<a href="/@{{c.author.username}}/message" class="btn btn-primary">Reply</a>{% endif %}
+				{% if not c.parent_submission and c.author_id!=1046 and c.author_id!=2360 and c.author_id!=v.id %}
+					<a class="btn btn-primary" href="javascript:void(0)" onclick="document.getElementById('reply-to-{{c.base36id}}').classList.toggle('d-none')">Reply</a>
+					<pre></pre>
+					<form class="d-none" id="reply-to-{{c.base36id}}" action="/@{{c.author.username}}/message" method="post">
+						<textarea id="input-message" form="reply-to-{{c.base36id}}" name="message" rows="10" class="form-control" required>> {{c.body.replace("\n", "\n> ")}}</textarea>
+						<pre></pre>
+						<pre class="btn btn-secondary format d-inline-block m-0 fas fa-bold" aria-hidden="true" onclick="makeBold('input-message')" data-toggle="tooltip" data-placement="bottom" title="Bold"></pre>
+						&nbsp;
+						<pre class="btn btn-secondary format d-inline-block m-0 fas fa-italic" aria-hidden="true" onclick="makeItalics('input-message')" data-toggle="tooltip" data-placement="bottom" title="Italicize"></pre>
+						&nbsp;
+						<pre class="btn btn-secondary format d-inline-block m-0 fas fa-quote-right" aria-hidden="true" onclick="makeQuote('input-message')" data-toggle="tooltip" data-placement="bottom" title="Quote"></pre>
+						&nbsp;
+						<pre style="line-height:1;" class="btn btn-secondary format d-inline-block m-0 font-weight-bolder text-uppercase" onclick="commentForm('input-message');getGif()" aria-hidden="true" data-toggle="modal" data-target="#gifModal" data-toggle="tooltip" data-placement="bottom" title="Add GIF">GIF</pre>
+						&nbsp;
+						<pre class="btn btn-secondary format d-inline-block m-0 fas fa-smile-beam" onclick="loadEmojis('input-message')" aria-hidden="true" data-toggle="modal" data-target="#emojiModal" data-toggle="tooltip" data-placement="bottom" title="Add EMOJI"></pre>
+						&nbsp;
+						<input type="submit" value="Submit" class="btn btn-primary mt-3">
+					</form>
+				{% endif %}
 			</div>
 			
 			{% if c.parent_submission %}
@@ -137,7 +155,7 @@
 			<div id="comment-edit-{{c.base36id}}" class="d-none comment-write collapsed child">
 				<form id="comment-edit-form-{{c.base36id}}" action="/edit_comment/{{c.base36id}}" method="post" class="input-group" enctype="multipart/form-data"> 
 					<input type="hidden" name="formkey" value="{{v.formkey}}">
-					<textarea style="z-index:999999;" id="comment-edit-body-{{c.base36id}}" name="body" form="comment-edit-form-{{c.base36id}}" class="comment-box form-control rounded" id="edit-box-comment-{{c.base36id}}" aria-label="With textarea" placeholder="Add your comment..." rows="3">{{c.body}}</textarea> 
+					<textarea style="z-index:999999;" id="comment-edit-body-{{c.base36id}}" name="body" form="comment-edit-form-{{c.base36id}}" class="comment-box form-control rounded" id="edit-box-comment-{{c.base36id}}" aria-label="With textarea" placeholder="Add your comment..." rows="10">{{c.body}}</textarea> 
 					<div class="comment-format"> 
 						<small class="btn btn-secondary format d-inline-block m-0"><span class="font-weight-bolder text-uppercase" aria-hidden="true" onclick="commentForm('comment-edit-body-{{c.base36id}}');getGif()" data-toggle="modal" data-target="#gifModal" data-toggle="tooltip" data-placement="bottom"  title="Add GIF">GIF</span></small>
 						&nbsp;
@@ -210,8 +228,7 @@
 					{% if v %}
 					{% if standalone or is_allowed_to_comment %}
 					<li class="list-inline-item text-muted"><a href="javascript:void(0)" onclick="document.getElementById('reply-to-{{c.base36id}}').classList.remove('d-none')"><i class="fas fa-reply"
-						aria-hidden="true"></i><span class="d-none d-md-inline-block">Reply</span></a>
-					</li>
+						aria-hidden="true"></i><span class="d-none d-md-inline-block">Reply</span></a></li>
 					{% endif %}
 
 					{% endif %}
@@ -340,7 +357,7 @@
 				<input type="hidden" name="formkey" value="{{v.formkey}}"> 
 				<input type="hidden" name="parent_fullname" value="{{c.fullname}}"> 
 				<input id="reply-form-submission-{{c.fullname}}" type="hidden" name="submission" value="{{c.post.base36id}}"> 
-				<textarea style="z-index:999999;" name="body" form="reply-to-t3_{{c.base36id}}" class="comment-box form-control rounded" id="reply-form-body-{{c.fullname}}" aria-label="With textarea" placeholder="Add your comment..." rows="3"></textarea> 
+				<textarea style="z-index:999999;" name="body" form="reply-to-t3_{{c.base36id}}" class="comment-box form-control rounded" id="reply-form-body-{{c.fullname}}" aria-label="With textarea" placeholder="Add your comment..." rows="10"></textarea> 
 				<div class="comment-format" id="comment-format-bar-{{c.base36id}}"> 
 					<label class="btn btn-secondary format d-inline-block m-0" for="gif-reply-btn-{{c.fullname}}">
 						<span id="gif-reply-btn-{{c.fullname}}" class="font-weight-bolder text-uppercase" onclick="commentForm('reply-form-body-{{c.fullname}}');getGif()" aria-hidden="true" data-toggle="modal" data-target="#gifModal" data-toggle="tooltip" data-placement="bottom" title="Add GIF">GIF</span>

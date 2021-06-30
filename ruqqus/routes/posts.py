@@ -149,6 +149,7 @@ def edit_post(pid, v):
 		abort(403)
 
 	body = request.form.get("body", "")
+	body = body.replace("\n", "\n\n")
 	for i in re.finditer('^(https:\/\/.*\.(png|jpg|jpeg|gif))', body, re.MULTILINE): body = body.replace(i.group(1), f'![]({i.group(1)})')
 	with CustomRenderer() as renderer:
 		body_md = renderer.render(mistletoe.Document(body))
@@ -414,6 +415,18 @@ def submit_post(v):
 	title = title.replace("\t", "")
 
 	url = request.form.get("url", "")
+	
+	if url:
+		repost = g.db.query(Submission).join(Submission.submission_aux).filter(
+			SubmissionAux.url.ilike(url),
+			Submission.deleted_utc == 0,
+			Submission.is_banned == False
+		).first()
+	else:
+		repost = None
+	
+	if repost:
+		return redirect(repost.permalink)
 
 	board = get_guild(request.form.get('board', 'general'), graceful=True)
 	if not board:
@@ -711,6 +724,7 @@ def submit_post(v):
 				}
 
 	# render text
+	body = body.replace("\n", "\n\n")
 	for i in re.finditer('^(https:\/\/.*\.(png|jpg|jpeg|gif))', body, re.MULTILINE): body = body.replace(i.group(1), f'![]({i.group(1)})')
 	with CustomRenderer() as renderer:
 		body_md = renderer.render(mistletoe.Document(body))
@@ -785,30 +799,8 @@ def submit_post(v):
 	# check for embeddable video
 	domain = parsed_url.netloc
 
-	if url:
-		repost = g.db.query(Submission).join(Submission.submission_aux).filter(
-			SubmissionAux.url.ilike(url),
-			Submission.board_id == board.id,
-			Submission.deleted_utc == 0,
-			Submission.is_banned == False
-		).order_by(
-			Submission.id.asc()
-		).first()
-	else:
-		repost = None
-
-	if repost:
-		return redirect(repost.permalink)
-
 	if request.files.get('file') and not v.can_submit_image:
 		abort(403)
-
-	# offensive
-	is_offensive = False
-	for x in g.db.query(BadWord).all():
-		if (body and x.check(body)) or x.check(title):
-			is_offensive = True
-			break
 
 	new_post = Submission(
 		private=bool(request.form.get("private","")),
@@ -820,7 +812,7 @@ def submit_post(v):
 		is_nsfl=bool(request.form.get("is_nsfl","")),
 		post_public=not board.is_private,
 		repost_id=repost.id if repost else None,
-		is_offensive=is_offensive,
+		is_offensive=False,
 		app_id=v.client.application.id if v.client else None,
 		creation_region=request.headers.get("cf-ipcountry"),
 		is_bot = request.headers.get("X-User-Type","").lower()=="bot"
@@ -961,8 +953,8 @@ def submit_post(v):
 	if v.id == 995: body = "fuck off carp"
 	else: body = random.choice(snappyquotes)
 	if new_post.url:
-		body += f"\n\n---\n\nSnapshots:\n\n* [archive.org](https://web.archive.org/{urllib.parse.quote(new_post.url)})\n* [archive.today](https://archive.today/?url={urllib.parse.quote(new_post.url)}&run=1) (click to archive)"
-		gevent.spawn(archiveorg,new_post.url)
+		body += f"\n\n---\n\nSnapshots:\n\n* [reveddit.com](https://reveddit.com/{new_post.url})\n* [archive.org](https://web.archive.org/{new_post.url})\n* [archive.ph](https://archive.ph/?url={urllib.parse.quote(new_post.url)}&run=1) (click to archive)"
+		gevent.spawn(archiveorg, new_post.url)
 	with CustomRenderer(post_id=new_post.id) as renderer: body_md = renderer.render(mistletoe.Document(body))
 	body_html = sanitize(body_md, linkgen=True)
 	c_aux = CommentAux(
