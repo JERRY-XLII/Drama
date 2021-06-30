@@ -622,6 +622,8 @@ def settings_name_change(v):
 @validate_formkey
 def settings_title_change(v):
 
+	if v.flairchanged: abort(403)
+	
 	new_name=request.form.get("title").lstrip().rstrip()
 
 	#verify acceptability
