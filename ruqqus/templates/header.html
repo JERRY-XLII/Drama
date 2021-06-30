@@ -26,7 +26,7 @@
 		aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
 		<span class="navbar-toggler-icon {% if v and v.notifications_count %}position-relative{% endif %}"><i class="fal fa-bars text-gray-500"></i>
 			{% if v and v.notifications_count %}
-				<span class="badge-count font-weight-bolder" style="right: -6px; font-size:15px;">{if v.notifications_count > 9 %}9+{% else %}{{v.notifications_count}}{% endif %}</span>
+				<span class="badge-count font-weight-bolder" style="right: -6px; font-size:15px;">{% if v.notifications_count > 9 %}9+{% else %}{{v.notifications_count}}{% endif %}</span>
 			{% endif %}
 		</span>
 	</button>
