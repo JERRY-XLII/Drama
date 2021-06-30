@@ -20,6 +20,7 @@ import matplotlib.pyplot as plt
 
 from ruqqus.__main__ import app, cache
 
+valid_title_regex = re.compile("^((?!<).){3,100}$")
 
 @app.route("/admin/title_change/<user_id>", methods=["POST"])
 @admin_level_required(6)
