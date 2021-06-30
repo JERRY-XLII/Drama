@@ -155,7 +155,7 @@
 			<div id="comment-edit-{{c.base36id}}" class="d-none comment-write collapsed child">
 				<form id="comment-edit-form-{{c.base36id}}" action="/edit_comment/{{c.base36id}}" method="post" class="input-group" enctype="multipart/form-data"> 
 					<input type="hidden" name="formkey" value="{{v.formkey}}">
-					<textarea style="z-index:999999;" id="comment-edit-body-{{c.base36id}}" name="body" form="comment-edit-form-{{c.base36id}}" class="comment-box form-control rounded" id="edit-box-comment-{{c.base36id}}" aria-label="With textarea" placeholder="Add your comment..." rows="3">{{c.body}}</textarea> 
+					<textarea style="z-index:999999;" id="comment-edit-body-{{c.base36id}}" name="body" form="comment-edit-form-{{c.base36id}}" class="comment-box form-control rounded" id="edit-box-comment-{{c.base36id}}" aria-label="With textarea" placeholder="Add your comment..." rows="10">{{c.body}}</textarea> 
 					<div class="comment-format"> 
 						<small class="btn btn-secondary format d-inline-block m-0"><span class="font-weight-bolder text-uppercase" aria-hidden="true" onclick="commentForm('comment-edit-body-{{c.base36id}}');getGif()" data-toggle="modal" data-target="#gifModal" data-toggle="tooltip" data-placement="bottom"  title="Add GIF">GIF</span></small>
 						&nbsp;
@@ -357,7 +357,7 @@
 				<input type="hidden" name="formkey" value="{{v.formkey}}"> 
 				<input type="hidden" name="parent_fullname" value="{{c.fullname}}"> 
 				<input id="reply-form-submission-{{c.fullname}}" type="hidden" name="submission" value="{{c.post.base36id}}"> 
-				<textarea style="z-index:999999;" name="body" form="reply-to-t3_{{c.base36id}}" class="comment-box form-control rounded" id="reply-form-body-{{c.fullname}}" aria-label="With textarea" placeholder="Add your comment..." rows="3"></textarea> 
+				<textarea style="z-index:999999;" name="body" form="reply-to-t3_{{c.base36id}}" class="comment-box form-control rounded" id="reply-form-body-{{c.fullname}}" aria-label="With textarea" placeholder="Add your comment..." rows="10"></textarea> 
 				<div class="comment-format" id="comment-format-bar-{{c.base36id}}"> 
 					<label class="btn btn-secondary format d-inline-block m-0" for="gif-reply-btn-{{c.fullname}}">
 						<span id="gif-reply-btn-{{c.fullname}}" class="font-weight-bolder text-uppercase" onclick="commentForm('reply-form-body-{{c.fullname}}');getGif()" aria-hidden="true" data-toggle="modal" data-target="#gifModal" data-toggle="tooltip" data-placement="bottom" title="Add GIF">GIF</span>
