@@ -14073,7 +14073,7 @@ div.deleted.banned {
       #732982 83.25%,
       #732982 100%,
       #E7484F 100%);
-  animation: slidebg 2s linear infinite;
+  animation: slidebg 5s linear infinite;
 }
 
 @keyframes slidebg {
