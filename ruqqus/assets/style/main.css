@@ -14056,28 +14056,8 @@ div.deleted.banned {
 .logo {
   border-radius: 3px;
   padding: .125rem .5rem;
-}
-
-.rainbow {
-  color: #ff66ac !important;
-  cursor: pointer;
-  -webkit-background-clip: text;
-}
-
-.rainbow: {
-  color: transparent;
-}
-
-.rainbow-2 {
   color: #ff66ac;
   cursor: pointer;
-}
-
-.rainbow-2 {
-  color: #ffffff;
-}
-
-.rainbow-5 {
   background-image: linear-gradient(to right,
       #E7484F,
       #E7484F 16.65%,

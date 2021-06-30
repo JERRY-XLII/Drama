@@ -13682,26 +13682,30 @@ body {
   background: #EEEEF5;
 }
 
-
-.black-lives-matter {
-  font-size: 8vw;
-  line-height: 8vw;
-  margin: 0;
-  font-family: 'Red Hat Display', sans-serif;
-  font-weight: 900;
-  background: url(https://raw.githubusercontent.com/s1mpson/-/master/codepen/black-lives-matter/victim-collage.png);
-  background-size: 40%;
-  background-position: 50% 50%;
-  -webkit-background-clip: text;
-  color: rgba(0,0,0,0.08);
-  animation: zoomout 10s ease 500ms forwards;
+.logo {
+  border-radius: 3px;
+  padding: .125rem .5rem;
+  color: #ff66ac;
+  cursor: pointer;
+  background-image: linear-gradient(to right,
+      #E7484F,
+      #E7484F 16.65%,
+      #F68B1D 16.65%,
+      #F68B1D 33.3%,
+      #FCED00 33.3%,
+      #FCED00 49.95%,
+      #009E4F 49.95%,
+      #009E4F 66.6%,
+      #00AAC3 66.6%,
+      #00AAC3 83.25%,
+      #732982 83.25%,
+      #732982 100%,
+      #E7484F 100%);
+  animation: slidebg 2s linear infinite;
 }
 
-@keyframes zoomout {
-  from {
-    background-size: 40%;
-  }
+@keyframes slidebg {
   to {
-    background-size: 10%;
+    background-position: 37vw;
   }
 }
