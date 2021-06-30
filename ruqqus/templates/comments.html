@@ -132,8 +132,6 @@
 				{% if not c.parent_submission and c.author_id!=1046 and c.author_id!=2360 and c.author_id!=v.id %}
 					<a class="btn btn-primary" href="javascript:void(0)" onclick="document.getElementById('reply-to-{{c.base36id}}').classList.toggle('d-none')">Reply</a>
 					<pre>
-					
-					
 					</pre>
 					<form class="d-none" id="reply-to-{{c.base36id}}" action="/@{{c.author.username}}/message" method="post">
 						<textarea id="input-message" form="reply-to-{{c.base36id}}" name="message" rows="10" class="form-control" required>> {{c.body.replace("\n", "\n> ")}}</textarea>
