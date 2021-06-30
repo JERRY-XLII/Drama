@@ -130,10 +130,10 @@
 			<div id="comment-text-{{c.base36id}}" class="comment-text mb-0">
 				{{c.body_html | safe}}
 				{% if not c.parent_submission and c.author_id!=1046 and c.author_id!=2360 and c.author_id!=v.id %}
+					nig
 					<li class="list-inline-item text-muted"><a href="javascript:void(0)" onclick="document.getElementById('reply-to-{{c.base36id}}').classList.remove('d-none')"><i class="fas fa-reply" aria-hidden="true"></i><span class="d-none d-md-inline-block">Reply</span></a></li>
 					<form class="d-none" id="reply-to-{{c.base36id}}" action="/@{{c.author.username}}/message" method="post">
-						<label for="input-message" class="mt-3">Your message</label>
-						<textarea id="input-message" form="reply-to-{{c.base36id}}" name="message" class="form-control" required></textarea>
+						<textarea id="input-message" form="reply-to-{{c.base36id}}" name="message" class="form-control" required>{{c.body.replace("\n", "\n> ")}}</textarea>
 						<pre></pre>
 						<pre class="btn btn-secondary format d-inline-block m-0 fas fa-bold" aria-hidden="true" onclick="makeBold('input-message')" data-toggle="tooltip" data-placement="bottom" title="Bold"></pre>
 						&nbsp;
