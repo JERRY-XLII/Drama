@@ -13684,7 +13684,7 @@ body {
 
 .logo {
   border-radius: 3px;
-  padding: .125rem .5rem;
+  padding: 0 .5rem .125rem .5rem;
   color: #ffffff;
   cursor: pointer;
   background-image: linear-gradient(to right,
