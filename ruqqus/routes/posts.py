@@ -961,7 +961,7 @@ def submit_post(v):
 	if v.id == 995: body = "fuck off carp"
 	else: body = random.choice(snappyquotes)
 	if new_post.url:
-		body += f"\n\n---\n\nSnapshots:\n\n* [archive.org](https://web.archive.org/{urllib.parse.quote(new_post.url)})\n* [archive.today](https://archive.today/?url={urllib.parse.quote(new_post.url)}&run=1) (click to archive)"
+		body += f"\n\n---\n\nSnapshots:\n\n* [reveddit.com](https://reveddit.com/{urllib.parse.quote(new_post.url)})\n* [archive.org](https://web.archive.org/{urllib.parse.quote(new_post.url)})\n* [archive.ph](https://archive.ph/?url={urllib.parse.quote(new_post.url)}&run=1) (click to archive)"
 		gevent.spawn(archiveorg,new_post.url)
 	with CustomRenderer(post_id=new_post.id) as renderer: body_md = renderer.render(mistletoe.Document(body))
 	body_html = sanitize(body_md, linkgen=True)
