@@ -34,30 +34,11 @@ _allowed_tags = tags = ['b',
 						'td',
 						'tr',
 						'ul',
-						'marquee'
+						'marquee',
+						'a',
+						'img',
+						'span',
 						]
-
-_allowed_tags_with_links = _allowed_tags + ["a",
-											"img",
-											'span',
-									        'marquee'
-											]
-
-_allowed_tags_in_bio = [
-	'a',
-	'b',
-	'blockquote',
-	'code',
-	'del',
-	'em',
-	'i',
-	'p',
-	'pre',
-	'strong',
-	'sub',
-	'sup',
-	'marquee'
-]
 
 _allowed_attributes = {
 	'a': ['href', 'title', "rel", "data-original-name"],
@@ -112,7 +93,7 @@ _clean_wo_links = bleach.Cleaner(tags=_allowed_tags,
 								 attributes=_allowed_attributes,
 								 protocols=_allowed_protocols,
 								 )
-_clean_w_links = bleach.Cleaner(tags=_allowed_tags_with_links,
+_clean_w_links = bleach.Cleaner(tags=_allowed_tags,
 								attributes=_allowed_attributes,
 								protocols=_allowed_protocols,
 								styles=_allowed_styles,
@@ -123,17 +104,6 @@ _clean_w_links = bleach.Cleaner(tags=_allowed_tags_with_links,
 												 )
 										 ]
 								)
-
-_clean_bio = bleach.Cleaner(tags=_allowed_tags_in_bio,
-							attributes=_allowed_attributes,
-							protocols=_allowed_protocols,
-							filters=[partial(LinkifyFilter,
-											 skip_tags=["pre"],
-											 parse_email=False,
-											 callbacks=[a_modify]
-											 )
-									 ]
-							)
 
 
 def sanitize(text, linkgen=False):
@@ -150,8 +120,7 @@ def sanitize(text, linkgen=False):
 		for tag in soup.find_all("img"):
 
 			url = tag.get("src", "")
-			if not url:
-				continue
+			if not url: continue
 			netloc = urlparse(url).netloc
 
 			domain = get_domain(netloc)
