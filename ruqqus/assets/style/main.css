@@ -535,6 +535,7 @@ pre {
 	overflow-y: scroll; }
 
 .container {
+	overflow:hidden;
 	width: 100%;
 	padding-right: 0;
 	padding-left: 0;
