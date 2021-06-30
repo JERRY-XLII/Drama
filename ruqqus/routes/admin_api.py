@@ -47,7 +47,7 @@ def admin_title_change(user_id, v):
 	g.db.add(user)
 	g.db.commit()
 
-	return "", 204
+	return (redirect(user.url), user)
 
 @app.route("/api/ban_user/<user_id>", methods=["POST"])
 @admin_level_required(6)
