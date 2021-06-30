@@ -416,6 +416,11 @@ class User(Base, Stndrd, Age_times):
 		return f"<User(username={self.username})>"
 
 
+    @property
+    @lazy
+    def post_notifications_count(self):
+        return self.notifications.filter(Notification.read==False).join(Notification.comment).filter(Comment.author_id == 2360).count()
+
 
 	def notification_subscriptions(self, page=1, all_=False):
 

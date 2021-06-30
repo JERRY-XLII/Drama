@@ -30,8 +30,8 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link py-3{% if request.full_path=='/notifications?subscriptions=true' %} active{% endif %}" href="/notifications?subscriptions=true">
-          Subscriptions
+        <a class="nav-link py-3{% if request.full_path=='/notifications?posts=true' %} active{% endif %}" href="/notifications?posts=true">
+          Posts{% if v.post_notifications_count %} <span class="text-purple font-weight-bold">({{ v.post_notifications_count }})</span>{% endif %}
         </a>
       </li>
       <li class="nav-item">
