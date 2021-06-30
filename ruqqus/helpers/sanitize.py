@@ -68,7 +68,7 @@ def a_modify(attrs, new=False):
 
 		domain = parsed_url.netloc
 		attrs[(None, "target")] = "_blank"
-		if domain and not domain.endswith(("ruqqus.com", "ruqq.us")):
+		if domain and not domain.endswith("rdrama.net"):
 			attrs[(None, "rel")] = "nofollow noopener"
 
 			# Force https for all external links in comments
@@ -93,6 +93,7 @@ _clean_wo_links = bleach.Cleaner(tags=_allowed_tags,
 								 attributes=_allowed_attributes,
 								 protocols=_allowed_protocols,
 								 )
+
 _clean_w_links = bleach.Cleaner(tags=_allowed_tags,
 								attributes=_allowed_attributes,
 								protocols=_allowed_protocols,
