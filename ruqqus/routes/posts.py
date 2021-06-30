@@ -424,11 +424,8 @@ def submit_post(v):
 	else:
 		repost = None
 	
-	print(repost)
-	
 	if repost:
 		return redirect(repost.permalink)
-
 
 	board = get_guild(request.form.get('board', 'general'), graceful=True)
 	if not board:
