@@ -599,9 +599,6 @@ pre {
 .col-xl-auto {
 	position: relative;
 	width: 100%;
-	padding-right: 15px;
-	padding-left: 0; 
-	padding-top: 5px;
 	}
 
 .col {
@@ -12333,7 +12330,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 		border-top-left-radius: 1rem; }
 
 	#frontpage, #search, #guild {
-		padding-top: 98px;
+		padding-top: 70px;
 		background-color: #000000; } }
 .dropdown-actions {
 	position: relative;
@@ -13663,7 +13660,7 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
 		max-width: none; }
 
 	body, #settings, #notifications, #submit {
-		padding-top: 48px;
+		padding-top: 70px;
 		background-color: #000000; }
 
 	#thread, #userpage {
