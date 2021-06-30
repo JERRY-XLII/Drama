@@ -14059,12 +14059,12 @@ div.deleted.banned {
 }
 
 .rainbow {
-  color: #ff66ac;
+  color: #ff66ac !important;
   cursor: pointer;
   -webkit-background-clip: text;
 }
 
-.rainbow:hover {
+.rainbow: {
   color: transparent;
 }
 
@@ -14073,11 +14073,11 @@ div.deleted.banned {
   cursor: pointer;
 }
 
-.rainbow-2:hover {
+.rainbow-2 {
   color: #ffffff;
 }
 
-.rainbow-5:hover {
+.rainbow-5 {
   background-image: linear-gradient(to right,
       #E7484F,
       #E7484F 16.65%,
@@ -14094,7 +14094,6 @@ div.deleted.banned {
       #E7484F 100%);
   animation: slidebg 2s linear infinite;
 }
-
 
 @keyframes slidebg {
   to {
