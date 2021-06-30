@@ -12760,10 +12760,10 @@ ul.comment-section {
 	}
 	
 .comment .comment-collapse:hover {
-	border-left-color: #FF66AC !important; }
+	border-left-color: #DBDBDB !important; }
 
 .comment.collapsed .comment-collapse:hover {
-	color: #FF66AC !important; }
+	color: #DBDBDB !important; }
 
 .comment.collapsed .comment-profile, .comment.collapsed .comment-body p.text, .comment.collapsed div.comment-text, .comment.collapsed .comment-actions, .comment.collapsed .comment-write,
 .comment.collapsed .comment {
