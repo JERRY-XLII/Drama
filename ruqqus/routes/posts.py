@@ -414,6 +414,21 @@ def submit_post(v):
 	title = title.replace("\t", "")
 
 	url = request.form.get("url", "")
+	
+	if url:
+		repost = g.db.query(Submission).join(Submission.submission_aux).filter(
+			SubmissionAux.url.ilike(url),
+			Submission.deleted_utc == 0,
+			Submission.is_banned == False
+		).first()
+	else:
+		repost = None
+	
+	print(repost)
+	
+	if repost:
+		return redirect(repost.permalink)
+
 
 	board = get_guild(request.form.get('board', 'general'), graceful=True)
 	if not board:
@@ -784,20 +799,6 @@ def submit_post(v):
 
 	# check for embeddable video
 	domain = parsed_url.netloc
-
-	if url:
-		repost = g.db.query(Submission).join(Submission.submission_aux).filter(
-			SubmissionAux.url.ilike(url),
-			Submission.deleted_utc == 0,
-			Submission.is_banned == False
-		).first()
-	else:
-		repost = None
-	
-	print(repost)
-	
-	if repost:
-		return redirect(repost.permalink)
 
 	if request.files.get('file') and not v.can_submit_image:
 		abort(403)
