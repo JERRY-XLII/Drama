@@ -115,7 +115,9 @@
 							{% if p.author.is_deleted %}[deleted account]{% else %}&nbsp;<a href="{{p.author.permalink}}" style="color: #{{p.author.namecolor}}; font-weight: bold;; font-weight: bold;" class="user-name"><img src="{{p.author.profile_url}}" class="profile-pic-20">&nbsp;&nbsp;{{p.author.username}}</a>{% if p.author.customtitle %}<span style="color: #{{p.author.titlecolor}}">&nbsp;&nbsp;{{p.author.customtitle | safe}}</span>{% endif %}
 							<span data-toggle="tooltip" data-placement="bottom"  title="{{p.created_date}}">&nbsp;{{p.age_string}}</span>
 							{% endif %}&nbsp;({{p.domain}})
-							&nbsp;{{p.views}} views
+							
+							{% if p.edited_utc %}&nbsp;&nbsp;Edited <span data-toggle="tooltip" data-placement="bottom"  title="{{edited_datetime}}">{{p.edited_string}}</span>{% endif %}
+							&nbsp;&nbsp;{{p.views}} views
 					</div>
 				</div>
 
@@ -134,8 +136,9 @@
 					<span data-toggle="tooltip" data-placement="bottom"  title="{{p.created_datetime}}">&nbsp;{{p.age_string}}</span>
 					&nbsp;
 					({% if p.url %}<a href="/search?q=domain%3A{{p.domain}}&sort=new&t=all" target="_blank">{{p.domain}}</a>{% else %}text post{% endif %})
-					&nbsp;&nbsp;
-					{{p.views}} views
+					
+					{% if p.edited_utc %}&nbsp;&nbsp;Edited <span data-toggle="tooltip" data-placement="bottom"  title="{{edited_datetime}}">{{p.edited_string}}</span>{% endif %}
+					&nbsp;&nbsp;{{p.views}} views
 
 			</div>
 
