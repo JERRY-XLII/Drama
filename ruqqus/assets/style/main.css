@@ -14053,26 +14053,6 @@ div.deleted.banned {
 	}
 }
 
-@import url('https://fonts.googleapis.com/css?family=Red+Hat+Display:900&display=swap');
-
-html {
-  width: 100%;
-  height: 100%;
-}
-
-body {
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
-  flex-wrap: wrap;
-  background: #EEEEF5;
-}
-
-
 .black-lives-matter {
   font-size: 8vw;
   line-height: 8vw;
@@ -14085,13 +14065,4 @@ body {
   -webkit-background-clip: text;
   color: rgba(0,0,0,0.08);
   animation: zoomout 10s ease 500ms forwards;
-}
-
-@keyframes zoomout {
-  from {
-    background-size: 40%;
-  }
-  to {
-    background-size: 10%;
-  }
 }
