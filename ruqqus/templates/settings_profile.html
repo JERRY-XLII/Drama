@@ -185,18 +185,17 @@
 
 							<div class="body d-lg-flex border-bottom">
 
-								<label for="bio" class="text-black w-lg-25">Display Name</label>
+								<label for="bio" class="text-black w-lg-25">Username</label>
 
 								<div class="w-lg-100">
-									<p>Your display name is how you are known across Drama.</p>
+									<p>Your original username will always stay reserved for you: <code>{{v.original_username}}</code></p>
 
 
 									<form id="profile-settings" action="/settings/name_change" method="post">
 										<input type="hidden" name="formkey" value="{{v.formkey}}">
 										<input type="text" name="name" class="form-control" value="{{v.username}}">
-										<small>Your original username will always stay reserved for you: <code>{{v.original_username}}</code></small>
+										<small>3-25 characters, including letters, numbers, and _</small>
 										<div class="d-flex mt-2">
-											<small>3-25 characters, including letters, numbers, and _</small>
 											{% if v.admin_level == 6 or v.can_change_name %}
 											<input class="btn btn-primary ml-auto" id="nameSave" type="submit" value="Change Display Name">
 											{% elif g.timestamp-v.name_changed_utc < 60*60*24*90 %}
@@ -217,7 +216,7 @@
 								 <form action="/settings/namecolor" id="color-form" method="post" class="color-picker" style="line-height: 0">
 										<input type="hidden" name="formkey" value="{{v.formkey}}">
 
-										{% for color in ['cfcfcf','ff66ac','2a96f3','62ca56','eb4963','ff0000','f39731','30409f','3e98a7','e4432d','7b9ae4','ec72de','7f8fa6'] %}
+										{% for color in ['ff66ac','2a96f3','62ca56','eb4963','ff0000','f39731','30409f','3e98a7','e4432d','7b9ae4','ec72de','7f8fa6'] %}
 										<input type="radio" name="color" id="color-{{color}}" value="{{color}}" {% if v.namecolor == color %}checked{% endif %} onclick="document.getElementById('color-form').submit()"/>
 										<label class="color-radio" for="color-{{color}}">
 											<span style="background-color: #{{color}}">
@@ -265,7 +264,7 @@
 								 <form action="/settings/titlecolor" id="titlecolor-form" method="post" class="color-picker" style="line-height: 0">
 										<input type="hidden" name="formkey" value="{{v.formkey}}">
 
-										{% for titlecolor in ['cfcfcf','ff66ac','2a96f3','62ca56','eb4963','ff0000','f39731','30409f','3e98a7','e4432d','7b9ae4','ec72de','7f8fa6'] %}
+										{% for titlecolor in ['ff66ac','2a96f3','62ca56','eb4963','ff0000','f39731','30409f','3e98a7','e4432d','7b9ae4','ec72de','7f8fa6'] %}
 										<input type="radio" name="titlecolor" id="titlecolor-{{titlecolor}}" value="{{titlecolor}}" {% if v.titlecolor == titlecolor %}checked{% endif %} onclick="document.getElementById('titlecolor-form').submit()"/>
 										<label class="color-radio" for="titlecolor-{{titlecolor}}">
 											<span style="background-color: #{{titlecolor}}">
@@ -367,7 +366,7 @@
 									<label class="custom-control-label" for="nofollowswitch"></label>
 								</div>
 
-								<span class="text-small-extra text-muted">Prevent other users from subscribing to you.</span>
+								<span class="text-small-extra text-muted">Prevent other users from following you.</span>
 
 							</div>
 
