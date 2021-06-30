@@ -21,6 +21,33 @@ import matplotlib.pyplot as plt
 from ruqqus.__main__ import app, cache
 
 
+@app.route("/admin/title_change/<user_id>", methods=["POST"])
+@admin_level_required(6)
+@validate_formkey
+def admin_title_change(user_id, v):
+
+	user = g.db.query(User).filter_by(id=user_id).first()
+
+	if user.admin_level != 0: abort(403)
+
+	new_name=request.form.get("title").lstrip().rstrip()
+
+	if not re.match(valid_title_regex, new_name): return jsonify({"error": "This isn't a valid flair."})
+
+	if new_name==user.customtitle: return jsonify({"error": "You didn't change anything."})
+
+	new_name=new_name.replace('_','\_')
+	new_name = sanitize(new_name, linkgen=True)
+
+	user=g.db.query(User).with_for_update().options(lazyload('*')).filter_by(id=user.id).first()
+	user.customtitle=new_name
+	user.flairchanged=True
+
+	g.db.add(user)
+	g.db.commit()
+
+	return "", 204
+
 @app.route("/api/ban_user/<user_id>", methods=["POST"])
 @admin_level_required(6)
 @validate_formkey

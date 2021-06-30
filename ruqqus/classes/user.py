@@ -46,6 +46,7 @@ class User(Base, Stndrd, Age_times):
 	is_activated = Column(Boolean, default=False)
 	over_18 = Column(Boolean, default=False)
 	hidevotedon = Column(Boolean, default=False)
+	flairchanged = Column(Boolean, default=False)
 	newtab = Column(Boolean, default=False)
 	creation_ip = Column(String, default=None)
 	submissions = relationship(
