@@ -109,7 +109,7 @@ _clean_w_links = bleach.Cleaner(tags=_allowed_tags,
 
 def sanitize(text, linkgen=False):
 
-	text = text.replace("\ufeff", "").replace("m.youtube.com", "youtube.com").replace("\n", "\n\n")
+	text = text.replace("\ufeff", "").replace("m.youtube.com", "youtube.com")
 	
 	if linkgen:
 		sanitized = _clean_w_links.clean(text)

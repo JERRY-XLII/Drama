@@ -1,5 +1,4 @@
 from urllib.parse import urlparse
-import mistletoe
 from sqlalchemy import func
 from bs4 import BeautifulSoup
 import pyotp
