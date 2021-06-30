@@ -139,11 +139,8 @@
 						<a href="/settings/profile" class="btn btn-secondary">Edit profile</a>
 					 {% endif %}
 					 {% if v and v.id != u.id and v.admin_level > 0 and u.admin_level == 0 %}
+						<br>
 						<div class="body d-lg-flex border-bottom">
-
-							<pre>
-							</pre>
-
 							<div class="w-lg-100">
 
 								<form id="profile-settings" action="/admin/title_change/{{u.id}}" method="post">
@@ -295,10 +292,8 @@
 					</form>
 					
 					 {% if v.admin_level > 0 and u.admin_level == 0 %}
+						<br>
 						<div class="body d-lg-flex border-bottom">
-
-							<pre>
-							</pre>
 
 							<div class="w-lg-100">
 
