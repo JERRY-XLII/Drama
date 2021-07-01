@@ -14069,6 +14069,11 @@ div.deleted.banned {
   animation: slidebg 5s linear infinite;
 }
 
+.logo:hover {
+  color: #ffffff;
+  text-decoration: none;
+}
+
 @keyframes slidebg {
   to {
     background-position: 37vw;
