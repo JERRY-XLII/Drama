@@ -2587,10 +2587,6 @@ ul.comment-section {
     color: $muted;
 }
 
-.comment .comment-collapse {
-    padding-right: 15px;
-}
-
 .comment .comment-collapse::before {
     content: "";
     position: absolute;
@@ -3614,7 +3610,7 @@ body, #settings, #notifications, #submit{
 }
 
 .comment .comment-collapse {
-    padding-right: 0;
+    padding-right: 15px;
 }
 
 .comment.collapsed .user-info {

@@ -15566,10 +15566,6 @@ ul.comment-section {
   color: #718096;
 }
 
-.comment .comment-collapse {
-  padding-right: 15px;
-}
-
 .comment .comment-collapse::before {
   content: "";
   position: absolute;
@@ -16980,7 +16976,7 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
   }
 
   .comment .comment-collapse {
-    padding-right: 0;
+    padding-right: 15px;
   }
 
   .comment.collapsed .user-info {
