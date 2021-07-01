@@ -148,7 +148,7 @@ body {
 	font-size: 1rem;
 	font-weight: 400;
 	line-height: 1.5;
-	color: #787878;
+	color: #f6f6f6;
 	text-align: left;
 	background-color: #242424; }
 
@@ -10949,7 +10949,7 @@ ol > li::before {
 	font-size: 1rem; }
 
 .btn-secondary {
-	color: #242424; }
+	color: #f6f6f6; }
 
 .btn-tag {
 	border-radius: 3rem;
