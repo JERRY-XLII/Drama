@@ -94,43 +94,43 @@
 
 				{% if u.customtitle %}<p style="color: #{{u.titlecolor}}">{{u.customtitle | safe}}</p>{% endif %}
 				
-				<div class="font-weight-normal mayo">
+				<div class="font-weight-normal">
 					<span class="font-weight-bold">{{u.dramacoins}}</span> Dramacoins&nbsp;&nbsp; {% if u.follower_count >=1 and not u.is_nofollow %}<a href="/@{{u.username}}/followers" class="font-weight-bold">{{u.follower_count}} follower{{'s' if u.follower_count != 1 else ''}}</a>&nbsp;&nbsp; {% endif %}joined <span data-toggle="tooltip" data-placement="bottom" title="" data-original-title="{{u.created_datetime}}" class="font-weight-bold">{{u.created_date}}</span>
 				</div>
 				{% if u.bio_html %}
-				<p class="text-muted mayo">{{u.bio_html | safe}}</p>
+				<p class="text-muted">{{u.bio_html | safe}}</p>
 				{% else %}
-				<p class="text-muted mayo">No bio...</p>
+				<p class="text-muted">No bio...</p>
 				{% endif %}
 				{% if u.bio_html and v %}
 				{% endif %}
 
-				<div class="d-flex justify-content-between align-items-center mayo">
+				<div class="d-flex justify-content-between align-items-center">
 					<div>
 					 {% if v and v.id != u.id %}
-						<a id="button-unsub" class="btn mayo btn-secondary {% if not is_following %}d-none{% endif %}" href="javascript:void(0)" onclick="post('/api/unfollow/{{u.username}}', callback=function(){document.getElementById('button-unsub').classList.toggle('d-none');document.getElementById('button-sub').classList.toggle('d-none');})">Unfollow</a>
-						<a id="button-sub" class="btn mayo btn-primary {% if is_following or u.is_nofollow or u.is_blocked %}d-none{% endif %}" href="javascript:void(0)" onclick="post('/api/follow/{{u.username}}', callback=function(){document.getElementById('button-sub').classList.toggle('d-none');document.getElementById('button-unsub').classList.toggle('d-none');})">Follow</a>						
+						<a id="button-unsub" class="btn btn-secondary {% if not is_following %}d-none{% endif %}" href="javascript:void(0)" onclick="post('/api/unfollow/{{u.username}}', callback=function(){document.getElementById('button-unsub').classList.toggle('d-none');document.getElementById('button-sub').classList.toggle('d-none');})">Unfollow</a>
+						<a id="button-sub" class="btn btn-primary {% if is_following or u.is_nofollow or u.is_blocked %}d-none{% endif %}" href="javascript:void(0)" onclick="post('/api/follow/{{u.username}}', callback=function(){document.getElementById('button-sub').classList.toggle('d-none');document.getElementById('button-unsub').classList.toggle('d-none');})">Follow</a>						
 						
-						<a class="btn mayo btn-primary" href="javascript:void(0)" onclick="document.getElementById('message').classList.toggle('d-none')">Message</a>
+						<a class="btn btn-primary" href="javascript:void(0)" onclick="document.getElementById('message').classList.toggle('d-none')">Message</a>
 						<form class="d-none" id="message" action="/@{{u.username}}/message" method="post">
 							<pre></pre>
 							<textarea id="input-message" form="message" name="message" rows="3" class="form-control" required></textarea>
 							<pre></pre>
-							<pre class="btn mayo btn-secondary format d-inline-block m-0 fas fa-bold" aria-hidden="true" onclick="makeBold('input-message')" data-toggle="tooltip" data-placement="bottom" title="Bold"></pre>
+							<pre class="btn btn-secondary format d-inline-block m-0 fas fa-bold" aria-hidden="true" onclick="makeBold('input-message')" data-toggle="tooltip" data-placement="bottom" title="Bold"></pre>
 							&nbsp;
-							<pre class="btn mayo btn-secondary format d-inline-block m-0 fas fa-italic" aria-hidden="true" onclick="makeItalics('input-message')" data-toggle="tooltip" data-placement="bottom" title="Italicize"></pre>
+							<pre class="btn btn-secondary format d-inline-block m-0 fas fa-italic" aria-hidden="true" onclick="makeItalics('input-message')" data-toggle="tooltip" data-placement="bottom" title="Italicize"></pre>
 							&nbsp;
-							<pre class="btn mayo btn-secondary format d-inline-block m-0 fas fa-quote-right" aria-hidden="true" onclick="makeQuote('input-message')" data-toggle="tooltip" data-placement="bottom" title="Quote"></pre>
+							<pre class="btn btn-secondary format d-inline-block m-0 fas fa-quote-right" aria-hidden="true" onclick="makeQuote('input-message')" data-toggle="tooltip" data-placement="bottom" title="Quote"></pre>
 							&nbsp;
-							<pre style="line-height:1;" class="btn mayo btn-secondary format d-inline-block m-0 font-weight-bolder text-uppercase" onclick="commentForm('input-message');getGif()" aria-hidden="true" data-toggle="modal" data-target="#gifModal" data-toggle="tooltip" data-placement="bottom" title="Add GIF">GIF</pre>
+							<pre style="line-height:1;" class="btn btn-secondary format d-inline-block m-0 font-weight-bolder text-uppercase" onclick="commentForm('input-message');getGif()" aria-hidden="true" data-toggle="modal" data-target="#gifModal" data-toggle="tooltip" data-placement="bottom" title="Add GIF">GIF</pre>
 							&nbsp;
-							<pre class="btn mayo btn-secondary format d-inline-block m-0 fas fa-smile-beam" onclick="loadEmojis('input-message')" aria-hidden="true" data-toggle="modal" data-target="#emojiModal" data-toggle="tooltip" data-placement="bottom" title="Add EMOJI"></pre>
+							<pre class="btn btn-secondary format d-inline-block m-0 fas fa-smile-beam" onclick="loadEmojis('input-message')" aria-hidden="true" data-toggle="modal" data-target="#emojiModal" data-toggle="tooltip" data-placement="bottom" title="Add EMOJI"></pre>
 							&nbsp;
-							<input type="submit" value="Submit" class="btn mayo btn-primary mt-3">
+							<input type="submit" value="Submit" class="btn btn-primary mt-3">
 						</form>
 
 					 {% elif v and v.id == u.id %}
-						<a href="/settings/profile" class="btn mayo btn-secondary">Edit profile</a>
+						<a href="/settings/profile" class="btn btn-secondary">Edit profile</a>
 					 {% endif %}
 					 {% if v and v.id != u.id and v.admin_level > 0 and u.admin_level == 0 %}
 						<br><br>
@@ -141,14 +141,14 @@
 									<input type="hidden" name="formkey" value="{{v.formkey}}">
 									<input id="customtitlebody" type="text" name="title" class="form-control" placeholder='Enter a flair here' value="{% if u.customtitle %}{{u.customtitle}}{% endif %}">
 									<div class="d-flex mt-2">
-										<small class="format"><i class="btn mayo btn-secondary format d-inline-block m-0 fas fa-smile-beam" onclick="loadEmojis('customtitlebody')" aria-hidden="true" data-toggle="modal" data-target="#emojiModal" data-toggle="tooltip" data-placement="bottom"  title="Add EMOJI"></i></small>
+										<small class="format"><i class="btn btn-secondary format d-inline-block m-0 fas fa-smile-beam" onclick="loadEmojis('customtitlebody')" aria-hidden="true" data-toggle="modal" data-target="#emojiModal" data-toggle="tooltip" data-placement="bottom"  title="Add EMOJI"></i></small>
 										&nbsp;&nbsp;&nbsp;
 										<div class="custom-control custom-checkbox">
 											<input type="checkbox" class="custom-control-input" id="locked" name="locked">
-											<label class="custom-control-label mayo" for="locked">locked</label>
+											<label class="custom-control-label" for="locked">locked</label>
 										</div>
 										&nbsp;&nbsp;&nbsp;
-										<input class="btn mayo btn-primary ml-auto" type="submit" value="Change Flair">
+										<input class="btn btn-primary ml-auto" type="submit" value="Change Flair">
 									</div>
 								</form>
 							</div>
@@ -158,27 +158,27 @@
 						{% if u.is_banned %}
 							<form action="/api/unban_user/{{u.id}}/?notoast=1" method="post" action="">
 								<input type="hidden" name="formkey", value="{{v.formkey}}">
-								<input type="submit" class="btn mayo btn-success" value="Unban user">
+								<input type="submit" class="btn btn-success" value="Unban user">
 							</form>
 						{% else %}
 							<form action="/api/ban_user/{{u.id}}?notoast=1" method="post" action="">
 								<input type="hidden" name="formkey" value="{{v.formkey}}">
 								<input style="font-size:11px;" type="text" class="form-control" name="reason" placeholder="Ban Reason" onchange="document.getElementById('user-ban-submit').disabled=false">
 								<input style="font-size:11px;" type="number" class="form-control" name="days" placeholder="Days (blank = permanent)">
-								<input id="user-ban-submit" type="submit" class="btn mayo btn-warning" value="Ban user" disabled>
+								<input id="user-ban-submit" type="submit" class="btn btn-warning" value="Ban user" disabled>
 							</form>
 						{% endif %}
 						<pre></pre>
 						<form action="/admin/unnuke_user" method="post">
 							<input type="hidden" name="formkey", value="{{v.formkey}}">
 							<input type="hidden" name="user" value="{{u.username}}">
-							<input type="submit" class="btn mayo btn-success" value="Approve User's Content">
+							<input type="submit" class="btn btn-success" value="Approve User's Content">
 						</form>
 						<pre></pre>
 						<form action="/admin/nuke_user" method="post">
 							<input type="hidden" name="formkey", value="{{v.formkey}}">
 							<input type="hidden" name="user" value="{{u.username}}">
-							<input type="submit" class="btn mayo btn-danger" value="Remove User's Content">
+							<input type="submit" class="btn btn-danger" value="Remove User's Content">
 						</form>
 					{% endif %}
 					{% if v and v.admin_level >=4 %}
