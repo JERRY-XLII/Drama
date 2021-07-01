@@ -35,7 +35,7 @@ BAN_REASONS = ['',
 			   "Copyright infringement is not permitted."
 			   ]
 
-BUCKET = "i.rdrama.net"
+BUCKET = "i.ruqqus.ga"
 
 with open("snappy.txt", "r") as f:
 	snappyquotes = f.read().split("{[para]}")
