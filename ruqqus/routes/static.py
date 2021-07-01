@@ -126,7 +126,7 @@ def brave():
 
 @app.route("/.well-known/assetlinks.json", methods=["GET"])
 def googleplayapp():
-	with open(".well-known/assetlinks.json", "r") as f: return Response(f.read(), mimetype='text/plain')
+	with open(".well-known/assetlinks.json", "r") as f: return Response(f.read(), mimetype='application/json')
 
 @app.route("/badmins", methods=["GET"])
 @auth_desired
