@@ -16025,11 +16025,7 @@ ul.comment-section {
   background: #1f2023;
 }
 
-.comment-write .comment-format {
-  display: none;
-}
-
-.comment-write.collapsed .comment-format {
+.comment-format {
   display: flex;
   align-items: center;
   bottom: 0;
@@ -17466,7 +17462,7 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
   }
 
   .comment-section > .comment {
-    padding-left: 0;
+    padding-left: 20px;
   }
 
   .comment {
