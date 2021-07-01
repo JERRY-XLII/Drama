@@ -211,7 +211,7 @@
 
  </head>
 
- <body id="{% if request.path != '/comments' %}{% block pagetype %}frontpage{% endblock %}{% endif %}">
+ <body id="{% if request.path != '/comments' %}{% block pagetype %}frontpage{% endblock %}{% endif %}" style="overfow-x: hidden;">
 	<a href="https://secure.actblue.com/donate/ms_blm_homepage_2019"><img src="/assets/images/blm.png" width="100%"></a>
 	{% if request.path=='/' and g.system and g.timestamp>session.get('tooltip_last_dismissed',0)+60*60*24 and (g.system.endswith('/chrome') or g.system.endswith('/other')) %}
 	<div class="row fixed-top" style="z-index:2000" id="mobile-prompt-row">
