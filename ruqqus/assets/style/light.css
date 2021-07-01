@@ -17233,4 +17233,8 @@ img.emoji {
   color: gray !important;
 }
 
+#frontpage .post-title a:visited {
+  color: #gray;
+}
+
 /*# sourceMappingURL=light.css.map */

@@ -17724,4 +17724,8 @@ img.emoji {
   color: white !important;
 }
 
+#frontpage .post-title a:visited {
+  color: #gray;
+}
+
 /*# sourceMappingURL=dark.css.map */
