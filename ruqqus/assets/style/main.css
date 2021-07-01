@@ -12555,7 +12555,7 @@ div:hover .thumb-img-link-overlay {
 
 @media (min-width: 768px) {
 	.comment {
-		border-left: 0px solid #808080 !important;
+		border-left: 0px !important;
 	}
 }
 
@@ -12769,7 +12769,7 @@ ul.comment-section {
 	
 @media (max-width: 768px) {
 	.comment .comment-collapse {
-		border-left: 0px solid #808080 !important;
+		border-left: 0px !important;
 	}
 }
 
