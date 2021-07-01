@@ -15816,6 +15816,7 @@ div:hover .thumb-img-link-overlay {
   display: flex;
   position: relative;
   margin-top: 2rem;
+  padding-left: 20px;
 }
 
 #notifications .comment, #userpage .comment {
