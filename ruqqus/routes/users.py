@@ -44,17 +44,6 @@ def leaderboard():
 	postcount = [x.post_count for x in users3]
 	return users1[:25], users2, users3, users4, postcount
 
-
-@app.route("/@<username>/message", methods=["GET"])
-@auth_required
-def message1(v, username):
-	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
-
-	user = get_user(username, v=v)
-	if user.is_blocking: return jsonify({"error": "You're blocking this user."}), 403
-	if user.is_blocked: return jsonify({"error": "This user is blocking you."}), 403
-	return render_template("privatemessage.html", v=v, user=user)
-
 @app.route("/@<username>/message", methods=["POST"])
 @auth_required
 def message2(v, username):

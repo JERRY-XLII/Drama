@@ -120,7 +120,7 @@
 						<a class="btn btn-primary" href="javascript:void(0)" onclick="document.getElementById('message').classList.toggle('d-none')">Message</a>
 						<form class="d-none" id="message" action="/@{{u.username}}/message" method="post">
 							<pre></pre>
-							<textarea id="input-message" form="message" name="message" rows="7" class="form-control" required></textarea>
+							<textarea id="input-message" form="message" name="message" rows="3" class="form-control" required></textarea>
 							<pre></pre>
 							<pre class="btn btn-secondary format d-inline-block m-0 fas fa-bold" aria-hidden="true" onclick="makeBold('input-message')" data-toggle="tooltip" data-placement="bottom" title="Bold"></pre>
 							&nbsp;
@@ -148,6 +148,11 @@
 									<input id="customtitlebody" type="text" name="title" class="form-control" placeholder='Enter a flair here' value="{% if u.customtitle %}{{u.customtitle}}{% endif %}">
 									<div class="d-flex mt-2">
 										<small class="format"><i class="btn btn-secondary format d-inline-block m-0 fas fa-smile-beam" onclick="loadEmojis('customtitlebody')" aria-hidden="true" data-toggle="modal" data-target="#emojiModal" data-toggle="tooltip" data-placement="bottom"  title="Add EMOJI"></i></small>
+										&nbsp;&nbsp;&nbsp;
+										<div class="custom-control custom-checkbox">
+											<input type="checkbox" class="custom-control-input" id="locked" name="locked">
+											<label class="custom-control-label" for="locked">locked</label>
+										</div>
 										&nbsp;&nbsp;&nbsp;
 										<input class="btn btn-primary ml-auto" id="titleSave" type="submit" value="Change Flair">
 									</div>
@@ -276,7 +281,7 @@
 					<a class="btn btn-primary" href="javascript:void(0)" onclick="document.getElementById('message-mobile').classList.toggle('d-none')">Message</a>
 					<form class="d-none" id='message-mobile' action="/@{{u.username}}/message" method="post">
 						<pre></pre>
-						<textarea id="input-message-mobile" form="message-mobile" name="message-mobile" rows="7" class="form-control" required></textarea>
+						<textarea id="input-message-mobile" form="message-mobile" name="message-mobile" rows="3" class="form-control" required></textarea>
 						<pre></pre>
 						<pre class="btn btn-secondary format d-inline-block m-0 fas fa-bold" aria-hidden="true" onclick="makeBold('input-message-mobile')" data-toggle="tooltip" data-placement="bottom" title="Bold"></pre>
 						&nbsp;
@@ -302,6 +307,11 @@
 									<input id="customtitlebody" type="text" name="title" class="form-control" placeholder='Enter a flair here' value="{% if u.customtitle %}{{u.customtitle}}{% endif %}">
 									<div class="d-flex mt-2">
 										<small class="format"><i class="btn btn-secondary format d-inline-block m-0 fas fa-smile-beam" onclick="loadEmojis('customtitlebody')" aria-hidden="true" data-toggle="modal" data-target="#emojiModal" data-toggle="tooltip" data-placement="bottom"  title="Add EMOJI"></i></small>
+										&nbsp;&nbsp;&nbsp;
+										<div class="custom-control custom-checkbox">
+											<input type="checkbox" class="custom-control-input" id="locked" name="locked">
+											<label class="custom-control-label" for="locked">locked</label>
+										</div>
 										&nbsp;&nbsp;&nbsp;
 										<input class="btn btn-primary ml-auto" id="titleSave" type="submit" value="Change Flair">
 									</div>

@@ -8,10 +8,12 @@ from .sanitize import *
 
 def send_notification(vid, user, text):
 
-	with CustomRenderer() as renderer:
-		text_html = renderer.render(mistletoe.Document(text))
+	# with CustomRenderer() as renderer:
+		# text_html = renderer.render(mistletoe.Document(text))
 
-	text_html = sanitize(text_html, linkgen=True)
+	# text_html = sanitize(text_html, linkgen=True)
+	
+	text_html = sanitize(text, linkgen=True)
 
 	new_comment = Comment(author_id=vid,
 						  parent_submission=None,

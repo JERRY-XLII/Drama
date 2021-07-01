@@ -34,7 +34,7 @@ class User(Base, Stndrd, Age_times):
 	__tablename__ = "users"
 	id = Column(Integer, primary_key=True)
 	username = Column(String, default=None)
-	namecolor = Column(String, default='cfcfcf')
+	namecolor = Column(String, default='ff66ac')
 	customtitle = Column(String, default=None)
 	titlecolor = Column(String, default='ff66ac')
 	profileurl = Column(String, default=None)
