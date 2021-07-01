@@ -177,9 +177,9 @@
 					 <button class="btn btn-link btn-block btn-lg text-left text-muted"><a href="/votes?link=https://rdrama.net{{p.permalink}}"><i class="fas fa-arrows-v text-center text-muted mr-3"></i>Votes</a></button>
 
 					{% if v and p.id in v.saved_idlist() %}
-						<button class="btn btn-link btn-block btn-lg text-left text-muted"><a href="javascript:void(0)" onclick="post('/unsave_post/{{p.base36id}}', function(){window.location.reload(true);})"><i class="fas fa-save-v text-center text-muted mr-3"></i>Unsave</a></button>
+						<button class="btn btn-link btn-block btn-lg text-left text-muted"><a href="javascript:void(0)" onclick="post('/unsave_post/{{p.base36id}}', function(){window.location.reload(true);})"><i class="fas fa-save text-center text-muted mr-3"></i>Unsave</a></button>
 					{% else %}
-						<button class="btn btn-link btn-block btn-lg text-left text-muted"><a href="javascript:void(0)" onclick="post('/save_post/{{p.base36id}}', function(){window.location.reload(true);})"><i class="fas fa-save-v text-center text-muted mr-3"></i>Save</a></button>
+						<button class="btn btn-link btn-block btn-lg text-left text-muted"><a href="javascript:void(0)" onclick="post('/save_post/{{p.base36id}}', function(){window.location.reload(true);})"><i class="fas fa-save text-center text-muted mr-3"></i>Save</a></button>
 					{% endif %}
 
 					{% if v and (v.id==p.author_id or v.admin_level>=3 or p.is_guildmaster('content')) %}
