@@ -12551,8 +12551,13 @@ div:hover .thumb-img-link-overlay {
 	display: flex;
 	position: relative;
 	margin-top: 2rem;
-	border-left: 0px solid #808080 !important;
 	}
+
+@media (min-width: 768px) {
+	.comment {
+		border-left: 0px solid #808080 !important;
+	}
+}
 
 #notifications .comment, #userpage .comment {
 	margin-top: 0.5rem;
