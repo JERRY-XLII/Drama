@@ -12762,6 +12762,12 @@ ul.comment-section {
 	cursor: pointer;
 	}
 	
+@media (max-width: 768px) {
+	.comment .comment-collapse {
+		border-left: 0px solid #808080 !important;
+	}
+}
+
 .comment .comment-collapse:hover {
 	border-left-color: #DBDBDB !important; }
 
