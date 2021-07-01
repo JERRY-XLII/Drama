@@ -89,7 +89,7 @@ $('#new_email').on('input', function () {
 			let arr = emojis[i].emojis
 
 			for (j=0; j < arr.length; j++) { 
-				str += `<button class="btn m-1 pl-1 pr-2" onclick="getEmoji(\'${arr[j]}\', \'${form}\')" style="width:40px; overflow: hidden;" data-toggle="tooltip" title=":${arr[j]}:" delay:="0"><img width=30 src="/assets/images/emojis/${arr[j]}.gif" alt="${arr[j]}-emoji"/></button>`;
+				str += `<button class="btn m-1 pl-1 pr-2" onclick="getEmoji(\'${arr[j]}\', \'${form}\')" style="width:40px; overflow: hidden;" data-toggle="tooltip" title=":${arr[j]}:" delay:="0"><img width=30 src="http://rdrama.net/assets/images/emojis/${arr[j]}.gif" alt="${arr[j]}-emoji"/></button>`;
 			}
 
 			container.innerHTML = str
@@ -432,7 +432,7 @@ function switch_css() {
 	if (css.href.includes("/assets/style/main.css")) {
 		post("/settings/dark_mode/1",
 			callback=function(){
-				css.href="/assets/style/main_dark.css?v=2.35.94";
+				css.href="http://rdrama.net/assets/style/main_dark.css?v=2.35.94";
 				dswitch.classList.remove("fa-toggle-off");
 				dswitch.classList.add("fa-toggle-on");
 				dswitchmobile.classList.remove("fa-toggle-off");
@@ -443,7 +443,7 @@ function switch_css() {
 	else {
 		post("/settings/dark_mode/0",
 			callback=function(){
-				css.href="/assets/style/main.css?v=2.35.94";
+				css.href="http://rdrama.net/assets/style/main.css?v=2.35.94";
 				dswitch.classList.remove("fa-toggle-on");
 				dswitch.classList.add("fa-toggle-off");
 				dswitchmobile.classList.remove("fa-toggle-on");
