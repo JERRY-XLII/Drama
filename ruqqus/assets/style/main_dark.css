@@ -12635,16 +12635,16 @@ blockquote p {
 .comment-actions .fa, .comment-actions .fas, .comment-actions .far {
 	font-size: 12px;
 	margin-right: .5rem;
-	color: #f6f6f6; }
+	color: #91b1b1; }
 
 .comment-actions .dropdown-item:active .fa, .comment-actions .dropdown-item:active .fas, .comment-actions .dropdown-item:active .far {
-	color: #f6f6f6; }
+	color: #91b1b1; }
 
 .comment-actions .dropdown-item:hover .fa, .comment-actions .dropdown-item:hover .fas, .comment-actions .dropdown-item:hover .far {
-	color: #f6f6f6; }
+	color: #91b1b1; }
 
 .comment-actions a:hover .fa, .comment-actions a:hover .fas, .comment-actions a:hover .far {
-	color: #f6f6f6; }
+	color: #91b1b1; }
 
 .comment-actions .fas.fa-ellipsis-h {
 	font-size: 1.25rem;
@@ -13861,7 +13861,7 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
 		opacity: 0.5; }
 
 	.comment-actions .fa, .comment-actions .fas, .comment-actions .far {
-		color: #f6f6f6; }
+		color: #91b1b1; }
 
 	.banner-pic-135 {
 		max-width: 100%; }
