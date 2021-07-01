@@ -14082,4 +14082,6 @@ div.deleted.banned {
   }
 }
 
-#frontpage .post-title a {
+#frontpage .post-title a:visited {
+	color: #9e9e9e;
+}
