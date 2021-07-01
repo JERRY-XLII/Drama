@@ -12553,12 +12553,6 @@ div:hover .thumb-img-link-overlay {
 	margin-top: 2rem;
 	}
 
-@media (min-width: 768px) {
-	.comment {
-		border-left: 0px !important;
-	}
-}
-
 #notifications .comment, #userpage .comment {
 	margin-top: 0.5rem;
 	margin-bottom: 1rem; }
@@ -12761,23 +12755,6 @@ ul.comment-section {
 
 .comment-write .comment-format2 .format:hover {
 	color: #CFCFCF; }
-
-.comment .comment-collapse {
-	padding-right: 20px;
-	cursor: pointer;
-	}
-	
-@media (max-width: 768px) {
-	.comment .comment-collapse {
-		border-left: 0px !important;
-	}
-}
-
-.comment .comment-collapse:hover {
-	border-left-color: #DBDBDB !important; }
-
-.comment.collapsed .comment-collapse:hover {
-	color: #DBDBDB !important; }
 
 .comment.collapsed .comment-profile, .comment.collapsed .comment-body p.text, .comment.collapsed div.comment-text, .comment.collapsed .comment-actions, .comment.collapsed .comment-write,
 .comment.collapsed .comment {
@@ -14104,20 +14081,19 @@ div.deleted.banned {
 		padding-right: 15px; }
 
 	.comment .comment-collapse::before {
-		content: "";
-		position: absolute;
+		content: "\f056";
 		font-family: "Font Awesome 5 Pro";
-		border-left: 4px solid #808080;
-		font-size: 1rem;
-		color: #FF66AC;
 		display: inline-block;
+		color: #FF66AC;
+		position: static;
+		font-size: 10px;
+		font-weight: 900;
+		border: none;
+		margin-left: 0.25rem; 
 		height: 100%;
 		cursor: pointer;
 		width: 10px;
-		}
-
-	.comment .comment-collapse:hover::before {
-		border-left-color: #FF66AC; }
+	}
 
 	.comment.collapsed .comment-collapse::before {
 		content: "\f055";
@@ -14129,15 +14105,21 @@ div.deleted.banned {
 		left: -3px;
 		font-size: 10px; }
 
+	.comment .comment-collapse:hover::before {
+		border-left-color: #FF66AC; }
+
 	.comment.collapsed .comment-collapse:hover::before {
 		color: #FF66AC; }
 	
-	.comment .comment-collapse::before {
-		content: "\f056";
-		position: static;
-		font-size: 10px;
-		font-weight: 900;
-		border: none;
-		margin-left: 0.25rem; 
-	}
 }
+
+.comment .comment-collapse-desktop {
+	padding-right: 20px;
+	cursor: pointer;
+	}
+	
+.comment .comment-collapse-desktop:hover {
+	border-left-color: #DBDBDB !important; }
+
+.comment.collapsed .comment-collapse-desktop:hover {
+	color: #DBDBDB !important; }
