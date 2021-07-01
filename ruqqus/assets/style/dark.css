@@ -17714,5 +17714,17 @@ img.emoji {
     border-left: 0px !important;
   }
 }
+.comment .comment-collapse-desktop {
+  padding-right: 20px;
+  cursor: pointer;
+}
+
+.comment .comment-collapse-desktop:hover {
+  border-left-color: white !important;
+}
+
+.comment.collapsed .comment-collapse-desktop:hover {
+  color: white !important;
+}
 
 /*# sourceMappingURL=dark.css.map */
