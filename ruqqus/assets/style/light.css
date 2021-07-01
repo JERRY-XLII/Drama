@@ -17218,4 +17218,10 @@ img.emoji {
   color: white;
 }
 
+@media (min-width: 768px) {
+  .comment {
+    border-left: 0px !important;
+  }
+}
+
 /*# sourceMappingURL=light.css.map */

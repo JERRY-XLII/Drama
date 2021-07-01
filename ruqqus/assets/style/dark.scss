@@ -3941,3 +3941,9 @@ img.emoji {
 .spoiler:hover { 
   color: black;
 }
+
+@media (min-width: 768px) {
+	.comment {
+		border-left: 0px !important;
+	}
+}
