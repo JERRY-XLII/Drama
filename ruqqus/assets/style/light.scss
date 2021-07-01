@@ -2631,11 +2631,7 @@ ul.comment-section {
     background: $gray-600;
 }
 
-.comment-write .comment-format {
-    display: none;
-}
-
-.comment-write.collapsed .comment-format {
+.comment-format {
     display: flex;
     align-items: center;
     bottom: 0;
@@ -3683,7 +3679,7 @@ body, #settings, #notifications, #submit {
 }
 
 .comment-section > .comment {
-    padding-left: 0;
+    padding-left: 20px;
   }
 
 .comment {

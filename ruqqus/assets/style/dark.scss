@@ -24,8 +24,8 @@ $gray-400: #CBD5E0;
 $gray-500: #A0AEC0;
 $gray-600: #718096;
 
-$upvote: #805AD5;
-$downvote: #38B2AC;
+$upvote: #FF66AC;
+$downvote: #FF66AC;
 $admin: #E53E3E;
 $banned: #FEB2B2;
 $deleted: #FEFCBF;
@@ -2567,11 +2567,7 @@ ul.comment-section {
     background: $white;
 }
 
-.comment-write .comment-format {
-    display: none;
-}
-
-.comment-write.collapsed .comment-format {
+.comment-format {
     display: flex;
     align-items: center;
     bottom: 0;
@@ -3610,7 +3606,7 @@ body, #settings, #notifications, #submit{
 }
 
 .comment-section > .comment {
-    padding-left: 0;
+    padding-left: 20px;
   }
 
 .comment {

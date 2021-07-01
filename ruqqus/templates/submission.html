@@ -580,15 +580,10 @@
 					<div id="filename-show-reply-{{p.base36id}}"><i class="far fa-image"></i></div>
 					<input id="file-upload-reply-{{p.fullname}}" type="file" name="file" accept="image/*" onchange="document.getElementById('filename-show-reply-{{p.base36id}}').innerHTML='image';" hidden>
 				</label>
-<!-- 				<p>&nbsp;&nbsp;</p>
+<!-- 			&nbsp;&nbsp;
 				<div class="custom-control custom-checkbox">
 					<input type="checkbox" class="custom-control-input" id="nsfwCheck-{{p.fullname}}" name="over_18" form="reply-to-{{p.fullname}}">
 					<label class="custom-control-label" for="nsfwCheck">+18</label>
-				</div>
-				<p>&nbsp;&nbsp;</p>
-				<div class="custom-control custom-checkbox">
-					<input type="checkbox" class="custom-control-input" id="nsflCheck-{{p.fullname}}" name="is_nsfl" form="reply-to-{{p.fullname}}">
-					<label class="custom-control-label" for="nsflCheck">NSFL</label>
 				</div>
  -->				<a id="save-reply-to-{{p.fullname}}" href="javascript:void(0)" form="reply-to-{{p.fullname}}" class="btn btn-primary text-whitebtn ml-auto" onclick="post_comment('{{p.fullname}}')">Comment</a>
 			</div>
