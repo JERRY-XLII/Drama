@@ -10577,7 +10577,7 @@ a.text-black:hover, a.text-black:focus {
 	color: darkgray !important; }
 
 .text-muted {
-	color: #404040 !important; }
+	color: #f6f6f6  !important; }
 
 a.text-muted:hover, a.text-muted:focus {
 	color: #848484 !important; }
@@ -12230,7 +12230,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 	background-color: #c3c3c9; }
 
 .modal .post-actions a {
-	color: #404040;
+	color: #f6f6f6;
 	font-size: 1rem; }
 
 .modal .post-actions .fa, .modal .post-actions .fas, .modal .post-actions .far {
