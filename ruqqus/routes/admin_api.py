@@ -42,7 +42,7 @@ def admin_title_change(user_id, v):
 
 	user=g.db.query(User).with_for_update().options(lazyload('*')).filter_by(id=user.id).first()
 	user.customtitle=new_name
-	user.flairchanged = bool(request.form.get("locked",""))
+	user.flairchanged = bool(request.form.get("locked"))
 
 	g.db.add(user)
 	g.db.commit()
