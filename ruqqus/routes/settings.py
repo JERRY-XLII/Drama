@@ -289,10 +289,10 @@ def settings_security_post(v):
 						escape("Two-factor authentication disabled."))
 
 
-@app.route("/settings/dark_mode/<x>", methods=["POST"])
+@app.route("/settings/light_mode/<x>", methods=["POST"])
 @auth_required
 @validate_formkey
-def settings_dark_mode(x, v):
+def settings_light_mode(x, v):
 
 	try:
 		x = int(x)
@@ -303,13 +303,13 @@ def settings_dark_mode(x, v):
 		abort(400)
 
 	if not v.can_use_darkmode:
-		session["dark_mode_enabled"] = False
+		session["light_mode_enabled"] = False
 		abort(403)
 	else:
-		# print(f"current cookie is {session.get('dark_mode_enabled')}")
-		session["dark_mode_enabled"] = x
+		# print(f"current cookie is {session.get('light_mode_enabled')}")
+		session["light_mode_enabled"] = x
 		# print(f"set dark mode @{v.username} to {x}")
-		# print(f"cookie is now {session.get('dark_mode_enabled')}")
+		# print(f"cookie is now {session.get('light_mode_enabled')}")
 		session.modified = True
 		return "", 204
 

@@ -430,7 +430,7 @@ function switch_css() {
 	dswitchmobile = document.getElementById("dark-switch-mobile");
 
 	if (css.href.includes("/assets/style/dark.css")) {
-		post("/settings/dark_mode/1",
+		post("/settings/light_mode/1",
 			callback=function(){
 				css.href="/assets/style/light.css?v=2.35.94";
 				dswitch.classList.remove("fa-toggle-off");
@@ -441,7 +441,7 @@ function switch_css() {
 			);
 	}
 	else {
-		post("/settings/dark_mode/0",
+		post("/settings/light_mode/0",
 			callback=function(){
 				css.href="/assets/style/dark.css?v=2.35.94";
 				dswitch.classList.remove("fa-toggle-on");

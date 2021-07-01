@@ -5,7 +5,7 @@
 {% set score=ups-downs %}
 
 {% block stylesheets %}
-{% if v and v.can_use_darkmode and session.get("dark_mode_enabled") %}
+{% if v and v.can_use_darkmode and session.get("light_mode_enabled") %}
 <link id="css-link" rel="stylesheet" href="{{p.board.css_dark_url}}?v=2.35.62">
 {% else %}
 <link id="css-link" rel="stylesheet" href="{{p.board.css_url}}?v=2.35.62">
@@ -21,7 +21,7 @@
 
 		if (css.href.endsWith("{{p.board.css_url}}")) {
 
-			post("/settings/dark_mode/1",
+			post("/settings/light_mode/1",
 				callback=function(){
 					css.href="{{p.board.css_dark_url}}";
 					dswitch.classList.remove("fa-toggle-off");
@@ -30,7 +30,7 @@
 				);
 		}
 		else {
-			post("/settings/dark_mode/0",
+			post("/settings/light_mode/0",
 				callback=function(){
 					css.href="{{p.board.css_url}}";
 					dswitch.classList.remove("fa-toggle-on");
@@ -41,7 +41,7 @@
 		}
 	}
 </script>
-{% if v and v.can_use_darkmode and session.get("dark_mode_enabled")%}
+{% if v and v.can_use_darkmode and session.get("light_mode_enabled")%}
 <a class="dropdown-item" href="javascript:void(0)" onclick="switch_css_board()"><i class="fad fa-toggle-on fa-fw text-left mr-3" id="dark-switch"></i>Light mode</a>
 {% elif v and v.can_use_darkmode %}
 <a class="dropdown-item" href="javascript:void(0)" onclick="switch_css_board()"><i class="fad fa-toggle-off fa-fw text-left mr-3" id="dark-switch"></i>Light mode</a>
@@ -51,7 +51,7 @@
 {% endblock %}
 
 {% block darkswitchMobile %}
-{% if v and v.can_use_darkmode and session.get("dark_mode_enabled")%}
+{% if v and v.can_use_darkmode and session.get("light_mode_enabled")%}
 <li class="nav-item"><a class="nav-link" href="javascript:void(0)" onclick="switch_css_board()"><i class="fad fa-toggle-on fa-fw mr-3" id="dark-switch"></i>Light mode</a></li>
 {% elif v and v.can_use_darkmode %}
 <li class="nav-item"><a class="nav-link" href="javascript:void(0)" onclick="switch_css_board()"><i class="fad fa-toggle-off fa-fw mr-3" id="dark-switch"></i>Light mode</a></li>
@@ -321,7 +321,7 @@
 						{{p.body_html | safe}}
 
 						{% if p.embed_url and p.domain_obj and p.domain_obj.embed_template %}
-							{% if p.domain == "twitter.com" and session.get("dark_mode_enabled")	%}
+							{% if p.domain == "twitter.com" and session.get("light_mode_enabled")	%}
 								 {% include "site_embeds/twitterdark.html" %}
 							{% else %}
 									{% include p.embed_template %}
