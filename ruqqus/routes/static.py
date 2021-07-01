@@ -125,7 +125,7 @@ def brave():
 	with open(".well-known/brave-rewards-verification.txt", "r") as f: return Response(f.read(), mimetype='text/plain')
 
 @app.route("/.well-known/assetlinks.json", methods=["GET"])
-def brave():
+def googleplayapp():
 	with open(".well-known/assetlinks.json", "r") as f: return Response(f.read(), mimetype='text/plain')
 
 @app.route("/badmins", methods=["GET"])
