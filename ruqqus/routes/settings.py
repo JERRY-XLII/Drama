@@ -34,8 +34,6 @@ def settings_profile_post(v):
 		updated = True
 		v.hidevotedon = request.values.get("hidevotedon", None) == 'true'
 
-###############
-
 	if request.values.get("newtab", v.newtab) != v.newtab:
 		updated = True
 		v.newtab = request.values.get("newtab", None) == 'true'
@@ -76,7 +74,7 @@ def settings_profile_post(v):
 								   v=v,
 								   error="You didn't change anything")
 
-		body = body.replace("\n", "\n\n")
+		bio = bio.replace("\n", "\n\n")
 		for i in re.finditer('^(https:\/\/.*\.(png|jpg|jpeg|gif))', bio, re.MULTILINE): bio = bio.replace(i.group(1), f'![]({i.group(1)})')
 		with CustomRenderer() as renderer:
 			bio_html = renderer.render(mistletoe.Document(bio))
