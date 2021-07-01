@@ -14098,3 +14098,14 @@ div.deleted.banned {
 #frontpage .post-title a:visited {
 	color: #9e9e9e;
 }
+
+@media (max-width: 768px) {
+	.comment .comment-collapse::before {
+		content: "";
+		position: static;
+		font-size: 10px;
+		font-weight: 900;
+		border: none;
+		margin-left: 0.25rem; 
+	}
+}
