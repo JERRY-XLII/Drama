@@ -3848,10 +3848,11 @@ img.emoji {
 }
 
 /* Light mode spoiler */
-.spoiler{ 
+.spoiler { 
   color: $black; 
   background-color: $black;
   font-weight: 600 !important;
+  padding: 5px;
 }
 
 .spoiler:hover { 
