@@ -27632,6 +27632,10 @@ img.emoji {
   color: #F1E7D0;
 }
 
+.comment-box {
+  border: 2px solid #433434;
+}
+
 .btn {
   background: transparent;
 }
