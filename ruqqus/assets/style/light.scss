@@ -77,6 +77,8 @@ $font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, 
 
 $font-size-base: 1rem;
 
+$medium-font-size: 0.9rem;
+
 $small-font-size: 12px;
 
 $extra-small-font-size: 11px;
@@ -3847,13 +3849,13 @@ img.emoji {
 
 /* Light mode spoiler */
 .spoiler{ 
-  color: black; 
-  background-color:black;
+  color: $black; 
+  background-color: $black;
   font-weight: 600 !important;
 }
 
 .spoiler:hover { 
-  color: white; 
+  color: $white; 
 }
 
 @media (min-width: 768px) {
@@ -3869,11 +3871,17 @@ img.emoji {
 	}
 	
 .comment .comment-collapse-desktop:hover {
-	border-left-color: gray !important; }
+	border-left-color: $gray !important; }
 
 .comment.collapsed .comment-collapse-desktop:hover {
-	color: gray !important; }
+	color: $gray !important; }
 	
 #frontpage .post-title a:visited {
-	color: #gray;
+	color: $gray;
+}
+
+@media (max-width: 767.98px) {
+	.settings-nav .nav-link {
+		font-size: $medium-font-size;
+		padding: 0.75rem 0.4rem;}
 }

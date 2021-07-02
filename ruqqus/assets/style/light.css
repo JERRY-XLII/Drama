@@ -17206,13 +17206,13 @@ img.emoji {
 
 /* Light mode spoiler */
 .spoiler {
-  color: black;
-  background-color: black;
+  color: #121213;
+  background-color: #121213;
   font-weight: 600 !important;
 }
 
 .spoiler:hover {
-  color: white;
+  color: #ffffff;
 }
 
 @media (min-width: 768px) {
@@ -17227,15 +17227,22 @@ img.emoji {
 }
 
 .comment .comment-collapse-desktop:hover {
-  border-left-color: gray !important;
+  border-left-color: #718096 !important;
 }
 
 .comment.collapsed .comment-collapse-desktop:hover {
-  color: gray !important;
+  color: #718096 !important;
 }
 
 #frontpage .post-title a:visited {
-  color: #gray;
+  color: #718096;
+}
+
+@media (max-width: 767.98px) {
+  .settings-nav .nav-link {
+    font-size: 0.9rem;
+    padding: 0.75rem 0.4rem;
+  }
 }
 
 /*# sourceMappingURL=light.css.map */

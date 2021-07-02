@@ -83,6 +83,8 @@ $font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, 
 
 $font-size-base: 1rem;
 
+$medium-font-size: 0.9rem;
+
 $small-font-size: 12px;
 
 $extra-small-font-size: 11px;
@@ -3920,8 +3922,6 @@ div.deleted.banned {
     }
 }
 
-
-
 img.emoji {
     width: 30px;
     height: 30px;
@@ -3930,18 +3930,18 @@ img.emoji {
 
 /* Dark mode spoiler */
 .spoiler{ 
-  color: white; 
-  background-color:white;
+  color: $white; 
+  background-color: $white;
   font-weight: 600 !important;
 }
 
 .spoiler:hover { 
-  color: black;
+  color: $black;
 }
 
 @media (min-width: 768px) {
 	.comment {
-		border-left: 0px !important;
+		border-left: 0 !important;
 		padding-left: 0 !important;
 	}
 }
@@ -3952,11 +3952,21 @@ img.emoji {
 	}
 	
 .comment .comment-collapse-desktop:hover {
-	border-left-color: white !important; }
+	border-left-color: $white !important; }
 
 .comment.collapsed .comment-collapse-desktop:hover {
-	color: white !important; }
+	color:$white !important; }
 	
 #frontpage .post-title a:visited {
-	color: #gray;
+	color: $gray;
+}
+
+@media (max-width: 767.98px) {
+	.settings-nav .nav-link {
+		font-size: $medium-font-size;
+		padding: 0.75rem 0.4rem;}
+}
+
+.table {
+	color: $white;
 }
