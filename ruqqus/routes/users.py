@@ -27,7 +27,7 @@ BAN_REASONS = ['',
 @app.route("/subscribe/<post_id>", methods=["POST"])
 @auth_required
 def subscribe(v, post_id):
-	new_sub = Subscription(user_id=v.id, board_id=post_id)
+	new_sub = Subscription(user_id=v.id, submission_id=post_id)
 	g.db.add(new_sub)
 	g.db.commit()
 	return "", 204
@@ -35,7 +35,7 @@ def subscribe(v, post_id):
 @app.route("/unsubscribe/<post_id>", methods=["POST"])
 @auth_required
 def unsubscribe(v, post_id):
-	sub=g.db.query(Subscription).filter_by(user_id=v.id, board_id=post_id).first()
+	sub=g.db.query(Subscription).filter_by(user_id=v.id, submission_id=post_id).first()
 	g.db.delete(sub)
 	return "", 204
 
