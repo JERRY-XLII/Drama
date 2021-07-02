@@ -131,7 +131,7 @@ def post_base36id(pid, anything=None, v=None):
 	post.tree_comments()
 
 	return {
-		"html":lambda:post.rendered_page(v=v),
+		"html":lambda:post.rendered_page(v=v, sort=sort),
 		"api":lambda:jsonify(post.json)
 		}
 

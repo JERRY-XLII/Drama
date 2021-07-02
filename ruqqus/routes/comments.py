@@ -208,7 +208,7 @@ def post_pid_comment_cid(cid, pid=None, anything=None, v=None):
 
 	post.replies=[top_comment]
 
-	return {'html': lambda: post.rendered_page(v=v, comment=top_comment, comment_info=comment_info),
+	return {'html': lambda: post.rendered_page(v=v, sort="top", comment=top_comment, comment_info=comment_info),
 			'api': lambda: top_comment.json
 			}
 
