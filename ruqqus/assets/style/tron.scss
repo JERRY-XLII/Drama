@@ -1,0 +1,64 @@
+// Colors
+
+$primary: #80FFFFFF;
+$dark: #80FFFFFF;
+$secondary: #80FFFFFF;
+$danger: #80FFFFFF;
+$white: #f0f0f0;
+$black: #f0f0f0;
+$light: #00001f;
+$success: #38A169;
+$muted: #80FFFFFF;
+$info: #168EEA;
+
+$purple: #80FFFFFF;
+$red: #80FFFFFF;
+$gray: #80FFFFFF;
+$green: #38A169;
+
+$gray-100: #80FFFFFF;
+$gray-200: #80FFFFFF;
+$gray-300: #00001f;
+$gray-400: #80FFFFFF;
+$gray-500: #00001f;
+$gray-600: #00001f;
+$gray-700: #00001f;
+$gray-800: #00001f;
+$gray-900: #00001f;
+
+$upvote: #80FFFFFF;
+$downvote: #80FFFFFF;
+$admin: #80FFFFFF;
+$banned: #960000;
+$deleted: #969600;
+$deletedandbanned: #964000;
+$mod: #07c20c;
+$code: #e83e8c;
+
+$gold: #ECC94B;
+$reddit: #ED4630;
+
+@import 'https://fonts.googleapis.com/css?family=Roboto+Mono:400,600,700';
+
+@import "D:/#D/ruqqus/assets/style/node_modules/bootstrap/scss/bootstrap.scss";
+@import "D:/#D/ruqqus/assets/style/main.scss";
+
+.btn-primary {
+	color: $white;
+}
+
+#frontpage .post-title a:visited {
+	color: $white;
+}
+
+.comment-box {
+    border: 2px solid $gray-200;
+}
+
+.btn {
+	color: $admin;
+}
+
+* {
+    font-family: 'Roboto Mono';
+}

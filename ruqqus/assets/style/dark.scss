@@ -1,34 +1,34 @@
 // Colors
 
-$primary: #80FFFFFF;
-$dark: #80FFFFFF;
-$secondary: #80FFFFFF;
-$danger: #80FFFFFF;
-$white: #f0f0f0;
-$black: #f0f0f0;
-$light: #00001f;
+$primary: #FF66AC;
+$dark: #383838;
+$secondary: #383838;
+$danger: #E53E3E;
+$white: #E1E1E1;
+$black: #CFCFCF;
+$light: #000000;
 $success: #38A169;
-$muted: #80FFFFFF;
+$muted: #E1E1E1;
 $info: #168EEA;
 
-$purple: #80FFFFFF;
-$red: #80FFFFFF;
-$gray: #80FFFFFF;
+$purple: #FF66AC;
+$red: #E53E3E;
+$gray: #383838;
 $green: #38A169;
 
-$gray-100: #80FFFFFF;
-$gray-200: #80FFFFFF;
-$gray-300: #00001f;
-$gray-400: #80FFFFFF;
-$gray-500: #00001f;
-$gray-600: #00001f;
-$gray-700: #00001f;
-$gray-800: #00001f;
-$gray-900: #00001f;
+$gray-100: #E1E1E1;
+$gray-200: #8f8f90;
+$gray-300: #383838;
+$gray-400: #303030;
+$gray-500: #000000;
+$gray-600: #000000;
+$gray-700: #000000;
+$gray-800: #000000;
+$gray-900: #000000;
 
-$upvote: #80FFFFFF;
-$downvote: #80FFFFFF;
-$admin: #80FFFFFF;
+$upvote: #FF66AC;
+$downvote: #FF66AC;
+$admin: #FF66AC;
 $banned: #960000;
 $deleted: #969600;
 $deletedandbanned: #964000;
@@ -38,27 +38,5 @@ $code: #e83e8c;
 $gold: #ECC94B;
 $reddit: #ED4630;
 
-@import 'https://fonts.googleapis.com/css?family=Roboto+Mono:400,600,700';
-
 @import "D:/#D/ruqqus/assets/style/node_modules/bootstrap/scss/bootstrap.scss";
 @import "D:/#D/ruqqus/assets/style/main.scss";
-
-.btn-primary {
-	color: $white;
-}
-
-#frontpage .post-title a:visited {
-	color: $white;
-}
-
-.comment-box {
-    border: 2px solid $gray-200;
-}
-
-.btn {
-	color: $admin;
-}
-
-* {
-    font-family: 'Roboto Mono';
-}
