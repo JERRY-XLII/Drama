@@ -360,7 +360,7 @@ def get_post_with_comments(pid, sort="top", v=None):
 		elif sort == "old":
 			comments = comms.order_by(Comment.created_utc.asc()).all()
 		elif sort == "controversial":
-			comments = sorted(comms.all(), key=lambda x: x[0].score_disputed, reverse=True)
+			comments = sorted(comms.all(), key=lambda x: x.score_disputed, reverse=True)
 		elif sort == "random":
 			c = comms.all()
 			comments = random.sample(c, k=len(c))
