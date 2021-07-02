@@ -13682,7 +13682,7 @@ ol > li::before {
   color: #ffffff;
 }
 
-.nav-link .badge-count {
+.badge-count {
   width: 20px;
   height: 20px;
   border-radius: 50%;
