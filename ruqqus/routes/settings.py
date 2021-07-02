@@ -158,9 +158,14 @@ def settings_profile_post(v):
 		else:
 			abort(400)
 
+	theme = request.values.get("theme")
+	if theme:
+		v.theme = theme
+		updated = True
+
 	if updated:
 		g.db.add(v)
-
+		g.db.commit()
 		return jsonify({"message": "Your settings have been updated."})
 
 	else:
