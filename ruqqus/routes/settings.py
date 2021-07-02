@@ -165,7 +165,7 @@ def settings_profile_post(v):
 
 	if updated:
 		g.db.add(v)
-		g.db.commit()
+
 		return jsonify({"message": "Your settings have been updated."})
 
 	else:
