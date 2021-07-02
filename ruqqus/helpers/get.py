@@ -278,7 +278,7 @@ def get_posts(pids, sort="hot", v=None):
 	return sorted(output, key=lambda x: pids.index(x.id))
 
 
-def get_post_with_comments(pid, sort="top", v=None):
+def get_post_with_comments(pid, sort="default", v=None):
 
 	post = get_post(pid, v=v)
 
@@ -317,6 +317,10 @@ def get_post_with_comments(pid, sort="top", v=None):
 			isouter=True
 		)
 		
+		if sort == "default":
+			if v: sort = v.defaultsortingcomments
+			else: sort = "top"
+
 		if sort == "top":
 			comments = comms.order_by(Comment.score.desc()).all()
 		elif sort == "bottom":

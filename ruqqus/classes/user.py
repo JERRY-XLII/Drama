@@ -99,6 +99,7 @@ class User(Base, Stndrd, Age_times):
 	delete_reason = Column(String(500), default='')
 	filter_nsfw = Column(Boolean, default=False)
 	stored_subscriber_count=Column(Integer, default=0)
+	defaultsortingcomments = Column(String, default="top")
 	defaultsorting = Column(String, default="hot")
 	defaulttime = Column(String, default="all")
 	coin_balance=Column(Integer, default=0)

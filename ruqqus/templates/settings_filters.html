@@ -11,20 +11,39 @@
 
 		<div class="settings">
 
-			<h2 class="h5" name="referral">Default Sorting and Time Filter</h2>
+			<h2 class="h5" name="referral">Default Sortings and Time Filter</h2>
 
 			<div class="settings-section rounded">
 
 					<div class="d-lg-flex border-bottom">
 						<div class="title w-lg-25">
-							<label for="defaultsorting">Default Sorting</label>
+							<label for="defaultsortingcomments">Default Sorting for Comments</label>
+						</div>
+
+						<div class="body w-lg-100">
+							<p>Change the default sorting for comments.</p>
+							<div class="input-group mb2">
+								<select id='defaultsortingcomments' class="form-control" form="profile-settings" name="defaultsortingcomments" onchange="post_toast('/settings/profile?defaultsortingcomments='+document.getElementById('defaultsortingcomments').value)">
+								 {% for entry in ["new", "old", "top", "bottom", "disputed", "random"] %}
+								 <option value="{{entry}}"{{' selected' if v.defaultsortingcomments==entry else ''}}>{{entry}}</option>
+								 {% endfor %}
+							 </select>
+							</div>
+
+						</div>
+
+				 </div>
+
+					<div class="d-lg-flex border-bottom">
+						<div class="title w-lg-25">
+							<label for="defaultsorting">Default Sorting for Posts</label>
 						</div>
 
 						<div class="body w-lg-100">
 							<p>Change the default sorting for posts.</p>
 							<div class="input-group mb2">
 								<select id='defaultsorting' class="form-control" form="profile-settings" name="defaultsorting" onchange="post_toast('/settings/profile?defaultsorting='+document.getElementById('defaultsorting').value)">
-								 {% for entry in ["hot", "new", "old", "top", "bottom", "disputed", "comments"] %}
+								 {% for entry in ["hot", "new", "old", "top", "bottom", "disputed", "comments", "random"] %}
 								 <option value="{{entry}}"{{' selected' if v.defaultsorting==entry else ''}}>{{entry}}</option>
 								 {% endfor %}
 							 </select>
@@ -36,7 +55,7 @@
 
 					<div class="d-lg-flex border-bottom">
 						<div class="title w-lg-25">
-							<label for="defaulttime">Default Time Filter</label>
+							<label for="defaulttime">Default Time Filter for Posts</label>
 						</div>
 
 						<div class="body w-lg-100">
