@@ -10,7 +10,6 @@ from ruqqus.helpers.session import *
 import ruqqus.helpers.aws as aws
 from .userblock import *
 from .submission import *
-from .subscriptions import *
 from .board_relationships import *
 from .comment import Comment
 from .mix_ins import *
@@ -52,7 +51,6 @@ class Board(Base, Stndrd, Age_times):
 
 	subcat=relationship("SubCategory")
 	moderators=relationship("ModRelationship")
-	subscribers=relationship("Subscription", lazy="dynamic")
 	submissions=relationship("Submission", primaryjoin="Board.id==Submission.board_id")
 	contributors=relationship("ContributorRelationship", lazy="dynamic")
 	bans=relationship("BanRelationship", lazy="dynamic")
@@ -204,14 +202,6 @@ class Board(Base, Stndrd, Age_times):
 
 		return g.db.query(BanRelationship).filter_by(
 			board_id=self.id, user_id=user.id, is_active=True).first()
-
-	def has_subscriber(self, user):
-
-		if not user:
-			return False
-
-		return self.id in [
-			x.board_id for x in user.subscriptions if x.is_active]
 
 	def has_contributor(self, user):
 

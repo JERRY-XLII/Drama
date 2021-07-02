@@ -56,8 +56,6 @@ def get_logged_in_user(db=None):
 			x= (None, None)
 		v = db.query(User).options(
 			joinedload(User.moderates).joinedload(ModRelationship.board), #joinedload(Board.reports),
-			joinedload(User.subscriptions).joinedload(Subscription.board)
-		#	joinedload(User.notifications)
 			).filter_by(
 			id=uid,
 			is_deleted=False

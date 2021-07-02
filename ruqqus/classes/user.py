@@ -193,13 +193,6 @@ class User(Base, Stndrd, Age_times):
 		return x.verify(token, valid_window=1)
 
 	@property
-	def boards_subscribed(self):
-
-		boards = [
-			x.board for x in self.subscriptions if x.is_active and not x.board.is_banned]
-		return boards
-
-	@property
 	def age(self):
 		return int(time.time()) - self.created_utc
 
@@ -312,12 +305,6 @@ class User(Base, Stndrd, Age_times):
 	def mods_anything(self):
 
 		return bool([i for i in self.moderates if i.accepted])
-
-
-	@property
-	@lazy
-	def subscribed_to_anything(self):
-		return bool([i for i in self.subscriptions if i.is_active])
 
 	@property
 	def boards_modded(self):
@@ -844,6 +831,12 @@ class User(Base, Stndrd, Age_times):
 	def applications(self):
 		return [x for x in self._applications.order_by(
 			OauthApp.id.asc()).all()]
+
+
+
+	def subscribed_idlist(self, page=1):
+		posts = g.db.query(Subscription.board_id).filter_by(user_id=self.id).all()		
+		return posts
 
 
 	def saved_idlist(self, page=1):

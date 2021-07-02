@@ -24,6 +24,21 @@ BAN_REASONS = ['',
 			   "URL shorteners are not permitted."
 			   ]
 
+@app.route("/subscribe/<post_id>", methods=["POST"])
+@auth_required
+def subscribe(v, post_id):
+	new_sub = Subscription(user_id=v.id, board_id=post_id)
+	g.db.add(new_sub)
+	g.db.commit()
+	return "", 204
+	
+@app.route("/unsubscribe/<post_id>", methods=["POST"])
+@auth_required
+def subscribe(v, post_id):
+	sub=g.db.query(Subscription).filter_by(user_id=v.id, board_id=post_id).first()
+	g.db.delete(sub)
+	return "", 204
+
 @app.route("/leaderboard", methods=["GET"])
 @auth_desired
 def leaderboard(v):

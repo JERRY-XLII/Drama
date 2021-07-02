@@ -464,7 +464,10 @@ def api_comment(v):
 
 	# queue up notification for parent author
 	notify_users = set()
-
+	
+	for x in g.db.query(Subscription.user_id).filter_by(board_id=c.parent_submission).all():
+		notify_users.add(x)
+	
 	if parent.author.id != v.id: notify_users.add(parent.author.id)
 
 	# queue up notifications for username mentions
