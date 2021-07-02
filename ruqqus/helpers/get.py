@@ -207,6 +207,7 @@ def get_posts(pids, sort="hot", v=None):
 			user_id=v.id).subquery()
 		blocking = v.blocking.subquery()
 		blocked = v.blocked.subquery()
+		subs = g.db.query(Subscription).filter_by(user_id=v.id, is_active=True).subquery()
 
 		query = g.db.query(
 			Submission,
@@ -215,6 +216,8 @@ def get_posts(pids, sort="hot", v=None):
 			boardblocks.c.id,
 			blocking.c.id,
 			blocked.c.id,
+			subs.c.id,
+			# aliased(ModAction, alias=exile)
 		).options(
 			joinedload(Submission.author).joinedload(User.title)
 		).filter(
@@ -237,6 +240,14 @@ def get_posts(pids, sort="hot", v=None):
 			blocked, 
 			blocked.c.user_id == Submission.author_id, 
 			isouter=True
+		).join(
+			subs, 
+			subs.c.board_id == Submission.board_id, 
+			isouter=True
+		# ).join(
+		#	 exile,
+		#	 and_(exile.c.target_submission_id==Submission.id, exile.c.board_id==Submission.original_board_id),
+		#	 isouter=True
 		).order_by(None).all()
 
 		posts=[x for x in query]
@@ -248,6 +259,8 @@ def get_posts(pids, sort="hot", v=None):
 			output[i]._is_blocking_guild = posts[i][3] or 0
 			output[i]._is_blocking = posts[i][4] or 0
 			output[i]._is_blocked = posts[i][5] or 0
+			output[i]._is_subscribed = posts[i][6] or 0
+			# output[i]._is_exiled_for=posts[i][7] or 0
 	else:
 		query = g.db.query(
 			Submission,
