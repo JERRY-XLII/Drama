@@ -17245,5 +17245,8 @@ img.emoji {
     padding: 0.75rem 0.4rem;
   }
 }
+.comment-box {
+  border: 2px solid #EDF2F7;
+}
 
 /*# sourceMappingURL=light.css.map */
