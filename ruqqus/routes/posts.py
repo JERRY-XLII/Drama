@@ -100,7 +100,7 @@ def post_base36id(pid, anything=None, v=None):
 	try: pid = int(pid)
 	except Exception as e: pass
 
-	if v: defaultsortingcomments = v.defaultsorting
+	if v: defaultsortingcomments = v.defaultsortingcomments
 	else: defaultsortingcomments = "top"
 	sort=request.args.get("sort", defaultsortingcomments)
 
