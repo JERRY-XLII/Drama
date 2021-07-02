@@ -240,7 +240,7 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
 							   nsfw=nsfw,
 							   nsfl=nsfl,
 							   p=self,
-							   sort=request.args.get("sort", "top"),
+							   sort=sort,
 							   linked_comment=comment,
 							   comment_info=comment_info,
 							   is_allowed_to_comment=is_allowed_to_comment,
