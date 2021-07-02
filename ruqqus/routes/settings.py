@@ -162,9 +162,7 @@ def settings_profile_post(v):
 	if theme:
 		v.theme = theme
 		g.db.add(v)
-		return render_template("settings_profile.html",
-							   v=v,
-							   msg="Your theme has been updated.")
+		return redirect("/settings/profile")
 
 	if updated:
 		g.db.add(v)
