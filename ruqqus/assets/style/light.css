@@ -36,7 +36,7 @@
   --gold: #ECC94B;
   --admin: #38A169;
   --gray: #AA9881;
-  --gray-100: #FAF8F5;
+  --gray-100: #DDD2C4;
   --gray-200: #DDD2C4;
   --gray-300: #C9BBA9;
   --gray-400: #AA9881;
@@ -2079,21 +2079,21 @@ pre code {
 .table-gray-100,
 .table-gray-100 > th,
 .table-gray-100 > td {
-  background-color: #f4ecda;
+  background-color: #ebe1cd;
 }
 .table-gray-100 th,
 .table-gray-100 td,
 .table-gray-100 thead th,
 .table-gray-100 tbody + tbody {
-  border-color: #f6f0e3;
+  border-color: #e7dcca;
 }
 
 .table-hover .table-gray-100:hover {
-  background-color: #eee2c6;
+  background-color: #e4d6bb;
 }
 .table-hover .table-gray-100:hover > td,
 .table-hover .table-gray-100:hover > th {
-  background-color: #eee2c6;
+  background-color: #e4d6bb;
 }
 
 .table-gray-200,
@@ -3276,32 +3276,32 @@ fieldset:disabled a.btn {
 
 .btn-gray-100 {
   color: #212529;
-  background-color: #FAF8F5;
-  border-color: #FAF8F5;
+  background-color: #DDD2C4;
+  border-color: #DDD2C4;
 }
 .btn-gray-100:hover {
   color: #212529;
-  background-color: #ede6dc;
-  border-color: #e9e0d3;
+  background-color: #cfbfac;
+  border-color: #cab9a4;
 }
 .btn-gray-100:focus, .btn-gray-100.focus {
   color: #212529;
-  background-color: #ede6dc;
-  border-color: #e9e0d3;
-  box-shadow: 0 0 0 0.2rem rgba(217, 216, 214, 0.5);
+  background-color: #cfbfac;
+  border-color: #cab9a4;
+  box-shadow: 0 0 0 0.2rem rgba(193, 184, 173, 0.5);
 }
 .btn-gray-100.disabled, .btn-gray-100:disabled {
   color: #212529;
-  background-color: #FAF8F5;
-  border-color: #FAF8F5;
+  background-color: #DDD2C4;
+  border-color: #DDD2C4;
 }
 .btn-gray-100:not(:disabled):not(.disabled):active, .btn-gray-100:not(:disabled):not(.disabled).active, .show > .btn-gray-100.dropdown-toggle {
   color: #212529;
-  background-color: #e9e0d3;
-  border-color: #e5dacb;
+  background-color: #cab9a4;
+  border-color: #c6b39c;
 }
 .btn-gray-100:not(:disabled):not(.disabled):active:focus, .btn-gray-100:not(:disabled):not(.disabled).active:focus, .show > .btn-gray-100.dropdown-toggle:focus {
-  box-shadow: 0 0 0 0.2rem rgba(217, 216, 214, 0.5);
+  box-shadow: 0 0 0 0.2rem rgba(193, 184, 173, 0.5);
 }
 
 .btn-gray-200 {
@@ -3910,28 +3910,28 @@ fieldset:disabled a.btn {
 }
 
 .btn-outline-gray-100 {
-  color: #FAF8F5;
-  border-color: #FAF8F5;
+  color: #DDD2C4;
+  border-color: #DDD2C4;
 }
 .btn-outline-gray-100:hover {
   color: #212529;
-  background-color: #FAF8F5;
-  border-color: #FAF8F5;
+  background-color: #DDD2C4;
+  border-color: #DDD2C4;
 }
 .btn-outline-gray-100:focus, .btn-outline-gray-100.focus {
-  box-shadow: 0 0 0 0.2rem rgba(250, 248, 245, 0.5);
+  box-shadow: 0 0 0 0.2rem rgba(221, 210, 196, 0.5);
 }
 .btn-outline-gray-100.disabled, .btn-outline-gray-100:disabled {
-  color: #FAF8F5;
+  color: #DDD2C4;
   background-color: transparent;
 }
 .btn-outline-gray-100:not(:disabled):not(.disabled):active, .btn-outline-gray-100:not(:disabled):not(.disabled).active, .show > .btn-outline-gray-100.dropdown-toggle {
   color: #212529;
-  background-color: #FAF8F5;
-  border-color: #FAF8F5;
+  background-color: #DDD2C4;
+  border-color: #DDD2C4;
 }
 .btn-outline-gray-100:not(:disabled):not(.disabled):active:focus, .btn-outline-gray-100:not(:disabled):not(.disabled).active:focus, .show > .btn-outline-gray-100.dropdown-toggle:focus {
-  box-shadow: 0 0 0 0.2rem rgba(250, 248, 245, 0.5);
+  box-shadow: 0 0 0 0.2rem rgba(221, 210, 196, 0.5);
 }
 
 .btn-outline-gray-200 {
@@ -4359,7 +4359,7 @@ input[type=button].btn-block {
 .dropdown-item:hover, .dropdown-item:focus {
   color: #16181b;
   text-decoration: none;
-  background-color: #FAF8F5;
+  background-color: #DDD2C4;
 }
 .dropdown-item.active, .dropdown-item:active {
   color: #F1E7D0;
@@ -6078,15 +6078,15 @@ a.badge-gray:focus, a.badge-gray.focus {
 
 .badge-gray-100 {
   color: #212529;
-  background-color: #FAF8F5;
+  background-color: #DDD2C4;
 }
 a.badge-gray-100:hover, a.badge-gray-100:focus {
   color: #212529;
-  background-color: #e9e0d3;
+  background-color: #cab9a4;
 }
 a.badge-gray-100:focus, a.badge-gray-100.focus {
   outline: 0;
-  box-shadow: 0 0 0 0.2rem rgba(250, 248, 245, 0.5);
+  box-shadow: 0 0 0 0.2rem rgba(221, 210, 196, 0.5);
 }
 
 .badge-gray-200 {
@@ -6417,15 +6417,15 @@ a.badge-reddit:focus, a.badge-reddit.focus {
 }
 
 .alert-gray-100 {
-  color: #8b8a89;
-  background-color: #f3ead7;
-  border-color: #f4ecda;
+  color: #7c766f;
+  background-color: #ede3ce;
+  border-color: #ebe1cd;
 }
 .alert-gray-100 hr {
-  border-top-color: #eee2c6;
+  border-top-color: #e4d6bb;
 }
 .alert-gray-100 .alert-link {
-  color: #717170;
+  color: #615c57;
 }
 
 .alert-gray-200 {
@@ -6573,7 +6573,7 @@ a.badge-reddit:focus, a.badge-reddit.focus {
   z-index: 1;
   color: #495057;
   text-decoration: none;
-  background-color: #FAF8F5;
+  background-color: #DDD2C4;
 }
 .list-group-item-action:active {
   color: #212529;
@@ -6984,17 +6984,17 @@ a.badge-reddit:focus, a.badge-reddit.focus {
 }
 
 .list-group-item-gray-100 {
-  color: #8b8a89;
-  background-color: #f4ecda;
+  color: #7c766f;
+  background-color: #ebe1cd;
 }
 .list-group-item-gray-100.list-group-item-action:hover, .list-group-item-gray-100.list-group-item-action:focus {
-  color: #8b8a89;
-  background-color: #eee2c6;
+  color: #7c766f;
+  background-color: #e4d6bb;
 }
 .list-group-item-gray-100.list-group-item-action.active {
   color: #F1E7D0;
-  background-color: #8b8a89;
-  border-color: #8b8a89;
+  background-color: #7c766f;
+  border-color: #7c766f;
 }
 
 .list-group-item-gray-200 {
@@ -8004,13 +8004,13 @@ button.bg-gray:focus {
 }
 
 .bg-gray-100 {
-  background-color: #FAF8F5 !important;
+  background-color: #DDD2C4 !important;
 }
 
 a.bg-gray-100:hover, a.bg-gray-100:focus,
 button.bg-gray-100:hover,
 button.bg-gray-100:focus {
-  background-color: #e9e0d3 !important;
+  background-color: #cab9a4 !important;
 }
 
 .bg-gray-200 {
@@ -8190,7 +8190,7 @@ button.bg-reddit:focus {
 }
 
 .border-gray-100 {
-  border-color: #FAF8F5 !important;
+  border-color: #DDD2C4 !important;
 }
 
 .border-gray-200 {
@@ -11873,11 +11873,11 @@ a.text-gray:hover, a.text-gray:focus {
 }
 
 .text-gray-100 {
-  color: #FAF8F5 !important;
+  color: #DDD2C4 !important;
 }
 
 a.text-gray-100:hover, a.text-gray-100:focus {
-  color: #e1d4c2 !important;
+  color: #c1ad93 !important;
 }
 
 .text-gray-200 {
@@ -12136,7 +12136,7 @@ h3 {
 }
 
 .bd-callout-gray-100 {
-  border-left-color: #FAF8F5;
+  border-left-color: #DDD2C4;
 }
 
 .bd-callout-gray-200 {
@@ -12222,7 +12222,7 @@ body.using-mouse :focus {
 }
 
 #thread, #userpage {
-  background-color: #FAF8F5;
+  background-color: #DDD2C4;
 }
 
 #article .navbar-light .navbar-nav .nav-link {
@@ -12783,7 +12783,7 @@ label.color-radio span {
   color: #AA9881;
   border-color: transparent;
   border-width: 2px;
-  background: #FAF8F5;
+  background: #DDD2C4;
   transition: none;
 }
 
@@ -13115,7 +13115,7 @@ a:hover .link-arrow {
 }
 
 #frontpage .pseudo-submit-form.card .card-body .form-control, #guild .pseudo-submit-form.card .card-body .form-control {
-  background-color: #FAF8F5;
+  background-color: #DDD2C4;
 }
 
 #frontpage .pseudo-submit-form.card .card-body .form-control:hover, #frontpage .pseudo-submit-form.card .card-body .form-control:active, #frontpage .pseudo-submit-form.card .card-body .form-control:focus {
@@ -13208,13 +13208,13 @@ a:hover .link-arrow {
 
 .sidebar-section {
   margin-bottom: 1rem;
-  background-color: #FAF8F5;
+  background-color: #DDD2C4;
   border-radius: 0.35rem;
   overflow: hidden;
   word-break: break-word;
 }
 .sidebar-section .profile-pic.profile-stacked {
-  box-shadow: 0 0 0px 3px #FAF8F5;
+  box-shadow: 0 0 0px 3px #DDD2C4;
 }
 
 .sidebar-section.sidebar-trending .trending-hashtag, .sidebar-section.sidebar-trending .trending-guild {
@@ -13245,7 +13245,7 @@ a:hover .link-arrow {
 .sidebar-section.sidebar-dark-promo .form-control:hover, .sidebar-section.sidebar-dark-promo .form-control:active, .sidebar-section.sidebar-dark-promo .form-control:focus {
   background-color: #F1E7D0;
   color: #121213;
-  border-color: #FAF8F5;
+  border-color: #DDD2C4;
 }
 
 .sidebar.sidebar-left.sidebar-collapsed {
@@ -14120,7 +14120,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 
 .jumbotron-guild .jumbotron-overlay {
   background-color: transparent;
-  background-image: linear-gradient(0deg, #FAF8F5, rgba(247, 247, 248, 0.25)), linear-gradient(90deg, #FAF8F5, rgba(247, 247, 248, 0.25));
+  background-image: linear-gradient(0deg, #DDD2C4, rgba(247, 247, 248, 0.25)), linear-gradient(90deg, #DDD2C4, rgba(247, 247, 248, 0.25));
   position: absolute;
   width: 100%;
   height: 100%;
@@ -14350,7 +14350,7 @@ blockquote p {
 }
 
 .comment-section {
-  background-color: #FAF8F5;
+  background-color: #DDD2C4;
 }
 
 .comment-actions {
@@ -15885,7 +15885,7 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
   }
 
   .comment-write textarea {
-    background-color: #FAF8F5;
+    background-color: #DDD2C4;
   }
 
   .comment-section > .comment {
