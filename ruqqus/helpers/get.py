@@ -354,7 +354,11 @@ def get_post_with_comments(pid, sort="default", v=None):
 		).filter(
 			Comment.parent_submission == post.id
 		)
-		
+
+		if sort == "default":
+			if v: sort = v.defaultsortingcomments
+			else: sort = "top"
+
 		if sort == "top":
 			comments = comms.order_by(Comment.score.desc()).all()
 		elif sort == "bottom":
@@ -373,7 +377,7 @@ def get_post_with_comments(pid, sort="default", v=None):
 
 		output = []
 		for c in comments:
-			comment=c[0]
+			comment=c
 			output.append(comment)
 
 		post._preloaded_comments = output
