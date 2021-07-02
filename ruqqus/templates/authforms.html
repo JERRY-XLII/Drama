@@ -24,7 +24,11 @@
 				crossorigin="anonymous"></script>
 
 		<!-- Drama CSS -->
-		<link rel="stylesheet" href="/assets/style/dark.css">
+		{% if v %}
+		<link id="css-link" rel="stylesheet" href="/assets/style/{{v.theme}}.css">
+		{% else %}
+		<link id="css-link" rel="stylesheet" href="/assets/style/dark.css">
+		{% endif %}
 
 </head>
 

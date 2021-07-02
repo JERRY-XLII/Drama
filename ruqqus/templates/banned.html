@@ -2,15 +2,6 @@
 
 {% block pagetitle %}Banned{% endblock %}
 
-{% block stylesheets %}
-
-{% if v and v.referral_count and session.get("light_mode_enabled") %}
-<link id="css-link" rel="stylesheet" href="/+general/dark.css">
-{% else %}
-<link id="css-link" rel="stylesheet" href="/+general/dark.css">
-{% endif %}
-
-{% endblock %}
 {% block content %}
 <h5>Permabanned users</h5>
 <pre></pre>

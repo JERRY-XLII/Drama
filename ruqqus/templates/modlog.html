@@ -4,10 +4,10 @@
 
 {% block stylesheets %}
 
-{% if v and v.referral_count and session.get("light_mode_enabled") %}
-<link id="css-link" rel="stylesheet" href="/+{{p.board.name}}/dark.css">
+{% if v %}
+<link id="css-link" rel="stylesheet" href="/assets/style/{{v.theme}}.css">
 {% else %}
-<link id="css-link" rel="stylesheet" href="/+{{p.board.name}}/dark.css">
+<link id="css-link" rel="stylesheet" href="/assets/style/dark.css">
 {% endif %}
 
 {% endblock %}

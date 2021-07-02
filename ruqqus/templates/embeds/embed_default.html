@@ -20,7 +20,11 @@
 	<!-- Drama CSS -->
 	
 	{% block stylesheets %}
+	{% if v %}
+	<link id="css-link" rel="stylesheet" href="/assets/style/{{v.theme}}.css">
+	{% else %}
 	<link id="css-link" rel="stylesheet" href="/assets/style/dark.css">
+	{% endif %}
 	{% endblock %}
 
 	<!-- Font Awesome -->

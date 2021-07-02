@@ -2,16 +2,6 @@
 
 {% block pagetitle %}Leaderboard{% endblock %}
 
-{% block stylesheets %}
-
-{% if v and v.referral_count and session.get("light_mode_enabled") %}
-<link id="css-link" rel="stylesheet" href="/+general/dark.css">
-{% else %}
-<link id="css-link" rel="stylesheet" href="/+general/dark.css">
-{% endif %}
-
-{% endblock %}
-
 {% block content %}
 <pre class="d-none d-md-inline-block"></pre>
 <h5 style="font-weight:bold;">Top 25 dramatards by dramacoins</h5>

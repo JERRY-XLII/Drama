@@ -422,37 +422,6 @@ document.addEventListener('input', function (event) {
 	autoExpand(event.target);
 }, false);
 
-//dark mode
-
-function switch_css() {
-	css = document.getElementById("css-link");
-	dswitch = document.getElementById("dark-switch");
-	dswitchmobile = document.getElementById("dark-switch-mobile");
-
-	if (css.href.includes("/assets/style/dark.css")) {
-		post("/settings/light_mode/1",
-			callback=function(){
-				css.href="/assets/style/light.css?v=2.35.94";
-				dswitch.classList.remove("fa-toggle-off");
-				dswitch.classList.add("fa-toggle-on");
-				dswitchmobile.classList.remove("fa-toggle-off");
-				dswitchmobile.classList.add("fa-toggle-on");
-			}
-			);
-	}
-	else {
-		post("/settings/light_mode/0",
-			callback=function(){
-				css.href="/assets/style/dark.css?v=2.35.94";
-				dswitch.classList.remove("fa-toggle-on");
-				dswitch.classList.add("fa-toggle-off");
-				dswitchmobile.classList.remove("fa-toggle-on");
-				dswitchmobile.classList.add("fa-toggle-off");
-			}
-			);
-	}
-}
-
 // Delete Post
 
 function delete_postModal(id) {

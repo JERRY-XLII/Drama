@@ -23,7 +23,11 @@
 <meta name="theme-color" content="#FF66AC">
 <link rel="icon" type="image/png" href="/assets/images/favicon.png">
 
+{% if v %}
+<link id="css-link" rel="stylesheet" href="/assets/style/{{v.theme}}.css">
+{% else %}
 <link id="css-link" rel="stylesheet" href="/assets/style/dark.css">
+{% endif %}
 
 <link href="/assets/style/fa.css" rel="stylesheet"> 
 </head>
