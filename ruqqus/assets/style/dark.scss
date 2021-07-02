@@ -3,7 +3,7 @@
 $primary: #80FFFFFF;
 $dark: #80FFFFFF;
 $secondary: #80FFFFFF;
-$danger: #E53E3E;
+$danger: #80FFFFFF;
 $white: #f0f0f0;
 $black: #f0f0f0;
 $light: #00001f;
@@ -12,7 +12,7 @@ $muted: #80FFFFFF;
 $info: #168EEA;
 
 $purple: #80FFFFFF;
-$red: #E53E3E;
+$red: #80FFFFFF;
 $gray: #80FFFFFF;
 $green: #38A169;
 
@@ -40,3 +40,7 @@ $reddit: #ED4630;
 
 @import "D:/#D/ruqqus/assets/style/node_modules/bootstrap/scss/bootstrap.scss";
 @import "D:/#D/ruqqus/assets/style/main.scss";
+
+.btn-primary {
+	color: $white;
+}
