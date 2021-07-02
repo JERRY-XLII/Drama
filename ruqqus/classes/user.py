@@ -836,7 +836,7 @@ class User(Base, Stndrd, Age_times):
 
 	def subscribed_idlist(self, page=1):
 		posts = g.db.query(Subscription.submission_id).filter_by(user_id=self.id).all()		
-		return [x[0] for x in post]
+		return [x[0] for x in posts]
 
 
 	def saved_idlist(self, page=1):
