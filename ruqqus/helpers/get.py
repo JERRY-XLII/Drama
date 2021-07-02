@@ -278,7 +278,7 @@ def get_posts(pids, sort="hot", v=None):
 	return sorted(output, key=lambda x: pids.index(x.id))
 
 
-def get_post_with_comments(pid, sort="default", v=None):
+def get_post_with_comments(pid, sort="top", v=None):
 
 	post = get_post(pid, v=v)
 
@@ -316,10 +316,6 @@ def get_post_with_comments(pid, sort="default", v=None):
 			blocked.c.user_id == Comment.author_id,
 			isouter=True
 		)
-		
-		if sort == "default":
-			if v: sort = v.defaultsortingcomments
-			else: sort = "top"
 
 		if sort == "top":
 			comments = comms.order_by(Comment.score.desc()).all()
@@ -354,10 +350,6 @@ def get_post_with_comments(pid, sort="default", v=None):
 		).filter(
 			Comment.parent_submission == post.id
 		)
-
-		if sort == "default":
-			if v: sort = v.defaultsortingcomments
-			else: sort = "top"
 
 		if sort == "top":
 			comments = comms.order_by(Comment.score.desc()).all()

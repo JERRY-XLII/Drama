@@ -99,8 +99,12 @@ def incoming_post_shortlink(base36id=None):
 def post_base36id(pid, anything=None, v=None):
 	try: pid = int(pid)
 	except Exception as e: pass
-		
-	post = get_post_with_comments(pid, v=v, sort=request.args.get("sort", "top"))
+
+	if v: defaultsortingcomments = v.defaultsorting
+	else: defaultsortingcomments = "top"
+	sort=request.args.get("sort", defaultsortingcomments)
+
+	post = get_post_with_comments(pid, v=v, sort=sort)
 	
 	post.views += 1
 
