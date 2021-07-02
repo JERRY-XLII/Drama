@@ -161,7 +161,8 @@ def settings_profile_post(v):
 	theme = request.values.get("theme")
 	if theme:
 		v.theme = theme
-		updated = True
+		g.db.add(v)
+		return redirect("/settings/profile")
 
 	if updated:
 		g.db.add(v)
