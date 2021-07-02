@@ -34,7 +34,7 @@ def subscribe(v, post_id):
 	
 @app.route("/unsubscribe/<post_id>", methods=["POST"])
 @auth_required
-def subscribe(v, post_id):
+def unsubscribe(v, post_id):
 	sub=g.db.query(Subscription).filter_by(user_id=v.id, board_id=post_id).first()
 	g.db.delete(sub)
 	return "", 204
