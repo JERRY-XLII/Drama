@@ -14104,7 +14104,7 @@ ol > li::before {
   color: #E1E1E1;
 }
 
-.badge-count {
+.nav-link .badge-count {
   width: 20px;
   height: 20px;
   border-radius: 50%;
