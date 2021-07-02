@@ -10,12 +10,12 @@ class Subscription(Base):
 	__tablename__ = "subscriptions"
 	id = Column(BigInteger, primary_key=True)
 	user_id = Column(BigInteger, ForeignKey("users.id"))
-	board_id = Column(BigInteger, ForeignKey("boards.id"))
+	board_id = Column(BigInteger, ForeignKey("submissions.id"))
 	created_utc = Column(BigInteger, default=0)
 	is_active = Column(Boolean, default=True)
 
 	user = relationship("User", uselist=False)
-	board = relationship("Board", uselist=False)
+	submission = relationship("Submission", uselist=False)
 
 	def __init__(self, *args, **kwargs):
 		if "created_utc" not in kwargs:
