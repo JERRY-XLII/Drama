@@ -315,7 +315,8 @@ def get_post_with_comments(pid, sort="top", v=None):
 			blocked,
 			blocked.c.user_id == Comment.author_id,
 			isouter=True
-
+		)
+		
 		if sort == "top":
 			comments = comms.order_by(Comment.score.desc()).all()
 		elif sort == "bottom":
