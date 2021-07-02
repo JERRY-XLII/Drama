@@ -119,7 +119,7 @@ class Comment(Base, Age_times, Scores, Stndrd, Fuzzing):
 	@property
 	@lazy
 	def score_disputed(self):
-		return self.upvotes * self.downvotes
+		return (self.upvotes+1) * (self.downvotes+1)
 
 	@property
 	@lazy

@@ -171,7 +171,7 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
 	@property
 	@lazy
 	def score_disputed(self):
-		return self.upvotes * self.downvotes
+		return (self.upvotes+1) * (self.downvotes+1)
 
 	@property
 	def is_repost(self):
