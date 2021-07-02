@@ -136,7 +136,7 @@ def settings_profile_post(v):
 
 	defaultsortingcomments = request.values.get("defaultsortingcomments")
 	if defaultsortingcomments:
-		if defaultsortingcomments in ["new", "old", "disputed", "top", "bottom", "random"]:
+		if defaultsortingcomments in ["new", "old", "controversial", "top", "bottom", "random"]:
 			v.defaultsortingcomments = defaultsortingcomments
 			updated = True
 		else:
@@ -144,7 +144,7 @@ def settings_profile_post(v):
 
 	defaultsorting = request.values.get("defaultsorting")
 	if defaultsorting:
-		if defaultsorting in ["hot", "new", "old", "comments", "disputed", "top", "bottom", "random"]:
+		if defaultsorting in ["hot", "new", "old", "comments", "controversial", "top", "bottom", "random"]:
 			v.defaultsorting = defaultsorting
 			updated = True
 		else:
