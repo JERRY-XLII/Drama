@@ -1,42 +1,42 @@
 // Colors
 
-$primary: #FF6633;
-$dark: #383833;
-$secondary: #383833;
-$danger: #E53E33;
-$white: #E1E133;
-$black: #CFCF33;
+$primary: #FF66AC;
+$dark: #383838;
+$secondary: #383838;
+$danger: #E53E3E;
+$white: #E1E1E1;
+$black: #CFCFCF;
 $light: #000033;
-$success: #38A133;
-$muted: #E1E133;
-$info: #168E33;
+$success: #38A169;
+$muted: #E1E1E1;
+$info: #168EEA;
 
-$purple: #FF6633;
-$red: #E53E33;
-$gray: #383833;
-$green: #38A133;
+$purple: #FF66AC;
+$red: #E53E3E;
+$gray: #383838;
+$green: #38A169;
 
-$gray-100: #E1E133;
-$gray-200: #8f8f33;
-$gray-300: #383833;
-$gray-400: #303033;
+$gray-100: #E1E1E1;
+$gray-200: #8f8f90;
+$gray-300: #383838;
+$gray-400: #303030;
 $gray-500: #000033;
 $gray-600: #000033;
 $gray-700: #000033;
 $gray-800: #000033;
 $gray-900: #000033;
 
-$upvote: #FF6633;
-$downvote: #FF6633;
-$admin: #FF6633;
-$banned: #960033;
-$deleted: #969633;
-$deletedandbanned: #964033;
-$mod: #07c233;
-$code: #e83e33;
+$upvote: #FF66AC;
+$downvote: #FF66AC;
+$admin: #FF66AC;
+$banned: #960000;
+$deleted: #969600;
+$deletedandbanned: #964000;
+$mod: #07c20c;
+$code: #e83e8c;
 
-$gold: #ECC933;
-$reddit: #ED4633;
+$gold: #ECC94B;
+$reddit: #ED4630;
 
 @import "D:/#D/ruqqus/assets/style/node_modules/bootstrap/scss/bootstrap.scss";
 @import "D:/#D/ruqqus/assets/style/main.scss";
