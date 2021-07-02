@@ -821,7 +821,7 @@ def submit_post(v):
 	g.db.add(new_post)
 	g.db.flush()
 	
-	for rd in ["https://reddit.com/", "https://new.reddit.com/", "https://www.reddit.com/"]:
+	for rd in ["https://reddit.com/", "https://new.reddit.com/", "https://www.reddit.com/", "https://redd.it/"]:
 		url = url.replace(rd, "https://old.reddit.com/")
 			
 	url = url.replace("https://mobile.twitter.com", "https://twitter.com")

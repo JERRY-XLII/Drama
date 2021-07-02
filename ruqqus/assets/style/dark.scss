@@ -20,15 +20,15 @@ $gray-100: #AAAAAA;
 $gray-200: #8f8f90;
 $gray-300: #383838;
 $gray-400: #303030;
-$gray-500: #272727;
-$gray-600: #1f2023;
-$gray-700: #181818;
-$gray-800: #121212;
-$gray-900: #0f0f0f;
+$gray-500: #000000;
+$gray-600: #000000;
+$gray-700: #000000;
+$gray-800: #000000;
+$gray-900: #000000;
 
 $upvote: #FF66AC;
 $downvote: #FF66AC;
-$admin: #E53E3E;
+$admin: #FF66AC;
 $banned: #960000;
 $deleted: #969600;
 $deletedandbanned: #964000;
@@ -3417,6 +3417,7 @@ html {
 }
 
 .container {
+	overflow: hidden;
     max-width: none;
 }
 

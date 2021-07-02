@@ -25,7 +25,7 @@ $gray-600: #718096;
 
 $upvote: #FF66AC;
 $downvote: #FF66AC;
-$admin: #E53E3E;
+$admin: #FF66AC;
 $banned: #FEB2B2;
 $deleted: #FEFCBF;
 $deletedandbanned: #ffcc99;
@@ -3356,6 +3356,7 @@ html {
 }
 
 .container {
+	overflow: hidden;
     max-width: none;
 }
 
