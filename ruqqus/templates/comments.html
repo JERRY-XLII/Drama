@@ -39,14 +39,14 @@
 			{% if level<6 %}
 				<div id="replies-of-{{c.base36id}}" class="">
 					{% set standalone=False %}
-					{% for reply in c.child_comments %}
+					{% for reply in c.replies %}
 						{{single_comment(reply, level=level+1)}}
 					{% endfor %}
 				</div>
-			{% elif c.child_comments %}
+			{% elif c.replies %}
 				<div id="replies-of-{{c.base36id}}" class="d-none d-md-block">
 					{% set standalone=False %}
-					{% for reply in c.child_comments %}
+					{% for reply in c.replies %}
 						{{single_comment(reply, level=level+1)}}
 					{% endfor %}
 				</div>
@@ -392,13 +392,13 @@
 	{% if render_replies %} 
 			{% if level<6 %}
 				<div id="replies-of-{{c.base36id}}">
-					{% for reply in c.child_comments %}
+					{% for reply in c.replies %}
 						{{single_comment(reply, level=level+1)}}
 					{% endfor %}
 				</div>
-			{% elif c.child_comments %}
+			{% elif c.replies %}
 				<div id="replies-of-{{c.base36id}}" class="d-none d-md-block">
-					{% for reply in c.child_comments %}
+					{% for reply in c.replies %}
 						{{single_comment(reply, level=level+1)}}
 					{% endfor %}
 				</div>

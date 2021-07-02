@@ -96,13 +96,6 @@ def get_post(pid, v=None, graceful=False, nSession=None, **kwargs):
 
 	nSession = nSession or kwargs.get("session")or g.db
 
-	# exile=nSession.query(ModAction).options(
-	#	 lazyload('*')
-	#	 ).filter_by(
-	#	 kind="exile_user",
-	#	 target_submission_id=i
-	#	 ).subquery()
-
 	if v:
 		vt = nSession.query(Vote).filter_by(
 			user_id=v.id, submission_id=i).subquery()
@@ -289,13 +282,6 @@ def get_post_with_comments(pid, sort="top", v=None):
 
 	post = get_post(pid, v=v)
 
-	exile=g.db.query(ModAction
-		).options(
-		lazyload('*')
-		).filter_by(
-		kind="exile_user"
-		).distinct(ModAction.target_comment_id).subquery()
-
 	if v:
 		votes = g.db.query(CommentVote).filter_by(user_id=v.id).subquery()
 
@@ -308,7 +294,6 @@ def get_post_with_comments(pid, sort="top", v=None):
 			votes.c.vote_type,
 			blocking.c.id,
 			blocked.c.id,
-			aliased(ModAction, alias=exile)
 		).options(
 			joinedload(Comment.author).joinedload(User.title)
 		)
@@ -317,8 +302,7 @@ def get_post_with_comments(pid, sort="top", v=None):
 			comms=comms.options(joinedload(Comment.oauth_app))
 
 		comms=comms.filter(
-			Comment.parent_submission == post.id,
-			Comment.level <= 6
+			Comment.parent_submission == post.id
 		).join(
 			votes,
 			votes.c.comment_id == Comment.id,
@@ -331,11 +315,6 @@ def get_post_with_comments(pid, sort="top", v=None):
 			blocked,
 			blocked.c.user_id == Comment.author_id,
 			isouter=True
-		).join(
-			exile,
-			and_(exile.c.target_comment_id==Comment.id, exile.c.board_id==Comment.original_board_id),
-			isouter=True
-		)
 
 		if sort == "top":
 			comments = comms.order_by(Comment.score.desc()).all()
@@ -359,26 +338,18 @@ def get_post_with_comments(pid, sort="top", v=None):
 			comment._voted = c[1] or 0
 			comment._is_blocking = c[2] or 0
 			comment._is_blocked = c[3] or 0
-			comment._is_guildmaster=post._is_guildmaster
-			comment._is_exiled_for=c[4]
 			output.append(comment)
 		post._preloaded_comments = output
 
 	else:
 		comms = g.db.query(
-			Comment,
-			aliased(ModAction, alias=exile)
+			Comment
 		).options(
 			joinedload(Comment.author).joinedload(User.title)
 		).filter(
-			Comment.parent_submission == post.id,
-			Comment.level <= 6
-		).join(
-			exile,
-			and_(exile.c.target_comment_id==Comment.id, exile.c.board_id==Comment.original_board_id),
-			isouter=True
+			Comment.parent_submission == post.id
 		)
-
+		
 		if sort == "top":
 			comments = comms.order_by(Comment.score.desc()).all()
 		elif sort == "bottom":
@@ -398,11 +369,7 @@ def get_post_with_comments(pid, sort="top", v=None):
 		output = []
 		for c in comments:
 			comment=c[0]
-			comment._is_exiled_for=c[1]
 			output.append(comment)
-
-		# output=[x for x in comments]
-
 
 		post._preloaded_comments = output
 
