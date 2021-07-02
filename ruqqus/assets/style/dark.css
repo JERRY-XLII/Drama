@@ -27632,10 +27632,6 @@ img.emoji {
   color: #f0f0f0;
 }
 
-.comment-box {
-  border: 2px solid #80FFFFFF;
-}
-
 .btn {
   background: transparent;
 }
@@ -27646,6 +27642,14 @@ img.emoji {
 
 #frontpage .post-title a:visited {
   color: #f0f0f0;
+}
+
+.comment-box {
+  border: 2px solid #80FFFFFF;
+}
+
+.btn {
+  color: #80FFFFFF;
 }
 
 /*# sourceMappingURL=dark.css.map */
