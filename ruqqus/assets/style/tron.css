@@ -27661,4 +27661,12 @@ img.emoji {
   font-family: "Roboto Mono";
 }
 
+.arrow-down::before {
+  color: #f0f0f0;
+}
+
+.arrow-down::before {
+  color: #f0f0f0;
+}
+
 /*# sourceMappingURL=tron.css.map */
