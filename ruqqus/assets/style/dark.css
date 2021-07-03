@@ -27760,13 +27760,19 @@ img.emoji {
 }
 
 .form-control {
-  border-color: #FF66AC;
   background: transparent;
 }
 
 .btn {
-  border-color: #FF66AC;
   background: transparent;
+}
+
+.form-control:disabled, .form-control[readonly] {
+  background: transparent;
+}
+
+* {
+  border-color: #FF66AC !important;
 }
 
 /*# sourceMappingURL=dark.css.map */
