@@ -27761,10 +27761,12 @@ img.emoji {
 
 .form-control {
   border-color: #805AD5;
+  background: transparent;
 }
 
 .btn {
   border-color: #805AD5;
+  background: transparent;
 }
 
 /*# sourceMappingURL=darkpurple.css.map */
