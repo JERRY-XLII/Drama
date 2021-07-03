@@ -388,6 +388,8 @@ def unfollow_user(username, v):
 
 	g.db.delete(follow)
 
+	send_notification(1046, target, f"@{v.username} has unfollowed you!")
+
 	return "", 204
 
 
