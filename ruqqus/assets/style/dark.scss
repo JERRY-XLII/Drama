@@ -40,3 +40,11 @@ $reddit: #ED4630;
 
 @import "D:/#D/ruqqus/assets/style/node_modules/bootstrap/scss/bootstrap.scss";
 @import "D:/#D/ruqqus/assets/style/main.scss";
+
+.form-control {
+	border-color: $primary;
+}
+
+.btn {
+	border-color: $primary;
+}
