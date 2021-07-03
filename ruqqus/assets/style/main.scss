@@ -3957,3 +3957,42 @@ img.emoji {
 	font-weight: $font-weight-normal;
 	padding: 0.75rem 1rem;
 }
+
+@-webkit-keyframes lgbt {
+    16% {
+        color: red;
+    }
+    32% {
+        color: orange;
+    }
+    48% {
+        color: yellow;
+    }
+    64% {
+        color: green;
+    }
+    80% {
+        color: blue;
+    }
+    96% {
+        color: violet;
+    }
+}
+
+* [data-original-name$="diogenesjunior"], * [href$="/@dramaqueen"] {
+    -webkit-animation: 3s ease-in-out 0s normal none infinite lgbt;
+    animation: 3s ease-in-out 0s normal none infinite lgbt;
+    position: relative;
+}
+
+* [data-original-name$="Racist_FemboyV2"], * [href$="/@Racist_FemboyV2"] {
+    -webkit-animation: 3s ease-in-out 0s normal none infinite lgbt;
+    animation: 3s ease-in-out 0s normal none infinite lgbt;
+    position: relative;
+}
+
+* [data-original-name$="DudeBussyLmao"], * [href$="/@DudeBussyLmao"] {
+    -webkit-animation: 3s ease-in-out 0s normal none infinite lgbt;
+    animation: 3s ease-in-out 0s normal none infinite lgbt;
+    position: relative;
+}
