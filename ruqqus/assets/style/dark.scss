@@ -42,11 +42,17 @@ $reddit: #ED4630;
 @import "D:/#D/ruqqus/assets/style/main.scss";
 
 .form-control {
-	border-color: $primary;
 	background: transparent;
 }
 
 .btn {
-	border-color: $primary;
 	background: transparent;
+}
+
+.form-control:disabled, .form-control[readonly] {
+	background: transparent;
+}
+
+* {
+	border-color: $primary !important;
 }
