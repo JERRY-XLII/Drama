@@ -25750,6 +25750,7 @@ div:hover .thumb-img-link-overlay {
 blockquote {
   border-left: 2px solid #80FFFFFF;
   color: #f0f0f0;
+  background-color: #80FFFFFF;
   font-size: 1rem;
   font-weight: 400;
   padding: 0.5rem 1rem;
