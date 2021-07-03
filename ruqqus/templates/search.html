@@ -19,8 +19,6 @@
 
 {% block navbar %}
 	{% if not '/users/' in request.path %}
-		<br>
-		<p class="d-flex align-items-left">Search by author by putting "author:username" in the search query.<p>
 		<div class="mt-5 d-flex align-items-center">
 			<div class="dropdown dropdown-actions">
 				<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -83,7 +81,8 @@
 			</div>
 			<div class="card-body">
 				<div class="pl-md-3">
-
+					<div class="text-muted text-small mb-1">Search by author by putting "author:username" in the search query.<div>
+					<br>
 					<div class="text-muted text-small mb-1">Showing {% block listinglength %}{{listing | length}}{% endblock %} of {{total}} result{{'s' if total != 1 else ''}} for</div>
 					<h1 class="h4 mb-0">{{query}}</h1>
 
