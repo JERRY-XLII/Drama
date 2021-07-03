@@ -47,10 +47,6 @@ $reddit: #ED4630;
     font-family: 'Lato';
 }
 
-.navbar-light .navbar-nav .nav-link {
-    background-color: #6b6b6b;
-}
-
 blockquote {
 	background-color: #c0c0c0;
 }
@@ -61,4 +57,8 @@ blockquote {
 
 .modal .comment-actions a {
 	color: $gray-500;
+}
+
+.navbar-light .navbar-nav .nav-link .fa, .navbar-light .navbar-nav .nav-link .fas, .navbar-light .navbar-nav .nav-link .far, .navbar-light .navbar-nav .nav-link .fab {
+	color: $black;
 }
