@@ -27679,20 +27679,23 @@ img.emoji {
   }
 }
 @-webkit-keyframes landlord {
-  20% {
+  16% {
     color: #d26d3f;
   }
-  40% {
+  32% {
     color: #d49d42;
   }
-  60% {
+  48% {
     color: #d6dc58;
   }
-  80% {
+  64% {
     color: #81d94f;
   }
-  100% {
+  80% {
     color: #7de373;
+  }
+  96% {
+    color: #d26d3f;
   }
 }
 * [data-original-name$=diogenesjunior], * [href$="/@dramaqueen"] {
