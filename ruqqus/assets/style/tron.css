@@ -27637,7 +27637,7 @@ img.emoji {
   border: 2px solid #80FFFFFF;
 }
 
-.btn {
+.btn .form-control {
   background: transparent;
 }
 
