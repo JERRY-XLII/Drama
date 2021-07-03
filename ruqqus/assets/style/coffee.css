@@ -25750,9 +25750,9 @@ div:hover .thumb-img-link-overlay {
 blockquote {
   border-left: 2px solid #38A169;
   color: #433434;
-  background-color: #817261;
   font-size: 1rem;
   font-weight: 400;
+  background-color: #46444a;
   padding: 0.5rem 1rem;
   margin: 0.5rem 0rem 1rem 0.5rem;
 }
@@ -27664,6 +27664,10 @@ img.emoji {
 
 .navbar-light .navbar-nav .nav-link {
   background-color: #6b6b6b;
+}
+
+blockquote {
+  background-color: #c0c0c0;
 }
 
 /*# sourceMappingURL=coffee.css.map */

@@ -25749,9 +25749,9 @@ div:hover .thumb-img-link-overlay {
 blockquote {
   border-left: 2px solid #FF66AC;
   color: #CFCFCF;
-  background-color: #E1E1E1;
   font-size: 1rem;
   font-weight: 400;
+  background-color: #46444a;
   padding: 0.5rem 1rem;
   margin: 0.5rem 0rem 1rem 0.5rem;
 }
