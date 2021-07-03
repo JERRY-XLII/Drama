@@ -24174,7 +24174,7 @@ label.color-radio span {
 
 .form-control {
   color: #AA9881;
-  border-color: transparent;
+  border-color: #AA9881;
   border-width: 2px;
   background: #433434;
   transition: none;
