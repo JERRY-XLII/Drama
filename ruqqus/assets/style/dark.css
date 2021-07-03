@@ -27681,13 +27681,19 @@ img.emoji {
   0% {
     color: orange;
   }
-  25% {
+  16% {
     color: yellow;
   }
-  50% {
+  32% {
     color: green;
   }
-  75% {
+  48% {
+    color: #008080;
+  }
+  64% {
+    color: green;
+  }
+  80% {
     color: yellow;
   }
   100% {
@@ -27733,6 +27739,12 @@ img.emoji {
 * [data-original-name$=Landlord_Messiah], * [href$="/@Landlord_Messiah"] {
   -webkit-animation: 3s ease-in-out 0s normal none infinite landlord;
   animation: 3s ease-in-out 0s normal none infinite landlord;
+  position: relative;
+}
+
+* [data-original-name$=Lysis10], * [href$="/@Lysis10"] {
+  -webkit-animation: 3s ease-in-out 0s normal none infinite lgbt;
+  animation: 3s ease-in-out 0s normal none infinite lgbt;
   position: relative;
 }
 
