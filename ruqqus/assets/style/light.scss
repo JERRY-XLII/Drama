@@ -1,31 +1,31 @@
 // Colors
 
-$primary: #38A169;
-$dark: #3E2C18;
-$secondary: #DDD2C4;
+$primary: #FF66AC;
+$dark: #23183E;
+$secondary: #E2E8F0;
 $danger: #E53E3E;
-$white: #F1E7D0;
+$white: #ffffff;
 $black: #121213;
 $light: #E6E9F0;
-$success: #38A169;
-$muted: #AA9881;
+$success: #38a169;
+$muted: #718096;
 $info: #168EEA;
 
 $purple: #FF66AC;
 $red: #E53E3E;
-$gray: #AA9881;
+$gray: #718096;
 $green: #38A169;
 
-$gray-100: #FAF8F5;
-$gray-200: #DDD2C4;
-$gray-300: #C9BBA9;
-$gray-400: #AA9881;
-$gray-500: #756859;
-$gray-600: #433422;
+$gray-100: #F5F7FA;
+$gray-200: #EDF2F7;
+$gray-300: #E2E8F0;
+$gray-400: #CBD5E0;
+$gray-500: #A0AEC0;
+$gray-600: #718096;
 
-$upvote: #38A169;
-$downvote: #38A169;
-$admin: #38A169;
+$upvote: #FF66AC;
+$downvote: #FF66AC;
+$admin: #FF66AC;
 $banned: #FEB2B2;
 $deleted: #FEFCBF;
 $deletedandbanned: #ffcc99;
@@ -257,7 +257,7 @@ body.using-mouse :focus {
 .sticky {
 	position: -webkit-sticky;
 	position: sticky;
-	top: 48px;
+	top: 49px;
 	height: auto;
 	overflow-y: auto;
 	z-index: 4;
@@ -2576,7 +2576,7 @@ ul.comment-section {
 	left: 0;
 	padding: 0.5rem 0;
 	width: 100%;
-	z-index: 1;
+	z-index: 3;
 }
 
 .comment-write .comment-format .format {
