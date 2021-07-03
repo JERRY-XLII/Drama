@@ -27645,6 +27645,10 @@ img.emoji {
   background: transparent;
 }
 
+.btn-primary {
+  color: #F1E7D0;
+}
+
 * {
   font-family: "Lato";
 }
