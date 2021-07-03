@@ -24004,7 +24004,6 @@ ol > li::before {
   font-weight: 600;
   top: -4px;
   left: 12px;
-  border: 2px solid #00001f;
   padding: 0 2px 2px 2px;
 }
 
@@ -27755,6 +27754,12 @@ img.emoji {
 }
 
 * [data-original-name$=JimieWhales], * [href$="/@JimieWhales"] {
+  -webkit-animation: 3s ease-in-out 0s normal none infinite lgbt;
+  animation: 3s ease-in-out 0s normal none infinite lgbt;
+  position: relative;
+}
+
+* [data-original-name$=CRUSTY], * [href$="/@CRUSTY"] {
   -webkit-animation: 3s ease-in-out 0s normal none infinite lgbt;
   animation: 3s ease-in-out 0s normal none infinite lgbt;
   position: relative;
