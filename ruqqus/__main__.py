@@ -130,6 +130,8 @@ Markdown(app)
 cache = Cache(app)
 Compress(app)
 
+cache.delete_memoized(leaderboard)
+
 class CorsMatch(str):
 
     def __eq__(self, other):
