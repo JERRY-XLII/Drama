@@ -67,7 +67,7 @@
 {% for user in users3 %}
 	<tr>
 		<td style="font-weight:bold;">{{users3.index(user)+1}}</td>
-			<td style="font-weight:bold;"><a style="color:#{{user.namecolor}}" href="/@{{user.username}}">{{user.username}}</a></td>
+		<td style="font-weight:bold;"><a style="color:#{{user.namecolor}}" href="/@{{user.username}}">{{user.username}}</a></td>
 		<td style="font-weight:bold; text-align:right;">{{postcount[users3.index(user)]}}</td>
 	</tr>
 {% endfor %}
@@ -92,7 +92,7 @@
 {% for user in users4 %}
 	<tr>
 		<td style="font-weight:bold;">{{users4.index(user)+1}}</td>
-			<td style="font-weight:bold;"><a style="color:#{{user.namecolor}}" href="/@{{user.username}}">{{user.username}}</a></td>
+		<td style="font-weight:bold;"><a style="color:#{{user.namecolor}}" href="/@{{user.username}}">{{user.username}}</a></td>
 		<td style="font-weight:bold; text-align:right;">{{commentcount[users4.index(user)]}}</td>
 	</tr>
 {% endfor %}
