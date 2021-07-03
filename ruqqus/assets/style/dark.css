@@ -27651,6 +27651,9 @@ img.emoji {
 }
 
 @-webkit-keyframes lgbt {
+  0% {
+    color: violet;
+  }
   16% {
     color: red;
   }
@@ -27666,7 +27669,7 @@ img.emoji {
   80% {
     color: blue;
   }
-  96% {
+  100% {
     color: violet;
   }
 }
