@@ -93,7 +93,7 @@
 							<p>Change the default time filter for posts.</p>
 							<div class="input-group mb2">
 								<select id='defaulttime' class="form-control" form="profile-settings" name="defaulttime" onchange="post_toast('/settings/profile?defaulttime='+document.getElementById('defaulttime').value)">
-								 {% for entry in ["day", "week", "month", "year", "all"] %}
+								 {% for entry in ["hour", "day", "week", "month", "year", "all"] %}
 								 <option value="{{entry}}"{{' selected' if v.defaulttime==entry else ''}}>{{entry}}</option>
 								 {% endfor %}
 							 </select>

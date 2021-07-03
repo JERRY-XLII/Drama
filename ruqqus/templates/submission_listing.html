@@ -83,15 +83,31 @@
 
 
 			<div class="d-block d-md-none" style="z-index: 3;">
-				{% if p.thumb_url and not p.is_image %}
-				<a target="_blank" href="{{p.url}}" rel="nofollow noopener">
-					<img src="{{p.thumb_url}}" class="post-img" alt="link post thumbnail">
-				</a>
-				{% elif p.thumb_url and p.is_image %}
+				{% if p.thumb_url and p.is_image %}
 				<a href="javascript:void(0)" rel="nofollow noopener" class="expandable-image" data-toggle="modal" data-target="#expandImageModal" data-url="{{p.url}}">
 					<img src="{{p.thumb_url}}" class="post-img">
-					<a>
-						{% endif %}
+				</a>
+
+				{% elif p.thumb_url and not p.embed_url %}
+				<a target="_blank" href="{{p.url}}" rel="nofollow noopener" target="_blank">
+					<img src="{{p.thumb_url}}" class="post-img" alt="">
+				</a>
+				
+				{% elif p.embed_url %}
+				<a target="_blank" href="{{p.url}}" target="_blank" rel="nofollow noopener">
+					<img src="{{p.thumb_url if p.has_thumb else '/assets/images/default_thumb_yt.png'}}" class="post-img border-0" alt="generic youtube embed thumbnail">
+				</a>
+				
+				{% elif not p.url %}
+				<a href="{{p.permalink}}" {% if v and v.newtab %}target="_blank"{% endif %} rel="{% if p.author.is_private %}nofollow {% endif %}noopener">
+					<img src="/assets/images/default_thumb_text.png" class="post-img border-0" alt="text post thumbnail">
+				</a>
+				
+				{% elif p.url and not p.thumb_url and not p.embed_url %}
+				<a target="_blank" href="{{p.url}}" rel="nofollow noopener" target="_blank">
+					<img src="/assets/images/default_thumb_link.png" class="post-img border-0" alt="generic link post thumbnail">
+				</a>
+				{% endif %}
 
 					</div>
 
