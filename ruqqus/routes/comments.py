@@ -632,7 +632,6 @@ def edit_comment(cid, v):
 		send_notification(1046, v, text)
 
 		v.ban(reason="Spamming.",
-			  include_alts=True,
 			  days=1)
 
 		for comment in similar_comments:

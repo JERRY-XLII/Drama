@@ -763,7 +763,6 @@ class User(Base, Stndrd, Age_times):
 			self.unban_utc = ban_time
 
 		else:
-			# Takes care of all functions needed for account termination
 			self.unban_utc = 0
 			if self.has_banner:
 				self.del_banner()
