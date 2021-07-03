@@ -3936,6 +3936,10 @@ img.emoji {
     border: 2px solid $gray-200;
 }
 
-.btn .form-control {
+.btn {
+	background: transparent;
+}
+
+.form-control {
 	background: transparent;
 }
