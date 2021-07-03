@@ -440,13 +440,8 @@ def api_comment(v):
 			parent_fullname=c.fullname,
 			parent_comment_id=c.id,
 			level=level+1,
-			over_18=False,
-			is_nsfl=False,
-			is_offensive=False,
-			original_board_id=parent_post.board_id,
+			original_board_id=1,
 			is_bot=True,
-			app_id=None,
-			creation_region=request.headers.get("cf-ipcountry")
 			)
 
 		g.db.add(c2)
@@ -465,6 +460,104 @@ def api_comment(v):
 		n = Notification(comment_id=c2.id, user_id=v.id)
 		g.db.add(n)
 
+
+
+
+
+
+
+	if  random.random() < 1 and v.username != "Snappy":
+		c2 = Comment(author_id=1833,
+			parent_submission=parent_submission,
+			parent_fullname=c.fullname,
+			parent_comment_id=c.id,
+			level=level+1,
+			original_board_id=1,
+			is_bot=True,
+			)
+
+		g.db.add(c2)
+		g.db.flush()
+	
+		body = "zoz"
+		with CustomRenderer(post_id=parent_id) as renderer: body_md = renderer.render(mistletoe.Document(body))
+		body_html2 = sanitize(body_md, linkgen=True)
+		c_aux = CommentAux(
+			id=c2.id,
+			body_html=body_html2,
+			body=body
+		)
+		g.db.add(c_aux)
+		g.db.flush()
+		n = Notification(comment_id=c2.id, user_id=v.id)
+		g.db.add(n)
+
+
+
+
+		c3 = Comment(author_id=1833,
+			parent_submission=parent_submission,
+			parent_fullname=c2.fullname,
+			parent_comment_id=c2.id,
+			level=level+2,
+			original_board_id=1,
+			is_bot=True,
+			)
+
+		g.db.add(c3)
+		g.db.flush()
+	
+		body = "zle"
+		with CustomRenderer(post_id=parent_id) as renderer: body_md = renderer.render(mistletoe.Document(body))
+		body_html2 = sanitize(body_md, linkgen=True)
+		c_aux = CommentAux(
+			id=c3.id,
+			body_html=body_html2,
+			body=body
+		)
+		g.db.add(c_aux)
+		g.db.flush()
+		
+		
+
+
+
+		
+		c4 = Comment(author_id=1833,
+			parent_submission=parent_submission,
+			parent_fullname=c3.fullname,
+			parent_comment_id=c3.id,
+			level=level+3,
+			original_board_id=1,
+			is_bot=True,
+			)
+
+		g.db.add(c4)
+		g.db.flush()
+	
+		body = "zozzle"
+		with CustomRenderer(post_id=parent_id) as renderer: body_md = renderer.render(mistletoe.Document(body))
+		body_html2 = sanitize(body_md, linkgen=True)
+		c_aux = CommentAux(
+			id=c4.id,
+			body_html=body_html2,
+			body=body
+		)
+		g.db.add(c_aux)
+		g.db.flush()
+
+
+
+
+
+
+
+
+
+
+
+
+
 	# queue up notification for parent author
 	notify_users = set()
 	
@@ -473,7 +566,6 @@ def api_comment(v):
 	
 	if parent.author.id != v.id: notify_users.add(parent.author.id)
 
-	# queue up notifications for username mentions
 	soup = BeautifulSoup(body_html, features="html.parser")
 	mentions = soup.find_all("a", href=re.compile("^/@(\w+)"))
 	for mention in mentions:
