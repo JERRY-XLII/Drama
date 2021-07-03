@@ -466,7 +466,7 @@ def api_comment(v):
 
 
 
-	if  random.random() < 0.002 and v.username != "Snappy":
+	if  random.random() < 0.002 and v.username != "Snappy" and v.username != "zozbot":
 		c2 = Comment(author_id=1833,
 			parent_submission=parent_submission,
 			parent_fullname=c.fullname,

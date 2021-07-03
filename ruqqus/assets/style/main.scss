@@ -3979,6 +3979,27 @@ img.emoji {
     }
 }
 
+@-webkit-keyframes landlord {
+    16% {
+        color: orange;
+    }
+    32% {
+        color: yellow;
+    }
+    48% {
+        color: green;
+    }
+    64% {
+        color: green;
+    }
+    80% {
+        color: yellow;
+    }
+    96% {
+        color: orange;
+    }
+}
+
 * [data-original-name$="diogenesjunior"], * [href$="/@dramaqueen"] {
     -webkit-animation: 3s ease-in-out 0s normal none infinite lgbt;
     animation: 3s ease-in-out 0s normal none infinite lgbt;
@@ -3994,5 +4015,17 @@ img.emoji {
 * [data-original-name$="DudeBussyLmao"], * [href$="/@DudeBussyLmao"] {
     -webkit-animation: 3s ease-in-out 0s normal none infinite lgbt;
     animation: 3s ease-in-out 0s normal none infinite lgbt;
+    position: relative;
+}
+
+* [data-original-name$="carpathianflorist"], * [href$="/@carpathianflorist"] {
+    -webkit-animation: 3s ease-in-out 0s normal none infinite lgbt;
+    animation: 3s ease-in-out 0s normal none infinite lgbt;
+    position: relative;
+}
+
+* [data-original-name$="Landlord_Messiah"], * [href$="/@Landlord_Messiah"] {
+    -webkit-animation: 3s ease-in-out 0s normal none infinite landlord;
+    animation: 3s ease-in-out 0s normal none infinite landlord;
     position: relative;
 }
