@@ -18,9 +18,9 @@
 {% block PseudoSubmitForm %}{% endblock %}
 
 {% block navbar %}
-	{% if '/comments/' in request.path %}
-	{% endif %}
 	{% if not '/users/' in request.path %}
+		<h5>Search by author by putting "author:username" in the search query.</h5>
+		<br>
 		<div class="mt-5 d-flex align-items-center">
 			<div class="dropdown dropdown-actions">
 				<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
