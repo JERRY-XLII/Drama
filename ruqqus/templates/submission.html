@@ -4,14 +4,6 @@
 {% set downs=p.downvotes_fuzzed %}
 {% set score=ups-downs %}
 
-{% block stylesheets %}
-{% if v and v.can_use_darkmode and session.get("light_mode_enabled") %}
-<link id="css-link" rel="stylesheet" href="{{p.board.css_dark_url}}?v=2.35.62">
-{% else %}
-<link id="css-link" rel="stylesheet" href="{{p.board.css_url}}?v=2.35.62">
-{% endif %}
-{% endblock %}
-
 {% block sidebarblock %}
 <div class="sidebar-section sidebar-info">
 	<div class="title"><i class="fas fa-info-circle mr-2"></i>Post Info</div>
