@@ -23768,10 +23768,6 @@ ol > li::before {
   font-size: 1rem;
 }
 
-.btn-secondary {
-  color: #80FFFFFF;
-}
-
 .btn-tag {
   border-radius: 3rem;
   font-size: 12px;
@@ -25439,9 +25435,8 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
     border-top-left-radius: 1rem;
   }
 
-  #frontpage, #search, #guild {
+  #search, #guild {
     padding-top: 98px;
-    background-color: #00001f;
   }
 }
 .dropdown-actions {
@@ -25757,7 +25752,6 @@ blockquote {
   color: #f0f0f0;
   font-size: 1rem;
   font-weight: 400;
-  background-color: #46444a;
   padding: 0.5rem 1rem;
   margin: 0.5rem 0rem 1rem 0.5rem;
 }
@@ -27172,7 +27166,6 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
 
   #frontpage, #search, #guild {
     padding-top: 98px;
-    background-color: #00001f;
   }
 
   #search .search-results.card {
@@ -27645,8 +27638,23 @@ img.emoji {
   background: transparent;
 }
 
+.navbar-light .navbar-nav .nav-link {
+  border-radius: 5px;
+}
+
+.btn-secondary {
+  color: #80FFFFFF;
+}
+
 .btn-primary {
-  color: #f0f0f0;
+  color: #80FFFFFF;
+}
+
+.settings-nav .nav-link2 {
+  color: #80FFFFFF;
+  font-size: 1rem;
+  font-weight: 400;
+  padding: 0.75rem 1rem;
 }
 
 #frontpage .post-title a:visited {
