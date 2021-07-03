@@ -27759,4 +27759,12 @@ img.emoji {
   position: relative;
 }
 
+.form-control {
+  border-color: #805AD5;
+}
+
+.btn {
+  border-color: #805AD5;
+}
+
 /*# sourceMappingURL=darkpurple.css.map */
