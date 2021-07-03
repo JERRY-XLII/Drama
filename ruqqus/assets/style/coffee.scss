@@ -54,3 +54,11 @@ $reddit: #ED4630;
 blockquote {
 	background-color: #c0c0c0;
 }
+
+.text-muted {
+	color: $gray-500 !important;
+}
+
+.modal .comment-actions .list-group-item:focus, .modal .comment-actions .list-group-item:hover {
+	background-color: $gray-500;
+}
