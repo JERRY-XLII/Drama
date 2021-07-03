@@ -27678,23 +27678,20 @@ img.emoji {
   0% {
     color: #d26d3f;
   }
-  16% {
+  20% {
     color: #d49d42;
   }
-  32% {
+  40% {
     color: #d6dc58;
   }
-  48% {
+  60% {
     color: #81d94f;
   }
-  64% {
+  80% {
     color: #7de373;
   }
-  80% {
-    color: #d26d3f;
-  }
   100% {
-    color: #d49d42;
+    color: #d26d3f;
   }
 }
 * [data-original-name$=diogenesjunior], * [href$="/@dramaqueen"] {
