@@ -93,7 +93,7 @@
 	<tr>
 		<td style="font-weight:bold;">{{users4.index(user)+1}}</td>
 			<td style="font-weight:bold;"><a style="color:#{{user.namecolor}}" href="/@{{user.username}}">{{user.username}}</a></td>
-		<td style="font-weight:bold; text-align:right;">{{user.comment_count}}</td>
+		<td style="font-weight:bold; text-align:right;">{{commentcount[users4.index(user)]}}</td>
 	</tr>
 {% endfor %}
 </table>

@@ -44,8 +44,8 @@ def unsubscribe(v, post_id):
 def leaderboard(v):
 	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
 	
-	users1, users2, users3, users4, postcount = leaderboard()
-	return render_template("leaderboard.html", v=v, users1=users1, users2=users2, users3=users3, users4=users4, postcount=postcount)
+	users1, users2, users3, users4, postcount, commentcount = leaderboard()
+	return render_template("leaderboard.html", v=v, users1=users1, users2=users2, users3=users3, users4=users4, postcount=postcount, commentcount=commentcount)
 
 @cache.memoize(timeout=3600)
 def leaderboard():
@@ -55,7 +55,8 @@ def leaderboard():
 	users3 = sorted(users1, key=lambda x: x.post_count, reverse=True)[:10]
 	users4 = sorted(users1, key=lambda x: x.comment_count, reverse=True)[:10]
 	postcount = [x.post_count for x in users3]
-	return users1[:25], users2, users3, users4, postcount
+	commentcount = [x.post_count for x in users4]
+	return users1[:25], users2, users3, users4, postcount, commentcount
 
 @app.route("/@<username>/message", methods=["POST"])
 @auth_required
