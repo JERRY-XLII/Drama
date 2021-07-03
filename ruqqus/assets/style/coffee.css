@@ -27758,10 +27758,6 @@ img.emoji {
   font-family: "Lato";
 }
 
-.navbar-light .navbar-nav .nav-link {
-  background-color: #6b6b6b;
-}
-
 blockquote {
   background-color: #c0c0c0;
 }
@@ -27772,6 +27768,10 @@ blockquote {
 
 .modal .comment-actions a {
   color: #DDD2C4;
+}
+
+.navbar-light .navbar-nav .nav-link .fa, .navbar-light .navbar-nav .nav-link .fas, .navbar-light .navbar-nav .nav-link .far, .navbar-light .navbar-nav .nav-link .fab {
+  color: #433434;
 }
 
 /*# sourceMappingURL=coffee.css.map */
