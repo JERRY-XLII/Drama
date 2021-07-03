@@ -35,36 +35,6 @@
 <meta name="description" content="[deleted]">
 {% endblock %}
 
-{% block sidebar %}{% endblock %}
-
-{% block adminpanel %}
-{% if v.admin_level >=3 and v.admin_level > u.admin_level %}
-{% if u.is_banned %}
-<form action="/api/unban_user/{{u.id}}" method="post">
-	<input type="hidden" name="formkey", value="{{v.formkey}}">
-	<input type="submit" class="btn btn-success" value="Unban user">
-</form>
-{% else %}
-<form action="/api/ban_user/{{u.id}}", method="post">
-	<input type="hidden" name="formkey", value="{{v.formkey}}">
-	<input type="submit" class="btn btn-warning" value="Ban user">
-</form>
-{% endif %}
-{% endif %}
-{% if v.admin_level >=4 and v.admin_level > u.admin_level %}
-<table>
- <tr>
-	<th>Key</th>
-	<th>Value</th>
-</tr>
-<tr>
-	<td>Account Creation IP</td>
-	<td>{{u.creation_ip}}</td>
-</tr>
-</table>
-{% endif %}
-{% endblock %}
-
 {% block content %}
 
 <div class="row no-gutters">
