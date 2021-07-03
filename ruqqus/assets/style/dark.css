@@ -27657,4 +27657,32 @@ img.emoji {
   padding: 0.75rem 1rem;
 }
 
+/*Trans Rights Are Human Rights ;)*/
+* [data-original-name$=diogenesjunior], * [href$="/@dramaqueen"] {
+  -webkit-animation: 3s ease-in-out 0s normal none infinite diotroll;
+  animation: 3s ease-in-out 0s normal none infinite diotroll;
+  position: relative;
+}
+
+@-webkit-keyframes diotroll {
+  16% {
+    color: red;
+  }
+  32% {
+    color: orange;
+  }
+  48% {
+    color: yellow;
+  }
+  64% {
+    color: green;
+  }
+  80% {
+    color: blue;
+  }
+  96% {
+    color: violet;
+  }
+}
+
 /*# sourceMappingURL=dark.css.map */
