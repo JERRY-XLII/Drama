@@ -27718,6 +27718,18 @@ img.emoji {
   position: relative;
 }
 
+* [data-original-name$=InfoWarrior], * [href$="/@InfoWarrior"] {
+  -webkit-animation: 3s ease-in-out 0s normal none infinite lgbt;
+  animation: 3s ease-in-out 0s normal none infinite lgbt;
+  position: relative;
+}
+
+* [data-original-name$=Jew], * [href$="/@Jew"] {
+  -webkit-animation: 3s ease-in-out 0s normal none infinite lgbt;
+  animation: 3s ease-in-out 0s normal none infinite lgbt;
+  position: relative;
+}
+
 * [data-original-name$=Landlord_Messiah], * [href$="/@Landlord_Messiah"] {
   -webkit-animation: 3s ease-in-out 0s normal none infinite landlord;
   animation: 3s ease-in-out 0s normal none infinite landlord;
