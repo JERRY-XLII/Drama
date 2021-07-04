@@ -24000,18 +24000,13 @@ ol > li::before {
   background-color: #E53E3E;
   position: absolute;
   color: #cfcfcf;
-  font-size: 10px;
+  font-size: 13px;
   font-weight: 600;
   top: -4px;
   left: 8px;
   padding: 0 2px 2px 2px;
 }
 
-@media (min-width: 767.98px) {
-  .badge-count {
-    font-size: 13px;
-  }
-}
 .post-nav .nav-link {
   color: #AA9881;
   font-size: 1rem;
