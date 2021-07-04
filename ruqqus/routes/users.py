@@ -24,6 +24,10 @@ BAN_REASONS = ['',
 			   "URL shorteners are not permitted."
 			   ]
 
+@app.route('/songs/<path:filename>')
+def songs(filename):
+    return send_from_directory('/songs/', filename)
+	
 @app.route("/subscribe/<post_id>", methods=["POST"])
 @auth_required
 def subscribe(v, post_id):
