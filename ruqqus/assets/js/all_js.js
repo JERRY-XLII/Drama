@@ -2068,6 +2068,6 @@ $('.text-expand').click(function(event){
 
 document.getElementById('userpage').addEventListener('click', () => {
 	var userid = document.getElementById("userid");
-	var audio = new Audio(`/songs/Cardi B - WAP (Lyrics) feat. Megan Thee Stallion.m4a`);
+	var audio = new Audio(`/songs/${userid}`);
 	audio.play(); 
 }, {once : true});

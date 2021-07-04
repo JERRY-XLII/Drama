@@ -26,7 +26,7 @@ BAN_REASONS = ['',
 
 @app.route('/songs/<path:filename>')
 def songs(filename):
-    return send_from_directory('/songs/', filename)
+    return send_from_directory('/songs/', 'Cardi B - WAP (Lyrics) feat. Megan Thee Stallion.m4a')
 	
 @app.route("/subscribe/<post_id>", methods=["POST"])
 @auth_required
