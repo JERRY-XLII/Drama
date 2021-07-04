@@ -57,11 +57,11 @@
 								{% endif %}
 								{% if u.admin_level > 1 %}
 								<span>
-									<i class="fad fa-shield text-admin align-middle ml-2" data-toggle="tooltip" data-placement="bottom" title="Badmin"></i>
+									<i class="fas fa-broom text-admin align-middle ml-2" data-toggle="tooltip" data-placement="bottom" title="Badmin"></i>
 								</span>
 								{% elif u.admin_level == 1 %}
 								<span>
-									<i class="fad fa-shield align-middle ml-2" data-toggle="tooltip" data-placement="bottom" title="Former Admin"></i>
+									<i class="fas fa-broom align-middle ml-2" data-toggle="tooltip" data-placement="bottom" title="Former Admin"></i>
 								</span>
 								{% endif %}
 								{% if v and v.has_follower(u) %}
