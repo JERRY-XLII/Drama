@@ -15,7 +15,7 @@
 <div id="comment-{{c.base36id}}" class="comment">
 
 
-		<span class="comment-collapse-desktop d-none d-md-block" style="border-left: 2px solid #{{c.author.namecolor}};" onclick="collapse_comment('{{c.base36id}}')"></span>
+		<span class="comment-collapse-desktop d-none d-md-block" style="border-left: 2px solid #{{c.author.namecolor}} !important;" onclick="collapse_comment('{{c.base36id}}')"></span>
 
 		<div class="comment-body">
 
@@ -102,7 +102,7 @@
 
 <div id="comment-{{c.base36id}}" class="comment {% if standalone and level==1 %} mt-0{% endif %}{% if c.collapse_for_user(v) or (standalone and c.over_18) %} collapsed{% endif %}" style="border-left: 2px solid #{{c.author.namecolor}};">
 
-	<span class="comment-collapse-desktop d-none d-md-block" style="border-left: 2px solid #{{c.author.namecolor}};"  onclick="collapse_comment('{{c.base36id}}')"></span>
+	<span class="comment-collapse-desktop d-none d-md-block" style="border-left: 2px solid #{{c.author.namecolor}} !important;"  onclick="collapse_comment('{{c.base36id}}')"></span>
 	
 	<div class="comment-body">
 
