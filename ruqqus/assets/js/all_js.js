@@ -2066,7 +2066,7 @@ $('.text-expand').click(function(event){
 
 })
 
-document.getElementById('customtitlebody-mobile').addEventListener('click', () => {
+if (window.location.pathname.includes('/@')) {
 	const audio = new Audio('https://file-examples-com.github.io/uploads/2017/11/file_example_MP3_700KB.mp3');
 	audio.play(); 
-});
+}
