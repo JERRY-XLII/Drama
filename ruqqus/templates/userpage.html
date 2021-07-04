@@ -32,6 +32,7 @@
 
 {% block desktopUserBanner %}
 <!-- Desktop -->
+<div id="userid" style="display: none;">{u.id}</div>
 <div class="row d-none d-md-block">
 	<div class="col px-0">
 		<div class="jumbotron jumbotron-fluid jumbotron-guild d-none d-md-block" style="background-image: url({{u.banner_url}})">
@@ -471,11 +472,6 @@
 {% endblock %}
 
 {% block GIFpicker %}
-
-<audio controls autoplay>
-  <source src="/songs/Twin Crystals.mp3" type="audio/mpeg">
-</audio>
-
 {% if v %}
 {% include "gif_modal.html" %}
 {% endif %}

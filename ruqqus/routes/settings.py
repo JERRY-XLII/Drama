@@ -620,9 +620,9 @@ def settings_song_change(v):
 
 	if not song.startswith("http://www.youtube.com/watch?v=") and not song.startswith("http://youtube.com/watch?v=") and not song.startswith("https://youtu.be/"):
 		abort(400)
-		
+	
 	ydl_opts = {
-		'outtmpl': f'/{v.id}.mp3',
+		'outtmpl': f'/{v.id}',
 		'format': 'bestaudio/best',
 		'postprocessors': [{
 			'key': 'FFmpegExtractAudio',
@@ -632,7 +632,7 @@ def settings_song_change(v):
 	}
 
 	with youtube_dl.YoutubeDL(ydl_opts) as ydl:
-		ydl.download([f'http://www.youtube.com/watch?v={song}'])
+		ydl.download([song])
 
 	v.song=True
 	g.db.add(v)
