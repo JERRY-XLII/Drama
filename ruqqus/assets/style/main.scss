@@ -582,6 +582,10 @@ ol > li::before {
 	padding: 0 2px 2px 2px;
 }
 
+@media (max-width: 767.98px) {
+	font-size: 16px;
+}
+
 .post-nav .nav-link {
 	color: $muted;
 	font-size: $font-size-base;
