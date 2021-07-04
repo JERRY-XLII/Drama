@@ -27821,20 +27821,27 @@ img.emoji {
   position: relative;
 }
 
+* {
+  border-color: #805AD5;
+}
+
+.border {
+  border-color: #805AD5 !important;
+}
+
 .form-control {
   background: transparent;
+  border-color: #805AD5 !important;
 }
 
 .btn {
   background: transparent;
+  border-color: #805AD5 !important;
 }
 
 .form-control:disabled, .form-control[readonly] {
   background: transparent;
-}
-
-* {
-  border-color: #805AD5;
+  border-color: #805AD5 !important;
 }
 
 .btn-success {
@@ -27843,10 +27850,6 @@ img.emoji {
 
 .btn-danger {
   border-color: #E53E3E !important;
-}
-
-.border {
-  border-color: #805AD5 !important;
 }
 
 /*# sourceMappingURL=darkpurple.css.map */
