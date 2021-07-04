@@ -169,7 +169,7 @@
 							<input type="text" readonly="" class="form-control copy-link" id="referral_code" value="https://rdrama.net/signup?ref={{v.username}}" data-clipboard-text="https://rdrama.net/signup?ref={{v.username}}">
 
 							<span class="input-group-append" data-toggle="tooltip" data-placement="top" title="You have referred {{v.referral_count}} user{{'s' if v.referral_count != 1 else ''}} so far. {% if v.referral_count==0 %}¯\_(ツ)_/¯{% elif v.referral_count>10%}Wow!{% endif %}">
-								<span class="input-group-text text-muted border-0">
+								<span class="input-group-text text-primary border-0">
 									<i class="far fa-user mr-1" aria-hidden="true"></i>{{v.referral_count}}</span>
 								</span>
 
@@ -272,7 +272,7 @@
 
 									<form id="profile-settings" action="/settings/song_change" method="post">
 										<input type="hidden" name="formkey" value="{{v.formkey}}">
-										<input type="text" name="song" class="form-control" value="{{v.song}}">
+										<input type="text" name="song" class="form-control" value="{{v.song}}" placeholder='Enter a youtube video id here' >
 										<div class="d-flex mt-2">
 											<input class="btn btn-primary ml-auto" type="submit" value="Change Profile Song">
 										</div>
