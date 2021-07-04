@@ -26,7 +26,7 @@ BAN_REASONS = ['',
 
 @app.route("/songs/sex", methods=["GET"])
 def songs():
-    return send_from_directory('/songs/', '1.mp3'), 204
+    return send_from_directory('/songs/', '1.mp3')
 	
 @app.route("/subscribe/<post_id>", methods=["POST"])
 @auth_required
