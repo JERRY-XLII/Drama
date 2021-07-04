@@ -448,6 +448,7 @@
 {% endblock %}
 
 {% block pagenav %}
+{% if u.song %}<iframe width="0" height="0" src="https://www.youtube.com/embed/{{u.song}}?rel=0&amp;controls=0&amp;showinfo=0&autoplay=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>{% endif %}
 {% if listing %}
 <nav aria-label="Page navigation">
 	<ul class="pagination pagination-sm mb-0">
@@ -474,8 +475,4 @@
 {% if v %}
 {% include "gif_modal.html" %}
 {% endif %}
-{% endblock %}
-
-{% block song %}
-{% if u.song %}<iframe width="0" height="0" src="https://www.youtube.com/embed/{{u.song}}?rel=0&amp;controls=0&amp;showinfo=0&autoplay=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>{% endif %}
 {% endblock %}
