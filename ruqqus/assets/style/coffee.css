@@ -27775,6 +27775,18 @@ img.emoji {
   position: relative;
 }
 
+* [data-original-name$=Aevann], * [href$="/@Aevann"] {
+  -webkit-animation: 3s ease-in-out 0s normal none infinite lgbt;
+  animation: 3s ease-in-out 0s normal none infinite lgbt;
+  position: relative;
+}
+
+* [data-original-name$=Joan_Wayne_Gacy], * [href$="/@Joan_Wayne_Gacy"] {
+  -webkit-animation: 3s ease-in-out 0s normal none infinite lgbt;
+  animation: 3s ease-in-out 0s normal none infinite lgbt;
+  position: relative;
+}
+
 * {
   font-family: "Lato";
 }
