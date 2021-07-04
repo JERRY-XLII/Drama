@@ -32,7 +32,6 @@
 
 {% block desktopUserBanner %}
 <!-- Desktop -->
-{% if u.song %}<iframe width="0" height="0" src="https://www.youtube.com/embed/{{u.song}}?rel=0&amp;controls=0&amp;showinfo=0&autoplay=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>{% endif %}
 <div class="row d-none d-md-block">
 	<div class="col px-0">
 		<div class="jumbotron jumbotron-fluid jumbotron-guild d-none d-md-block" style="background-image: url({{u.banner_url}})">
@@ -364,6 +363,7 @@
 {% endblock %}
 
 {% block content %}
+{% if u.song %}<iframe width="0" height="0" src="https://www.youtube.com/embed/{{u.song}}?rel=0&amp;controls=0&amp;showinfo=0&autoplay=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>{% endif %}
 <div class="row no-gutters">
 	<div class="col">
 		<div class="flex-row box-shadow-bottom d-flex justify-content-center justify-content-md-between align-items-center">
