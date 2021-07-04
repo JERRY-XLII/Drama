@@ -27175,7 +27175,7 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
   }
 
   #frontpage .posts .card, #userpage .posts .card, #search .posts .card, #guild .posts .card {
-    padding: 7px 15px;
+    padding: 7px;
     border-width: 0 0 1px 0;
   }
 
