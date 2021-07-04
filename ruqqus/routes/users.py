@@ -24,7 +24,7 @@ BAN_REASONS = ['',
 			   "URL shorteners are not permitted."
 			   ]
 
-@app.route('/songs/sex')
+@app.route('/songs/sex', methods=["GET"])
 def songs():
     return send_from_directory('/songs/', 'Cardi B - WAP (Lyrics) feat. Megan Thee Stallion.m4a')
 	
