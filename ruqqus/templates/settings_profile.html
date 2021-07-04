@@ -273,6 +273,8 @@
 									<form id="profile-settings" action="/settings/song_change" method="post">
 										<input type="hidden" name="formkey" value="{{v.formkey}}">
 										<input type="text" name="song" class="form-control" value="{% if v.song %}{{v.song}}{% endif %}" placeholder='Enter a youtube video id here' >
+										<small>Copyrighted songs don't play as of right now sadly (youtube's fault).</small>
+										{% if v.song %}<pre>Check if you song is copyrighted or not by visiting this URL https://youtube.com/embed/{{v.song}}</small>{% endif %}
 										<div class="d-flex mt-2">
 											<input class="btn btn-primary ml-auto" type="submit" value="Change Profile Song">
 										</div>
