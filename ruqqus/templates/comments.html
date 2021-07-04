@@ -116,8 +116,8 @@
 				{% if c.distinguish_level %}<i class="fas fa-broom text-admin" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Drama Badmin, speaking officially"></i>&nbsp;{% endif %}
 				{% if c.is_op %}<i class="fas fa-microphone-stand text-info" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="OP"></i>&nbsp;{% endif %}
 				{% if c.is_bot %}<i class="fad fa-robot text-info" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Bot"></i>&nbsp;{% endif %}
-				{% if c.is_blocking %}<i class="fas fa-user-minus text-warning" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="You're blocking this user, but you can see this comment because {{'it\'s in your guild' if c.is_guildmaster('content') else 'it\'s an admin comment' if c.distinguish_level else 'you\'re an admin'}}."></i>&nbsp;{% endif %}
-				{% if c.is_blocked %}<i class="fas fa-user-minus text-danger" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="This user is blocking you, but you can see this comment because {{'it\'s in your guild' if c.is_guildmaster('content') else 'it\'s an admin comment' if c.distinguish_level else 'you\'re an admin'}}."></i>&nbsp;{% endif %}
+				{% if c.is_blocking %}<i class="fas fa-user-minus text-warning" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="You're blocking this user, but you can see this comment because {{'it\'s in your guild' if v.admin_level == 6 else 'it\'s an admin comment' if c.distinguish_level else 'you\'re an admin'}}."></i>&nbsp;{% endif %}
+				{% if c.is_blocked %}<i class="fas fa-user-minus text-danger" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="This user is blocking you, but you can see this comment because {{'it\'s in your guild' if v.admin_level == 6 else 'it\'s an admin comment' if c.distinguish_level else 'you\'re an admin'}}."></i>&nbsp;{% endif %}
 
 				{% if c.author.is_deleted %}[deleted account]{% else %}<a style="color:#{{c.author.namecolor}}; font-size:12px; font-weight:bold;;" href="/@{{c.author.username}}"><img src="{{c.author.profile_url}}" class="profile-pic-25">&nbsp;&nbsp;{{c.author.username}}</a><span style="color: #{{c.author.titlecolor}}">{% if c.author.customtitle %}	&nbsp;{{c.author.customtitle | safe}}{% endif %}</span>{% endif %}
 
@@ -301,7 +301,7 @@
 							{% endif %}
 				{% endif %}						
 
-						{% if v and c.post and c.is_guildmaster('content') %}
+						{% if v and c.post and v.admin_level == 6 %}
 						<div class="dropdown-divider"></div>
 							{% if c.is_top_level %}
 								<a class="dropdown-item text-info" id="pin-comment-{{c.base36id}}" href="javascript:void(0)" data-dismiss="modal" data-target="#actionsModal-{{c.base36id}}" onclick="pin_comment('{{c.board.base36id}}','{{c.base36id}}')"><i class="fas fa-thumbtack fa-rotate--45 fa-fw text-info"></i>{{"Unpin" if c.is_pinned else "Pin"}}</a>
@@ -480,7 +480,7 @@
 							{% endif %}
 					{% endif %}
 						
-					{% if v and c.post and c.is_guildmaster('content') %}
+					{% if v and c.post and v.admin_level == 6 %}
 						{% if c.is_top_level %}
 							<li class="list-group-item"><a class="d-block text-info" id="pin-comment-{{c.base36id}}" href="javascript:void(0)" data-dismiss="modal" data-target="#actionsModal-{{c.base36id}}" onclick="pin_comment('{{c.board.base36id}}','{{c.base36id}}')"><i class="fas fa-thumbtack fa-rotate--45 text-info"></i>{{'Unpin' if c.is_pinned else 'Pin'}}</a>
 							</li>
