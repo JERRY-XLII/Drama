@@ -23997,13 +23997,14 @@ ol > li::before {
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background-color: #80FFFF;
+  background-color: #E53E3E;
   position: absolute;
-  color: #f0f0f0;
-  font-size: 13px;
+  color: #cfcfcf;
+  font-size: 10px;
   font-weight: 600;
   top: -4px;
-  left: 12px;
+  left: 8px;
+  border: 2px solid #272727;
   padding: 0 2px 2px 2px;
 }
 
@@ -25740,6 +25741,7 @@ div:hover .thumb-img-link-overlay {
   word-break: break-word;
   color: #f0f0f0;
   overflow: hidden;
+  padding-right: 5px !important;
 }
 
 .comment .comment-body .comment-image {
