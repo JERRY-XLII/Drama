@@ -579,13 +579,12 @@ ol > li::before {
 	font-weight: 600;
 	top: -4px;
 	left: 8px;
-	border: 2px solid transparent;
 	padding: 0 2px 2px 2px;
 }
 
 @media (min-width: 767.98px) {
 	.badge-count {
-		font-size: 13px;
+		font-size: 11px;
 	}
 }
 
