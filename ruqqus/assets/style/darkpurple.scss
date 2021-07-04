@@ -75,3 +75,7 @@ $reddit: #ED4630;
 #frontpage .pseudo-submit-form.card .card-body .form-control, #guild .pseudo-submit-form.card .card-body .form-control {
 	border-color: transparent !important;
 }
+
+#frontpage .posts .card, #userpage .posts .card, #search .posts .card, #guild .posts .card, #settings-guild .posts .card {
+	border-color: $primary !important;
+}
