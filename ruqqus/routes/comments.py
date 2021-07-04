@@ -252,7 +252,6 @@ def api_comment(v):
 	if not body and not request.files.get('file'): return jsonify({"error":"You need to actually write something!"}), 400
 	
 	for i in re.finditer('^(https:\/\/.*\.(png|jpg|jpeg|gif))', body, re.MULTILINE): body = body.replace(i.group(1), f'![]({i.group(1)})')
-	body = body.replace("\n", "\n\n")
 	with CustomRenderer(post_id=parent_id) as renderer: body_md = renderer.render(mistletoe.Document(body))
 	body_html = sanitize(body_md, linkgen=True)
 
@@ -403,7 +402,6 @@ def api_comment(v):
 			name = f'comment/{c.base36id}/{secrets.token_urlsafe(8)}'
 			url = upload_file(name, file)
 			
-			body = body.replace("\n", "\n\n")
 			body = request.form.get("body") + f"\n\n![]({url})"
 			with CustomRenderer(post_id=parent_id) as renderer:
 				body_md = renderer.render(mistletoe.Document(body))
@@ -634,7 +632,6 @@ def edit_comment(cid, v):
 	if c.is_banned or c.deleted_utc > 0: abort(403)
 
 	body = request.form.get("body", "")[0:10000]
-	body = body.replace("\n", "\n\n")
 	for i in re.finditer('^(https:\/\/.*\.(png|jpg|jpeg|gif))', body, re.MULTILINE): body = body.replace(i.group(1), f'![]({i.group(1)})')
 	with CustomRenderer(post_id=c.post.base36id) as renderer: body_md = renderer.render(mistletoe.Document(body))
 	body_html = sanitize(body_md, linkgen=True)
@@ -742,7 +739,6 @@ def edit_comment(cid, v):
 			name = f'comment/{c.base36id}/{secrets.token_urlsafe(8)}'
 			url = upload_file(name, file)
 
-			body = body.replace("\n", "\n\n")
 			body += f"\n\n![]({url})"
 			with CustomRenderer(post_id=c.parent_submission) as renderer:
 				body_md = renderer.render(mistletoe.Document(body))
