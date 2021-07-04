@@ -11,37 +11,6 @@
 
 		<div class="settings">
 
-
-			<h2 class="h5" name="referral">Theme</h2>
-
-			<div class="settings-section rounded">
-
-					<div class="d-lg-flex border-bottom">
-						<div class="title w-lg-25">
-							<label for="theme">Website Theme</label>
-						</div>
-
-						<div class="body w-lg-100">
-							<p>Change the theme for the website.</p>
-							<div class="input-group mb2">
-								<select id='theme' class="form-control" form="profile-settings" name="theme" onchange="post('/settings/profile?theme='+document.getElementById('theme').value, function(){window.location.reload(true);})">
-								 {% for entry in ["dark", "darkpurple", "light", "coffee", "tron", "tronpurple"] %}
-								 <option value="{{entry}}"{{' selected' if v.theme==entry else ''}}>{{entry}}</option>
-								 {% endfor %}
-							 </select>
-							</div>
-
-						</div>
-
-				 </div>
-
-			</div>
-
-
-
-
-
-
 			<h2 class="h5" name="referral">Default Sortings and Time Filter</h2>
 
 			<div class="settings-section rounded">
