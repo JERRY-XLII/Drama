@@ -27853,6 +27853,10 @@ img.emoji {
   position: relative;
 }
 
+.comment {
+  padding-bottom: 5px;
+}
+
 #frontpage .post-title a:visited {
   color: #f0f0f0;
 }

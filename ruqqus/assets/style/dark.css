@@ -27852,6 +27852,10 @@ img.emoji {
   position: relative;
 }
 
+.comment {
+  padding-bottom: 5px;
+}
+
 * {
   border-color: #FF66AC;
 }
