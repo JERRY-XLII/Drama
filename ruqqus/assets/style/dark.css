@@ -27849,4 +27849,8 @@ img.emoji {
   border-color: #FF66AC !important;
 }
 
+#frontpage .pseudo-submit-form.card .card-body .form-control, #guild .pseudo-submit-form.card .card-body .form-control {
+  border-color: transparent !important;
+}
+
 /*# sourceMappingURL=dark.css.map */
