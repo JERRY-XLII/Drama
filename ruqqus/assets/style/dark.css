@@ -27281,7 +27281,7 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
 
   .post-title {
     font-size: 14px;
-    font-weight: 400;
+    font-weight: 600;
     line-height: normal;
     overflow: hidden;
   }
@@ -27854,10 +27854,6 @@ img.emoji {
 
 #frontpage .pseudo-submit-form.card .card-body .form-control, #guild .pseudo-submit-form.card .card-body .form-control {
   border-color: transparent !important;
-}
-
-#frontpage .posts .card, #userpage .posts .card, #search .posts .card, #guild .posts .card, #settings-guild .posts .card {
-  border-color: #FF66AC !important;
 }
 
 /*# sourceMappingURL=dark.css.map */
