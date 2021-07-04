@@ -618,11 +618,11 @@ def settings_song_change(v):
 						   v=v,
 						   error="You didn't change anything")
 
-	if not song.startswith("http://www.youtube.com/watch?v=") and not song.startswith("http://youtube.com/watch?v=") and not song.startswith("https://youtu.be/"):
+	if not song.startswith("https://www.youtube.com/watch?v=") and not song.startswith("https://youtube.com/watch?v=") and not song.startswith("https://youtu.be/"):
 		abort(400)
 	
 	ydl_opts = {
-		'outtmpl': f'/{v.id}',
+		'outtmpl': '/songs/%(title)s.%(ext)s',
 		'format': 'bestaudio/best',
 		'postprocessors': [{
 			'key': 'FFmpegExtractAudio',
