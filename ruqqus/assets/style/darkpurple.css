@@ -9912,7 +9912,7 @@ h3 {
 }
 
 .bd-callout-downvote {
-  border-left-color: #805AD5;
+  border-left-color: #38B2AC;
 }
 
 .bd-callout-upvote {
@@ -10006,7 +10006,7 @@ h3 {
   --white: #E1E1E1;
   --black: #CFCFCF;
   --muted: #E1E1E1;
-  --downvote: #805AD5;
+  --downvote: #38B2AC;
   --upvote: #805AD5;
   --purple: #805AD5;
   --gold: #ECC94B;
@@ -11938,21 +11938,21 @@ pre code {
 .table-downvote,
 .table-downvote > th,
 .table-downvote > td {
-  background-color: #c6bbde;
+  background-color: #b2d4d2;
 }
 .table-downvote th,
 .table-downvote td,
 .table-downvote thead th,
 .table-downvote tbody + tbody {
-  border-color: #af9bdb;
+  border-color: #89c9c5;
 }
 
 .table-hover .table-downvote:hover {
-  background-color: #b8aad6;
+  background-color: #a2cbc8;
 }
 .table-hover .table-downvote:hover > td,
 .table-hover .table-downvote:hover > th {
-  background-color: #b8aad6;
+  background-color: #a2cbc8;
 }
 
 .table-upvote,
@@ -13135,32 +13135,32 @@ fieldset:disabled a.btn {
 
 .btn-downvote {
   color: #E1E1E1;
-  background-color: #805AD5;
-  border-color: #805AD5;
+  background-color: #38B2AC;
+  border-color: #38B2AC;
 }
 .btn-downvote:hover {
   color: #E1E1E1;
-  background-color: #693ccd;
-  border-color: #6133c9;
+  background-color: #2f9590;
+  border-color: #2c8b87;
 }
 .btn-downvote:focus, .btn-downvote.focus {
   color: #E1E1E1;
-  background-color: #693ccd;
-  border-color: #6133c9;
-  box-shadow: 0 0 0 0.2rem rgba(143, 110, 215, 0.5);
+  background-color: #2f9590;
+  border-color: #2c8b87;
+  box-shadow: 0 0 0 0.2rem rgba(81, 185, 180, 0.5);
 }
 .btn-downvote.disabled, .btn-downvote:disabled {
   color: #E1E1E1;
-  background-color: #805AD5;
-  border-color: #805AD5;
+  background-color: #38B2AC;
+  border-color: #38B2AC;
 }
 .btn-downvote:not(:disabled):not(.disabled):active, .btn-downvote:not(:disabled):not(.disabled).active, .show > .btn-downvote.dropdown-toggle {
   color: #E1E1E1;
-  background-color: #6133c9;
-  border-color: #5c31bf;
+  background-color: #2c8b87;
+  border-color: #29827d;
 }
 .btn-downvote:not(:disabled):not(.disabled):active:focus, .btn-downvote:not(:disabled):not(.disabled).active:focus, .show > .btn-downvote.dropdown-toggle:focus {
-  box-shadow: 0 0 0 0.2rem rgba(143, 110, 215, 0.5);
+  box-shadow: 0 0 0 0.2rem rgba(81, 185, 180, 0.5);
 }
 
 .btn-upvote {
@@ -13889,28 +13889,28 @@ fieldset:disabled a.btn {
 }
 
 .btn-outline-downvote {
-  color: #805AD5;
-  border-color: #805AD5;
+  color: #38B2AC;
+  border-color: #38B2AC;
 }
 .btn-outline-downvote:hover {
   color: #E1E1E1;
-  background-color: #805AD5;
-  border-color: #805AD5;
+  background-color: #38B2AC;
+  border-color: #38B2AC;
 }
 .btn-outline-downvote:focus, .btn-outline-downvote.focus {
-  box-shadow: 0 0 0 0.2rem rgba(128, 90, 213, 0.5);
+  box-shadow: 0 0 0 0.2rem rgba(56, 178, 172, 0.5);
 }
 .btn-outline-downvote.disabled, .btn-outline-downvote:disabled {
-  color: #805AD5;
+  color: #38B2AC;
   background-color: transparent;
 }
 .btn-outline-downvote:not(:disabled):not(.disabled):active, .btn-outline-downvote:not(:disabled):not(.disabled).active, .show > .btn-outline-downvote.dropdown-toggle {
   color: #E1E1E1;
-  background-color: #805AD5;
-  border-color: #805AD5;
+  background-color: #38B2AC;
+  border-color: #38B2AC;
 }
 .btn-outline-downvote:not(:disabled):not(.disabled):active:focus, .btn-outline-downvote:not(:disabled):not(.disabled).active:focus, .show > .btn-outline-downvote.dropdown-toggle:focus {
-  box-shadow: 0 0 0 0.2rem rgba(128, 90, 213, 0.5);
+  box-shadow: 0 0 0 0.2rem rgba(56, 178, 172, 0.5);
 }
 
 .btn-outline-upvote {
@@ -16204,15 +16204,15 @@ a.badge-muted:focus, a.badge-muted.focus {
 
 .badge-downvote {
   color: #E1E1E1;
-  background-color: #805AD5;
+  background-color: #38B2AC;
 }
 a.badge-downvote:hover, a.badge-downvote:focus {
   color: #E1E1E1;
-  background-color: #6133c9;
+  background-color: #2c8b87;
 }
 a.badge-downvote:focus, a.badge-downvote.focus {
   outline: 0;
-  box-shadow: 0 0 0 0.2rem rgba(128, 90, 213, 0.5);
+  box-shadow: 0 0 0 0.2rem rgba(56, 178, 172, 0.5);
 }
 
 .badge-upvote {
@@ -16588,15 +16588,15 @@ a.badge-reddit:focus, a.badge-reddit.focus {
 }
 
 .alert-downvote {
-  color: #a692d2;
-  background-color: #cec6df;
-  border-color: #c6bbde;
+  color: #80c0bd;
+  background-color: #bfd8d6;
+  border-color: #b2d4d2;
 }
 .alert-downvote hr {
-  border-top-color: #b8aad6;
+  border-top-color: #a2cbc8;
 }
 .alert-downvote .alert-link {
-  color: #896ec3;
+  color: #5eafab;
 }
 
 .alert-upvote {
@@ -17179,17 +17179,17 @@ a.badge-reddit:focus, a.badge-reddit.focus {
 }
 
 .list-group-item-downvote {
-  color: #a692d2;
-  background-color: #c6bbde;
+  color: #80c0bd;
+  background-color: #b2d4d2;
 }
 .list-group-item-downvote.list-group-item-action:hover, .list-group-item-downvote.list-group-item-action:focus {
-  color: #a692d2;
-  background-color: #b8aad6;
+  color: #80c0bd;
+  background-color: #a2cbc8;
 }
 .list-group-item-downvote.list-group-item-action.active {
   color: #E1E1E1;
-  background-color: #a692d2;
-  border-color: #a692d2;
+  background-color: #80c0bd;
+  border-color: #80c0bd;
 }
 
 .list-group-item-upvote {
@@ -18265,13 +18265,13 @@ button.bg-muted:focus {
 }
 
 .bg-downvote {
-  background-color: #805AD5 !important;
+  background-color: #38B2AC !important;
 }
 
 a.bg-downvote:hover, a.bg-downvote:focus,
 button.bg-downvote:hover,
 button.bg-downvote:focus {
-  background-color: #6133c9 !important;
+  background-color: #2c8b87 !important;
 }
 
 .bg-upvote {
@@ -18517,7 +18517,7 @@ button.bg-reddit:focus {
 }
 
 .border-downvote {
-  border-color: #805AD5 !important;
+  border-color: #38B2AC !important;
 }
 
 .border-upvote {
@@ -23292,11 +23292,11 @@ a.text-muted:hover, a.text-muted:focus {
 }
 
 .text-downvote {
-  color: #805AD5 !important;
+  color: #38B2AC !important;
 }
 
 a.text-downvote:hover, a.text-downvote:focus {
-  color: #582eb5 !important;
+  color: #267874 !important;
 }
 
 .text-upvote {
@@ -24390,7 +24390,7 @@ th {
 }
 
 .active.arrow-down::before {
-  color: #805AD5;
+  color: #38B2AC;
 }
 
 .arrow-down::before {
@@ -24403,7 +24403,7 @@ th {
 }
 
 .arrow-down:hover::before {
-  color: #805AD5;
+  color: #38B2AC;
   opacity: 0.5;
 }
 
@@ -24435,7 +24435,7 @@ th {
 }
 
 .downvoted .arrow-mobile-down {
-  color: #805AD5 !important;
+  color: #38B2AC !important;
 }
 
 .comment-actions .score {
@@ -24451,7 +24451,7 @@ th {
 }
 
 .score-down {
-  color: #805AD5 !important;
+  color: #38B2AC !important;
 }
 
 .banned .score {
@@ -27326,7 +27326,7 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
   }
 
   .active.arrow-down::before, .active.arrow-down:hover::before {
-    color: #805AD5;
+    color: #38B2AC;
   }
 
   .dropdown-actions a {
