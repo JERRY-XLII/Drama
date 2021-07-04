@@ -68,3 +68,7 @@ $reddit: #ED4630;
 .border {
 	border-color: $primary !important;
 }
+
+.comment .comment-collapse-desktop:hover {
+	border-left-color: $white !important;
+}
