@@ -76,5 +76,10 @@ $reddit: #ED4630;
 	font-weight: 600;
 	top: -4px;
 	left: 8px;
-	border: 2px solid transparent;
-	padding: 0 2px 2px 2px; }
+	border: none !important;
+	padding: 0 2px 2px 2px;
+}
+
+.border {
+	border-color: #E53E3E !important;
+}
