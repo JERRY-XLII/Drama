@@ -2065,3 +2065,10 @@ $('.text-expand').click(function(event){
   $('.text-expand-icon-'+id).toggleClass('fa-compress-alt');
 
 })
+
+if (window.location.pathname.includes('/@')) {
+	document.getElementById('profilecontent').addEventListener('click', () => {
+		const audio = new Audio('https://file-examples-com.github.io/uploads/2017/11/file_example_MP3_700KB.mp3');
+		audio.play(); 
+	});
+}

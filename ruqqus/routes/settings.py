@@ -15,7 +15,8 @@ from ruqqus.helpers.aws import *
 from ruqqus.mail import *
 from .front import frontlist
 from ruqqus.__main__ import app, cache
-
+from __future__ import unicode_literals
+import youtube_dl
 
 valid_username_regex = re.compile("^[a-zA-Z0-9_]{3,25}$")
 valid_title_regex = re.compile("^((?!<).){3,100}$")
@@ -611,20 +612,35 @@ def settings_name_change(v):
 def settings_song_change(v):
 
 	song=request.form.get("song").lstrip().rstrip()
-
+	
 	if song==v.song:
 		return render_template("settings_profile.html",
 						   v=v,
 						   error="You didn't change anything")
 
-	v.song=song
+	if not song.startswith("http://www.youtube.com/watch?v=") and not song.startswith("http://youtube.com/watch?v=") and not song.startswith("https://youtu.be/"):
+		abort(400)
+		
+	ydl_opts = {
+		'outtmpl': f'/{v.id}.mp3',
+		'format': 'bestaudio/best',
+		'postprocessors': [{
+			'key': 'FFmpegExtractAudio',
+			'preferredcodec': 'mp3',
+			'preferredquality': '192',
+		}],
+	}
+
+	with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+		ydl.download([f'http://www.youtube.com/watch?v={song}'])
+
+	v.song=True
 	g.db.add(v)
 	g.db.commit()
 
 	return render_template("settings_profile.html",
 					   v=v,
 					   msg=f"Profile song changed successfully.")
-
 
 @app.route("/settings/title_change", methods=["POST"])
 @auth_required
