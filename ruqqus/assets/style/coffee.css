@@ -24007,11 +24007,6 @@ ol > li::before {
   padding: 0 2px 2px 2px;
 }
 
-@media (max-width: 767.98px) {
-  .badge-count {
-    font-size: 16px;
-  }
-}
 .post-nav .nav-link {
   color: #AA9881;
   font-size: 1rem;
@@ -27170,8 +27165,12 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
     background-color: #DDD2C4;
   }
 
-  #frontpage, #search, #guild {
+  #search, #guild {
     padding-top: 98px;
+  }
+
+  #frontpage {
+    padding-top: 49px;
   }
 
   #search .search-results.card {
