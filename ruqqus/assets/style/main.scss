@@ -580,7 +580,14 @@ ol > li::before {
 	top: -4px;
 	left: 8px;
 	border: 2px solid transparent;
-	padding: 0 2px 2px 2px; }
+	padding: 0 2px 2px 2px;
+}
+
+@media (min-width: 767.98px) {
+	.badge-count {
+		font-size: 13px;
+	}
+}
 
 .post-nav .nav-link {
 	color: $muted;
