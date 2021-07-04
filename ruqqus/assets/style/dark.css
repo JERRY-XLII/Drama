@@ -27494,6 +27494,10 @@ textarea {
   color: #E1E1E1 !important;
 }
 
+.text-primary {
+  color: #FF66AC !important;
+}
+
 .text-gray-400, .text-gray-500 {
   color: #E1E1E1 !important;
 }
