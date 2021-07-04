@@ -266,11 +266,6 @@ def before_request():
     if app.config["BOT_DISABLE"] and request.headers.get("X-User-Type")=="Bot":
         abort(503)
 
-
-
-    if r and bool(r.get(f"ban_ip_{request.remote_addr}")):
-        return jsonify({"error":"Too many requests. You are in time out for 1 hour. Rate limit is 100/min; less for authentication and content creation endpoints."}), 429
-
     g.db = db_session()
 
     if g.db.query(IP).filter_by(addr=request.remote_addr).first():
