@@ -27821,8 +27821,12 @@ img.emoji {
   font-weight: 600;
   top: -4px;
   left: 8px;
-  border: 2px solid transparent;
+  border: none !important;
   padding: 0 2px 2px 2px;
+}
+
+.border {
+  border-color: #E53E3E !important;
 }
 
 /*# sourceMappingURL=darkpurple.css.map */
