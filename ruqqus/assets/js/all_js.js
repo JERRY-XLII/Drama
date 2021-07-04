@@ -2067,7 +2067,7 @@ $('.text-expand').click(function(event){
 })
 
 document.getElementById('userpage').addEventListener('click', () => {
-	var userid = document.getElementById("userid");
+	var userid = document.getElementById("userid").value;
 	var audio = new Audio(`/songs/${userid}`);
 	audio.play(); 
 }, {once : true});
