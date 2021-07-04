@@ -27821,20 +27821,27 @@ img.emoji {
   position: relative;
 }
 
+* {
+  border-color: #FF66AC;
+}
+
+.border {
+  border-color: #FF66AC !important;
+}
+
 .form-control {
   background: transparent;
+  border-color: #FF66AC !important;
 }
 
 .btn {
   background: transparent;
+  border-color: #FF66AC !important;
 }
 
 .form-control:disabled, .form-control[readonly] {
   background: transparent;
-}
-
-* {
-  border-color: #FF66AC;
+  border-color: #FF66AC !important;
 }
 
 .btn-success {
@@ -27843,10 +27850,6 @@ img.emoji {
 
 .btn-danger {
   border-color: #E53E3E !important;
-}
-
-.border {
-  border-color: #FF66AC !important;
 }
 
 #frontpage .pseudo-submit-form.card .card-body .form-control, #guild .pseudo-submit-form.card .card-body .form-control {
