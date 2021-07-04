@@ -1,3 +1,4 @@
+from __future__ import unicode_literals
 from flask import *
 from sqlalchemy import func
 import time
@@ -15,7 +16,6 @@ from ruqqus.helpers.aws import *
 from ruqqus.mail import *
 from .front import frontlist
 from ruqqus.__main__ import app, cache
-from __future__ import unicode_literals
 import youtube_dl
 
 valid_username_regex = re.compile("^[a-zA-Z0-9_]{3,25}$")
