@@ -54,7 +54,7 @@ $reddit: #ED4630;
 }
 
 * {
-	border-color: $primary !important;
+	border-color: $primary;
 }
 
 .btn-success {
@@ -67,8 +67,4 @@ $reddit: #ED4630;
 
 .border {
 	border-color: $primary !important;
-}
-
-.comment .comment-collapse-desktop:hover {
-	border-color: $white !important;
 }
