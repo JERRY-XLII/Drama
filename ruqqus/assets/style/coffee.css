@@ -27686,16 +27686,31 @@ img.emoji {
   0% {
     color: #d26d3f;
   }
-  20% {
+  10% {
     color: #d49d42;
   }
-  40% {
+  20% {
     color: #d6dc58;
   }
-  60% {
+  30% {
     color: #81d94f;
   }
+  40% {
+    color: #7de373;
+  }
+  50% {
+    color: #d26d3f;
+  }
+  60% {
+    color: #d49d42;
+  }
+  70% {
+    color: #d6dc58;
+  }
   80% {
+    color: #81d94f;
+  }
+  90% {
     color: #7de373;
   }
   100% {
