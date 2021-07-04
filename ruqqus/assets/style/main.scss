@@ -583,7 +583,9 @@ ol > li::before {
 }
 
 @media (max-width: 767.98px) {
-	font-size: 16px;
+	.badge-count {
+		font-size: 16px;
+	}
 }
 
 .post-nav .nav-link {
