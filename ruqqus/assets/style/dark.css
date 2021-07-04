@@ -24003,7 +24003,7 @@ ol > li::before {
   font-weight: 600;
   top: -4px;
   left: 8px;
-  border: 2px solid #272727;
+  border: 2px solid transparent;
   padding: 0 2px 2px 2px;
 }
 
@@ -27809,7 +27809,7 @@ img.emoji {
   font-weight: 600;
   top: -4px;
   left: 8px;
-  border: 2px solid #272727;
+  border: 2px solid transparent;
   padding: 0 2px 2px 2px;
 }
 
