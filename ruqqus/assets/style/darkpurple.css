@@ -27785,7 +27785,15 @@ img.emoji {
 }
 
 * {
-  border-color: #805AD5;
+  border-color: #805AD5 !important;
+}
+
+.btn-success {
+  border-color: #38A169 !important;
+}
+
+.btn-danger {
+  border-color: #E53E3E !important;
 }
 
 /*# sourceMappingURL=darkpurple.css.map */
