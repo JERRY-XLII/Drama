@@ -24007,6 +24007,11 @@ ol > li::before {
   padding: 0 2px 2px 2px;
 }
 
+@media (min-width: 767.98px) {
+  .badge-count {
+    font-size: 13px;
+  }
+}
 .post-nav .nav-link {
   color: #E1E1E1;
   font-size: 1rem;
@@ -27814,21 +27819,6 @@ img.emoji {
 
 .btn-danger {
   border-color: #E53E3E !important;
-}
-
-.badge-count {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background-color: #E53E3E;
-  position: absolute;
-  color: #cfcfcf;
-  font-size: 10px;
-  font-weight: 600;
-  top: -4px;
-  left: 8px;
-  border: none !important;
-  padding: 0 2px 2px 2px;
 }
 
 .border {

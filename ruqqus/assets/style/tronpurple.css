@@ -24008,6 +24008,11 @@ ol > li::before {
   padding: 0 2px 2px 2px;
 }
 
+@media (min-width: 767.98px) {
+  .badge-count {
+    font-size: 13px;
+  }
+}
 .post-nav .nav-link {
   color: #ca75ff;
   font-size: 1rem;
