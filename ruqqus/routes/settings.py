@@ -567,12 +567,6 @@ def settings_name_change(v):
 						   v=v,
 						   error="You didn't change anything")
 
-	#can't change name on verified ID accounts
-	if v.real_id:
-		return render_template("settings_profile.html",
-						   v=v,
-						   error="Your ID is verified so you can't change your username.")
-
 	#verify acceptability
 	if not re.match(valid_username_regex, new_name):
 		return render_template("settings_profile.html",
@@ -596,24 +590,6 @@ def settings_name_change(v):
 						   v=v,
 						   error=f"Username `{new_name}` is already in use.")
 
-	#all reqs passed
-
-	#check user avatar/banner for rename if needed
-	# if v.has_profile and v.profile_url.startswith("https://s3.eu-central-1.amazonaws.com/i.ruqqus.ga/users/"):
-		# upload_from_url(f"uid/{v.base36id}/profile-{v.profile_nonce}.png", f"{v.profile_url}")
-		# v.profile_set_utc=int(time.time())
-		# g.db.add(v)
-		# g.db.commit()
-
-	# if v.has_banner and v.banner_url.startswith("https://s3.eu-central-1.amazonaws.com/i.ruqqus.ga/users/"):
-		# upload_from_url(f"uid/{v.base36id}/banner-{v.banner_nonce}.png", f"{v.banner_url}")
-		# v.banner_set_utc=int(time.time())
-		# g.db.add(v)
-		# g.db.commit()
-
-
-	#do name change and deduct coins
-
 	v=g.db.query(User).with_for_update().options(lazyload('*')).filter_by(id=v.id).first()
 
 	v.username=new_name
@@ -627,6 +603,28 @@ def settings_name_change(v):
 	return render_template("settings_profile.html",
 					   v=v,
 					   msg=f"Username changed successfully.")
+
+
+@app.route("/settings/song_change", methods=["POST"])
+@auth_required
+@validate_formkey
+def settings_song_change(v):
+
+	song=request.form.get("song").lstrip().rstrip()
+
+	if song==v.song:
+		return render_template("settings_profile.html",
+						   v=v,
+						   error="You didn't change anything")
+
+	v.song=song
+	g.db.add(v)
+	g.db.commit()
+
+	return render_template("settings_profile.html",
+					   v=v,
+					   msg=f"Profile song changed successfully.")
+
 
 @app.route("/settings/title_change", methods=["POST"])
 @auth_required
