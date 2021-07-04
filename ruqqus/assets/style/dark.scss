@@ -68,3 +68,7 @@ $reddit: #ED4630;
 .border {
 	border-color: $primary !important;
 }
+
+#frontpage .pseudo-submit-form.card .card-body .form-control, #guild .pseudo-submit-form.card .card-body .form-control {
+	border-color: transparent !important;
+}
