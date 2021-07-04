@@ -582,12 +582,6 @@ ol > li::before {
 	padding: 0 2px 2px 2px;
 }
 
-@media (max-width: 767.98px) {
-	.badge-count {
-		font-size: 16px;
-	}
-}
-
 .post-nav .nav-link {
 	color: $muted;
 	font-size: $font-size-base;
@@ -3445,8 +3439,12 @@ body, #settings, #notifications, #submit {
 	background-color: $light;
 }
 
-#frontpage, #search, #guild {
+#search, #guild {
 	padding-top: 98px;
+}
+
+#frontpage {
+	padding-top: 49px;
 }
 
 #search .search-results.card	{
