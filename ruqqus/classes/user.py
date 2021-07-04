@@ -38,6 +38,7 @@ class User(Base, Stndrd, Age_times):
 	customtitle = Column(String, default=None)
 	titlecolor = Column(String, default='ff66ac')
 	theme = Column(String, default='dark')
+	song = Column(String, default=None)
 	profileurl = Column(String, default=None)
 	bannerurl = Column(String, default=None)
 	email = Column(String, default=None)
