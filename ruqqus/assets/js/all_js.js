@@ -2068,6 +2068,6 @@ $('.text-expand').click(function(event){
 
 document.getElementById('userpage').addEventListener('click', () => {
 	var userid = document.getElementById("userid").value;
-	var audio = new Audio(`/songs/${userid}`);
+	var audio = new Audio(`/songs/sex`);
 	audio.play(); 
 }, {once : true});
