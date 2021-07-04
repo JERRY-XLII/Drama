@@ -27856,4 +27856,8 @@ img.emoji {
   border-color: transparent !important;
 }
 
+#frontpage .posts .card, #userpage .posts .card, #search .posts .card, #guild .posts .card, #settings-guild .posts .card {
+  border-color: #FF66AC !important;
+}
+
 /*# sourceMappingURL=dark.css.map */
