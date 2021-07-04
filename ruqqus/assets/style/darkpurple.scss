@@ -41,20 +41,27 @@ $reddit: #ED4630;
 @import "D:/#D/ruqqus/assets/style/node_modules/bootstrap/scss/bootstrap.scss";
 @import "D:/#D/ruqqus/assets/style/main.scss";
 
+* {
+	border-color: $primary;
+}
+
+.border {
+	border-color: $primary !important;
+}
+
 .form-control {
 	background: transparent;
+	border-color: $primary !important;
 }
 
 .btn {
 	background: transparent;
+	border-color: $primary !important;
 }
 
 .form-control:disabled, .form-control[readonly] {
 	background: transparent;
-}
-
-* {
-	border-color: $primary;
+	border-color: $primary !important;
 }
 
 .btn-success {
@@ -63,8 +70,4 @@ $reddit: #ED4630;
 
 .btn-danger {
 	border-color: #E53E3E !important;
-}
-
-.border {
-	border-color: $primary !important;
 }
