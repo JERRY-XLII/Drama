@@ -635,7 +635,7 @@ def settings_song_change(v):
 		print(duration)
 		if duration > 5: abort(413)
 
-	if v.song: os.remove(f"/songs/{v.song}.mp3")
+	if v.song and os.path.isfile(f"/songs/{v.song}.mp3"): os.remove(f"/songs/{v.song}.mp3")
 
 	ydl_opts = {
 		'outtmpl': '/songs/%(title)s.%(ext)s',
