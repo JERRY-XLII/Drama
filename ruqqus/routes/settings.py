@@ -619,7 +619,11 @@ def settings_song_change(v):
 	elif song.startswith("https://youtu.be/"):
 		id = song.split("https://youtu.be/")[1]
 	else:
-		abort(400)
+		return render_template("settings_profile.html",
+					v=v,
+					error=f"Not a youtube link.")
+
+	if "?" in id: id = id.split("?")[1]
 
 	if os.path.isfile(f'/songs/{id}.mp3'): 
 		return render_template("settings_profile.html",
@@ -629,13 +633,20 @@ def settings_song_change(v):
 	duration = requests.get(f"https://www.googleapis.com/youtube/v3/videos?id={id}&key={youtubekey}&part=contentDetails").json()['items'][0]['contentDetails']['duration']
 	if "H" in duration:
 		print(duration)
-		abort(413)
+		return render_template("settings_profile.html",
+					v=v,
+					error=f"Duration of the video must not exceed 5 minutes.")
 	if "M" in duration:
 		duration = int(duration.split("PT")[1].split("M")[0])
 		print(duration)
-		if duration > 5: abort(413)
+		if duration > 5: 
+			return render_template("settings_profile.html",
+						v=v,
+						error=f"Duration of the video must not exceed 5 minutes.")
 
-	if v.song and os.path.isfile(f"/songs/{v.song}.mp3"): os.remove(f"/songs/{v.song}.mp3")
+
+	if v.song and os.path.isfile(f"/songs/{v.song}.mp3") and g.db.query(User).filter_by(song=v.song).count() == 1:
+		os.remove(f"/songs/{v.song}.mp3")
 
 	ydl_opts = {
 		'outtmpl': '/songs/%(title)s.%(ext)s',
@@ -648,7 +659,12 @@ def settings_song_change(v):
 	}
 
 	with youtube_dl.YoutubeDL(ydl_opts) as ydl:
-		ydl.download([song])
+		try: ydl.download([song])
+		except Exception as e:
+			print(e)
+			return render_template("settings_profile.html",
+						   v=v,
+						   error=f"Age-restricted videos aren't allowed.")
 
 	files = os.listdir("/songs/")
 	paths = [os.path.join("/songs/", basename) for basename in files]
