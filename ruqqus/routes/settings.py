@@ -648,9 +648,9 @@ def settings_song_change(v):
 	with youtube_dl.YoutubeDL(ydl_opts) as ydl:
 		ydl.download([song])
 
-    files = os.listdir("/songs/")
-    paths = [os.path.join("/songs/", basename) for basename in files]
-    songfile = max(paths, key=os.path.getctime)
+	files = os.listdir("/songs/")
+	paths = [os.path.join("/songs/", basename) for basename in files]
+	songfile = max(paths, key=os.path.getctime)
 	os.rename(songfile, f"{id}.mp3")
 
 	v.song=id
