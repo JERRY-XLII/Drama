@@ -622,7 +622,7 @@ def settings_song_change(v):
 		abort(400)
 	
 	ydl_opts = {
-		'outtmpl': unicode(f'/songs/{v.id}.mp3'),
+		'outtmpl': '/songs/%(title)s.%(ext)s',
 		'format': 'bestaudio/best',
 		'postprocessors': [{
 			'key': 'FFmpegExtractAudio',
@@ -630,6 +630,11 @@ def settings_song_change(v):
 			'preferredquality': '192',
 		}],
 	}
+
+	meta = ydl.extract_info('https://www.youtube.com/watch?v=O4xNJsjtN6E', download=False)
+	file = f"'/songs/(meta['title']).(meta['ext'])'"
+	print(file)
+	os.rename(file, f'{v.id}.mp3')
 
 	with youtube_dl.YoutubeDL(ydl_opts) as ydl:
 		ydl.download([song])
