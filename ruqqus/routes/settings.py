@@ -651,8 +651,7 @@ def settings_song_change(v):
 	files = os.listdir("/songs/")
 	paths = [os.path.join("/songs/", basename) for basename in files]
 	songfile = max(paths, key=os.path.getctime)
-	print(songfile)
-	#os.rename(songfile, f"{id}.mp3")
+	os.rename(songfile, f"/songs/{id}.mp3")
 
 	v.song=id
 	g.db.add(v)
