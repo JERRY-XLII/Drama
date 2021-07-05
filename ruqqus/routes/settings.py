@@ -618,9 +618,28 @@ def settings_song_change(v):
 						   v=v,
 						   error="You didn't change anything")
 
-	if not song.startswith("https://www.youtube.com/watch?v=") and not song.startswith("https://youtube.com/watch?v=") and not song.startswith("https://youtu.be/"):
+	if song.startswith(("https://www.youtube.com/watch?v=", "https://youtube.com/watch?v=")):
+		id = song.split("v=")[1]
+	elif song.startswith("https://youtu.be/"):
+		id = song.split("https://youtu.be/")[1]
+	else:
 		abort(400)
-	
+
+	if os.path.isfile(f'/songs/{id}.mp3'): 
+		return render_template("settings_profile.html",
+				   v=v,
+				   msg=f"Profile song changed successfully.")
+
+	duration = requests.get(f"https://www.googleapis.com/youtube/v3/videos?id={id}&key={youtubekey}&part=contentDetails").json()['items'][0]['contentDetails']['duration']
+	if "H" in duration:
+		print(duration)
+		abort(413)
+	if "M" in duration:
+		duration = int(duration.split("PT")[1].split("M")[0])
+		print(duration)
+		if duration > 5: abort(413)
+
+
 	ydl_opts = {
 		'outtmpl': '/songs/%(id)s.mp3',
 		'format': 'bestaudio/best',
@@ -631,11 +650,10 @@ def settings_song_change(v):
 		}],
 	}
 
-
 	with youtube_dl.YoutubeDL(ydl_opts) as ydl:
 		ydl.download([song])
 
-	v.song=song
+	v.song=id
 	g.db.add(v)
 	g.db.commit()
 

@@ -24,9 +24,9 @@ BAN_REASONS = ['',
 			   "URL shorteners are not permitted."
 			   ]
 
-@app.route("/songs/sex", methods=["GET"])
-def songs():
-    return send_from_directory('/songs/', '1.mp3')
+@app.route("/songs/<id>", methods=["GET"])
+def songs(id):
+    return send_from_directory('/songs/', f'{id}.mp3')
 	
 @app.route("/subscribe/<post_id>", methods=["POST"])
 @auth_required
