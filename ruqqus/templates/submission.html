@@ -219,15 +219,7 @@
 						{% if p.edited_utc %}&nbsp;&nbsp;Edited <span data-toggle="tooltip" data-placement="bottom"  title="{{edited_datetime}}">{{p.edited_string}}</span>{% endif %}
 						&nbsp;&nbsp;{{p.views}} views
 					</div>
-
-					{% if p.url %}
-						<h1 id="post-title" class="card-title post-title text-left mb-md-3"><a target="_blank" href="{{p.url}}" rel="nofollow noopener">{{p.title | safe}}</a></h1>					
-					{% else %}
-						<h1 id="post-title" class="card-title post-title text-left mb-md-3">{{p.title | safe}}</h1>
-					{% endif %}
 					
-					
-
 					<div class="post-meta text-left d-block d-md-none mb-3">
 						{% if p.stickied %}<i class="fas fa-thumbtack fa-fw text-admin fa-rotate--45" data-toggle="tooltip" data-placement="bottom" title="Pinned post"></i>&nbsp;{% endif %}
 						{% if p.is_pinned %}<i class="fas fa-thumbtack fa-fw text-admin fa-rotate--45" data-toggle="tooltip" data-placement="bottom" title="Pinned to profile"></i>&nbsp;{% endif %}
@@ -247,6 +239,12 @@
 						{% if p.edited_utc %}&nbsp;&nbsp;Edited <span data-toggle="tooltip" data-placement="bottom"  title="{{edited_datetime}}">{{p.edited_string}}</span>{% endif %}
 						&nbsp;&nbsp;{{p.views}} views
 					</div>
+
+					{% if p.url %}
+						<h1 id="post-title" class="card-title post-title text-left mb-md-3"><a target="_blank" href="{{p.url}}" rel="nofollow noopener">{{p.title | safe}}</a></h1>					
+					{% else %}
+						<h1 id="post-title" class="card-title post-title text-left mb-md-3">{{p.title | safe}}</h1>
+					{% endif %}
 
 					<div id="post-body" class="post-body mt-3">
 						{% if p.url %}
