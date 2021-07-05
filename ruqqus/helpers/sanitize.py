@@ -210,8 +210,6 @@ def sanitize(text, linkgen=False):
 		sanitized = sanitized.replace("https://open.spotify.com/'", "https://open.spotify.com/'embed/")
 		url = re.search('(https://open.spotify.com/embed/.*?)"', sanitized).group(1)
 		replacing = f'<p><a href="{url}" rel="nofollow noopener" target="_blank">{url}</a></p>'
-		
-		
 		htmlsource = f'<iframe src="{url}" width="100%" height="80" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>'
 		sanitized = sanitized.replace(replacing, htmlsource)
 
