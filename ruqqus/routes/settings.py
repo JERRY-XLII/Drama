@@ -637,7 +637,7 @@ def settings_song_change(v):
 
 
 	ydl_opts = {
-		'outtmpl': '/songs/%(id)s.mp3',
+		'outtmpl': '/songs/%(title)s.%(ext)s',
 		'format': 'bestaudio/best',
 		'postprocessors': [{
 			'key': 'FFmpegExtractAudio',
