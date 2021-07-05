@@ -622,7 +622,7 @@ def settings_song_change(v):
 		abort(400)
 	
 	ydl_opts = {
-		'outtmpl': '/songs/%(title)s.%(ext)s',
+		'outtmpl': '/songs/%(id)s.mp3',
 		'format': 'bestaudio/best',
 		'postprocessors': [{
 			'key': 'FFmpegExtractAudio',
@@ -634,10 +634,6 @@ def settings_song_change(v):
 
 	with youtube_dl.YoutubeDL(ydl_opts) as ydl:
 		ydl.download([song])
-		meta = ydl.extract_info(song, download=False)
-		file = f"'/songs/(meta['title']).(meta['ext'])'"
-		print(file)
-		os.rename(file, f'{v.id}.mp3')
 
 	v.song=song
 	g.db.add(v)
