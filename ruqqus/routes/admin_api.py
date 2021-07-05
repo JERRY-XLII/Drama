@@ -29,7 +29,7 @@ def admin_title_change(user_id, v):
 
 	if user.admin_level != 0: abort(403)
 
-	new_name=request.form.get("title").lstrip().rstrip()
+	new_name=request.form.get("title").strip()
 
 	new_name=new_name.replace('_','\_')
 	new_name = sanitize(new_name, linkgen=True)
@@ -635,7 +635,7 @@ def admin_dump_cache(v):
 @validate_formkey
 def admin_ban_domain(v):
 
-	domain=request.form.get("domain",'').lstrip().rstrip()
+	domain=request.form.get("domain",'').strip()
 
 	if not domain:
 		abort(400)
@@ -765,7 +765,7 @@ def sig_validate(v):
 
 	file=request.files["file"]
 
-	sig=request.form.get("sig").lstrip().rstrip()
+	sig=request.form.get("sig").strip()
 
 	valid=validate_hash(str(file.read()), sig)
 

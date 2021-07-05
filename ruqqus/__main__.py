@@ -41,9 +41,9 @@ app = Flask(__name__,
 app.wsgi_app = ProxyFix(app.wsgi_app, x_for=3)
 app.url_map.strict_slashes = False
 
-app.config["SITE_NAME"]=environ.get("SITE_NAME", "Ruqqus").lstrip().rstrip()
+app.config["SITE_NAME"]=environ.get("SITE_NAME", "Ruqqus").strip()
 
-app.config["SITE_COLOR"]=environ.get("SITE_COLOR", "805ad5").lstrip().rstrip()
+app.config["SITE_COLOR"]=environ.get("SITE_COLOR", "805ad5").strip()
 
 app.config["RUQQUSPATH"]=environ.get("RUQQUSPATH", os.path.dirname(os.path.realpath(__file__)))
 
@@ -61,9 +61,9 @@ app.config['SQLALCHEMY_READ_URIS'] = [
 app.config['SECRET_KEY'] = environ.get('MASTER_KEY')
 app.config["SERVER_NAME"] = environ.get(
     "domain", environ.get(
-        "SERVER_NAME", "")).lstrip().rstrip()
+        "SERVER_NAME", "")).strip()
 
-app.config["SHORT_DOMAIN"]=environ.get("SHORT_DOMAIN","").lstrip().rstrip()
+app.config["SHORT_DOMAIN"]=environ.get("SHORT_DOMAIN","").strip()
 app.config["SESSION_COOKIE_NAME"] = "session_ruqqus"
 app.config["VERSION"] = _version
 app.config['MAX_CONTENT_LENGTH'] = 64 * 1024 * 1024
@@ -83,14 +83,14 @@ app.config["UserAgent"] = f"Content Aquisition for Porpl message board v{_versio
 if "localhost" in app.config["SERVER_NAME"]:
     app.config["CACHE_TYPE"] = "null"
 else:
-    app.config["CACHE_TYPE"] = environ.get("CACHE_TYPE", 'filesystem').lstrip().rstrip()
+    app.config["CACHE_TYPE"] = environ.get("CACHE_TYPE", 'filesystem').strip()
 
 app.config["CACHE_DIR"] = environ.get("CACHE_DIR", "ruqquscache")
 
 # captcha configs
-app.config["HCAPTCHA_SITEKEY"] = environ.get("HCAPTCHA_SITEKEY","").lstrip().rstrip()
+app.config["HCAPTCHA_SITEKEY"] = environ.get("HCAPTCHA_SITEKEY","").strip()
 app.config["HCAPTCHA_SECRET"] = environ.get(
-    "HCAPTCHA_SECRET","").lstrip().rstrip()
+    "HCAPTCHA_SECRET","").strip()
 app.config["SIGNUP_HOURLY_LIMIT"]=int(environ.get("SIGNUP_HOURLY_LIMIT",0))
 
 # antispam configs
@@ -110,7 +110,7 @@ app.config["CACHE_REDIS_URL"] = environ.get(
 app.config["CACHE_DEFAULT_TIMEOUT"] = 60
 app.config["CACHE_KEY_PREFIX"] = "flask_caching_"
 
-app.config["S3_BUCKET"]=environ.get("S3_BUCKET_NAME","i.rdrama.net").lstrip().rstrip()
+app.config["S3_BUCKET"]=environ.get("S3_BUCKET_NAME","i.rdrama.net").strip()
 
 app.config["REDIS_POOL_SIZE"]=int(environ.get("REDIS_POOL_SIZE", 10))
 
@@ -123,7 +123,7 @@ app.config["CACHE_OPTIONS"]={'connection_pool':redispool} if app.config["CACHE_T
 app.config["READ_ONLY"]=bool(int(environ.get("READ_ONLY", False)))
 app.config["BOT_DISABLE"]=bool(int(environ.get("BOT_DISABLE", False)))
 
-app.config["TENOR_KEY"]=environ.get("TENOR_KEY",'').lstrip().rstrip()
+app.config["TENOR_KEY"]=environ.get("TENOR_KEY",'').strip()
 
 
 Markdown(app)
@@ -150,7 +150,7 @@ class CorsMatch(str):
 
 
 
-app.config["RATELIMIT_STORAGE_URL"] = environ.get("REDIS_URL").lstrip().rstrip() if environ.get("REDIS_URL") else 'memory://'
+app.config["RATELIMIT_STORAGE_URL"] = environ.get("REDIS_URL").strip() if environ.get("REDIS_URL") else 'memory://'
 app.config["RATELIMIT_KEY_PREFIX"] = "flask_limiting_"
 app.config["RATELIMIT_ENABLED"] = True
 app.config["RATELIMIT_DEFAULTS_DEDUCT_WHEN"]=lambda:True

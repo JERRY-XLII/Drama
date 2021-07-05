@@ -316,7 +316,7 @@ def sign_up_post(v):
 
 	# Check for existing acocunts
 	email = request.form.get("email")
-	email = email.lstrip().rstrip()
+	email = email.strip()
 	if not email:
 		email = None
 
@@ -430,7 +430,7 @@ def get_forgot():
 def post_forgot():
 
 	username = request.form.get("username").lstrip('@')
-	email = request.form.get("email",'').lstrip().rstrip()
+	email = request.form.get("email",'').strip()
 
 	email=email.replace("_","\_")
 

@@ -26,7 +26,7 @@ def feeds_user(sort='hot', t='all'):
 
 	domain = environ.get(
 	"domain", environ.get(
-		"SERVER_NAME", None)).lstrip().rstrip()
+		"SERVER_NAME", None)).strip()
 
 	doc, tag, text = Doc().tagtext()
 

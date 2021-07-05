@@ -979,7 +979,7 @@ class User(Base, Stndrd, Age_times):
 
 	@property
 	def filter_words(self):
-		l= [i.lstrip().rstrip() for i in self.custom_filter_list.split('\n')] if self.custom_filter_list else []
+		l= [i.strip() for i in self.custom_filter_list.split('\n')] if self.custom_filter_list else []
 		l=[i for i in l if i]
 		return l
 							 

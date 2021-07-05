@@ -30,7 +30,7 @@ def searchparse(text):
 		if x in valid_params:
 			text = text.replace(f"{x}:{criteria[x]}", "")
 
-	text=text.lstrip().rstrip()
+	text=text.strip()
 
 	if text:
 		criteria['q']=text
@@ -244,7 +244,7 @@ def searchcommentlisting(criteria, v=None, page=1, t="None", sort="top"):
 def searchposts(v, search_type="posts"):
 	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
 
-	query = request.args.get("q", '').lstrip().rstrip()
+	query = request.args.get("q", '').strip()
 
 	page = max(1, int(request.args.get("page", 1)))
 
@@ -294,7 +294,7 @@ def searchposts(v, search_type="posts"):
 def searchcomments(v):
 	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
 
-	query = request.args.get("q", '').lstrip().rstrip()
+	query = request.args.get("q", '').strip()
 
 	page = max(1, int(request.args.get("page", 1)))
 
@@ -330,7 +330,7 @@ def searchcomments(v):
 def searchusers(v, search_type="posts"):
 	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
 
-	query = request.args.get("q", '').lstrip().rstrip()
+	query = request.args.get("q", '').strip()
 
 	page = max(1, int(request.args.get("page", 1)))
 	sort = request.args.get("sort", "top").lower()

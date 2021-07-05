@@ -22,7 +22,7 @@ valid_username_regex = re.compile("^[a-zA-Z0-9_]{3,25}$")
 valid_title_regex = re.compile("^((?!<).){3,100}$")
 valid_password_regex = re.compile("^.{8,100}$")
 
-youtubekey = environ.get("youtubekey").lstrip().rstrip()
+youtubekey = environ.get("youtubekey").strip()
 
 @app.route("/settings/profile", methods=["POST"])
 @auth_required
@@ -104,7 +104,7 @@ def settings_profile_post(v):
 
 	if request.values.get("filters") is not None:
 
-		filters=request.values.get("filters")[0:1000].lstrip().rstrip()
+		filters=request.values.get("filters")[0:1000].strip()
 
 		if filters==v.custom_filter_list:
 			return render_template("settings_profile.html",
@@ -230,7 +230,7 @@ def settings_security_post(v):
 			return redirect("/settings/security?error=" +
 							escape("Invalid password."))
 
-		new_email = request.form.get("new_email","").lstrip().rstrip()
+		new_email = request.form.get("new_email","").strip()
 		#counteract gmail username+2 and extra period tricks - convert submitted email to actual inbox
 		if new_email.endswith("@gmail.com"):
 			gmail_username=new_email.split('@')[0]
@@ -561,7 +561,7 @@ def settings_content_get(v):
 @validate_formkey
 def settings_name_change(v):
 
-	new_name=request.form.get("name").lstrip().rstrip()
+	new_name=request.form.get("name").strip()
 
 	#make sure name is different
 	if new_name==v.username:
@@ -612,7 +612,7 @@ def settings_name_change(v):
 @validate_formkey
 def settings_song_change(v):
 
-	song=request.form.get("song").lstrip().rstrip()
+	song=request.form.get("song").strip()
 
 	if song.startswith(("https://www.youtube.com/watch?v=", "https://youtube.com/watch?v=", "https://m.youtube.com/watch?v=")):
 		id = song.split("v=")[1]
@@ -687,7 +687,7 @@ def settings_title_change(v):
 
 	if v.flairchanged: abort(403)
 	
-	new_name=request.form.get("title").lstrip().rstrip()
+	new_name=request.form.get("title").strip()
 
 	#verify acceptability
 	if not re.match(valid_title_regex, new_name):

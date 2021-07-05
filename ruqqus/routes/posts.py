@@ -410,9 +410,9 @@ def archiveorg(url):
 @api("create")
 def submit_post(v):
 
-	title = request.form.get("title", "").lstrip().rstrip()
+	title = request.form.get("title", "").strip()
 
-	title = title.lstrip().rstrip()
+	title = title.strip()
 	title = title.replace("\n", "")
 	title = title.replace("\r", "")
 	title = title.replace("\t", "")

@@ -96,7 +96,7 @@ def mfa_qr(secret, v):
 @api("read")
 def api_is_available(name, v):
 
-	name=name.lstrip().rstrip()
+	name=name.strip()
 
 	if len(name)<3 or len(name)>25:
 		return jsonify({name:False})

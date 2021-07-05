@@ -66,7 +66,7 @@ def oauth_authorize_prompt(v):
 		return jsonify(
 			{"oauth_error": "redirect_uri must not use http (use https instead)"}), 400
 
-	valid_redirect_uris = [x.lstrip().rstrip()
+	valid_redirect_uris = [x.strip()
 						   for x in application.redirect_uri.split(",")]
 
 	if redirect_uri not in valid_redirect_uris:
@@ -107,7 +107,7 @@ def oauth_authorize_post(v):
 	if application.is_banned:
 		return jsonify({"oauth_error": f"Application `{application.app_name}` is suspended."}), 403
 
-	valid_redirect_uris = [x.lstrip().rstrip()
+	valid_redirect_uris = [x.strip()
 						   for x in application.redirect_uri.split(",")]
 	if redirect_uri not in valid_redirect_uris:
 		return jsonify({"oauth_error": "Invalid redirect_uri"}), 400

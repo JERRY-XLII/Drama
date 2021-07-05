@@ -111,7 +111,7 @@ class CustomRenderer(HTMLRenderer):
 	
 def preprocess(text):
 
-	text=text.lstrip().rstrip()
+	text=text.strip()
 	
 	text=re.sub(enter_re, "\n\n", text)
 
