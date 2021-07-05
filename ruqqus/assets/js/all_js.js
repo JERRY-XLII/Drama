@@ -2070,7 +2070,7 @@ if (window.location.pathname.includes('/@')) {
 	var userid = document.getElementById("userid").value;
 	if (userid != "nosong")
 	{
-		document.getElementById("userid").click()
+		document.getElementById("nigga").click()
 		var audio = new Audio(`/songs/${userid}`);
 		audio.loop=true;
 		audio.play();
