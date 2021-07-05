@@ -623,7 +623,7 @@ def settings_song_change(v):
 					v=v,
 					error=f"Not a youtube link.")
 
-	if "?" in id: id = id.split("?")[1]
+	if "?" in id: id = id.split("?")[0]
 
 	if os.path.isfile(f'/songs/{id}.mp3'): 
 		return render_template("settings_profile.html",
@@ -636,6 +636,7 @@ def settings_song_change(v):
 		return render_template("settings_profile.html",
 					v=v,
 					error=f"Duration of the video must not exceed 5 minutes.")
+
 	if "M" in duration:
 		duration = int(duration.split("PT")[1].split("M")[0])
 		print(duration)
