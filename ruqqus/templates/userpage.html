@@ -32,7 +32,7 @@
 
 {% block desktopUserBanner %}
 <!-- Desktop -->
-<div id="userid" style="display: none;">{% if u.song %}{{u.id}}{% else %}nosong{% endif %}</div>
+<textarea id="userid" style="display: none;">{% if u.song %}{{u.id}}{% else %}nosong{% endif %}</textarea>
 <div class="row d-none d-md-block">
 	<div class="col px-0">
 		<div class="jumbotron jumbotron-fluid jumbotron-guild d-none d-md-block" style="background-image: url({{u.banner_url}})">
