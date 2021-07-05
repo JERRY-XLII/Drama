@@ -27863,6 +27863,10 @@ img.emoji {
   position: relative;
 }
 
+.alert {
+  color: #000000;
+}
+
 #frontpage .post-title a:visited {
   color: #f0f0f0;
 }
