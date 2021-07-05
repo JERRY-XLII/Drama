@@ -27867,6 +27867,15 @@ img.emoji {
   color: #000000;
 }
 
+#context {
+  padding: 10px;
+  border: 2px solid #ca75ff;
+}
+
+.btn-lg, .btn-group-lg > .btn {
+  border-color: transparent !important;
+}
+
 #frontpage .post-title a:visited {
   color: #f0f0f0;
 }

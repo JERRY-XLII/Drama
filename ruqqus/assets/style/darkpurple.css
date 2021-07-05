@@ -27866,6 +27866,15 @@ img.emoji {
   color: #000000;
 }
 
+#context {
+  padding: 10px;
+  border: 2px solid #805AD5;
+}
+
+.btn-lg, .btn-group-lg > .btn {
+  border-color: transparent !important;
+}
+
 * {
   border-color: #805AD5;
 }
@@ -27898,6 +27907,10 @@ img.emoji {
 }
 
 #frontpage .pseudo-submit-form.card .card-body .form-control, #guild .pseudo-submit-form.card .card-body .form-control {
+  border-color: transparent !important;
+}
+
+.btn-lg, .btn-group-lg > .btn {
   border-color: transparent !important;
 }
 
