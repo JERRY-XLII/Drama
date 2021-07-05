@@ -631,13 +631,13 @@ def settings_song_change(v):
 		}],
 	}
 
-	meta = ydl.extract_info('https://www.youtube.com/watch?v=O4xNJsjtN6E', download=False)
-	file = f"'/songs/(meta['title']).(meta['ext'])'"
-	print(file)
-	os.rename(file, f'{v.id}.mp3')
 
 	with youtube_dl.YoutubeDL(ydl_opts) as ydl:
 		ydl.download([song])
+		meta = ydl.extract_info('https://www.youtube.com/watch?v=O4xNJsjtN6E', download=False)
+		file = f"'/songs/(meta['title']).(meta['ext'])'"
+		print(file)
+		os.rename(file, f'{v.id}.mp3')
 
 	v.song=song
 	g.db.add(v)
