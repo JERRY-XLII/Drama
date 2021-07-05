@@ -614,7 +614,7 @@ def settings_song_change(v):
 
 	song=request.form.get("song").lstrip().rstrip()
 
-	if song.startswith(("https://www.youtube.com/watch?v=", "https://youtube.com/watch?v=", , "https://m.youtube.com/watch?v=")):
+	if song.startswith(("https://www.youtube.com/watch?v=", "https://youtube.com/watch?v=", "https://m.youtube.com/watch?v=")):
 		id = song.split("v=")[1]
 	elif song.startswith("https://youtu.be/"):
 		id = song.split("https://youtu.be/")[1]
