@@ -622,7 +622,7 @@ def settings_song_change(v):
 		abort(400)
 	
 	ydl_opts = {
-		'outtmpl': f'/songs/{v.id}.mp3',
+		'outtmpl': unicode(f'/songs/{v.id}.mp3'),
 		'format': 'bestaudio/best',
 		'postprocessors': [{
 			'key': 'FFmpegExtractAudio',
