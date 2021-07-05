@@ -2068,9 +2068,10 @@ $('.text-expand').click(function(event){
 
 if (window.location.pathname.includes('/@')) {
 	var userid = document.getElementById("userid").value;
-	var audio = new Audio(`/songs/sex`);
-	audio.play();
-	document.getElementById('userpage').addEventListener('click', () => {
-		if (audio.paused) audio.play(); 
-	}, {once : true});
+	if userid != "nosong"
+		var audio = new Audio(`/songs/${userid}`);
+		audio.play();
+		document.getElementById('userpage').addEventListener('click', () => {
+			if (audio.paused) audio.play(); 
+		}, {once : true});
 }
