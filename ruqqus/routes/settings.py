@@ -635,7 +635,6 @@ def settings_song_change(v):
 		print(duration)
 		if duration > 5: abort(413)
 
-
 	ydl_opts = {
 		'outtmpl': '/songs/%(title)s.%(ext)s',
 		'format': 'bestaudio/best',
@@ -648,6 +647,11 @@ def settings_song_change(v):
 
 	with youtube_dl.YoutubeDL(ydl_opts) as ydl:
 		ydl.download([song])
+
+    files = os.listdir("/songs/")
+    paths = [os.path.join("/songs/", basename) for basename in files]
+    songfile = max(paths, key=os.path.getctime)
+	os.rename(songfile, f"{id}.mp3")
 
 	v.song=id
 	g.db.add(v)
