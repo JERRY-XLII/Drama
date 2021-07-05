@@ -612,11 +612,6 @@ def settings_name_change(v):
 def settings_song_change(v):
 
 	song=request.form.get("song").lstrip().rstrip()
-	
-	if song==v.song:
-		return render_template("settings_profile.html",
-						   v=v,
-						   error="You didn't change anything")
 
 	if song.startswith(("https://www.youtube.com/watch?v=", "https://youtube.com/watch?v=")):
 		id = song.split("v=")[1]
