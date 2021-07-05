@@ -221,16 +221,26 @@
 					</div>
 
 					{% if p.url %}
-					<h1 id="post-title" class="card-title post-title text-left mb-md-3"><a target="_blank" href="{{p.url}}" rel="nofollow noopener">{{p.title | safe}}</a></h1>
-					{% if "streamable.com/" in p.url %}
-						{% if "streamable.com/e/" in p.url %}
-							{% set streamurl=p.url %}
-						{% else %}
-							{% set streamurl=p.url.replace("streamable.com/", "streamable.com/e/") %}
+						<h1 id="post-title" class="card-title post-title text-left mb-md-3"><a target="_blank" href="{{p.url}}" rel="nofollow noopener">{{p.title | safe}}</a></h1>
+						{% if "streamable.com/" in p.url %}
+							{% if "streamable.com/e/" in p.url %}
+								{% set streamurl=p.url %}
+							{% else %}
+								{% set streamurl=p.url.replace("streamable.com/", "streamable.com/e/") %}
+							{% endif %}
+							<div style="width: 100%; height: 0px; position: relative; padding-bottom: 56.250%;"><iframe src="{{streamurl}}" frameborder="0" width="100%" height="100%" allowfullscreen="" style="width: 100%; height: 100%; position: absolute;"></iframe></div>
+							<pre></pre>
+							
+						{% elif "spotify.com/" in p.url %}
+							{% if "spotify.com/embed/" in p.url %}
+								{% set streamurl=p.url %}
+							{% else %}
+								{% set streamurl=p.url.replace("spotify.com", "spotify.com/embed") %}
+							{% endif %}
+							<iframe src="{{streamurl}}" width="100%" height="80" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+							<pre></pre>
 						{% endif %}
-						<div style="width: 100%; height: 0px; position: relative; padding-bottom: 56.250%;"><iframe src="{{streamurl}}" frameborder="0" width="100%" height="100%" allowfullscreen="" style="width: 100%; height: 100%; position: absolute;"></iframe></div>
-						<pre></pre>
-					{% endif %}
+					
 					{% else %}
 					<h1 id="post-title" class="card-title post-title text-left mb-md-3">{{p.title | safe}}</h1>
 					{% endif %}
