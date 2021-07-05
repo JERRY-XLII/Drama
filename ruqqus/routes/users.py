@@ -26,7 +26,7 @@ BAN_REASONS = ['',
 
 @app.route("/songs/<id>", methods=["GET"])
 def songs(id):
-	user = g.db.query(User).filter_by(user_id=id).first()
+	user = g.db.query(User).filter_by(id=id).first()
 	return send_from_directory('/songs/', f'{user.song}.mp3')
 
 @app.route("/subscribe/<post_id>", methods=["POST"])
