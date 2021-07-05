@@ -2071,6 +2071,7 @@ if (window.location.pathname.includes('/@')) {
 	if (userid != "nosong")
 	{
 		var audio = new Audio(`/songs/${userid}`);
+		audio.loop=true;
 		audio.play();
 		document.getElementById('userpage').addEventListener('click', () => {
 			if (audio.paused) audio.play(); 
