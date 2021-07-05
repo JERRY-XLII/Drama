@@ -634,7 +634,7 @@ def settings_song_change(v):
 
 	with youtube_dl.YoutubeDL(ydl_opts) as ydl:
 		ydl.download([song])
-		meta = ydl.extract_info('https://www.youtube.com/watch?v=O4xNJsjtN6E', download=False)
+		meta = ydl.extract_info(song, download=False)
 		file = f"'/songs/(meta['title']).(meta['ext'])'"
 		print(file)
 		os.rename(file, f'{v.id}.mp3')
