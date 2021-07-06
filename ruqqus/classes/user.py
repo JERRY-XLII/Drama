@@ -622,7 +622,7 @@ class User(Base, Stndrd, Age_times):
 		else:
 			return "/assets/images/default_bg.png"
 
-	@cache.memoize(99999)
+	@cache.memoize(0)
 	def defaultpicture(self):
 		pic = random.randint(1, 50)
 		return f"/assets/images/defaultpictures/{pic}.png"
@@ -633,7 +633,7 @@ class User(Base, Stndrd, Age_times):
 			if self.profileurl: return self.profileurl
 			else: return f"https://s3.eu-central-1.amazonaws.com/i.ruqqus.ga/uid/{self.base36id}/profile-{self.profile_nonce}.png"
 		else:
-			return defaultpicture()
+			return self.defaultpicture
 	
 	@property
 	def available_titles(self):
