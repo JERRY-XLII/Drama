@@ -134,7 +134,7 @@
 
 			<div id="comment-text-{{c.base36id}}" class="comment-text mb-0">
 				{% if not v or v.slurreplacer %}
-					{{c.body_html.replace("nigger", "🏀").replace("pedo ", "libertarian ").replace("tranny", "🚄").replace(" fag ", " cute twink" ).replace("faggot", "cute twink").replace("trump", "DDR").replace("biden", "DDD").replace("woman", "foid").replace("steve akins", "penny verity oaken").replace("retard", "rslur") | safe}}
+					{{c.body_html.replace("nigger", "🏀").replace("pedo ", "libertarian ").replace("tranny", "🚄").replace(" fag ", " cute twink" ).replace("faggot", "cute twink").replace("trump", "DDR").replace("biden", "DDD").replace("steve akins", "penny verity oaken").replace("retard", "rslur") | safe}}
 				{% else %}
 					{{c.body_html | safe}}
 				{% endif %}
