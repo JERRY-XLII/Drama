@@ -158,7 +158,13 @@
 
 			</div>
 
-			<h5 class="card-title post-title text-left w-lg-75 mb-0 pb-0 pb-md-1"><a {% if v and v.newtab %}target="_blank"{% endif %} href="{{p.permalink}}" class="stretched-link" {% if p.author.is_private %} rel="nofollow"{% endif %}>{{p.title | safe}}</a></h5>
+			<h5 class="card-title post-title text-left w-lg-75 mb-0 pb-0 pb-md-1"><a {% if v and v.newtab %}target="_blank"{% endif %} href="{{p.permalink}}" class="stretched-link" {% if p.author.is_private %} rel="nofollow"{% endif %}>
+				{% if not v or v.slurreplacer %}
+					{{p.title.replace("nigger", "🏀").replace("pedo ", "libertarian ").replace("tranny", "🚄").replace(" fag ", " cute twink" ).replace("faggot", "cute twink").replace("trump", "DDR").replace("biden", "DDD").replace("steve akins", "penny verity oaken").replace("retard", "rslur") | safe}}
+				{% else %}
+					{{p.title | safe}}
+				{% endif %}
+			</a></h5>
 
 			{% if p.thumb_url %}
 			<div class="row post-img-lg mb-3">
@@ -252,7 +258,11 @@
 		</div>
 		{% if p.body_html %}
 		<div class="d-none card rounded border pb-0 pt-3 my-2" id="post-text-{{ p.base36id }}">
-		{{ p.body_html | safe }}
+		{% if not v or v.slurreplacer %}
+			{{p.body_html.replace("nigger", "🏀").replace("pedo ", "libertarian ").replace("tranny", "🚄").replace(" fag ", " cute twink" ).replace("faggot", "cute twink").replace("trump", "DDR").replace("biden", "DDD").replace("steve akins", "penny verity oaken").replace("retard", "rslur") | safe}}
+		{% else %}
+			{{p.body_html | safe}}
+		{% endif %}
 		</div>
 		{% endif %}
 	</div>
