@@ -173,9 +173,9 @@
 						<pre></pre>
 
 						{% if u.shadowbanned %} 
-							<a class="btn btn-primary" href="javascript:void(0)" onclick="post('/unshadowban/{{u.id}}', function(){window.location.reload(true);})">Unshadowban</a>
+							<a class="btn btn-danger" href="javascript:void(0)" onclick="post('/unshadowban/{{u.id}}', function(){window.location.reload(true);})">Unshadowban</a>
 						{% else %}
-							<a class="btn btn-primary" href="javascript:void(0)" onclick="post('/shadowban/{{u.id}}', function(){window.location.reload(true);})">Shadowban</a>
+							<a class="btn btn-danger" href="javascript:void(0)" onclick="post('/shadowban/{{u.id}}', function(){window.location.reload(true);})">Shadowban</a>
 						{% endif %}
 
 						<pre></pre>
@@ -334,9 +334,9 @@
 						<pre></pre>
 
 						{% if u.shadowbanned %} 
-							<a class="btn btn-primary" href="javascript:void(0)" onclick="post('/unshadowban/{{u.id}}', function(){window.location.reload(true);})">Unshadowban</a>
+							<a class="btn btn-danger" href="javascript:void(0)" onclick="post('/unshadowban/{{u.id}}', function(){window.location.reload(true);})">Unshadowban</a>
 						{% else %}
-							<a class="btn btn-primary" href="javascript:void(0)" onclick="post('/shadowban/{{u.id}}', function(){window.location.reload(true);})">Shadowban</a>
+							<a class="btn btn-danger" href="javascript:void(0)" onclick="post('/shadowban/{{u.id}}', function(){window.location.reload(true);})">Shadowban</a>
 						{% endif %}
 						
 						<pre></pre>
