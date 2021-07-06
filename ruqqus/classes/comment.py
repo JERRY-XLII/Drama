@@ -22,6 +22,7 @@ class CommentAux(Base):
 	id = Column(Integer, ForeignKey("comments.id"))
 	body = Column(String(10000), default=None)
 	body_html = Column(String(20000))
+	body_censored = Column(String(20000))
 	ban_reason = Column(String(256), default='')
 
 
@@ -383,6 +384,15 @@ class Comment(Base, Age_times, Scores, Stndrd, Fuzzing):
 	@body_html.setter
 	def body_html(self, x):
 		self.comment_aux.body_html = x
+		g.db.add(self.comment_aux)
+
+	@property
+	def body_censored(self):
+		return self.comment_aux.body_censored
+
+	@body_censored.setter
+	def body_censored(self, x):
+		self.comment_aux.body_censored = x
 		g.db.add(self.comment_aux)
 
 	@property

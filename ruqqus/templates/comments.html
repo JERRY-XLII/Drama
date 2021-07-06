@@ -133,7 +133,12 @@
 			{% endif %}
 
 			<div id="comment-text-{{c.base36id}}" class="comment-text mb-0">
-				{{c.body_html | safe}}
+				{% if v and not v.slurreplaced %}
+					{{c.body_html | safe}}
+				{% else %}
+					{{c.body_censored | safe}}
+				{% endif %}
+				
 				{% if not c.parent_submission and c.author_id!=1046 and c.author_id!=2360 and c.author_id!=v.id %}
 					<a class="btn btn-primary" href="javascript:void(0)" onclick="document.getElementById('reply-to-{{c.base36id}}').classList.toggle('d-none')">Reply</a>
 					<pre></pre>

@@ -422,9 +422,13 @@ def api_comment(v):
 										)
 			csam_thread.start()
 
+	body_censored=
+		body_html.replace("nigger", "🏀").replace("pedo ", "libertarian ").replace("tranny", "🚄").replace(" fag ", " cute twink" ).replace("faggot", "cute twink").replace("trump", "DDR").replace("biden", "DDD").replace("woman", "foid").replace("steve akins", "penny verity oaken")
+
 	c_aux = CommentAux(
 		id=c.id,
 		body_html=body_html,
+		body_censored=body_html,
 		body=body
 	)
 
