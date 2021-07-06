@@ -169,6 +169,15 @@
 								<input id="user-ban-submit" type="submit" class="btn btn-danger" value="Ban user" disabled>
 							</form>
 						{% endif %}
+						
+						<pre></pre>
+
+						{% if u.shadowbanned %} 
+							<a class="btn btn-primary" href="javascript:void(0)" onclick="post('/unshadowban/{{u.id}}', function(){window.location.reload(true);})">Unshadowban</a>
+						{% else %}
+							<a class="btn btn-primary" href="javascript:void(0)" onclick="post('/shadowban/{{u.id}}', function(){window.location.reload(true);})">Shadowban</a>
+						{% endif %}
+
 						<pre></pre>
 						<form action="/admin/unnuke_user" method="post">
 							<input type="hidden" name="formkey", value="{{v.formkey}}">
