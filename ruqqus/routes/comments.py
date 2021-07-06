@@ -422,7 +422,7 @@ def api_comment(v):
 										)
 			csam_thread.start()
 
-	body_censored=body_html.replace("nigger", "🏀").replace("pedo ", "libertarian ").replace("tranny", "🚄").replace(" fag ", " cute twink" ).replace("faggot", "cute twink").replace("trump", "DDR").replace("biden", "DDD").replace("woman", "foid").replace("steve akins", "penny verity oaken")
+	body_censored=body_html.replace("nigger", "🏀").replace("pedo ", "libertarian ").replace("tranny", "🚄").replace(" fag ", " cute twink" ).replace("faggot", "cute twink").replace("trump", "DDR").replace("biden", "DDD").replace("woman", "foid").replace("steve akins", "penny verity oaken").replace("retard", "rslur")
 
 	c_aux = CommentAux(
 		id=c.id,
@@ -768,6 +768,7 @@ def edit_comment(cid, v):
 
 	c.body = body
 	c.body_html = body_html
+	c.body_censored=body_html.replace("nigger", "🏀").replace("pedo ", "libertarian ").replace("tranny", "🚄").replace(" fag ", " cute twink" ).replace("faggot", "cute twink").replace("trump", "DDR").replace("biden", "DDD").replace("woman", "foid").replace("steve akins", "penny verity oaken").replace("retard", "rslur")
 
 	if int(time.time()) - c.created_utc > 60 * 3: c.edited_utc = int(time.time())
 

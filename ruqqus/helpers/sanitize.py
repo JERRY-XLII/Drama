@@ -227,4 +227,11 @@ def sanitize(text, linkgen=False):
 		htmlsource = f'<div style="padding-top:5px; padding-bottom: 10px;"><iframe allowfullscreen="" frameborder="0" src="{url}"></iframe></div>'
 		sanitized = sanitized.replace(replacing, htmlsource)
 
+	if '" rel="nofollow noopener" target="_blank">https://youtu.be/' in sanitized:
+		sanitized = sanitized.replace("https://youtu.be/", "https://www.youtube.com/embed/")
+		url = re.search('(https://www.youtube.com/embed/.*?)"', sanitized).group(1)
+		replacing = f'<p><a href="{url}" rel="nofollow noopener" target="_blank">{url}</a></p>'
+		htmlsource = f'<div style="padding-top:5px; padding-bottom: 10px;"><iframe allowfullscreen="" frameborder="0" src="{url}"></iframe></div>'
+		sanitized = sanitized.replace(replacing, htmlsource)
+
 	return sanitized
