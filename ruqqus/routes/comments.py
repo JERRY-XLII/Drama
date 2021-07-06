@@ -453,6 +453,7 @@ def api_comment(v):
 		c_aux = CommentAux(
 			id=c2.id,
 			body_html=body_html2,
+			body_censored=body_html2,
 			body=body
 		)
 		g.db.add(c_aux)
@@ -485,6 +486,7 @@ def api_comment(v):
 		c_aux = CommentAux(
 			id=c2.id,
 			body_html=body_html2,
+			body_censored=body_html2,
 			body=body
 		)
 		g.db.add(c_aux)
@@ -513,6 +515,7 @@ def api_comment(v):
 		c_aux = CommentAux(
 			id=c3.id,
 			body_html=body_html2,
+			body_censored=body_html2,
 			body=body
 		)
 		g.db.add(c_aux)
@@ -541,6 +544,7 @@ def api_comment(v):
 		c_aux = CommentAux(
 			id=c4.id,
 			body_html=body_html2,
+			body_censored=body_html2,
 			body=body
 		)
 		g.db.add(c_aux)
