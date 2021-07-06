@@ -20,6 +20,28 @@ import matplotlib.pyplot as plt
 
 from ruqqus.__main__ import app, cache
 
+@app.route("/shadowban/<user_id>", methods=["POST"])
+@admin_level_required(6)
+@validate_formkey
+def shadowban(user_id, v):
+	user = g.db.query(User).filter_by(id=user_id).first()
+	if user.admin_level != 0: abort(403)
+	user.shadowbanned = True
+	g.db.add(user)
+	g.db.commit()
+
+
+@app.route("/unshadowban/<user_id>", methods=["POST"])
+@admin_level_required(6)
+@validate_formkey
+def unshadowban(user_id, v):
+	user = g.db.query(User).filter_by(id=user_id).first()
+	if user.admin_level != 0: abort(403)
+	user.shadowbanned = False
+	g.db.add(user)
+	g.db.commit()
+
+
 @app.route("/admin/title_change/<user_id>", methods=["POST"])
 @admin_level_required(6)
 @validate_formkey
