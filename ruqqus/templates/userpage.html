@@ -1,7 +1,5 @@
 {% extends "default.html" %}
 
-{% set profile_url=u.profile_url %}
-
 {% block pagetype %}userpage{% endblock %}
 
 {% block enlargeThumbJS %}
@@ -43,7 +41,7 @@
 				<div class="container-fluid">
 					<div class="d-md-flex text-center text-md-left">
 						<div>
-							<a href="{{profile_url}}"><img src="{{profile_url}}" class="profile-pic profile-pic-100 mb-5"></a>
+							<a href="{{u.profile_url}}"><img src="{{u.profile_url}}" class="profile-pic profile-pic-100 mb-5"></a>
 						</div>
 						<div class="ml-3 w-100">
 							{% if u.is_banned %}
@@ -231,7 +229,7 @@
 	<div class="row border-bottom">
 		<div class="col">
 			<div style="margin-top: -34px;">
-				<a href="{{profile_url}}"><img src="{{profile_url}}" class="profile-pic-65 bg-white border-2 border-white mb-2"></a>
+				<a href="{{u.profile_url}}"><img src="{{u.profile_url}}" class="profile-pic-65 bg-white border-2 border-white mb-2"></a>
 			</div>
 			<div class="mt-n3 py-3">
 				{% if u.is_banned %}
@@ -323,6 +321,15 @@
 								<input id="user-ban-submit2" type="submit" class="btn btn-danger" value="Ban user" disabled>
 							</form>
 						{% endif %}
+						
+						<pre></pre>
+
+						{% if u.shadowbanned %} 
+							<a class="btn btn-primary" href="javascript:void(0)" onclick="post('/unshadowban/{{u.id}}', function(){window.location.reload(true);})">Unshadowban</a>
+						{% else %}
+							<a class="btn btn-primary" href="javascript:void(0)" onclick="post('/shadowban/{{u.id}}', function(){window.location.reload(true);})">Shadowban</a>
+						{% endif %}
+						
 						<pre></pre>
 						<form action="/admin/unnuke_user" method="post">
 							<input type="hidden" name="formkey", value="{{v.formkey}}">

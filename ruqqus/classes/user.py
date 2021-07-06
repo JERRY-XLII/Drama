@@ -46,6 +46,7 @@ class User(Base, Stndrd, Age_times):
 	created_utc = Column(Integer, default=0)
 	admin_level = Column(Integer, default=0)
 	is_activated = Column(Boolean, default=False)
+	shadowbanned = Column(Boolean, default=False)
 	over_18 = Column(Boolean, default=False)
 	hidevotedon = Column(Boolean, default=False)
 	slurreplacer = Column(Boolean, default=True)
