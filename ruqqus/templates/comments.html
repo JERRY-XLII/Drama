@@ -133,7 +133,7 @@
 			{% endif %}
 
 			<div id="comment-text-{{c.base36id}}" class="comment-text mb-0">
-				{% if v and not v.slurreplaced %}
+				{% if v and not v.slurreplacer %}
 					{{c.body_html | safe}}
 				{% else %}
 					{{c.body_censored | safe}}
