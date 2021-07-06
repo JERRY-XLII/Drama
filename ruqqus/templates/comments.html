@@ -133,10 +133,10 @@
 			{% endif %}
 
 			<div id="comment-text-{{c.base36id}}" class="comment-text mb-0">
-				{% if v and not v.slurreplacer %}
-					{{c.body_html | safe}}
-				{% else %}
+				{% if c.body_censored and ((not v) or v.slurreplacer) %}
 					{{c.body_censored | safe}}
+				{% else %}
+					{{c.body_html | safe}}
 				{% endif %}
 				
 				{% if not c.parent_submission and c.author_id!=1046 and c.author_id!=2360 and c.author_id!=v.id %}

@@ -427,7 +427,7 @@ def api_comment(v):
 	c_aux = CommentAux(
 		id=c.id,
 		body_html=body_html,
-		body_censored=body_html,
+		body_censored=body_censored,
 		body=body
 	)
 
