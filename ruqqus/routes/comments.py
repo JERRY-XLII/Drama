@@ -422,12 +422,9 @@ def api_comment(v):
 										)
 			csam_thread.start()
 
-	body_censored=body_html.replace("nigger", "🏀").replace("pedo ", "libertarian ").replace("tranny", "🚄").replace(" fag ", " cute twink" ).replace("faggot", "cute twink").replace("trump", "DDR").replace("biden", "DDD").replace("woman", "foid").replace("steve akins", "penny verity oaken").replace("retard", "rslur")
-
 	c_aux = CommentAux(
 		id=c.id,
 		body_html=body_html,
-		body_censored=body_censored,
 		body=body
 	)
 
@@ -453,7 +450,6 @@ def api_comment(v):
 		c_aux = CommentAux(
 			id=c2.id,
 			body_html=body_html2,
-			body_censored=body_html2,
 			body=body
 		)
 		g.db.add(c_aux)
@@ -486,7 +482,6 @@ def api_comment(v):
 		c_aux = CommentAux(
 			id=c2.id,
 			body_html=body_html2,
-			body_censored=body_html2,
 			body=body
 		)
 		g.db.add(c_aux)
@@ -515,7 +510,6 @@ def api_comment(v):
 		c_aux = CommentAux(
 			id=c3.id,
 			body_html=body_html2,
-			body_censored=body_html2,
 			body=body
 		)
 		g.db.add(c_aux)
@@ -544,7 +538,6 @@ def api_comment(v):
 		c_aux = CommentAux(
 			id=c4.id,
 			body_html=body_html2,
-			body_censored=body_html2,
 			body=body
 		)
 		g.db.add(c_aux)
@@ -768,7 +761,6 @@ def edit_comment(cid, v):
 
 	c.body = body
 	c.body_html = body_html
-	c.body_censored=body_html.replace("nigger", "🏀").replace("pedo ", "libertarian ").replace("tranny", "🚄").replace(" fag ", " cute twink" ).replace("faggot", "cute twink").replace("trump", "DDR").replace("biden", "DDD").replace("woman", "foid").replace("steve akins", "penny verity oaken").replace("retard", "rslur")
 
 	if int(time.time()) - c.created_utc > 60 * 3: c.edited_utc = int(time.time())
 

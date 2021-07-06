@@ -26,7 +26,6 @@ def send_notification(vid, user, text):
 	new_aux = CommentAux(id=new_comment.id,
 						 body=text,
 						 body_html=text_html,
-						 body_censored=text_html
 						 )
 	g.db.add(new_aux)
 	g.db.commit()
@@ -52,7 +51,7 @@ def send_pm(vid, user, text):
 
 	g.db.flush()
 
-	new_aux = CommentAux(id=new_comment.id, body=text, body_html=text_html, body_censored=text_html)
+	new_aux = CommentAux(id=new_comment.id, body=text, body_html=text_html)
 	g.db.add(new_aux)
 	g.db.commit()
 
