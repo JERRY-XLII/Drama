@@ -23760,7 +23760,7 @@ ol > li::before {
 }
 
 .btn-sm, .btn-group-sm > .btn {
-  padding: 0.375rem 0.5rem;
+  padding: 0.375rem 0.65rem;
   font-size: 12px;
 }
 
