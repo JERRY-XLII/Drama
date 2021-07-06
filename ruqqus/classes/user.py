@@ -622,7 +622,7 @@ class User(Base, Stndrd, Age_times):
 		else:
 			return "/assets/images/default_bg.png"
 
-	@cache.memoize(0)
+	@cache.memoize(99999)
 	def defaultpicture(self):
 		return f"/assets/images/defaultpictures/{pic}.png"
 
