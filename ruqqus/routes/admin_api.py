@@ -29,7 +29,7 @@ def shadowban(user_id, v):
 	user.shadowbanned = True
 	g.db.add(user)
 	g.db.commit()
-
+	return "", 204
 
 @app.route("/unshadowban/<user_id>", methods=["POST"])
 @admin_level_required(6)
@@ -40,7 +40,7 @@ def unshadowban(user_id, v):
 	user.shadowbanned = False
 	g.db.add(user)
 	g.db.commit()
-
+	return "", 204
 
 @app.route("/admin/title_change/<user_id>", methods=["POST"])
 @admin_level_required(6)
