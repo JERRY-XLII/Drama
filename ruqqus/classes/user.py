@@ -629,7 +629,7 @@ class User(Base, Stndrd, Age_times):
 			else: return f"https://s3.eu-central-1.amazonaws.com/i.ruqqus.ga/uid/{self.base36id}/profile-{self.profile_nonce}.png"
 		else:
 			pic = random.randint(1, 50)
-			return f"/assets/images/defaultpictures/{pic}.jpg"
+			return f"/assets/images/defaultpictures/{pic}.png"
 
 	@property
 	def available_titles(self):
