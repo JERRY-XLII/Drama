@@ -962,7 +962,6 @@ def submit_post(v):
 	c_aux = CommentAux(
 		id=c.id,
 		body_html=body_html,
-		body_censored=body_html2,
 		body=body
 	)
 	g.db.add(c_aux)
