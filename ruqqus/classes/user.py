@@ -624,6 +624,7 @@ class User(Base, Stndrd, Age_times):
 
 	@cache.memoize(99999)
 	def defaultpicture(self):
+		pic = random.randint(1, 50)
 		return f"/assets/images/defaultpictures/{pic}.png"
 
 	@property
@@ -632,7 +633,6 @@ class User(Base, Stndrd, Age_times):
 			if self.profileurl: return self.profileurl
 			else: return f"https://s3.eu-central-1.amazonaws.com/i.ruqqus.ga/uid/{self.base36id}/profile-{self.profile_nonce}.png"
 		else:
-			pic = random.randint(1, 50)
 			return defaultpicture
 	
 	@property
