@@ -622,6 +622,10 @@ class User(Base, Stndrd, Age_times):
 		else:
 			return "/assets/images/default_bg.png"
 
+	@cache.memoize(0)
+	def defaultpicture(self):
+		return f"/assets/images/defaultpictures/{pic}.png"
+
 	@property
 	def profile_url(self):
 		if self.has_profile and not self.is_deleted:
@@ -629,11 +633,7 @@ class User(Base, Stndrd, Age_times):
 			else: return f"https://s3.eu-central-1.amazonaws.com/i.ruqqus.ga/uid/{self.base36id}/profile-{self.profile_nonce}.png"
 		else:
 			pic = random.randint(1, 50)
-			return defaultpicture()
-
-	@cache.memoize(0)
-	def defaultpicture(self):
-		return f"/assets/images/defaultpictures/{pic}.png"
+			return defaultpicture
 	
 	@property
 	def available_titles(self):
