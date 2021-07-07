@@ -60,12 +60,12 @@
 				</a>
 
 				{% elif p.thumb_url and not p.embed_url %}
-				<a {% if v and v.newtabexternal %}target="_blank"{% endif %} href="{{p.url}}" rel="nofollow noopener">
+				<a target="_blank" href="{{p.url}}" rel="nofollow noopener" target="_blank">
 					<img src="{{p.thumb_url}}" class="post-img" alt="">
 				</a>
 				
 				{% elif p.embed_url %}
-				<a {% if v and v.newtabexternal %}target="_blank"{% endif %} href="{{p.url}}" rel="nofollow noopener">
+				<a target="_blank" href="{{p.url}}" target="_blank" rel="nofollow noopener">
 					<img src="{{p.thumb_url if p.has_thumb else '/assets/images/default_thumb_yt.png'}}" class="post-img border-0" alt="generic youtube embed thumbnail">
 				</a>
 				
@@ -75,7 +75,7 @@
 				</a>
 				
 				{% elif p.url and not p.thumb_url and not p.embed_url %}
-				<a {% if v and v.newtabexternal %}target="_blank"{% endif %} href="{{p.url}}" rel="nofollow noopener">
+				<a target="_blank" href="{{p.url}}" rel="nofollow noopener" target="_blank">
 					<img src="/assets/images/default_thumb_link.png" class="post-img border-0" alt="generic link post thumbnail">
 				</a>
 				{% endif %}
@@ -89,12 +89,12 @@
 				</a>
 
 				{% elif p.thumb_url and not p.embed_url %}
-				<a {% if v and v.newtabexternal %}target="_blank"{% endif %} href="{{p.url}}" rel="nofollow noopener">
+				<a target="_blank" href="{{p.url}}" rel="nofollow noopener" target="_blank">
 					<img src="{{p.thumb_url}}" class="post-img" alt="">
 				</a>
 				
 				{% elif p.embed_url %}
-				<a {% if v and v.newtabexternal %}target="_blank"{% endif %} href="{{p.url}}" rel="nofollow noopener">
+				<a target="_blank" href="{{p.url}}" target="_blank" rel="nofollow noopener">
 					<img src="{{p.thumb_url if p.has_thumb else '/assets/images/default_thumb_yt.png'}}" class="post-img border-0" alt="generic youtube embed thumbnail">
 				</a>
 				
@@ -104,7 +104,7 @@
 				</a>
 				
 				{% elif p.url and not p.thumb_url and not p.embed_url %}
-				<a {% if v and v.newtabexternal %}target="_blank"{% endif %} href="{{p.url}}" rel="nofollow noopener">
+				<a target="_blank" href="{{p.url}}" rel="nofollow noopener" target="_blank">
 					<img src="/assets/images/default_thumb_link.png" class="post-img border-0" alt="generic link post thumbnail">
 				</a>
 				{% endif %}
@@ -153,7 +153,7 @@
 					{% if p.author.is_deleted %}[deleted account]{% else %}&nbsp;<a href="{{p.author.permalink}}" style="color: #{{p.author.namecolor}}; font-weight: bold;" class="user-name"><img src="{{p.author.profile_url}}" class="profile-pic-20">&nbsp;&nbsp;{{p.author.username}}</a>{% if p.author.customtitle %}<span style="color: #{{p.author.titlecolor}}">&nbsp;&nbsp;{{p.author.customtitle | safe}}</span>{% endif %}{% endif %}
 					<span data-toggle="tooltip" data-placement="bottom"  title="{{p.created_datetime}}">&nbsp;{{p.age_string}}</span>
 					&nbsp;
-					({% if p.url %}<a href="/search/posts/?q=domain%3A{{p.domain}}&sort=new&t=all" {% if v and v.newtabexternal %}target="_blank"{% endif %}>{{p.domain}}</a>{% else %}text post{% endif %})
+					({% if p.url %}<a href="/search?q=domain%3A{{p.domain}}&sort=new&t=all" target="_blank">{{p.domain}}</a>{% else %}text post{% endif %})
 					
 					{% if p.edited_utc %}&nbsp;&nbsp;Edited <span data-toggle="tooltip" data-placement="bottom"  title="{{edited_datetime}}">{{p.edited_string}}</span>{% endif %}
 					&nbsp;&nbsp;{{p.views}} views
@@ -254,13 +254,14 @@
 									><i class="fas fa-user-slash text-danger"></i>Ban user</a></li>
 								{% endif %}
 								{% if p.author.shadowbanned %}
-									<li class="list-inline-item"><a href="javascript:void(0)" onclick="post('/unshadowban/{{p.author.id}}', function(){window.location.reload(true);})"
-									><i class="fas fa-user-slash text-danger"></i>Unshadowban user</a></li>
+								<li class="list-inline-item"><a href="javascript:void(0)" onclick="post('/unshadowban/{{p.author.id}}', function(){window.location.reload(true);})"
+								><i class="fas fa-user-slash text-danger"></i>Unshadowban user</a></li>
 								{% else %}
-									<li class="list-inline-item"><a href="javascript:void(0)" onclick="post('/shadowban/{{p.author.id}}', function(){window.location.reload(true);})"
-									><i class="fas fa-user-slash text-danger"></i>Shadowban user</a></li>
+								<li class="list-inline-item"><a href="javascript:void(0)" onclick="post('/shadowban/{{p.author.id}}', function(){window.location.reload(true);})"
+								><i class="fas fa-user-slash text-danger"></i>Shadowban user</a></li>
 								{% endif %}
 							{% endif %}
+						{% endif %}
 												
 			</ul>
 		</div>
@@ -268,13 +269,13 @@
 </div>
 
 {% if p.body_html %}
-	<div class="d-none card rounded border pb-0 pt-3 my-2" id="post-text-{{ p.base36id }}">
-	{% if not v or v.slurreplacer %}
-		{{p.body_html.replace("nigger", "🏀").replace("Nigger", "🏀").replace("NIGGER", "🏀").replace("pedo ", "libertarian ").replace("Pedo ", "Libertarian ").replace("PEDO ", "LIBERTARIAN ").replace("tranny", "🚄").replace("Tranny", "🚄").replace("TRANNY", "🚄").replace(" fag ", " cute twink " ).replace(" Fag ", " Cute twink " ).replace(" FAG ", " CUTE TWINK " ).replace("faggot", "cute twink").replace("Faggot", "Cute twink").replace("FAGGOT", "CUTE TWINK").replace("trump", "DDR").replace("Trump", "DDR").replace("TRUMP", "DDR").replace("biden", "DDD").replace("Biden", "DDD").replace("BIDEN", "DDD").replace("steve akins", "penny verity oaken").replace("Steve Akins", "Penny Verity Oaken").replace("STEVE AKINS", "PENNY VERITY OAKEN").replace("retard", "rslur").replace("Retard", "Rslur").replace("RETARD", "RSLUR") | safe}}
-	{% else %}
-		{{p.body_html | safe}}
-	{% endif %}
-	</div>
+<div class="d-none card rounded border pb-0 pt-3 my-2" id="post-text-{{ p.base36id }}">
+{% if not v or v.slurreplacer %}
+	{{p.body_html.replace("nigger", "🏀").replace("Nigger", "🏀").replace("NIGGER", "🏀").replace("pedo ", "libertarian ").replace("Pedo ", "Libertarian ").replace("PEDO ", "LIBERTARIAN ").replace("tranny", "🚄").replace("Tranny", "🚄").replace("TRANNY", "🚄").replace(" fag ", " cute twink " ).replace(" Fag ", " Cute twink " ).replace(" FAG ", " CUTE TWINK " ).replace("faggot", "cute twink").replace("Faggot", "Cute twink").replace("FAGGOT", "CUTE TWINK").replace("trump", "DDR").replace("Trump", "DDR").replace("TRUMP", "DDR").replace("biden", "DDD").replace("Biden", "DDD").replace("BIDEN", "DDD").replace("steve akins", "penny verity oaken").replace("Steve Akins", "Penny Verity Oaken").replace("STEVE AKINS", "PENNY VERITY OAKEN").replace("retard", "rslur").replace("Retard", "Rslur").replace("RETARD", "RSLUR") | safe}}
+{% else %}
+	{{p.body_html | safe}}
+{% endif %}
+</div>
 {% endif %}
 
 <div class="card-footer d-block d-md-none mt-2">
@@ -394,10 +395,11 @@
 							<button class="btn btn-link btn-block btn-lg text-left text-danger" id="exile-user-button-{{p.base36id}}" href="javascript:void(0)" onclick="post_toast('/api/ban_user/{{p.author_id}}')"><i class="fas fa-user-minus mr-3 text-danger"></i>Ban user</a></button>
 							{% endif %}
 							{% if p.author.shadowbanned %}
-								<button class="btn btn-link btn-block btn-lg text-left text-danger" href="javascript:void(0)" onclick="post('/unshadowban/{{p.author.id}}"><i class="fas fa-user-minus mr-3 text-danger"></i>Unshadowban user</a></button>
+							<li class="list-inline-item"><a href="javascript:void(0)" onclick="post('/unshadowban/{{p.author.id}}', function(){window.location.reload(true);})"
+							><i class="btn btn-link btn-block btn-lg text-left text-danger"></i>Unshadowban user</a></li>
 							{% else %}
-								<button class="btn btn-link btn-block btn-lg text-left text-danger" href="javascript:void(0)" onclick="post('/shadowban/{{p.author.id}}"><i class="fas fa-user-minus mr-3 text-danger"></i>Shadowban user</a></button>
-							{% endif %}
+							<li class="list-inline-item"><a href="javascript:void(0)" onclick="post('/shadowban/{{p.author.id}}', function(){window.location.reload(true);})"
+							><i class="btn btn-link btn-block btn-lg text-left text-danger"></i>Shadowban user</a></li>
 							{% endif %}
 							{% endif %}
 
