@@ -631,7 +631,8 @@ def settings_song_change(v):
 		return render_template("settings_profile.html",
 					v=v,
 					error=f"Not a youtube link.")
-
+	
+	print
 	if "&" in id: id = id.split("&")[0]
 
 	if os.path.isfile(f'/songs/{id}.mp3'): 
@@ -667,7 +668,7 @@ def settings_song_change(v):
 	}
 
 	with youtube_dl.YoutubeDL(ydl_opts) as ydl:
-		try: ydl.download([song])
+		try: ydl.download([f"https://youtube.com/watch?v={id}"])
 		except Exception as e:
 			print(e)
 			return render_template("settings_profile.html",
