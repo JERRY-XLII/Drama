@@ -52,6 +52,7 @@ class User(Base, Stndrd, Age_times):
 	slurreplacer = Column(Boolean, default=True)
 	flairchanged = Column(Boolean, default=False)
 	newtab = Column(Boolean, default=False)
+	newtabexternal = Column(Boolean, default=True)
 	creation_ip = Column(String, default=None)
 	submissions = relationship(
 		"Submission",

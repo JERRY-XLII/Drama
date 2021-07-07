@@ -97,6 +97,28 @@
 
 				</div>
 
+				
+				<div class="d-lg-flex border-bottom">
+
+					<div class="title w-lg-25">
+						<label for="newtabexternal">Open External Links In New Tabs </label>
+					</div>
+
+					<div class="body w-lg-100">
+
+						<div class="custom-control custom-switch">
+							<input type="checkbox" class="custom-control-input" id="newtabexternal" name="newtabexternal"{% if v.newtabexternal %} checked{% endif %} onchange="post_toast('/settings/profile?newtabexternal='+document.getElementById('newtabexternal').checked);">
+							<label class="custom-control-label" for="newtabexternal"></label>
+						</div>
+
+						<span class="text-small-extra text-muted">Enable if you would like to automatically open external links in new tabs.</span>
+
+					</div>
+
+				</div>
+
+				
+
 			</div>
 
 
