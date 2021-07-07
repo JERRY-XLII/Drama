@@ -795,7 +795,7 @@ $('#username-register').on('input', function () {
 
 	}
 
-	if (!/[^a-zA-Z0-9_$]/.test(charCount)) {
+	if (!/[^a-zA-Z0-9_\-$]/.test(charCount)) {
 		// Change alert text
 		id.innerHTML = '<span class="form-text font-weight-bold text-success mt-1">Username is a-okay!';
 
