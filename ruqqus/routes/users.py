@@ -77,27 +77,7 @@ def message2(v, username):
 @auth_required
 def messagereply(v, id):
 	message = request.form.get("message", "")
-
-	with CustomRenderer() as renderer: text_html = renderer.render(mistletoe.Document(text))
-
-	text_html = sanitize(text_html, linkgen=True)
-	parent = get_comment(id, v=v)
-	new_comment = Comment(author_id=vid,
-							parent_submission=None,
-							parent_fullname=parent.fullname,
-							parent_comment_id=id,
-							level=parent.level + 1,
-							sentto=user.username
-							)
-
-	g.db.add(new_comment)
-	g.db.flush()
-	new_aux = CommentAux(id=new_comment.id, body=text, body_html=text_html)
-	g.db.add(new_aux)
-	notif = Notification(comment_id=new_comment.id, user_id=user.id)
-	g.db.add(notif)
-	g.db.commit()
-
+	send_reply(v.id, id, message)
 	return redirect('/notifications')
 
 @app.route("/2faqr/<secret>", methods=["GET"])
@@ -403,32 +383,7 @@ def follow_user(username, v):
 	g.db.commit()
 
 	existing = g.db.query(Notification).filter_by(followsender=v.id, user_id=target.id).first()
-
-	if not existing:
-		text = f"@{v.username} has followed you!"
-		with CustomRenderer() as renderer:
-			text_html = renderer.render(mistletoe.Document(text))
-		text_html = sanitize(text_html, linkgen=True)
-		
-		new_comment = Comment(author_id=1046,
-								parent_submission=None,
-								distinguish_level=6,
-								)
-		g.db.add(new_comment)
-		g.db.flush()
-
-		new_aux = CommentAux(id=new_comment.id,
-							 body=text,
-							 body_html=text_html,
-							 )
-		g.db.add(new_aux)
-
-		notif = Notification(comment_id=new_comment.id,
-							 user_id=target_id,
-							 followsender=v.id)
-		g.db.add(notif)
-		g.db.commit()
-
+	if not existing: send_follow_notif(v.id, target.id, f"@{v.username} has followed you!")
 	return "", 204
 
 
@@ -448,31 +403,7 @@ def unfollow_user(username, v):
 	g.db.delete(follow)
 
 	existing = g.db.query(Notification).filter_by(followsender=v.id, user_id=target.id).first()
-	if not existing:
-		text = f"@{v.username} has unfollowed you!"
-		with CustomRenderer() as renderer:
-			text_html = renderer.render(mistletoe.Document(text))
-		text_html = sanitize(text_html, linkgen=True)
-		
-		new_comment = Comment(author_id=1046,
-								parent_submission=None,
-								distinguish_level=6,
-								)
-		g.db.add(new_comment)
-		g.db.flush()
-
-		new_aux = CommentAux(id=new_comment.id,
-							 body=text,
-							 body_html=text_html,
-							 )
-		g.db.add(new_aux)
-
-		notif = Notification(comment_id=new_comment.id,
-							 user_id=target_id,
-							 unfollowsender=v.id)
-		g.db.add(notif)
-		g.db.commit()
-
+	if not existing: send_unfollow_notif(v.id, target.id, f"@{v.username} has unfollowed you!")
 	return "", 204
 
 
