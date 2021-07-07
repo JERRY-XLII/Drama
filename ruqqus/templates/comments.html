@@ -153,7 +153,7 @@
 						&nbsp;
 						<pre style="line-height:1;" class="btn btn-secondary format d-inline-block m-0 font-weight-bolder text-uppercase" onclick="commentForm('input-message-{{c.base36id}}');getGif()" aria-hidden="true" data-toggle="modal" data-target="#gifModal" data-toggle="tooltip" data-placement="bottom" title="Add GIF">GIF</pre>
 						&nbsp;
-						<pre class="btn btn-secondary format d-inline-block m-0 fas fa-smile-beam" onclick="loadEmojis('input-message-{{c.base36id}}')" aria-hidden="true" data-toggle="modal" data-target="#emojiModal" data-toggle="tooltip" data-placement="bottom" title="Add EMOJI"></pre>
+						<pre class="btn btn-secondary format d-inline-block m-0 fas fa-smile-beam" onclick="loadEmojis('input-message-{{c.base36id}}')" aria-hidden="true" data-toggle="modal" data-target="#emojiModal" data-toggle="tooltip" data-placement="bottom" title="Add Emoji"></pre>
 						&nbsp;
 						<input type="submit" value="Submit" class="btn btn-primary mt-3">
 					</form>
@@ -169,7 +169,7 @@
 					<div class="comment-format"> 
 						<small class="btn btn-secondary format d-inline-block m-0"><span class="font-weight-bolder text-uppercase" aria-hidden="true" onclick="commentForm('comment-edit-body-{{c.base36id}}');getGif()" data-toggle="modal" data-target="#gifModal" data-toggle="tooltip" data-placement="bottom"  title="Add GIF">GIF</span></small>
 						&nbsp;
-						<small class="btn btn-secondary format d-inline-block m-0"><i class="fas fa-smile-beam" aria-hidden="true" onclick="loadEmojis('comment-edit-body-{{c.base36id}}')" data-toggle="modal" data-target="#emojiModal" data-toggle="tooltip" data-placement="bottom"  title="Add EMOJI"></i></small>
+						<small class="btn btn-secondary format d-inline-block m-0"><i class="fas fa-smile-beam" aria-hidden="true" onclick="loadEmojis('comment-edit-body-{{c.base36id}}')" data-toggle="modal" data-target="#emojiModal" data-toggle="tooltip" data-placement="bottom"  title="Add Emoji"></i></small>
 						&nbsp;
 						
 						<label class="btn btn-secondary format d-inline-block m-0" for="file-edit-reply-{{c.base36id}}">
@@ -374,7 +374,7 @@
 					</label> 
 					&nbsp;
 					<label class="btn btn-secondary format d-inline-block m-0" for="gif-reply-btn-{{c.fullname}}">
-						<i id="emoji-reply-btn-{{c.fullname}}" class="fas fa-smile-beam" onclick="loadEmojis('reply-form-body-{{c.fullname}}')" aria-hidden="true" data-toggle="modal" data-target="#emojiModal" data-toggle="tooltip" data-placement="bottom" title="Add EMOJI"></i>
+						<i id="emoji-reply-btn-{{c.fullname}}" class="fas fa-smile-beam" onclick="loadEmojis('reply-form-body-{{c.fullname}}')" aria-hidden="true" data-toggle="modal" data-target="#emojiModal" data-toggle="tooltip" data-placement="bottom" title="Add Emoji"></i>
 					</label>
 					&nbsp;
 					<label class="btn btn-secondary format d-inline-block m-0" for="file-upload-reply-{{c.fullname}}">
