@@ -73,7 +73,7 @@ def message2(v, username):
 	send_pm(v.id, user, message)
 	return redirect('/notifications?sent=true')
 	
-@app.route("/<id>/reply", methods=["POST"])
+@app.route("/reply/<id>", methods=["POST"])
 @auth_required
 def messagereply(v, id):
 	message = request.form.get("message", "")
