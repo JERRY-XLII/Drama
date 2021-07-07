@@ -622,7 +622,7 @@ def settings_song_change(v):
 
 	song=request.form.get("song").strip()
 
-	if song.startswith(("https://www.youtube.com/watch?v=", "https://youtube.com/watch?v=", "https://m.youtube.com/watch?v=")):
+	if song.startswith(("https://www.youtube.com/watch?v=", "https://youtube.com/watch?v=", "https://m.youtube.com/watch?v=", "https://music.youtube.com/watch?v=")):
 		id = song.split("v=")[1]
 	elif song.startswith("https://youtu.be/"):
 		id = song.split("https://youtu.be/")[1]
@@ -631,7 +631,7 @@ def settings_song_change(v):
 					v=v,
 					error=f"Not a youtube link.")
 
-	if "?" in id: id = id.split("?")[0]
+	if "&" in id: id = id.split("&")[0]
 
 	if os.path.isfile(f'/songs/{id}.mp3'): 
 		return render_template("settings_profile.html",
