@@ -34,7 +34,7 @@ def messagereply(v, id):
 	print("-4")
 	text_html = sanitize(text_html, linkgen=True)
 	print("-3")
-	parent = get_comment(id, v=v)
+	parent = get_comment(int(id), v=v)
 	print("-2")
 	new_comment = Comment(author_id=v.id,
 							parent_submission=None,
