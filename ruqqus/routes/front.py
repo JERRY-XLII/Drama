@@ -47,6 +47,7 @@ def notifications(v):
 		c.replies = []
 		if c.level > 1 and c.parent_comment.author_id == v.id:
 			level = c.level
+			print(level)
 			while level > 1:
 				parent = c.parent_comment
 				if parent in listing:
