@@ -108,14 +108,3 @@ class CustomRenderer(HTMLRenderer):
 		space = token.target[0]
 		target = token.target[1]
 		return f'{space}<a href="https://www.reddit.com/u/{target}" class="d-inline-block">u/{target}</a>'
-	
-def preprocess(text):
-
-	text=text.strip()
-	
-	text=re.sub(enter_re, "\n\n", text)
-
-	text=re.sub("(\u200b|\u200c|\u200d)",'', text)
-	
-	return text
-	
