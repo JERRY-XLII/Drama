@@ -46,23 +46,23 @@ def notifications(v):
 		c._is_blocking = False
 		c.replies = []
 		if c.level > 1 and c.parent_comment.author_id == v.id:
-			c._is_comment_reply = True
-			parent = c.parent_comment
-
-			if parent in listing:
-				parent.replies = parent.replies + [c]
-			else:
-				parent.replies = [c]
-				listing.append(parent)
+			level = c.level
+			while level > 1:
+				parent = c.parent_comment
+				if parent in listing:
+					parent.replies = parent.replies + [c]
+				else:
+					parent.replies = [c]
+					listing.append(parent)
+				c = parent
+				level -= 1
 
 		elif c.level == 1 and c.post and c.post.author_id == v.id:
 			c._is_post_reply = True
 			listing.append(c)
 		else:
-			print(c.level)
 			c._is_username_mention = True
 			listing.append(c)
-			break
 
 	board = get_board(1)
 	nsfw = (v and v.over_18) or session_over18(board)
