@@ -235,7 +235,7 @@ def front_all(v):
 
 	if random.random() < 0.0002:
 		for post in posts:				
-			if post.author.shadowbanned and 
+			if post.author.shadowbanned: 
 				rand = random.randint(500,1400)
 				vote = Vote(user_id=rand,
 					vote_type=random.choice([-1, -1, -1, -1, 1]),
