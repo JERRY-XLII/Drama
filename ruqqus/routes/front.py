@@ -239,9 +239,11 @@ def front_all(v):
 				posts2.append(post)
 		posts = posts2
 	
-	for post in posts:
-		if post.author.shadowbanned and not (v and v.id == post.author_id):
-			posts.remove(post)
+	posts2 = []
+		for post in posts:
+			if not post.author.shadowbanned or (v and v.id == post.author_id):
+				posts2.append(post)
+	posts = posts2
 
 	return {'html': lambda: render_template("home.html",
 											v=v,
