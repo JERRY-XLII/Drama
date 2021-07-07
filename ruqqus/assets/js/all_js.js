@@ -149,7 +149,7 @@ $('#new_email').on('input', function () {
 				let gifs = [];
 				let apiKey = tenor_api_key();
 				let lmt = 25;
-				let url = "https://g.tenor.com/v1/search?q=" + searchTerm + "&key=" + apiKey + "&limit=" + lmt;
+				let url = "https://g.tenor.com/v1/search/posts/?q=" + searchTerm + "&key=" + apiKey + "&limit=" + lmt;
 				fetch(url)
 				.then(response => {
 					return response.json();
