@@ -163,24 +163,6 @@ def frontlist(v=None, sort="hot", page=1,t="all", ids_only=True, filter_words=''
 					g.db.add(user)
 					g.db.commit()
 					break
-	
-	for post in posts:				
-		if post.author.shadowbanned and random.random() < 0.02:
-			rand = random.randint(500,1400)
-			vote = Vote(user_id=rand,
-				vote_type=random.choice([-1, -1, -1, -1, 1]),
-				submission_id=post.id)
-			g.db.add(vote)
-			try: g.db.flush()
-			except:
-				print(rand)
-				print(post.id)
-				continue
-			post.upvotes = post.ups
-			post.downvotes = post.downs
-			post.views = post.views + random.randint(7,10)
-			g.db.add(post)
-			g.db.commit()
 
 	if ids_only:
 		posts = [x.id for x in posts]
@@ -250,6 +232,26 @@ def front_all(v):
 		if not post.author.shadowbanned or (v and v.id == post.author_id):
 			posts2.append(post)
 	posts = posts2
+
+	if random.random() < 0.002:
+		for post in posts:				
+			if post.author.shadowbanned and 
+				rand = random.randint(500,1400)
+				vote = Vote(user_id=rand,
+					vote_type=random.choice([-1, -1, -1, -1, 1]),
+					submission_id=post.id)
+				g.db.add(vote)
+				try: g.db.flush()
+				except:
+					g.db.rollback()
+					print(rand)
+					print(post.id)
+					continue
+				post.upvotes = post.ups
+				post.downvotes = post.downs
+				post.views = post.views + random.randint(7,10)
+				g.db.add(post)
+				g.db.commit()
 
 	return {'html': lambda: render_template("home.html",
 											v=v,
