@@ -56,13 +56,13 @@ def send_pm(vid, user, text):
 	g.db.commit()
 
 
-def send_reply(vid, id, text):
+def send_reply(v, id, text):
 
 	with CustomRenderer() as renderer: text_html = renderer.render(mistletoe.Document(text))
 
 	text_html = sanitize(text_html, linkgen=True)
 	parent = get_comment(id, v=v)
-	new_comment = Comment(author_id=vid,
+	new_comment = Comment(author_id=v.id,
 							parent_submission=None,
 							parent_fullname=parent.fullname,
 							parent_comment_id=id,
