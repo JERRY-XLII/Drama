@@ -46,6 +46,7 @@ def notifications(v):
 		c._is_blocking = False
 		c.replies = []
 		if c.level > 1 and c.parent_comment.author_id == v.id:
+			print('cock')
 			c._is_comment_reply = True
 			parent = c.parent_comment
 
@@ -56,9 +57,11 @@ def notifications(v):
 				listing.append(parent)
 
 		elif c.level == 1 and c.post and c.post.author_id == v.id:
+			print('sex')
 			c._is_post_reply = True
 			listing.append(c)
 		else:
+			print('fuck')
 			c._is_username_mention = True
 			listing.append(c)
 
