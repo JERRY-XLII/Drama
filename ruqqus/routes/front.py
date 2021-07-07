@@ -240,12 +240,11 @@ def front_all(v):
 				posts2.append(post)
 		posts = posts2
 	
-	if not (v and v.admin_level == 6):
-		posts2 = []
-		for post in posts:
-			if not post.author.shadowbanned or (v and v.id == post.author_id):
-				posts2.append(post)
-		posts = posts2
+	posts2 = []
+	for post in posts:
+		if not post.author.shadowbanned or (v and v.id == post.author_id):
+			posts2.append(post)
+	posts = posts2
 
 	return {'html': lambda: render_template("home.html",
 											v=v,
