@@ -194,6 +194,8 @@ def sanitize(text, linkgen=False, flair=False):
 		if os.path.isfile(f'/d/ruqqus/assets/images/emojis/{i.group(1)}.gif'):
 			sanitized = sanitized.replace(f':{i.group(1)}:', f'<img data-toggle="tooltip" title="{i.group(1)}" delay="0" height={emojisize} src="/assets/images/emojis/{i.group(1)}.gif"<span>')
 
+	sanitized = sanitized.replace("https://www.", "https://").replace("https://youtu.be/", "https://youtube.com/watch?v=").replace("https://music.youtube.com/watch?v=", "https://youtube.com/watch?v=")
+	
 	if '" rel="nofollow noopener" target="_blank">https://streamable.com/' in sanitized:
 		if "https://streamable.com/e/" not in sanitized: sanitized = sanitized.replace("https://streamable.com/", "https://streamable.com/e/")
 		url = re.search('(https://streamable.com/e/.*?)"', sanitized).group(1)
@@ -201,13 +203,6 @@ def sanitize(text, linkgen=False, flair=False):
 		htmlsource = f'<div style="padding-top:5px; padding-bottom: 10px;"><iframe allowfullscreen="" frameborder="0" src="{url}"></iframe></div>'
 		sanitized = sanitized.replace(replacing, htmlsource)
 		
-	if '" rel="nofollow noopener" target="_blank">https://www.streamable.com/' in sanitized:
-		if "https://www.streamable.com/e/" not in sanitized: sanitized = sanitized.replace("https://www.streamable.com/", "https://www.streamable.com/e/")
-		url = re.search('(https://www.streamable.com/e/.*?)"', sanitized).group(1)
-		replacing = f'<p><a href="{url}" rel="nofollow noopener" target="_blank">{url}</a></p>'
-		htmlsource = f'<div style="padding-top:5px; padding-bottom: 10px;"><iframe allowfullscreen="" frameborder="0" src="{url}"></iframe></div>'
-		sanitized = sanitized.replace(replacing, htmlsource)
-
 	if '" rel="nofollow noopener" target="_blank">https://open.spotify.com/' in sanitized:
 		sanitized = sanitized.replace("https://open.spotify.com/", "https://open.spotify.com/embed/")
 		url = re.search('(https://open.spotify.com/embed/.*?)"', sanitized).group(1)
@@ -218,20 +213,6 @@ def sanitize(text, linkgen=False, flair=False):
 	if '" rel="nofollow noopener" target="_blank">https://youtube.com/watch?v=' in sanitized:
 		sanitized = sanitized.replace("watch?v=", "embed/")
 		url = re.search('(https://youtube.com/embed/.*?)"', sanitized).group(1)
-		replacing = f'<p><a href="{url}" rel="nofollow noopener" target="_blank">{url}</a></p>'
-		htmlsource = f'<div style="padding-top:5px; padding-bottom: 10px;"><iframe allowfullscreen="" frameborder="0" src="{url}"></iframe></div>'
-		sanitized = sanitized.replace(replacing, htmlsource)
-		
-	if '" rel="nofollow noopener" target="_blank">https://www.youtube.com/watch?v=' in sanitized:
-		sanitized = sanitized.replace("watch?v=", "embed/")
-		url = re.search('(https://www.youtube.com/embed/.*?)"', sanitized).group(1)
-		replacing = f'<p><a href="{url}" rel="nofollow noopener" target="_blank">{url}</a></p>'
-		htmlsource = f'<div style="padding-top:5px; padding-bottom: 10px;"><iframe allowfullscreen="" frameborder="0" src="{url}"></iframe></div>'
-		sanitized = sanitized.replace(replacing, htmlsource)
-
-	if '" rel="nofollow noopener" target="_blank">https://youtu.be/' in sanitized:
-		sanitized = sanitized.replace("https://youtu.be/", "https://www.youtube.com/embed/")
-		url = re.search('(https://www.youtube.com/embed/.*?)"', sanitized).group(1)
 		replacing = f'<p><a href="{url}" rel="nofollow noopener" target="_blank">{url}</a></p>'
 		htmlsource = f'<div style="padding-top:5px; padding-bottom: 10px;"><iframe allowfullscreen="" frameborder="0" src="{url}"></iframe></div>'
 		sanitized = sanitized.replace(replacing, htmlsource)
