@@ -31,17 +31,20 @@ def messagereply(v, id):
 	message = request.form.get("message", "")
 	print('sexer')
 	with CustomRenderer() as renderer: text_html = renderer.render(mistletoe.Document(message))
-	
+	print("-4")
 	text_html = sanitize(text_html, linkgen=True)
+	print("-3")
 	parent = get_comment(id, v=v)
+	print("-2")
 	new_comment = Comment(author_id=v.id,
 							parent_submission=None,
 							parent_fullname=parent.fullname,
 							parent_comment_id=id,
 							level=parent.level + 1,
 							)
-
+	print("-1")
 	g.db.add(new_comment)
+	print("0")
 	g.db.flush()
 	print("1")
 	new_aux = CommentAux(id=new_comment.id, body=message, body_html=text_html)
