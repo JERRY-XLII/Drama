@@ -46,17 +46,9 @@ def notifications(v):
 		c._is_blocking = False
 		c.replies = []
 		if c.level > 1 and c.parent_comment.author_id == v.id:
-			level = c.level
-			print(level)
-			while level > 1:
-				parent = c.parent_comment
-				if parent in listing:
-					parent.replies = parent.replies + [c]
-				else:
-					parent.replies = [c]
-					listing.append(parent)
-				c = parent
-				level -= 1
+			while c.level > 1:
+				c = c.parent_comment
+				if c.level == 1: listing.append(c)
 		else:
 			listing.append(c)
 
