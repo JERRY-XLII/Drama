@@ -29,6 +29,9 @@ def shadowban(user_id, v):
 	if user.admin_level != 0: abort(403)
 	user.shadowbanned = True
 	g.db.add(user)
+	for alt in user.alts:
+		alt.shadowbanned = True
+		g.db.add(alt)
 	g.db.commit()
 	cache.delete_memoized(frontlist)
 	return "", 204
@@ -41,6 +44,9 @@ def unshadowban(user_id, v):
 	if user.admin_level != 0: abort(403)
 	user.shadowbanned = False
 	g.db.add(user)
+	for alt in user.alts:
+		alt.shadowbanned = False
+		g.db.add(alt)
 	g.db.commit()
 	cache.delete_memoized(frontlist)
 	return "", 204
