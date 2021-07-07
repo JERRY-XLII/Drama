@@ -56,7 +56,7 @@ def send_pm(vid, user, text):
 	g.db.commit()
 
 
-def send_reply(v, id, text):
+def send_reply(v, id, user, text):
 
 	with CustomRenderer() as renderer: text_html = renderer.render(mistletoe.Document(text))
 
