@@ -25,10 +25,11 @@ BAN_REASONS = ['',
 			   "URL shorteners are not permitted."
 			   ]
 
-@app.route("/reply/<id>", methods=["POST"])
+@app.route("/reply/@<username>/<id>", methods=["POST"])
 @auth_required
-def messagereply(v, id):
+def messagereply(v, username, id):
 	message = request.form.get("message", "")
+	target = get_user(username)
 	print('sexer')
 	with CustomRenderer() as renderer: text_html = renderer.render(mistletoe.Document(message))
 	print("-4")
@@ -41,6 +42,7 @@ def messagereply(v, id):
 							parent_fullname=parent.fullname,
 							parent_comment_id=id,
 							level=parent.level + 1,
+							sentto=user.username
 							)
 	print("-1")
 	g.db.add(new_comment)
