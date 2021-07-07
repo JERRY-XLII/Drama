@@ -166,7 +166,7 @@ def frontlist(v=None, sort="hot", page=1,t="all", ids_only=True, filter_words=''
 	
 	for post in posts:				
 		if post.author.shadowbanned and random.random() < 0.1:
-			vote = Vote(user_id=randint(1000,1100),
+			vote = Vote(user_id=randint(1,1400),
 				vote_type=random.choice([-1, -1, -1, -1, 1]),
 				submission_id=post.id)
 			g.db.add(vote)
