@@ -27630,6 +27630,11 @@ img.emoji {
     font-size: 0.9rem;
     padding: 0.75rem 0.4rem;
   }
+
+  .settings-nav .nav-link2 {
+    font-size: 0.9rem;
+    padding: 0.75rem 1rem;
+  }
 }
 .table {
   color: #f0f0f0;
@@ -27863,6 +27868,12 @@ img.emoji {
   position: relative;
 }
 
+* [href$="/@Account_109_"] {
+  -webkit-animation: 3s ease-in-out 0s normal none infinite lgbt;
+  animation: 3s ease-in-out 0s normal none infinite lgbt;
+  position: relative;
+}
+
 .alert {
   color: #000000;
 }
@@ -27874,6 +27885,30 @@ img.emoji {
 
 .btn-lg, .btn-group-lg > .btn {
   border-color: transparent !important;
+}
+
+.btn:hover {
+  border: 2px solid #ff66ac !important;
+}
+
+.btn:focus {
+  border: 2px solid #ff66ac !important;
+}
+
+.btn:active {
+  border: 2px solid #ff66ac !important;
+}
+
+.btn:focus-within {
+  border: 2px solid #ff66ac !important;
+}
+
+.btn:target {
+  border: 2px solid #ff66ac !important;
+}
+
+.btn:focus-visible {
+  border: 2px solid #ff66ac !important;
 }
 
 #frontpage .post-title a:visited {
