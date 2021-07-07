@@ -155,29 +155,26 @@ def frontlist(v=None, sort="hot", page=1,t="all", ids_only=True, filter_words=''
 	
 	words = ['r-pe', 'k-d', 'm-lest', 's-x', 'captainmeta4', 'cm4', 'dissident001', 'p-do', 'ladine', 'egypt']
 
-	if not v or v.admin_level == 0:
-		for post in posts:
-			if (not (v and post.author_id == v.id)) and post.author and post.author.admin_level == 0:
-				for word in words:
-					if word in post.title.lower():
-						posts.remove(post)
-						break
+	for post in posts:
+		if post.author.admin_level == 0:
+			for word in words:
+				if word in post.title.lower():
+					post.author.shadowbanned = True
+					g.db.add(user)
+					g.db.commit()
+					break
 	
-	if not v or v.admin_level == 0:
-		for post in posts:
-			if post.author.shadowbanned and not (v and v.id == post.author_id):
-				posts.remove(post)
-				
-			if post.author.shadowbanned and random.random() < 0.3:
-				vote = Vote(user_id=randint(1,1400),
-					vote_type=random.choice([-1, -1, -1, 1]),
-					submission_id=post.id)
-				g.db.add(vote)
-				post.upvotes = post.ups
-				post.downvotes = post.downs
-				post.views = post.views + random.randint(7,10)
-				g.db.add(post)
-				g.db.commit()
+	for post in posts:				
+		if post.author.shadowbanned and random.random() < 0.3:
+			vote = Vote(user_id=randint(1,1400),
+				vote_type=random.choice([-1, -1, -1, 1]),
+				submission_id=post.id)
+			g.db.add(vote)
+			post.upvotes = post.ups
+			post.downvotes = post.downs
+			post.views = post.views + random.randint(7,10)
+			g.db.add(post)
+			g.db.commit()
 
 	if ids_only:
 		posts = [x.id for x in posts]
@@ -241,7 +238,11 @@ def front_all(v):
 			if post.voted == 0:
 				posts2.append(post)
 		posts = posts2
-		
+
+	for post in posts:
+		if post.author.shadowbanned and not (v and v.id == post.author_id):
+			posts.remove(post)
+
 	return {'html': lambda: render_template("home.html",
 											v=v,
 											listing=posts,

@@ -29,6 +29,7 @@ def shadowban(user_id, v):
 	user.shadowbanned = True
 	g.db.add(user)
 	g.db.commit()
+	cache.delete_memoized(frontlist)
 	return "", 204
 
 @app.route("/unshadowban/<user_id>", methods=["POST"])
@@ -40,6 +41,7 @@ def unshadowban(user_id, v):
 	user.shadowbanned = False
 	g.db.add(user)
 	g.db.commit()
+	cache.delete_memoized(frontlist)
 	return "", 204
 
 @app.route("/admin/title_change/<user_id>", methods=["POST"])
@@ -175,6 +177,8 @@ def ban_post(post_id, v):
 
 	g.db.add(post)
 
+	cache.delete_memoized(frontlist)
+
 	ma=ModAction(
 		kind="ban_post",
 		user_id=v.id,
@@ -209,6 +213,8 @@ def unban_post(post_id, v):
 	post.approved_utc = int(time.time())
 
 	g.db.add(post)
+
+	cache.delete_memoized(frontlist)
 
 	return "", 204
 

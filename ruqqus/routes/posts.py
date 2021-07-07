@@ -1013,11 +1013,7 @@ def delete_post_pid(pid, v):
 
 	g.db.add(post)
 
-	# clear cache
-	cache.delete_memoized(User.userpagelisting)
-
-	if post.age >= 3600 * 6:
-		cache.delete_memoized(frontlist, sort="new")
+	cache.delete_memoized(frontlist)
 
 	# delete i.ruqqus.ga
 	if post.domain == "i.ruqqus.ga":
