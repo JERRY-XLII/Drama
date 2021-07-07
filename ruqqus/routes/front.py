@@ -238,10 +238,11 @@ def front_all(v):
 			if post.voted == 0:
 				posts2.append(post)
 		posts = posts2
-
-	for post in posts:
-		if post.author.shadowbanned and not (v and v.id == post.author_id):
-			posts.remove(post)
+	
+	if not (v and v.admin_level == 6):
+		for post in posts:
+			if post.author.shadowbanned and not (v and v.id == post.author_id):
+				posts.remove(post)
 
 	return {'html': lambda: render_template("home.html",
 											v=v,
