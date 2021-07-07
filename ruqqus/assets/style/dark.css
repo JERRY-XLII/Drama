@@ -27629,11 +27629,6 @@ img.emoji {
     font-size: 0.9rem;
     padding: 0.75rem 0.4rem;
   }
-
-  .settings-nav .nav-link2 {
-    font-size: 0.9rem;
-    padding: 0.75rem 1rem;
-  }
 }
 .table {
   color: #E1E1E1;
@@ -27880,30 +27875,6 @@ img.emoji {
   border-color: transparent !important;
 }
 
-.btn:hover {
-  border: 2px solid #ff66ac !important;
-}
-
-.btn:focus {
-  border: 2px solid #ff66ac !important;
-}
-
-.btn:active {
-  border: 2px solid #ff66ac !important;
-}
-
-.btn:focus-within {
-  border: 2px solid #ff66ac !important;
-}
-
-.btn:target {
-  border: 2px solid #ff66ac !important;
-}
-
-.btn:focus-visible {
-  border: 2px solid #ff66ac !important;
-}
-
 * {
   border-color: #FF66AC;
 }
@@ -27941,30 +27912,6 @@ img.emoji {
 
 .btn-lg, .btn-group-lg > .btn {
   border-color: transparent !important;
-}
-
-.btn:hover {
-  border: 2px solid #ff66ac !important;
-}
-
-.btn:focus {
-  border: 2px solid #ff66ac !important;
-}
-
-.btn:active {
-  border: 2px solid #ff66ac !important;
-}
-
-.btn:focus-within {
-  border: 2px solid #ff66ac !important;
-}
-
-.btn:target {
-  border: 2px solid #ff66ac !important;
-}
-
-.btn:focus-visible {
-  border: 2px solid #ff66ac !important;
 }
 
 /*# sourceMappingURL=dark.css.map */

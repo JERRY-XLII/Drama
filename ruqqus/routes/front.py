@@ -45,12 +45,24 @@ def notifications(v):
 		c._is_blocked = False
 		c._is_blocking = False
 		c.replies = []
-		if c.level > 1 and c.parent_comment.author_id == v.id:
-			while c.level > 1:
-				c.parent_comment.replies = [c]
-				c = c.parent_comment
-				if c.level == 1: listing.append(c)
+		if c.author_id == 1046:
+			c._is_system = True
+			listing.append(c)
+		elif c.level > 1 and c.parent_comment and c.parent_comment.author_id == v.id:
+			c._is_comment_reply = True
+			parent = c.parent_comment
+
+			if parent in listing:
+				parent.replies = parent.replies + [c]
+			else:
+				parent.replies = [c]
+				listing.append(parent)
+
+		elif c.level == 1 and c.post and c.post.author_id == v.id:
+			c._is_post_reply = True
+			listing.append(c)
 		else:
+			c._is_username_mention = True
 			listing.append(c)
 
 	board = get_board(1)

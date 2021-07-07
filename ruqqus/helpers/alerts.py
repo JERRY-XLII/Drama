@@ -4,7 +4,7 @@ from ruqqus.classes import *
 from flask import g
 from .markdown import *
 from .sanitize import *
-from .get import get_comment
+
 
 def send_notification(vid, user, text):
 
@@ -15,9 +15,9 @@ def send_notification(vid, user, text):
 	text_html = sanitize(text_html, linkgen=True)
 	
 	new_comment = Comment(author_id=vid,
-							parent_submission=None,
-							distinguish_level=6,
-							)
+						  parent_submission=None,
+						  distinguish_level=6,
+						  )
 	g.db.add(new_comment)
 
 	g.db.flush()
@@ -41,9 +41,9 @@ def send_pm(vid, user, text):
 	text_html = sanitize(text_html, linkgen=True)
 
 	new_comment = Comment(author_id=vid,
-							parent_submission=None,
-							sentto=user.username
-							)
+						  parent_submission=None,
+						  sentto=user.username
+						  )
 	g.db.add(new_comment)
 
 	g.db.flush()
@@ -52,5 +52,56 @@ def send_pm(vid, user, text):
 	g.db.add(new_aux)
 
 	notif = Notification(comment_id=new_comment.id, user_id=user.id)
+	g.db.add(notif)
+	g.db.commit()
+
+
+def send_follow_notif(vid, user, text):
+
+	with CustomRenderer() as renderer:
+		text_html = renderer.render(mistletoe.Document(text))
+	text_html = sanitize(text_html, linkgen=True)
+	
+	new_comment = Comment(author_id=1046,
+						  parent_submission=None,
+						  distinguish_level=6,
+						  )
+	g.db.add(new_comment)
+	g.db.flush()
+
+	new_aux = CommentAux(id=new_comment.id,
+						 body=text,
+						 body_html=text_html,
+						 )
+	g.db.add(new_aux)
+
+	notif = Notification(comment_id=new_comment.id,
+						 user_id=user,
+						 followsender=vid)
+	g.db.add(notif)
+	g.db.commit()
+	
+def send_unfollow_notif(vid, user, text):
+
+	with CustomRenderer() as renderer:
+		text_html = renderer.render(mistletoe.Document(text))
+	text_html = sanitize(text_html, linkgen=True)
+	
+	new_comment = Comment(author_id=1046,
+						  parent_submission=None,
+						  distinguish_level=6,
+						  )
+	g.db.add(new_comment)
+	g.db.flush()
+
+	new_aux = CommentAux(id=new_comment.id,
+						 body=text,
+						 body_html=text_html,
+						 )
+	g.db.add(new_aux)
+
+	notif = Notification(comment_id=new_comment.id,
+						 user_id=user,
+						 unfollowsender=vid)
 	g.db.add(notif)
 	g.db.commit()
