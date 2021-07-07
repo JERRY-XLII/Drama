@@ -30,13 +30,9 @@ BAN_REASONS = ['',
 def messagereply(v, username, id):
 	message = request.form.get("message", "")
 	user = get_user(username)
-	print('sexer')
 	with CustomRenderer() as renderer: text_html = renderer.render(mistletoe.Document(message))
-	print("-4")
 	text_html = sanitize(text_html, linkgen=True)
-	print("-3")
 	parent = get_comment(int(id), v=v)
-	print("-2")
 	new_comment = Comment(author_id=v.id,
 							parent_submission=None,
 							parent_fullname=parent.fullname,
@@ -44,23 +40,14 @@ def messagereply(v, username, id):
 							level=parent.level + 1,
 							sentto=user.username
 							)
-	print("-1")
 	g.db.add(new_comment)
-	print("0")
 	g.db.flush()
-	print("1")
 	new_aux = CommentAux(id=new_comment.id, body=message, body_html=text_html)
-	print("2")
 	g.db.add(new_aux)
-	print("3")
 	notif = Notification(comment_id=new_comment.id, user_id=user.id)
-	print("4")
 	g.db.add(notif)
-	print("5")
 	g.db.commit()
-	print("6")
-	print('niger')
-	return redirect('/notifications')
+	return redirect('/notifications?sent=true')
 
 @app.route("/songs/<id>", methods=["GET"])
 def songs(id):
