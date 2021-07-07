@@ -492,6 +492,8 @@ class Notification(Base):
 	user_id = Column(Integer, ForeignKey("users.id"))
 	comment_id = Column(Integer, ForeignKey("comments.id"))
 	read = Column(Boolean, default=False)
+	followsender = Column(Integer, default=None)
+	unfollowsender = Column(Integer, default=None)
 
 	comment = relationship("Comment", lazy="joined", innerjoin=True)
 	user=relationship("User", innerjoin=True)
