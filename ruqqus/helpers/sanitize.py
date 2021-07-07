@@ -190,7 +190,7 @@ def sanitize(text, linkgen=False):
 	
 	for i in re.finditer(':(.{1,30}?):', sanitized):
 		if os.path.isfile(f'/d/ruqqus/assets/images/emojis/{i.group(1)}.gif'):
-			sanitized = sanitized.replace(f':{i.group(1)}:', f'<img data-toggle="tooltip" title="{i.group(1)}" delay="0" height=20 src="/assets/images/emojis/{i.group(1)}.gif"<span>')
+			sanitized = sanitized.replace(f':{i.group(1)}:', f'<img data-toggle="tooltip" title="{i.group(1)}" delay="0" height=25 src="/assets/images/emojis/{i.group(1)}.gif"<span>')
 
 	if '" rel="nofollow noopener" target="_blank">https://streamable.com/' in sanitized:
 		if "https://streamable.com/e/" not in sanitized: sanitized = sanitized.replace("https://streamable.com/", "https://streamable.com/e/")
