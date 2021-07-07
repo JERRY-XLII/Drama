@@ -640,18 +640,16 @@ def settings_song_change(v):
 
 	duration = requests.get(f"https://www.googleapis.com/youtube/v3/videos?id={id}&key={youtubekey}&part=contentDetails").json()['items'][0]['contentDetails']['duration']
 	if "H" in duration:
-		print(duration)
 		return render_template("settings_profile.html",
 					v=v,
-					error=f"Duration of the video must not exceed 5 minutes.")
+					error=f"Duration of the video must not exceed 10 minutes.")
 
 	if "M" in duration:
 		duration = int(duration.split("PT")[1].split("M")[0])
-		print(duration)
-		if duration > 5: 
+		if duration > 10: 
 			return render_template("settings_profile.html",
 						v=v,
-						error=f"Duration of the video must not exceed 5 minutes.")
+						error=f"Duration of the video must not exceed 10 minutes.")
 
 
 	if v.song and os.path.isfile(f"/songs/{v.song}.mp3") and g.db.query(User).filter_by(song=v.song).count() == 1:
