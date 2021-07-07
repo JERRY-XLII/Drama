@@ -80,6 +80,26 @@ $reddit: #ED4630;
 	border-color: transparent !important;
 }
 
-.btn:hover, .btn:focus {
+.btn:hover {
+    border: 2px solid #ff66ac !important;
+}
+
+.btn:focus {
+    border: 2px solid #ff66ac !important;
+}
+
+.btn:active {
+    border: 2px solid #ff66ac !important;
+}
+
+.btn:focus-within {
+    border: 2px solid #ff66ac !important;
+}
+
+.btn:target {
+    border: 2px solid #ff66ac !important;
+}
+
+.btn:focus-visible {
     border: 2px solid #ff66ac !important;
 }
