@@ -4181,3 +4181,7 @@ img.emoji {
 .btn-lg {
 	border-color: transparent !important;
 }
+
+.btn:hover, .btn:focus {
+    border: 2px solid #ff66ac !important;
+}
