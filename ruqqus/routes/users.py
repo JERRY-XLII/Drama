@@ -75,9 +75,9 @@ def message2(v, username):
 	
 @app.route("/<id>/reply", methods=["POST"])
 @auth_required
-def message2(v, id):
+def messagereply(v, id):
 	message = request.form.get("message", "")
-	send_reply(v.id, message)
+	send_reply(v.id, id, message)
 	return redirect('/notifications')
 
 @app.route("/2faqr/<secret>", methods=["GET"])

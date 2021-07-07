@@ -61,8 +61,6 @@ def send_reply(vid, id, text):
 	with CustomRenderer() as renderer: text_html = renderer.render(mistletoe.Document(text))
 
 	text_html = sanitize(text_html, linkgen=True)
-
-
 	parent = get_comment(id, v=v)
 	new_comment = Comment(author_id=vid,
 							parent_submission=None,
