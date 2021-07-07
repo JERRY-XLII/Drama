@@ -56,12 +56,7 @@ def notifications(v):
 					listing.append(parent)
 				c = parent
 				level -= 1
-
-		elif c.level == 1 and c.post and c.post.author_id == v.id:
-			c._is_post_reply = True
-			listing.append(c)
 		else:
-			c._is_username_mention = True
 			listing.append(c)
 
 	board = get_board(1)
