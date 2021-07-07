@@ -233,7 +233,7 @@ def front_all(v):
 			posts2.append(post)
 	posts = posts2
 
-	if random.random() < 0.002:
+	if random.random() < 0.0002:
 		for post in posts:				
 			if post.author.shadowbanned and 
 				rand = random.randint(500,1400)
