@@ -17,6 +17,7 @@ from ruqqus.helpers.security import *
 from urllib.parse import urlparse
 from secrets import token_hex
 import matplotlib.pyplot as plt
+from .front import frontlist
 
 from ruqqus.__main__ import app, cache
 
