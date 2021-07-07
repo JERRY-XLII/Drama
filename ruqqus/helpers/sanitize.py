@@ -107,7 +107,7 @@ _clean_w_links = bleach.Cleaner(tags=_allowed_tags,
 								)
 
 
-def sanitize(text, linkgen=False):
+def sanitize(text, linkgen=False, flair=False):
 
 	text = text.replace("\ufeff", "").replace("m.youtube.com", "youtube.com")
 	
@@ -188,9 +188,11 @@ def sanitize(text, linkgen=False):
 	end = '&lt;/s&gt;' 
 	if start in sanitized and end in sanitized and start in sanitized.split(end)[0] and end in sanitized.split(start)[1]: sanitized = sanitized.replace(start, '<span class="spoiler">').replace(end, '</span>')
 	
+	if flair: emojisize = 20
+	else: emojisize = 30
 	for i in re.finditer(':(.{1,30}?):', sanitized):
 		if os.path.isfile(f'/d/ruqqus/assets/images/emojis/{i.group(1)}.gif'):
-			sanitized = sanitized.replace(f':{i.group(1)}:', f'<img data-toggle="tooltip" title="{i.group(1)}" delay="0" height=25 src="/assets/images/emojis/{i.group(1)}.gif"<span>')
+			sanitized = sanitized.replace(f':{i.group(1)}:', f'<img data-toggle="tooltip" title="{i.group(1)}" delay="0" height={emojisize} src="/assets/images/emojis/{i.group(1)}.gif"<span>')
 
 	if '" rel="nofollow noopener" target="_blank">https://streamable.com/' in sanitized:
 		if "https://streamable.com/e/" not in sanitized: sanitized = sanitized.replace("https://streamable.com/", "https://streamable.com/e/")

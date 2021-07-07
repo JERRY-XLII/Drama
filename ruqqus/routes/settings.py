@@ -706,7 +706,7 @@ def settings_title_change(v):
 						   error="You didn't change anything")
 
 	new_name=new_name.replace('_','\_')
-	new_name = sanitize(new_name, linkgen=True)
+	new_name = sanitize(new_name, linkgen=True, flair=True)
 
 	v=g.db.query(User).with_for_update().options(lazyload('*')).filter_by(id=v.id).first()
 	v.customtitle=new_name
