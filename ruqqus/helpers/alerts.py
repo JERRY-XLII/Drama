@@ -42,6 +42,7 @@ def send_pm(vid, user, text):
 
 	new_comment = Comment(author_id=vid,
 							parent_submission=None,
+							sentto=user.username
 							)
 	g.db.add(new_comment)
 
@@ -55,7 +56,7 @@ def send_pm(vid, user, text):
 	g.db.commit()
 
 
-def send_reply(v, id, user, text):
+def send_reply(v, id, text):
 
 	with CustomRenderer() as renderer: text_html = renderer.render(mistletoe.Document(text))
 
@@ -66,7 +67,6 @@ def send_reply(v, id, user, text):
 							parent_fullname=parent.fullname,
 							parent_comment_id=id,
 							level=parent.level + 1,
-							sentto=user.username
 							)
 
 	g.db.add(new_comment)
