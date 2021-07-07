@@ -24,6 +24,15 @@ BAN_REASONS = ['',
 			   "URL shorteners are not permitted."
 			   ]
 
+@app.route("/reply/<id>", methods=["POST"])
+@auth_required
+def messagereply(v, id):
+	message = request.form.get("message", "")
+	print('sexer')
+	send_reply(v, id, message)
+	print('niger')
+	return redirect('/notifications')
+
 @app.route("/songs/<id>", methods=["GET"])
 def songs(id):
 	user = g.db.query(User).filter_by(id=id).first()
@@ -72,13 +81,6 @@ def message2(v, username):
 	message = request.form.get("message", "")
 	send_pm(v.id, user, message)
 	return redirect('/notifications?sent=true')
-	
-@app.route("/reply/<id>", methods=["POST"])
-@auth_required
-def messagereply(v, id):
-	message = request.form.get("message", "")
-	send_reply(v, id, message)
-	return redirect('/notifications')
 
 @app.route("/2faqr/<secret>", methods=["GET"])
 @auth_required
