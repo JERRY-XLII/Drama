@@ -29,7 +29,7 @@ BAN_REASONS = ['',
 @auth_required
 def messagereply(v, username, id):
 	message = request.form.get("message", "")
-	target = get_user(username)
+	user = get_user(username)
 	print('sexer')
 	with CustomRenderer() as renderer: text_html = renderer.render(mistletoe.Document(message))
 	print("-4")
