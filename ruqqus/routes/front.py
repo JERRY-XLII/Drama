@@ -45,7 +45,7 @@ def notifications(v):
 		c._is_blocked = False
 		c._is_blocking = False
 		c.replies = []
-		if c.level > 1 and c.parent_comment and c.parent_comment.author_id == v.id:
+		if c.level > 1 and c.parent_comment.author_id == v.id:
 			c._is_comment_reply = True
 			parent = c.parent_comment
 
