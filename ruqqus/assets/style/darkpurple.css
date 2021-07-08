@@ -25739,7 +25739,7 @@ div:hover .thumb-img-link-overlay {
   word-break: break-word;
   color: #CFCFCF;
   overflow: hidden;
-  padding-right: 5px !important;
+  padding-right: 10px !important;
 }
 
 .comment .comment-body .comment-image {
@@ -27886,30 +27886,6 @@ img.emoji {
   border-color: transparent !important;
 }
 
-.btn:hover {
-  border: 2px solid #ff66ac !important;
-}
-
-.btn:focus {
-  border: 2px solid #ff66ac !important;
-}
-
-.btn:active {
-  border: 2px solid #ff66ac !important;
-}
-
-.btn:focus-within {
-  border: 2px solid #ff66ac !important;
-}
-
-.btn:target {
-  border: 2px solid #ff66ac !important;
-}
-
-.btn:focus-visible {
-  border: 2px solid #ff66ac !important;
-}
-
 * {
   border-color: #805AD5;
 }
@@ -27947,30 +27923,6 @@ img.emoji {
 
 .btn-lg, .btn-group-lg > .btn {
   border-color: transparent !important;
-}
-
-.btn:hover {
-  border: 2px solid #ff66ac !important;
-}
-
-.btn:focus {
-  border: 2px solid #ff66ac !important;
-}
-
-.btn:active {
-  border: 2px solid #ff66ac !important;
-}
-
-.btn:focus-within {
-  border: 2px solid #ff66ac !important;
-}
-
-.btn:target {
-  border: 2px solid #ff66ac !important;
-}
-
-.btn:focus-visible {
-  border: 2px solid #ff66ac !important;
 }
 
 /*# sourceMappingURL=darkpurple.css.map */
