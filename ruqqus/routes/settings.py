@@ -169,7 +169,7 @@ def settings_profile_post(v):
 	if theme:
 		v.theme = theme
 		if theme == "coffee": v.themecolor = "38a169"
-		elif theme == "coffee": v.themecolor = "80ffff"
+		elif theme == "tron": v.themecolor = "80ffff"
 		g.db.add(v)
 		return "", 204
 
