@@ -24,6 +24,30 @@ BAN_REASONS = ['',
 			   "URL shorteners are not permitted."
 			   ]
 
+@app.route("/@<username>/reply/<id>", methods=["POST"])
+@auth_required
+def messagereply(v, username, id):
+	message = request.form.get("message", "")
+	user = get_user(username)
+	with CustomRenderer() as renderer: text_html = renderer.render(mistletoe.Document(message))
+	text_html = sanitize(text_html, linkgen=True)
+	parent = get_comment(int(id), v=v)
+	new_comment = Comment(author_id=v.id,
+							parent_submission=None,
+							parent_fullname=parent.fullname,
+							parent_comment_id=id,
+							level=parent.level + 1,
+							sentto=user.username
+							)
+	g.db.add(new_comment)
+	g.db.flush()
+	new_aux = CommentAux(id=new_comment.id, body=message, body_html=text_html)
+	g.db.add(new_aux)
+	notif = Notification(comment_id=new_comment.id, user_id=user.id)
+	g.db.add(notif)
+	g.db.commit()
+	return redirect('/notifications?sent=true')
+
 @app.route("/songs/<id>", methods=["GET"])
 def songs(id):
 	user = g.db.query(User).filter_by(id=id).first()
