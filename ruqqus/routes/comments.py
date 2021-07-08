@@ -874,19 +874,19 @@ def mod_toggle_comment_pin(bid, cid, v):
 	
 	if not v.admin_level == 6 and not v.id == comment.post.author_id:
 		abort(403)
-	if comment.post.board_id != board.id:
-		abort(400)
 
 	comment.is_pinned = not comment.is_pinned
 
 	g.db.add(comment)
-	ma=ModAction(
-		kind="pin_comment" if comment.is_pinned else "unpin_comment",
-		user_id=v.id,
-		board_id=board.id,
-		target_comment_id=comment.id
-	)
-	g.db.add(ma)
+
+i	if v.admin_level == 6:
+		ma=ModAction(
+			kind="pin_comment" if comment.is_pinned else "unpin_comment",
+			user_id=v.id,
+			board_id=1,
+			target_comment_id=comment.id
+		)
+		g.db.add(ma)
 
 	html=render_template(
 				"comments.html",
