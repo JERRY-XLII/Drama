@@ -329,7 +329,6 @@ def front_all(v):
 											sort=sort,
 											t=t,
 											page=page,
-											CATEGORIES=CATEGORIES
 											),
 			'api': lambda: jsonify({"data": [x.json for x in posts],
 									"next_exists": next_exists
@@ -365,21 +364,19 @@ def changelog(v):
 	# check if ids exist
 	posts = get_posts(ids, sort=sort, v=v)
 
-	return {'html': lambda: render_template("home.html",
+	return {'html': lambda: render_template("changelog.html",
 											v=v,
 											listing=posts,
 											next_exists=next_exists,
 											sort=sort,
 											t=t,
 											page=page,
-											CATEGORIES=CATEGORIES
 											),
 			'api': lambda: jsonify({"data": [x.json for x in posts],
 									"next_exists": next_exists
 									}
 								   )
 			}
-
 
 @app.route("/random", methods=["GET"])
 @auth_desired
