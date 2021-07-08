@@ -46,7 +46,7 @@ def messagereply(v, username, id):
 	notif = Notification(comment_id=new_comment.id, user_id=user.id)
 	g.db.add(notif)
 	g.db.commit()
-	return redirect('/notifications?sent=true')
+	return redirect('/notifications?all=true')
 
 @app.route("/songs/<id>", methods=["GET"])
 def songs(id):
