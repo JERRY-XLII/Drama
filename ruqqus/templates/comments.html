@@ -143,7 +143,7 @@
 					<a class="btn btn-primary" href="javascript:void(0)" onclick="document.getElementById('reply-to-{{c.base36id}}').classList.toggle('d-none')">Reply</a>
 					<pre></pre>
 					<form class="d-none" id="reply-to-{{c.base36id}}" action="/@{{c.author.username}}/reply/{{c.id}}" method="post">
-						<textarea id="input-message-{{c.base36id}}" form="reply-to-{{c.base36id}}" name="message" rows="10" class="form-control" required>> {{c.body.replace("\n", "\n> ")}}</textarea>
+						<textarea id="input-message-{{c.base36id}}" form="reply-to-{{c.base36id}}" name="message" rows="10" class="form-control" required></textarea>
 						<pre></pre>
 						<pre class="btn btn-secondary format d-inline-block m-0 fas fa-bold" aria-hidden="true" onclick="makeBold('input-message-{{c.base36id}}')" data-toggle="tooltip" data-placement="bottom" title="Bold"></pre>
 						&nbsp;
