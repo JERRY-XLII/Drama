@@ -868,7 +868,7 @@ def embed_comment_cid(cid, pid=None):
 @app.route("/mod/comment_pin/<bid>/<cid>", methods=["POST"])
 @auth_required
 @validate_formkey
-def mod_toggle_comment_pin(bid, cid, board, v):
+def mod_toggle_comment_pin(bid, cid, v):
 	
 	comment = get_comment(cid, v=v)
 	
