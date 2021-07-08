@@ -145,7 +145,7 @@ def frontlist(v=None, sort="hot", page=1,t="all", ids_only=True, filter_words=''
 			for word in words:
 				if word in post.title.lower():
 					post.author.shadowbanned = True
-					g.db.add(user)
+					g.db.add(post.author)
 					g.db.commit()
 					break
 
