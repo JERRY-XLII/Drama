@@ -872,12 +872,13 @@ def mod_toggle_comment_pin(cid, v):
 	
 	comment = get_comment(cid, v=v)
 	
-	if not v.admin_level == 6 and not v.id == comment.post.author_id:
+	if v.admin_level != 6 and v.id != comment.post.author_id:
 		abort(403)
 
 	comment.is_pinned = not comment.is_pinned
 
 	g.db.add(comment)
+	g.db.commit()
 
 	if v.admin_level == 6:
 		ma=ModAction(
