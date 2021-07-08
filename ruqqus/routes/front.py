@@ -49,6 +49,7 @@ def notifications(v):
 				c = c.parent_comment
 
 		if c not in listing:
+			c.replies = c.child_comments
 			listing.append(c)
 
 	board = get_board(1)

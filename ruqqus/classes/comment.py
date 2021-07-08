@@ -154,11 +154,6 @@ class Comment(Base, Age_times, Scores, Stndrd, Fuzzing):
 			return g.db.query(Comment).get(self.parent_comment_id)
 
 	@property
-	def children(self):
-
-		return g.db.query(Comment).filter_by(parent_comment_id=self.id).all()
-
-	@property
 	def replies(self):
 
 		r = self.__dict__.get("replies", None)
