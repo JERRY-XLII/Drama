@@ -530,16 +530,6 @@ report_postModal = function(id, author, board) {
 
 	document.getElementById("post-author").textContent = author;
 
-	offtopic=document.getElementById('report-post-to-guild-dropdown-option');
-	offtopic.innerHTML= 'This post is off-topic for +' + board;
-
-	if (board=='general') {
-		offtopic.disabled=true;
-	}
-	else {
-		offtopic.disabled=false;
-	}
-
 	selectbox=document.getElementById('report-type-dropdown');
 	selectbox.value='reason_not_selected';
 
