@@ -107,6 +107,8 @@ def post_base36id(pid, anything=None, v=None):
 	post = get_post_with_comments(pid, v=v, sort=sort)
 	
 	post.views += 1
+	g.db.add(post)
+	g.db.commit()
 
 	board = post.board
 
