@@ -96,8 +96,8 @@ def frontlist(v=None, sort="hot", page=1,t="all", ids_only=True, filter_words=''
 			Submission.author_id.notin_(blocked)
 		)
 
-	posts=posts.join(Submission.submission_aux).join(Submission.author)
-	posts=posts.filter(not_(SubmissionAux.title.ilike(f'%[changelog]%') and User.admin_level == 6))
+	posts=posts.join(Submission.submission_aux)
+	posts=posts.filter(not_(SubmissionAux.title.ilike(f'%[changelog]%')))
 
 	if v and filter_words:
 		for word in filter_words:
