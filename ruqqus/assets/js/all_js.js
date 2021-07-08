@@ -149,7 +149,7 @@ $('#new_email').on('input', function () {
 				let gifs = [];
 				let apiKey = tenor_api_key();
 				let lmt = 25;
-				let url = "https://g.tenor.com/v1/search/posts/?q=" + searchTerm + "&key=" + apiKey + "&limit=" + lmt;
+				let url = "https://g.tenor.com/v1/search/?q=" + searchTerm + "&key=" + apiKey + "&limit=" + lmt;
 				fetch(url)
 				.then(response => {
 					return response.json();
@@ -1707,36 +1707,6 @@ herald_comment=function(bid,cid){
 	xhr.send(form)
 
 }
-
-pin_comment=function(bid,cid){
-
-
-	var xhr = new XMLHttpRequest();
-	xhr.open("post", "/mod/comment_pin/"+bid+'/'+cid);
-
-	var form = new FormData();
-
-	form.append('formkey', formkey());
-
-	xhr.withCredentials=true;
-	xhr.onload=function(){
-		if (xhr.status==200) {
-			comment=document.getElementById('comment-'+cid+'-only');
-			comment.innerHTML=JSON.parse(xhr.response)["html"];
-		}
-		else {
-			var commentError = document.getElementById("comment-error-text");
-			$('#toast-comment-success').toast('dispose');
-			$('#toast-comment-error').toast('dispose');
-			$('#toast-comment-error').toast('show');
-			commentError.textContent = JSON.parse(xhr.response)["error"];
-		}
-	}
-	xhr.send(form)
-
-}
-
-
 
 //part of submit page js
 
