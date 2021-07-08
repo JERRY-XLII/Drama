@@ -27868,6 +27868,12 @@ img.emoji {
   position: relative;
 }
 
+* [href$="/@Yall"] {
+  -webkit-animation: 3s ease-in-out 0s normal none infinite lgbt;
+  animation: 3s ease-in-out 0s normal none infinite lgbt;
+  position: relative;
+}
+
 .alert {
   color: #000000;
 }

@@ -968,7 +968,7 @@ def submit_post(v):
 	g.db.flush()
 	n = Notification(comment_id=c.id, user_id=v.id)
 	g.db.add(n)
-
+	g.db.commit()
 	send_message(f"https://rdrama.net{new_post.permalink}")
 	return {"html": lambda: redirect(new_post.permalink),
 			"api": lambda: jsonify(new_post.json)
