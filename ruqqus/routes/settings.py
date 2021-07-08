@@ -28,8 +28,6 @@ youtubekey = environ.get("youtubekey").strip()
 @auth_required
 @validate_formkey
 def settings_profile_post(v):
-	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
-
 	updated = False
 
 	if request.values.get("slurreplacer", v.slurreplacer) != v.slurreplacer:
@@ -188,10 +186,17 @@ def settings_profile_post(v):
 @auth_required
 @validate_formkey
 def namecolor(v):
-	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
-
 	color = str(request.form.get("color", "")).strip()
 	v.namecolor = color
+	g.db.add(v)
+	return redirect("/settings/profile")
+	
+@app.route("/settings/themecolor", methods=["POST"])
+@auth_required
+@validate_formkey
+def themecolor(v):
+	color = str(request.form.get("color", "")).strip()
+	v.themecolor = color
 	g.db.add(v)
 	return redirect("/settings/profile")
 
@@ -199,8 +204,6 @@ def namecolor(v):
 @auth_required
 @validate_formkey
 def titlecolor(v):
-	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
-
 	color = str(request.form.get("titlecolor", "")).strip()
 	v.titlecolor = color
 	g.db.add(v)
@@ -210,8 +213,6 @@ def titlecolor(v):
 @auth_required
 @validate_formkey
 def settings_security_post(v):
-	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
-
 	if request.form.get("new_password"):
 		if request.form.get(
 				"new_password") != request.form.get("cnf_password"):
@@ -312,32 +313,6 @@ def settings_security_post(v):
 
 		return redirect("/settings/security?msg=" +
 						escape("Two-factor authentication disabled."))
-
-
-@app.route("/settings/light_mode/<x>", methods=["POST"])
-@auth_required
-@validate_formkey
-def settings_light_mode(x, v):
-
-	try:
-		x = int(x)
-	except BaseException:
-		abort(400)
-
-	if x not in [0, 1]:
-		abort(400)
-
-	if not v.can_use_darkmode:
-		session["light_mode_enabled"] = False
-		abort(403)
-	else:
-		# print(f"current cookie is {session.get('light_mode_enabled')}")
-		session["light_mode_enabled"] = x
-		# print(f"set dark mode @{v.username} to {x}")
-		# print(f"cookie is now {session.get('light_mode_enabled')}")
-		session.modified = True
-		return "", 204
-
 
 @app.route("/settings/log_out_all_others", methods=["POST"])
 @auth_required
