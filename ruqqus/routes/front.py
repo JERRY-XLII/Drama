@@ -45,11 +45,14 @@ def notifications(v):
 		c._is_blocked = False
 		c._is_blocking = False
 		if c.parent_comment and c.parent_comment.author_id == v.id:
+			print('sex')
 			while c.level > 1:
+				print('niggaa')
 				c = c.parent_comment
 
 		if c not in listing:
 			listing.append(c)
+			break
 
 	board = get_board(1)
 	nsfw = (v and v.over_18) or session_over18(board)
