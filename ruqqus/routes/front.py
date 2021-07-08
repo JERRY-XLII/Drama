@@ -86,7 +86,6 @@ def frontlist(v=None, sort="hot", page=1,t="all", ids_only=True, filter_words=''
 
 	posts = g.db.query(Submission).options(lazyload('*')).filter_by(is_banned=False,stickied=False,private=False,).filter(Submission.deleted_utc == 0)
 
-		
 	if v and v.admin_level == 0:
 		blocking = g.db.query(
 			UserBlock.target_id).filter_by(
@@ -99,8 +98,101 @@ def frontlist(v=None, sort="hot", page=1,t="all", ids_only=True, filter_words=''
 			Submission.author_id.notin_(blocked)
 		)
 
+	posts=posts.join(Submission.submission_aux)
+	posts=posts.filter(not_(SubmissionAux.title.ilike(f'%[changelog]%')))
+
 	if v and filter_words:
-		posts=posts.join(Submission.submission_aux)
+		for word in filter_words:
+			#print(word)
+			posts=posts.filter(not_(SubmissionAux.title.ilike(f'%{word}%')))
+
+	if t != 'all': 
+		cutoff = 0
+		now = int(time.time())
+		if t == 'hour':
+			cutoff = now - 3600
+		elif t == 'day':
+			cutoff = now - 86400
+		elif t == 'week':
+			cutoff = now - 604800
+		elif t == 'month':
+			cutoff = now - 2592000
+		elif t == 'year':
+			cutoff = now - 31536000
+		posts = posts.filter(Submission.created_utc >= cutoff)
+
+	gt = kwargs.get("gt")
+	lt = kwargs.get("lt")
+
+	if gt:
+		posts = posts.filter(Submission.created_utc > gt)
+
+	if lt:
+		posts = posts.filter(Submission.created_utc < lt)
+
+	if sort == "hot":
+		posts = sorted(posts.all(), key=lambda x: x.hotscore, reverse=True)
+	elif sort == "new":
+		posts = posts.order_by(Submission.created_utc.desc()).all()
+	elif sort == "old":
+		posts = posts.order_by(Submission.created_utc.asc()).all()
+	elif sort == "controversial":
+		posts = sorted(posts.all(), key=lambda x: x.score_disputed, reverse=True)
+	elif sort == "top":
+		posts = posts.order_by(Submission.score.desc()).all()
+	elif sort == "bottom":
+		posts = posts.order_by(Submission.score.asc()).all()
+	elif sort == "comments":
+		posts = posts.order_by(Submission.comment_count.desc()).all()
+	elif sort == "random":
+		posts = posts.all()
+		posts = random.sample(posts, k=len(posts))
+	else:
+		abort(400)
+
+	firstrange = 25 * (page - 1)
+	secondrange = firstrange+26
+	posts = posts[firstrange:secondrange]
+	
+	words = ['r-pe', 'k-d', 'm-lest', 's-x', 'captainmeta4', ' cm4 ', 'dissident001', 'p-do', 'ladine']
+
+	for post in posts:
+		if post.author.admin_level == 0:
+			for word in words:
+				if word in post.title.lower():
+					post.author.shadowbanned = True
+					g.db.add(user)
+					g.db.commit()
+					break
+
+	if ids_only:
+		posts = [x.id for x in posts]
+		return posts
+	return posts
+
+@cache.memoize(timeout=1500)
+def changeloglist(v=None, sort="hot", page=1,t="all", ids_only=True, filter_words='', **kwargs):
+
+	# cutoff=int(time.time())-(60*60*24*30)
+
+	posts = g.db.query(Submission).options(lazyload('*')).filter_by(is_banned=False,stickied=False,private=False,).filter(Submission.deleted_utc == 0)
+			
+	if v and v.admin_level == 0:
+		blocking = g.db.query(
+			UserBlock.target_id).filter_by(
+			user_id=v.id).subquery()
+		blocked = g.db.query(
+			UserBlock.user_id).filter_by(
+			target_id=v.id).subquery()
+		posts = posts.filter(
+			Submission.author_id.notin_(blocking),
+			Submission.author_id.notin_(blocked)
+		)
+		
+	posts=posts.join(Submission.submission_aux)
+	posts=posts.filter(SubmissionAux.title.ilike(f'%[changelog]%'))
+
+	if v and filter_words:
 		for word in filter_words:
 			#print(word)
 			posts=posts.filter(not_(SubmissionAux.title.ilike(f'%{word}%')))
@@ -267,6 +359,106 @@ def front_all(v):
 									}
 								   )
 			}
+
+@app.route("/changelog", methods=["GET"])
+@app.route("/api/v1/changelog", methods=["GET"])
+@auth_desired
+@api("read")
+def front_all(v):
+	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
+
+	page = int(request.args.get("page") or 1)
+
+	# prevent invalid paging
+	page = max(page, 1)
+
+	if v:
+		defaultsorting = v.defaultsorting
+		defaulttime = v.defaulttime
+	else:
+		defaultsorting = "hot"
+		defaulttime = "all"
+
+	sort=request.args.get("sort", defaultsorting)
+	t=request.args.get('t', defaulttime)
+
+	#handle group cookie
+	groups = request.args.get("groups")
+	if groups:
+		session['groupids']=[int(x) for x in groups.split(',')]
+		session.modified=True
+
+	ids = changeloglist(sort=sort,
+					page=page,
+					t=t,
+					v=v,
+					gt=int(request.args.get("utc_greater_than", 0)),
+					lt=int(request.args.get("utc_less_than", 0)),
+					filter_words=v.filter_words if v else [],
+					)
+
+	# check existence of next page
+	next_exists = (len(ids) == 26)
+	ids = ids[0:25]
+
+   # If page 1, check for sticky
+	if page == 1:
+		sticky = []
+		sticky = g.db.query(Submission).filter_by(stickied=True).all()
+		if sticky:
+			for p in sticky:
+				ids = [p.id] + ids
+	# check if ids exist
+	posts = get_posts(ids, sort=sort, v=v)
+	
+	posts2 = []
+	if v and v.hidevotedon:
+		for post in posts:
+			if post.voted == 0:
+				posts2.append(post)
+		posts = posts2
+	
+	posts2 = []
+	for post in posts:
+		if not post.author.shadowbanned or (v and v.id == post.author_id):
+			posts2.append(post)
+	posts = posts2
+
+	if random.random() < 0.0002:
+		for post in posts:				
+			if post.author.shadowbanned: 
+				rand = random.randint(500,1400)
+				vote = Vote(user_id=rand,
+					vote_type=random.choice([-1, -1, -1, -1, 1]),
+					submission_id=post.id)
+				g.db.add(vote)
+				try: g.db.flush()
+				except:
+					g.db.rollback()
+					print(rand)
+					print(post.id)
+					continue
+				post.upvotes = post.ups
+				post.downvotes = post.downs
+				post.views = post.views + random.randint(7,10)
+				g.db.add(post)
+				g.db.commit()
+
+	return {'html': lambda: render_template("home.html",
+											v=v,
+											listing=posts,
+											next_exists=next_exists,
+											sort=sort,
+											t=t,
+											page=page,
+											CATEGORIES=CATEGORIES
+											),
+			'api': lambda: jsonify({"data": [x.json for x in posts],
+									"next_exists": next_exists
+									}
+								   )
+			}
+
 
 @app.route("/random", methods=["GET"])
 @auth_desired
