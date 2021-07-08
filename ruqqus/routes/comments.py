@@ -879,7 +879,7 @@ def mod_toggle_comment_pin(bid, cid, v):
 
 	g.db.add(comment)
 
-i	if v.admin_level == 6:
+	if v.admin_level == 6:
 		ma=ModAction(
 			kind="pin_comment" if comment.is_pinned else "unpin_comment",
 			user_id=v.id,
