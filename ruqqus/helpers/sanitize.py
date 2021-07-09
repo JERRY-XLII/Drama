@@ -211,6 +211,7 @@ def sanitize(text, linkgen=False, flair=False):
 		sanitized = sanitized.replace(replacing, htmlsource)
 
 	for i in re.finditer('rel="nofollow noopener" target="_blank">(https://youtube.com/embed/.*?)"', sanitized):
+		print('sex')
 		url = i.group(1)
 		replacing = f'<p><a href="{url}" rel="nofollow noopener" target="_blank">{url}</a></p>'
 		htmlsource = f'<div style="padding-top:5px; padding-bottom: 10px;"><iframe allowfullscreen="" frameborder="0" src="{url}"></iframe></div>'
