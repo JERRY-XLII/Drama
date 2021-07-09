@@ -187,7 +187,7 @@ def settings_profile_post(v):
 def changelogsub(v):
 	v.changelogsub = not v.changelogsub
 	g.db.add(v)
-	cache.delete_memoized(frontlist, v=v)
+	cache.delete_memoized(frontlist)
 	return "", 204
 
 @app.route("/settings/namecolor", methods=["POST"])
