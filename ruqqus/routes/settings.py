@@ -73,7 +73,7 @@ def settings_profile_post(v):
 		v.is_nofollow = request.values.get("nofollow", None) == 'true'
 
 	if request.values.get("bio") is not None:
-		bio = request.values.get("bio")[0:500]
+		bio = request.values.get("bio")[0:1500]
 
 		#bio=preprocess(bio)
 
