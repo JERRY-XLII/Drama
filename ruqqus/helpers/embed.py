@@ -4,8 +4,7 @@ import requests
 from os import environ
 from ruqqus.__main__ import app
 
-youtube_regex = re.compile(
-	"^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*")
+youtube_regex = re.compile("^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|shorts\/|\&v=)([^#\&\?]*).*")
 
 ruqqus_regex = re.compile("^.*rdrama.net/post/+\w+/(\w+)(/\w+/(\w+))?")
 
