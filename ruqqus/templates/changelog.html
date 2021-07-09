@@ -65,6 +65,10 @@
 
 {% block content %}
 
+{% if v %}
+<a class="btn btn-primary " href="javascript:void(0)" onclick="post('/changelogsub', function(){window.location.reload(true);})">{{"Subscribe" if v.changelogsub else "Unsubscribe"}}</a>
+{% endif %}
+
 <div class="row no-gutters {% if listing %}mt-md-3{% elif not listing %}my-md-3{% endif %}">
 
 	<div class="col-12">

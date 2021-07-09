@@ -83,8 +83,9 @@ def frontlist(v=None, sort="hot", page=1,t="all", ids_only=True, filter_words=''
 			Submission.author_id.notin_(blocked)
 		)
 
-	posts=posts.join(Submission.submission_aux)
-	posts=posts.filter(not_(SubmissionAux.title.ilike(f'%[changelog]%')))
+	if not (v and v.changelogsub):
+		posts=posts.join(Submission.submission_aux)
+		posts=posts.filter(not_(SubmissionAux.title.ilike(f'%[changelog]%')))
 
 	if v and filter_words:
 		for word in filter_words:
@@ -246,12 +247,6 @@ def front_all(v):
 
 	sort=request.args.get("sort", defaultsorting)
 	t=request.args.get('t', defaulttime)
-
-	#handle group cookie
-	groups = request.args.get("groups")
-	if groups:
-		session['groupids']=[int(x) for x in groups.split(',')]
-		session.modified=True
 
 	ids = frontlist(sort=sort,
 					page=page,

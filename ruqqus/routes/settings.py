@@ -181,6 +181,13 @@ def settings_profile_post(v):
 	else:
 		return jsonify({"error": "You didn't change anything."}), 400
 
+@app.route("/changelogsub", methods=["POST"])
+@auth_required
+@validate_formkey
+def changelogsub(v):
+	v.changelogsub = not v.changelogsub
+	g.db.add(v)
+	return "", 204
 
 @app.route("/settings/namecolor", methods=["POST"])
 @auth_required

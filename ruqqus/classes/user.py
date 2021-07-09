@@ -47,6 +47,7 @@ class User(Base, Stndrd, Age_times):
 	passhash = deferred(Column(String, default=None))
 	created_utc = Column(Integer, default=0)
 	admin_level = Column(Integer, default=0)
+	changelogsub = Column(Boolean, default=False)
 	is_activated = Column(Boolean, default=False)
 	shadowbanned = Column(Boolean, default=False)
 	over_18 = Column(Boolean, default=False)
