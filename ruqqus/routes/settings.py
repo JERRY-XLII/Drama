@@ -195,8 +195,10 @@ def changelogsub(v):
 @validate_formkey
 def namecolor(v):
 	color = str(request.form.get("color", "")).strip()
+	print(color)
 	v.namecolor = color
 	g.db.add(v)
+	g.db.commit()
 	return redirect("/settings/profile")
 	
 @app.route("/settings/themecolor", methods=["POST"])
