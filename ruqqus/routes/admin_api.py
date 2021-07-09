@@ -71,7 +71,7 @@ def admin_title_change(user_id, v):
 
 	new_name=request.form.get("title").strip()
 
-	v.customtitleplain=new_name
+	user.customtitleplain=new_name
 	new_name=new_name.replace('_','\_')
 	new_name = sanitize(new_name, linkgen=True)
 
