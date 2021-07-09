@@ -13201,12 +13201,12 @@ fieldset:disabled a.btn {
 }
 .btn-purple:hover {
   color: #F1E7D0;
-  background-color: #ff4097;
+  background-color: #ff66ac;
   border-color: #ff3390;
 }
 .btn-purple:focus, .btn-purple.focus {
   color: #F1E7D0;
-  background-color: #ff4097;
+  background-color: #ff66ac;
   border-color: #ff3390;
   box-shadow: 0 0 0 0.2rem rgba(250, 118, 176, 0.5);
 }
