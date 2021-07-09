@@ -123,11 +123,14 @@ def ban_user(user_id, v):
 
 	send_notification(1046, user, text)
 	
+	if days == 0: duration = "permenant"
+	else: duration = f"{days} days"
 	ma=ModAction(
 		kind="exile_user",
 		user_id=v.id,
 		target_user_id=user.id,
 		board_id=1,
+        note=f'reason: "{reason}", duration: {duration}'
 		)
 	g.db.add(ma)
 	g.db.commit()
