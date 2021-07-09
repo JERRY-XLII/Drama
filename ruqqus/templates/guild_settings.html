@@ -132,7 +132,7 @@
 	{% endblock %}
 
 	<!-- Settings content -->
-	<div class="container mt-3">
+	<div class="{% if request.path == '/banned' %}container-fluid{% else %}container{% endif %} mt-3">
 
 	 {% block content %}
 	 {% endblock %}
