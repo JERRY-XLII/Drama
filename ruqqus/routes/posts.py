@@ -921,14 +921,10 @@ def submit_post(v):
 		
 	for x in notify_users: send_notification(1046, x, f"@{v.username} has mentioned you: https://rdrama.net{new_post.permalink}")
 		
-
-	try:
+	if not new_post.private:
 		for follow in v.followers:
 			user = get_account(follow.user_id)
 			send_notification(2360, user, f"@{v.username} has made a new post: [{title}](https://rdrama.net{new_post.permalink})")
-	except Exception as e:
-		print(e)
-		pass
 
 	new_post.upvotes = new_post.ups
 	new_post.downvotes = new_post.downs
