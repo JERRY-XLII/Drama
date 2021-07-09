@@ -16,6 +16,10 @@ from ruqqus.helpers.alerts import *
 def index():
     return render_template("index.html", **{"greeting": "Hello from Flask!"})
 
+@app.route("/assets/favicon.ico", methods=["GET"])
+def favicon():
+	return send_file("./assets/images/favicon.png")
+
 @app.route("/oauthhelp", methods=["GET"])
 @auth_desired
 def oauthhelp(v):
