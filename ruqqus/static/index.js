@@ -1,4 +1,4 @@
-const vm = new Vue({ // Again, vm is our Vue instance's name for consistency.
+const vm = new Vue({
     el: '#vm',
     delimiters: ['[[', ']]'],
     data: {

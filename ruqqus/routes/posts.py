@@ -226,8 +226,6 @@ def edit_post(pid, v):
 @limiter.limit("6/minute")
 @is_not_banned
 @no_negative_balance("html")
-#@tos_agreed
-#@validate_formkey
 def get_post_title(v):
 
 	url = request.args.get("url", None)
