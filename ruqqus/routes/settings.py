@@ -624,8 +624,12 @@ def settings_song_change(v):
 		return render_template("settings_profile.html",
 				   v=v,
 				   msg=f"Profile song changed successfully.")
-
-	duration = requests.get(f"https://www.googleapis.com/youtube/v3/videos?id={id}&key={youtubekey}&part=contentDetails").json()['items'][0]['contentDetails']['duration']
+	
+	req = requests.get(f"https://www.googleapis.com/youtube/v3/videos?id={id}&key={youtubekey}&part=contentDetails").json()
+	try: duration = req['items'][0]['contentDetails']['duration']
+	except:
+		print(req)
+		abort(400)
 	if "H" in duration:
 		return render_template("settings_profile.html",
 					v=v,

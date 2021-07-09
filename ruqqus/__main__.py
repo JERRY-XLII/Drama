@@ -325,7 +325,8 @@ def log_event(name, link):
 @app.after_request
 def after_request(response):
 
-	g.db.commit()
+	try: g.db.commit()
+	except: pass
 	g.db.close()
 
 	response.headers.add('Access-Control-Allow-Headers',
