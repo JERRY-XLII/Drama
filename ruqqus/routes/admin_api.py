@@ -71,6 +71,7 @@ def admin_title_change(user_id, v):
 
 	new_name=request.form.get("title").strip()
 
+	v.customtitleplain=new_name
 	new_name=new_name.replace('_','\_')
 	new_name = sanitize(new_name, linkgen=True)
 
@@ -79,7 +80,6 @@ def admin_title_change(user_id, v):
 	user.flairchanged = bool(request.form.get("locked"))
 
 	g.db.add(user)
-	g.db.commit()
 
 	return (redirect(user.url), user)
 
