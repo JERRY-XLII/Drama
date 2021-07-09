@@ -194,6 +194,7 @@ def changelogsub(v):
 @auth_required
 @validate_formkey
 def namecolor(v):
+	print('sex')
 	color = str(request.form.get("color", "")).strip()
 	print(color)
 	v.namecolor = color
