@@ -4190,3 +4190,9 @@ img.emoji {
 .btn-lg {
 	border-color: transparent !important;
 }
+
+@media (max-width: 767.98px) {
+	.followbutton {
+		margin-bottom: 10px !important;
+	}
+}
