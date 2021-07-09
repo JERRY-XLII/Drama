@@ -29,6 +29,7 @@ class Board(Base, Stndrd, Age_times):
 	over_18=Column(Boolean, default=False)
 	is_nsfl=Column(Boolean, default=False)
 	is_banned=Column(Boolean, default=False)
+	disablesignups=Column(Boolean, default=False)
 	has_banner=Column(Boolean, default=False)
 	has_profile=Column(Boolean, default=False)
 	creator_id=Column(Integer, ForeignKey("users.id"))

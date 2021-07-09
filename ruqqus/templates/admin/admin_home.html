@@ -27,4 +27,10 @@
 * [Content Stats](/admin/content_stats)
 
 {% endfilter %}
+
+<div class="custom-control custom-switch">
+	<input type="checkbox" class="custom-control-input" id="disablesignups" name="disablesignups" {% if b.disablesignups %}checked{% endif %} onchange="post('/disablesignups');">
+	<label class="custom-control-label" for="disablesignups">Disable signups</label>
+</div>
+
 {% endblock %}

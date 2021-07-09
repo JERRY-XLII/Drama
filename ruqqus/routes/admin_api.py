@@ -21,6 +21,15 @@ from .front import frontlist
 
 from ruqqus.__main__ import app, cache
 
+@app.route("/disablesignups", methods=["POST"])
+@admin_level_required(6)
+@validate_formkey
+def shadowban(user_id, v):
+	board = g.db.query(Board).filter_by(id=1).first()
+	board.disablesignups = not board.disablesignups
+	g.db.add(board)
+	return "", 204
+
 @app.route("/shadowban/<user_id>", methods=["POST"])
 @admin_level_required(6)
 @validate_formkey

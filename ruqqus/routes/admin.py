@@ -115,7 +115,8 @@ def flagged_comments(v):
 @app.route("/admin", methods=["GET"])
 @admin_level_required(3)
 def admin_home(v):
-	return render_template("admin/admin_home.html", v=v)
+	board = g.db.query(Board).filter_by(id=1).first()
+	return render_template("admin/admin_home.html", v=v, b=b)
 
 
 @app.route("/admin/badge_grant", methods=["GET"])

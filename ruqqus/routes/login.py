@@ -181,6 +181,9 @@ def logout(v):
 @no_cors
 @auth_desired
 def sign_up_get(v):
+	board = g.db.query(Board).filter_by(id=1).first()
+	if board.disablesignups: return "Signups are disable for the time being.", 403
+
 	if v:
 		return redirect("/")
 
@@ -242,6 +245,8 @@ def sign_up_get(v):
 @no_cors
 @auth_desired
 def sign_up_post(v):
+	board = g.db.query(Board).filter_by(id=1).first()
+	if board.disablesignups: return "Signups are disable for the time being.", 403
 
 	if v:
 		abort(403)
