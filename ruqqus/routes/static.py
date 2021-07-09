@@ -12,6 +12,10 @@ from ruqqus.__main__ import app, limiter
 from ruqqus.helpers.get import get_account
 from ruqqus.helpers.alerts import *
 
+@app.route("/sex")
+def index():
+    return render_template("index.html", **{"greeting": "Hello from Flask!"})
+
 @app.route("/oauthhelp", methods=["GET"])
 @auth_desired
 def oauthhelp(v):
