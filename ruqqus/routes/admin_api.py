@@ -24,7 +24,7 @@ from ruqqus.__main__ import app, cache
 @app.route("/disablesignups", methods=["POST"])
 @admin_level_required(6)
 @validate_formkey
-def disablesignups(user_id, v):
+def disablesignups(v):
 	board = g.db.query(Board).filter_by(id=1).first()
 	board.disablesignups = not board.disablesignups
 	g.db.add(board)
