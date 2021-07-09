@@ -23662,7 +23662,7 @@ body.using-mouse :focus {
 .sticky {
   position: -webkit-sticky;
   position: sticky;
-  top: 48px;
+  top: 47px;
   height: auto;
   overflow-y: auto;
   z-index: 4;
