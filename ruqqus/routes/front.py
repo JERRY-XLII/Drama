@@ -133,6 +133,10 @@ def frontlist(v=None, sort="hot", page=1,t="all", ids_only=True, filter_words=''
 	
 	words = [' r-pe', ' r-ping ', ' k-d ', ' k-ds ', ' m-lest', ' s-x ', ' j-p ', ' j-ps ', ' j-pan', ' p-do', ' captainmeta4 ', ' cm4 ', ' dissident001 ', ' ladine ']
 
+	firstrange = 25 * (page - 1)
+	secondrange = firstrange+100
+	posts = posts2[firstrange:secondrange]
+
 	for post in posts:
 		if post.author.admin_level == 0:
 			for word in words:
@@ -154,7 +158,6 @@ def frontlist(v=None, sort="hot", page=1,t="all", ids_only=True, filter_words=''
 		if not post.author.shadowbanned or (v and v.id == post.author_id):
 			posts2.append(post)
 
-	firstrange = 25 * (page - 1)
 	secondrange = firstrange+26
 	posts = posts2[firstrange:secondrange]
 
