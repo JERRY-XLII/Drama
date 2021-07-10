@@ -94,7 +94,7 @@ class CustomRenderer(HTMLRenderer):
 		except BaseException:
 			pass
 
-		if (not user: return f"{space}@{target}"
+		if not user: return f"{space}@{target}"
 
 		return f'{space}<a href="{user.permalink}" class="d-inline-block mention-user" data-original-name="{user.original_username}"><img src="/uid/{user.base36id}/pic/profile" class="profile-pic-20 mr-1">@{user.username}</a>'
 			
