@@ -604,8 +604,9 @@ def settings_name_change(v):
 @auth_required
 @validate_formkey
 def settings_song_change(v):
-
-	song=request.form.get("song").strip()
+	print(request.form.get("song"))
+	song=request.form.get("song").strip(
+	print(song)
 
 	song = song.replace("https://music.youtube.com", "https://youtube.com")
 	if song.startswith(("https://www.youtube.com/watch?v=", "https://youtube.com/watch?v=", "https://m.youtube.com/watch?v=")):
