@@ -135,7 +135,7 @@ def frontlist(v=None, sort="hot", page=1,t="all", ids_only=True, filter_words=''
 
 	firstrange = 25 * (page - 1)
 	secondrange = firstrange+100
-	posts = posts2[firstrange:secondrange]
+	posts = posts[firstrange:secondrange]
 
 	for post in posts:
 		if post.author and post.author.admin_level == 0:
