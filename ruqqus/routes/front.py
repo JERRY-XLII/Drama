@@ -147,7 +147,7 @@ def frontlist(v=None, sort="hot", page=1,t="all", ids_only=True, filter_words=''
 					break
 
 	if v and v.hidevotedon:
-	posts2 = []
+		posts2 = []
 		for post in posts:
 			if post.voted == 0:
 				posts2.append(post)
