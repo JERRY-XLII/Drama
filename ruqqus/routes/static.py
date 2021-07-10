@@ -29,19 +29,13 @@ def oauthhelp(v):
 @auth_desired
 def contact(v):
 	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
-
 	return render_template("contact.html", v=v)
 
 @app.route("/contact", methods=["POST"])
 @auth_desired
 def submit_contact(v):
-
 	message = f'This message has been sent automatically to all admins via https://rdrama.net/contact, user email is "{v.email}"\n\nMessage:\n\n' + request.form.get("message", "")
-
-	admins = g.db.query(User).filter(User.admin_level > 0).all()
-
-	for x in admins: send_pm(v.id, x, message)
-
+	send_admin(v.id, x, message)
 	return render_template("contact.html", v=v, msg="Your message has been sent.")
 
 @app.route('/assets/<path:path>')
