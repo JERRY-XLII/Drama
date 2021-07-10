@@ -35,7 +35,7 @@ def contact(v):
 @auth_desired
 def submit_contact(v):
 	message = f'This message has been sent automatically to all admins via https://rdrama.net/contact, user email is "{v.email}"\n\nMessage:\n\n' + request.form.get("message", "")
-	send_admin(v.id, x, message)
+	send_admin(v.id, message)
 	return render_template("contact.html", v=v, msg="Your message has been sent.")
 
 @app.route('/assets/<path:path>')

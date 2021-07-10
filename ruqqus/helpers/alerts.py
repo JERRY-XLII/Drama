@@ -107,7 +107,7 @@ def send_unfollow_notif(vid, user, text):
 	g.db.add(notif)
 	g.db.commit()
 	
-def send_admin(vid, user, text):
+def send_admin(vid, text):
 
 	with CustomRenderer() as renderer: text_html = renderer.render(mistletoe.Document(text))
 
