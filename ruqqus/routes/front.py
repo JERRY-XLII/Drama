@@ -146,10 +146,102 @@ def frontlist(v=None, sort="hot", page=1,t="all", ids_only=True, filter_words=''
 					g.db.commit()
 					break
 
+	if v and v.hidevotedon:
+	posts2 = []
+		for post in posts:
+			if post.voted == 0:
+				posts2.append(post)
+		posts = posts2
+	
+	posts2 = []
+	for post in posts:
+		if not post.author.shadowbanned or (v and v.id == post.author_id):
+			posts2.append(post)
+	posts = posts2
+
+	if random.random() < 0.001:
+		for post in posts:				
+			if post.author.shadowbanned: 
+				rand = random.randint(500,1400)
+				vote = Vote(user_id=rand,
+					vote_type=random.choice([-1, -1, -1, -1, 1]),
+					submission_id=post.id)
+				g.db.add(vote)
+				try: g.db.flush()
+				except:
+					g.db.rollback()
+					print(rand)
+					print(post.id)
+					continue
+				post.upvotes = post.ups
+				post.downvotes = post.downs
+				post.views = post.views + random.randint(7,10)
+				g.db.add(post)
+				g.db.commit()
+
+	if page == 1:
+		sticky = []
+		sticky = g.db.query(Submission).filter_by(stickied=True).all()
+		if sticky:
+			for p in sticky:
+				posts = [p] + posts
+
 	if ids_only:
 		posts = [x.id for x in posts]
 		return posts
 	return posts
+
+@app.route("/", methods=["GET"])
+@app.route("/api/v1/listing", methods=["GET"])
+@auth_desired
+@api("read")
+def front_all(v):
+	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
+
+	page = int(request.args.get("page") or 1)
+
+	# prevent invalid paging
+	page = max(page, 1)
+
+	if v:
+		defaultsorting = v.defaultsorting
+		defaulttime = v.defaulttime
+	else:
+		defaultsorting = "hot"
+		defaulttime = "all"
+
+	sort=request.args.get("sort", defaultsorting)
+	t=request.args.get('t', defaulttime)
+
+	ids = frontlist(sort=sort,
+					page=page,
+					t=t,
+					v=v,
+					gt=int(request.args.get("utc_greater_than", 0)),
+					lt=int(request.args.get("utc_less_than", 0)),
+					filter_words=v.filter_words if v else [],
+					)
+
+	# check existence of next page
+	next_exists = (len(ids) == 26)
+	ids = ids[0:25]
+
+	# check if ids exist
+	posts = get_posts(ids, sort=sort, v=v)
+
+	return {'html': lambda: render_template("home.html",
+											v=v,
+											listing=posts,
+											next_exists=next_exists,
+											sort=sort,
+											t=t,
+											page=page,
+											),
+			'api': lambda: jsonify({"data": [x.json for x in posts],
+									"next_exists": next_exists
+									}
+								   )
+			}
 
 @cache.memoize(timeout=1500)
 def changeloglist(v=None, sort="new", page=1 ,t="all", **kwargs):
@@ -219,100 +311,8 @@ def changeloglist(v=None, sort="new", page=1 ,t="all", **kwargs):
 	secondrange = firstrange+26
 	posts = posts[firstrange:secondrange]
 
-	posts2 = []
-	if v and v.hidevotedon:
-		for post in posts:
-			if post.voted == 0:
-				posts2.append(post)
-		posts = posts2
-	
-	posts2 = []
-	for post in posts:
-		if not post.author.shadowbanned or (v and v.id == post.author_id):
-			posts2.append(post)
-	posts = posts2
-
-	if random.random() < 0.0005:
-		for post in posts:				
-			if post.author.shadowbanned: 
-				rand = random.randint(500,1400)
-				vote = Vote(user_id=rand,
-					vote_type=random.choice([-1, -1, -1, -1, 1]),
-					submission_id=post.id)
-				g.db.add(vote)
-				try: g.db.flush()
-				except:
-					g.db.rollback()
-					print(rand)
-					print(post.id)
-					continue
-				post.upvotes = post.ups
-				post.downvotes = post.downs
-				post.views = post.views + random.randint(7,10)
-				g.db.add(post)
-				g.db.commit()
-
-	if page == 1:
-		sticky = []
-		sticky = g.db.query(Submission).filter_by(stickied=True).all()
-		if sticky:
-			for p in sticky:
-				posts = [p] + posts
-
 	posts = [x.id for x in posts]
 	return posts
-
-@app.route("/", methods=["GET"])
-@app.route("/api/v1/listing", methods=["GET"])
-@auth_desired
-@api("read")
-def front_all(v):
-	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
-
-	page = int(request.args.get("page") or 1)
-
-	# prevent invalid paging
-	page = max(page, 1)
-
-	if v:
-		defaultsorting = v.defaultsorting
-		defaulttime = v.defaulttime
-	else:
-		defaultsorting = "hot"
-		defaulttime = "all"
-
-	sort=request.args.get("sort", defaultsorting)
-	t=request.args.get('t', defaulttime)
-
-	ids = frontlist(sort=sort,
-					page=page,
-					t=t,
-					v=v,
-					gt=int(request.args.get("utc_greater_than", 0)),
-					lt=int(request.args.get("utc_less_than", 0)),
-					filter_words=v.filter_words if v else [],
-					)
-
-	# check existence of next page
-	next_exists = (len(ids) == 26)
-	ids = ids[0:25]
-
-	# check if ids exist
-	posts = get_posts(ids, sort=sort, v=v)
-
-	return {'html': lambda: render_template("home.html",
-											v=v,
-											listing=posts,
-											next_exists=next_exists,
-											sort=sort,
-											t=t,
-											page=page,
-											),
-			'api': lambda: jsonify({"data": [x.json for x in posts],
-									"next_exists": next_exists
-									}
-								   )
-			}
 
 @app.route("/changelog", methods=["GET"])
 @app.route("/api/v1/changelog", methods=["GET"])
