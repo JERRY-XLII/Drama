@@ -203,8 +203,8 @@ def namecolor(v):
 @auth_required
 @validate_formkey
 def themecolor(v):
-	color = str(request.form.get("color", "")).strip()
-	v.themecolor = color
+	themecolor = str(request.form.get("themecolor", "")).strip()
+	v.themecolor = themecolor
 	g.db.add(v)
 	return redirect("/settings/profile")
 
