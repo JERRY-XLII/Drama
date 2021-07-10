@@ -78,8 +78,19 @@ def admin_title_change(user_id, v):
 	user=g.db.query(User).with_for_update().options(lazyload('*')).filter_by(id=user.id).first()
 	user.customtitle=new_name
 	user.flairchanged = bool(request.form.get("locked"))
-
 	g.db.add(user)
+
+	if user.flairchanged: kind = "set_flair_locked"
+	else: kind = "set_flair_notlocked"
+	
+	ma=ModAction(
+		kind=kind,
+		user_id=v.id,
+		target_user_id=user.id,
+		board_id=1,
+		note=f'"{new_name}"'
+		)
+	g.db.add(ma)
 
 	return (redirect(user.url), user)
 
@@ -124,6 +135,7 @@ def ban_user(user_id, v):
 	send_notification(1046, user, text)
 	
 	if days == 0: duration = "permenant"
+	elif days == 1: duration = "1 day"
 	else: duration = f"{days} days"
 	ma=ModAction(
 		kind="exile_user",

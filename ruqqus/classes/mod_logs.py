@@ -181,6 +181,18 @@ ACTIONTYPES={
 		"color": "bg-muted",
 		"title": 'approved all content of {self.target_user.username}'
 	},
+	"set_flair_locked":{
+		"str":"set {self.target_link}'s flair (locked)",
+		"icon": "fa-user-slash",
+		"color": "bg-muted",
+		"title": "set {self.target_link}'s flair (locked)"
+	},
+	"set_flair_notocked":{
+		"str":"set {self.target_link}'s flair (not locked)",
+		"icon": "fa-user-slash",
+		"color": "bg-muted",
+		"title": "set {self.target_link}'s flair (not locked)"
+	},
 	"contrib_user":{
 		"str":'added contributor {self.target_link}',
 		"icon": "fa-user-check",
