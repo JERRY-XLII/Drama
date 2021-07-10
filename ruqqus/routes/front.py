@@ -130,10 +130,6 @@ def frontlist(v=None, sort="hot", page=1,t="all", ids_only=True, filter_words=''
 		posts = random.sample(posts, k=len(posts))
 	else:
 		abort(400)
-
-	firstrange = 25 * (page - 1)
-	secondrange = firstrange+26
-	posts = posts[firstrange:secondrange]
 	
 	words = [' r-pe', ' r-ping ', ' k-d ', ' k-ds ', ' m-lest', ' s-x ', ' j-p ', ' j-ps ', ' j-pan', ' p-do', ' captainmeta4 ', ' cm4 ', ' dissident001 ', ' ladine ']
 
@@ -157,7 +153,10 @@ def frontlist(v=None, sort="hot", page=1,t="all", ids_only=True, filter_words=''
 	for post in posts:
 		if not post.author.shadowbanned or (v and v.id == post.author_id):
 			posts2.append(post)
-	posts = posts2
+
+	firstrange = 25 * (page - 1)
+	secondrange = firstrange+26
+	posts = posts2[firstrange:secondrange]
 
 	if random.random() < 0.001:
 		for post in posts:				
