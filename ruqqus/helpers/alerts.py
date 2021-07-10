@@ -115,8 +115,7 @@ def send_admin(vid, text):
 
 	new_comment = Comment(author_id=vid,
 						  parent_submission=None,
-						  level=1,
-						  sentto=user.username
+						  level=1
 						  )
 	g.db.add(new_comment)
 	g.db.flush()
