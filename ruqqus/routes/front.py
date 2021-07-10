@@ -134,7 +134,7 @@ def frontlist(v=None, sort="hot", page=1,t="all", ids_only=True, filter_words=''
 	words = [' r-pe', ' r-ping ', ' k-d ', ' k-ds ', ' m-lest', ' s-x ', ' j-p ', ' j-ps ', ' j-pan', ' p-do', ' captainmeta4 ', ' cm4 ', ' dissident001 ', ' ladine ']
 
 	firstrange = 25 * (page - 1)
-	secondrange = firstrange+200
+	secondrange = firstrange+100
 	posts = posts[firstrange:secondrange]
 
 	for post in posts:
@@ -158,7 +158,14 @@ def frontlist(v=None, sort="hot", page=1,t="all", ids_only=True, filter_words=''
 		if not (post.author and post.author.shadowbanned) or (v and v.id == post.author_id):
 			posts2.append(post)
 	posts = posts2
-	
+
+	if page == 1:
+		sticky = []
+		sticky = g.db.query(Submission).filter_by(stickied=True).all()
+		if sticky:
+			for p in sticky:
+				posts = [p] + posts
+
 	secondrange = firstrange+26
 	posts = posts[firstrange:secondrange]
 
@@ -181,13 +188,6 @@ def frontlist(v=None, sort="hot", page=1,t="all", ids_only=True, filter_words=''
 				post.views = post.views + random.randint(7,10)
 				g.db.add(post)
 				g.db.commit()
-
-	if page == 1:
-		sticky = []
-		sticky = g.db.query(Submission).filter_by(stickied=True).all()
-		if sticky:
-			for p in sticky:
-				posts = [p] + posts
 
 	if ids_only:
 		posts = [x.id for x in posts]
