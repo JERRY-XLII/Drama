@@ -155,7 +155,7 @@ def frontlist(v=None, sort="hot", page=1,t="all", ids_only=True, filter_words=''
 	
 	posts2 = []
 	for post in posts:
-		if not post.author.shadowbanned or (v and v.id == post.author_id):
+		if not (post.author and post.author.shadowbanned) or (v and v.id == post.author_id):
 			posts2.append(post)
 
 	secondrange = firstrange+26
@@ -163,7 +163,7 @@ def frontlist(v=None, sort="hot", page=1,t="all", ids_only=True, filter_words=''
 
 	if random.random() < 0.001:
 		for post in posts:				
-			if post.author.shadowbanned: 
+			if post.author and post.author.shadowbanned: 
 				rand = random.randint(500,1400)
 				vote = Vote(user_id=rand,
 					vote_type=random.choice([-1, -1, -1, -1, 1]),
