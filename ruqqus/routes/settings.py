@@ -595,10 +595,7 @@ def settings_name_change(v):
 	g.db.add(v)
 	g.db.commit()
 
-	return render_template("settings_profile.html",
-					   v=v,
-					   msg=f"Username changed successfully.")
-
+	return redirect("/settings/profile")
 
 @app.route("/settings/song_change", methods=["POST"])
 @auth_required
@@ -619,9 +616,11 @@ def settings_song_change(v):
 	if "&" in id: id = id.split("&")[0]
 
 	if os.path.isfile(f'/songs/{id}.mp3'): 
-		return render_template("settings_profile.html",
-				   v=v,
-				   msg=f"Profile song changed successfully.")
+		v.song=id
+		g.db.add(v)
+		g.db.commit()
+		return redirect("/settings/profile")
+		
 	
 	req = requests.get(f"https://www.googleapis.com/youtube/v3/videos?id={id}&key={youtubekey}&part=contentDetails").json()
 	try: duration = req['items'][0]['contentDetails']['duration']
@@ -671,9 +670,7 @@ def settings_song_change(v):
 	g.db.add(v)
 	g.db.commit()
 
-	return render_template("settings_profile.html",
-					   v=v,
-					   msg=f"Profile song changed successfully.")
+	return redirect("/settings/profile")
 
 @app.route("/settings/title_change", methods=["POST"])
 @auth_required
@@ -706,9 +703,7 @@ def settings_title_change(v):
 	g.db.add(v)
 	g.db.commit()
 
-	return render_template("settings_profile.html",
-					   v=v,
-					   msg=f"Title changed successfully.")
+	return redirect("/settings/profile")
 
 @app.route("/settings/badges", methods=["POST"])
 @auth_required
