@@ -229,12 +229,8 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
 		is_allowed_to_comment = self.board.can_comment(
 			v) and not self.is_archived
 
-		nsfw = v and v.over_18
-		nsfl = v and v.show_nsfl
 		return render_template(template,
 							   v=v,
-							   nsfw=nsfw,
-							   nsfl=nsfl,
 							   p=self,
 							   sort=sort,
 							   linked_comment=comment,

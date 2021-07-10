@@ -349,12 +349,8 @@ def admin_distinguish_comment(c_id, v):
 
 	g.db.add(comment)
 	g.db.commit()
-	nsfw = v.over_18 or session_over18(comment.board)
-	nsfl = v.show_nsfl or session_isnsfl(comment.board)
 	html=render_template(
 				"comments.html",
-				nsfw=nsfw,
-				nsfl=nsfl,
 				v=v,
 				comments=[comment],
 				render_replies=False,

@@ -57,8 +57,7 @@ def post_pid_comment_cid(cid, pid=None, anything=None, v=None):
 	post = get_post(pid, v=v)
 	board = post.board
 		
-	if post.over_18 and not (
-			v and v.over_18) and not session_over18(comment.board):
+	if post.over_18 and not (v and v.over_18) and not session_over18(comment.board):
 		t = int(time.time())
 		return {'html': lambda: render_template("errors/nsfw.html",
 												v=v,
@@ -599,17 +598,12 @@ def api_comment(v):
 
 	# print(f"Content Event: @{v.username} comment {c.base36id}")
 
-	board = get_board(1)
-	nsfw = (v and v.over_18) or session_over18(board)
-	nsfl = (v and v.show_nsfl) or session_isnsfl(board)
-	
+	board = get_board(1)	
 	cache.delete_memoized(comment_idlist)
 	cache.delete_memoized(User.commentlisting, v)
 
 	return {"html": lambda: jsonify({"html": render_template("comments.html",
 															 v=v,
-															 nsfw=nsfw,
-															 nsfl=nsfl,
 															 comments=[c],
 															 render_replies=False,
 															 is_allowed_to_comment=True

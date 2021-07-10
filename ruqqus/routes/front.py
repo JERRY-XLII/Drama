@@ -53,12 +53,8 @@ def notifications(v):
 			listing.append(c)
 
 	board = get_board(1)
-	nsfw = (v and v.over_18) or session_over18(board)
-	nsfl = (v and v.show_nsfl) or session_isnsfl(board)
 	return render_template("notifications.html",
 						   v=v,
-						   nsfw = nsfw,
-						   nsfl = nsfl,
 						   notifications=listing,
 						   next_exists=next_exists,
 						   page=page,
