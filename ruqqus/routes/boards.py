@@ -281,7 +281,7 @@ def board_mod_log(v):
 
 @app.route("/log/<aid>", methods=["GET"])
 @auth_desired
-def mod_log_item(boardname, aid, v):
+def mod_log_item(aid, v):
 
 	action=g.db.query(ModAction).filter_by(id=base36decode(aid)).first()
 
