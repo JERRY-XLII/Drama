@@ -72,15 +72,16 @@ def unsubscribe(v, post_id):
 @auth_desired
 def leaderboard(v):
 	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
-	users1, users2 = leaderboard()
-	return render_template("leaderboard.html", v=v, users1=users1, users2=users2)
+	users1, users2, dramacoins = leaderboard()
+	return render_template("leaderboard.html", v=v, users1=users1, users2=users2, dramacoins=dramacoins)
 
 @cache.memoize(timeout=86400)
 def leaderboard():
 	users = g.db.query(User).options(lazyload('*'))
 	users1= sorted(users.all(), key=lambda x: x.dramacoins2, reverse=True)[:25]
 	users2 = users.order_by(User.follower_count.desc()).limit(26).all()
-	return users1, users2
+	dramacoins = [x.dramacoins2 for x in users1]
+	return users1, users2, dramacoins
 
 @app.route("/@<username>/message", methods=["POST"])
 @auth_required
