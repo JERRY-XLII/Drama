@@ -17,8 +17,6 @@ class ModAction(Base, Stndrd, Age_times):
 	target_user_id = Column(Integer, ForeignKey("users.id"), default=0)
 	target_submission_id = Column(Integer, ForeignKey("submissions.id"), default=0)
 	target_comment_id = Column(Integer, ForeignKey("comments.id"), default=0)
-	#targetLodge = Column(Integer, ForeignKey("lodges.id"), default=0)
-	#targetRule = Column(Boolean, ForeignKey("rules.id"), default=False)
 	_note=Column(String(256), default=None)
 	created_utc = Column(Integer, default=0)
 
@@ -26,8 +24,6 @@ class ModAction(Base, Stndrd, Age_times):
 	user = relationship("User", lazy="joined", primaryjoin="User.id==ModAction.user_id")
 	target_user = relationship("User", lazy="joined", primaryjoin="User.id==ModAction.target_user_id")
 	board = relationship("Board", lazy="joined")
-	#target_lodge = relationship("Lodge", lazy="joined")
-	#target_rule = relationship("Rule", lazy="joined")
 	target_post = relationship("Submission", lazy="joined")
 	target_comment = relationship("Comment", lazy="joined")
 
@@ -187,7 +183,7 @@ ACTIONTYPES={
 		"color": "bg-muted",
 		"title": "set {self.target_link}'s flair (locked)"
 	},
-	"set_flair_notocked":{
+	"set_flair_notlocked":{
 		"str":"set {self.target_link}'s flair (not locked)",
 		"icon": "fa-user-slash",
 		"color": "bg-muted",
