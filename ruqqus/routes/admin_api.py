@@ -269,6 +269,8 @@ def api_sticky_post(post_id, v):
 	if post:
 		post.stickied = not (post.stickied)
 		g.db.add(post)
+		g.db.commit()
+		cache.delete_memoized(frontlist)
 
 	return "", 204
 

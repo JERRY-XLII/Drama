@@ -252,6 +252,13 @@ def changeloglist(v=None, sort="new", page=1 ,t="all", **kwargs):
 				g.db.add(post)
 				g.db.commit()
 
+	if page == 1:
+		sticky = []
+		sticky = g.db.query(Submission).filter_by(stickied=True).all()
+		if sticky:
+			for p in sticky:
+				posts = [p] + posts
+
 	posts = [x.id for x in posts]
 	return posts
 
@@ -290,13 +297,6 @@ def front_all(v):
 	next_exists = (len(ids) == 26)
 	ids = ids[0:25]
 
-   # If page 1, check for sticky
-	if page == 1:
-		sticky = []
-		sticky = g.db.query(Submission).filter_by(stickied=True).all()
-		if sticky:
-			for p in sticky:
-				ids = [p.id] + ids
 	# check if ids exist
 	posts = get_posts(ids, sort=sort, v=v)
 
