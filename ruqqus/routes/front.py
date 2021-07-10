@@ -138,7 +138,7 @@ def frontlist(v=None, sort="hot", page=1,t="all", ids_only=True, filter_words=''
 	posts = posts2[firstrange:secondrange]
 
 	for post in posts:
-		if post.author.admin_level == 0:
+		if post.author and post.author.admin_level == 0:
 			for word in words:
 				if word in post.title.lower():
 					post.author.shadowbanned = True
