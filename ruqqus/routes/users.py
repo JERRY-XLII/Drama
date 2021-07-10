@@ -80,7 +80,7 @@ def leaderboard():
 	users = g.db.query(User).options(lazyload('*'))
 	users1= sorted(users, key=lambda x: x.dramacoins, reverse=True)[:100]
 	users2 = sorted(users1, key=lambda x: x.follower_count, reverse=True)[:10]
-	return users1[:25], users2, users3, users4
+	return users1[:25], users2
 
 @app.route("/@<username>/message", methods=["POST"])
 @auth_required
