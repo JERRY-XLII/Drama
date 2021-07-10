@@ -127,7 +127,7 @@ class ModAction(Base, Stndrd, Age_times):
 
 	@property
 	def permalink(self):
-		return f"{self.board.permalink}/mod/log/{self.base36id}"
+		return f"/log/{self.base36id}"
 	@property
 	def title_text(self):
 		if self.user.is_deleted:

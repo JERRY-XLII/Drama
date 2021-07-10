@@ -261,15 +261,8 @@ def board_about_mods(v):
 def board_mod_log(v):
 
 	page=int(request.args.get("page",1))
-	board=get_guild("general")
 
-	if board.is_banned:
-		return {
-			"html":lambda:(render_template("board_banned.html", v=v, b=board), 403),
-			"api":lambda:(jsonify({"error":f"+{board.name} is banned"}), 403)
-			}
-
-	actions=g.db.query(ModAction).filter_by(board_id=board.id).order_by(ModAction.id.desc()).offset(25*(page-1)).limit(26).all()
+	actions=g.db.query(ModAction).filter_by(board_id=1).order_by(ModAction.id.desc()).offset(25*(page-1)).limit(26).all()
 	actions=[i for i in actions]
 
 	next_exists=len(actions)==26
@@ -279,7 +272,6 @@ def board_mod_log(v):
 		"html":lambda:render_template(
 			"modlog.html",
 			v=v,
-			b=board,
 			actions=actions,
 			next_exists=next_exists,
 			page=page
@@ -287,7 +279,7 @@ def board_mod_log(v):
 		"api":lambda:jsonify({"data":[x.json for x in actions]})
 		}
 
-@app.route("/mod/log/<aid>", methods=["GET"])
+@app.route("/log/<aid>", methods=["GET"])
 @auth_desired
 def mod_log_item(boardname, aid, v):
 
@@ -301,7 +293,6 @@ def mod_log_item(boardname, aid, v):
 
 	return render_template("modlog.html",
 		v=v,
-		b=action.board,
 		actions=[action],
 		next_exists=False,
 		page=1,
