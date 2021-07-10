@@ -56,6 +56,7 @@ class ModAction(Base, Stndrd, Age_times):
 				return f'for <a href="{self.target_post.permalink}">post</a>'
 			elif self.target_comment:
 				return f'for <a href="{self.target_comment.permalink}">comment</a>'
+			else: return self._note
 		else:
 			return self._note or ""
 
