@@ -605,7 +605,7 @@ def settings_name_change(v):
 @validate_formkey
 def settings_song_change(v):
 	print(request.form.get("song"))
-	song=request.form.get("song").strip(
+	song=request.form.get("song").strip()
 	print(song)
 
 	song = song.replace("https://music.youtube.com", "https://youtube.com")
