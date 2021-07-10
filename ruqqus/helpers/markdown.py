@@ -101,7 +101,7 @@ class CustomRenderer(HTMLRenderer):
 	def render_sub_mention(self, token):
 		space = token.target[0]
 		target = token.target[1]
-		return f'{space}<a href="https://old,reddit.com/r/{target}" class="d-inline-block">r/{target}</a>'
+		return f'{space}<a href="https://old.reddit.com/r/{target}" class="d-inline-block">r/{target}</a>'
 		
 	def render_redditor_mention(self, token):
 		space = token.target[0]
