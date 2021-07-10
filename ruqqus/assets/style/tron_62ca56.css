@@ -158,7 +158,7 @@ a {
   background-color: transparent;
 }
 a:hover {
-  color: #ff1a83;
+  color: #62ca56;
   text-decoration: underline;
 }
 
@@ -2875,7 +2875,7 @@ fieldset:disabled a.btn {
   text-decoration: none;
 }
 .btn-link:hover {
-  color: #ff1a83;
+  color: #62ca56;
   text-decoration: underline;
 }
 .btn-link:focus, .btn-link.focus {
@@ -4542,7 +4542,7 @@ input[type=button].btn-block {
 }
 .page-link:hover {
   z-index: 2;
-  color: #ff1a83;
+  color: #62ca56;
   text-decoration: none;
   background-color: #62ca56;
   border-color: #00001f;
@@ -9678,7 +9678,7 @@ button.bg-dark:focus {
 }
 
 a.text-primary:hover, a.text-primary:focus {
-  color: #ff1a83 !important;
+  color: #62ca56 !important;
 }
 
 .text-secondary {
@@ -9686,7 +9686,7 @@ a.text-primary:hover, a.text-primary:focus {
 }
 
 a.text-secondary:hover, a.text-secondary:focus {
-  color: #ff1a83 !important;
+  color: #62ca56 !important;
 }
 
 .text-success {
@@ -9718,7 +9718,7 @@ a.text-warning:hover, a.text-warning:focus {
 }
 
 a.text-danger:hover, a.text-danger:focus {
-  color: #ff1a83 !important;
+  color: #62ca56 !important;
 }
 
 .text-light {
@@ -10153,7 +10153,7 @@ a {
   background-color: transparent;
 }
 a:hover {
-  color: #ff1a83;
+  color: #62ca56;
   text-decoration: underline;
 }
 
@@ -14295,7 +14295,7 @@ fieldset:disabled a.btn {
   text-decoration: none;
 }
 .btn-link:hover {
-  color: #ff1a83;
+  color: #62ca56;
   text-decoration: underline;
 }
 .btn-link:focus, .btn-link.focus {
@@ -15962,7 +15962,7 @@ input[type=button].btn-block {
 }
 .page-link:hover {
   z-index: 2;
-  color: #ff1a83;
+  color: #62ca56;
   text-decoration: none;
   background-color: #62ca56;
   border-color: #00001f;
@@ -23209,7 +23209,7 @@ button.bg-reddit:focus {
 }
 
 a.text-primary:hover, a.text-primary:focus {
-  color: #ff1a83 !important;
+  color: #62ca56 !important;
 }
 
 .text-secondary {
@@ -23217,7 +23217,7 @@ a.text-primary:hover, a.text-primary:focus {
 }
 
 a.text-secondary:hover, a.text-secondary:focus {
-  color: #ff1a83 !important;
+  color: #62ca56 !important;
 }
 
 .text-success {
@@ -23249,7 +23249,7 @@ a.text-warning:hover, a.text-warning:focus {
 }
 
 a.text-danger:hover, a.text-danger:focus {
-  color: #ff1a83 !important;
+  color: #62ca56 !important;
 }
 
 .text-light {
@@ -23289,7 +23289,7 @@ a.text-black:hover, a.text-black:focus {
 }
 
 a.text-muted:hover, a.text-muted:focus {
-  color: #ff1a83 !important;
+  color: #62ca56 !important;
 }
 
 .text-downvote {
@@ -23305,7 +23305,7 @@ a.text-downvote:hover, a.text-downvote:focus {
 }
 
 a.text-upvote:hover, a.text-upvote:focus {
-  color: #ff1a83 !important;
+  color: #62ca56 !important;
 }
 
 .text-purple {
@@ -23313,7 +23313,7 @@ a.text-upvote:hover, a.text-upvote:focus {
 }
 
 a.text-purple:hover, a.text-purple:focus {
-  color: #ff1a83 !important;
+  color: #62ca56 !important;
 }
 
 .text-gold {
@@ -23329,7 +23329,7 @@ a.text-gold:hover, a.text-gold:focus {
 }
 
 a.text-admin:hover, a.text-admin:focus {
-  color: #ff1a83 !important;
+  color: #62ca56 !important;
 }
 
 .text-gray {
@@ -23337,7 +23337,7 @@ a.text-admin:hover, a.text-admin:focus {
 }
 
 a.text-gray:hover, a.text-gray:focus {
-  color: #ff1a83 !important;
+  color: #62ca56 !important;
 }
 
 .text-gray-100 {
@@ -23345,7 +23345,7 @@ a.text-gray:hover, a.text-gray:focus {
 }
 
 a.text-gray-100:hover, a.text-gray-100:focus {
-  color: #ff1a83 !important;
+  color: #62ca56 !important;
 }
 
 .text-gray-200 {
@@ -23353,7 +23353,7 @@ a.text-gray-100:hover, a.text-gray-100:focus {
 }
 
 a.text-gray-200:hover, a.text-gray-200:focus {
-  color: #ff1a83 !important;
+  color: #62ca56 !important;
 }
 
 .text-gray-300 {
@@ -23369,7 +23369,7 @@ a.text-gray-300:hover, a.text-gray-300:focus {
 }
 
 a.text-gray-400:hover, a.text-gray-400:focus {
-  color: #ff1a83 !important;
+  color: #62ca56 !important;
 }
 
 .text-gray-500 {

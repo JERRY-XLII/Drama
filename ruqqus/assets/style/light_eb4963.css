@@ -261,7 +261,7 @@ a {
   background-color: transparent;
 }
 a:hover {
-  color: #ff1a83;
+  color: #eb4963;
   text-decoration: underline;
 }
 
@@ -4178,7 +4178,7 @@ fieldset:disabled a.btn {
   text-decoration: none;
 }
 .btn-link:hover {
-  color: #ff1a83;
+  color: #eb4963;
   text-decoration: underline;
 }
 .btn-link:focus, .btn-link.focus {
@@ -5845,7 +5845,7 @@ input[type=button].btn-block {
 }
 .page-link:hover {
   z-index: 2;
-  color: #ff1a83;
+  color: #eb4963;
   text-decoration: none;
   background-color: #EDF2F7;
   border-color: #E2E8F0;
@@ -12917,7 +12917,7 @@ button.bg-reddit:focus {
 }
 
 a.text-primary:hover, a.text-primary:focus {
-  color: #ff1a83 !important;
+  color: #eb4963 !important;
 }
 
 .text-secondary {
@@ -13013,7 +13013,7 @@ a.text-downvote:hover, a.text-downvote:focus {
 }
 
 a.text-upvote:hover, a.text-upvote:focus {
-  color: #ff1a83 !important;
+  color: #eb4963 !important;
 }
 
 .text-purple {
@@ -13021,7 +13021,7 @@ a.text-upvote:hover, a.text-upvote:focus {
 }
 
 a.text-purple:hover, a.text-purple:focus {
-  color: #ff1a83 !important;
+  color: #eb4963 !important;
 }
 
 .text-gold {
@@ -13037,7 +13037,7 @@ a.text-gold:hover, a.text-gold:focus {
 }
 
 a.text-admin:hover, a.text-admin:focus {
-  color: #ff1a83 !important;
+  color: #eb4963 !important;
 }
 
 .text-gray {
