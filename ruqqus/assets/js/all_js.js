@@ -87,6 +87,10 @@ $('#new_email').on('input', function () {
 		{
 			type:'wojak',
 			emojis: ['abusivewife','ancap','bardfinn','bloomer','boomer','boomermonster','brainletbush','brainletcaved','brainletchair','brainletchest','brainletmaga','brainletpit','chad','chadarab','chadasian','chadblack','chadjesus','chadjew','chadjihadi','chadlatino','chadlibleft','chadnordic','chadsikh','chadusa','coomer','doomer','doomerfront','doomergirl','ethot','fatbrain','fatpriest','femboy','gogetter','grug','monke','nazijak','npc','npcfront','npcmaga','psychojak','ragejak','ragemask','ramonajak','soyjackwow','soyjak','soyjakfront','soyjakhipster','soyjakmaga','soyjakyell','tomboy','zoomer','zoomersoy']
+		},
+		{
+			type:'flags',
+			emojis: ['animesexual','blacknation','blm','blueline','dreamgender','fatpride','incelpride','israel','landlordlove','scalperpride','superstraight','trans','translord','transracial','usa']
 		}
 		]
 
