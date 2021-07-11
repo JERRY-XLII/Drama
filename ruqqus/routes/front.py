@@ -44,13 +44,21 @@ def notifications(v):
 	for c in comments:
 		c._is_blocked = False
 		c._is_blocking = False
-		if c.parent_comment and c.parent_comment.author_id == v.id:
-			while c.level > 1:
-				c = c.parent_comment
+		if c.parent_submission:
+			if c.parent_comment and c.parent_comment.author_id == v.id:
+				c.parent_comment.replies = [c]
+				while c.level > 1:
+					c = c.parent_comment
+			if c not in listing: listing.append(c)
+			
+		else:
+			if c.parent_comment and c.parent_comment.author_id == v.id:
+				while c.level > 1:
+					c = c.parent_comment
 
-		if c not in listing:
-			c.replies = c.child_comments
-			listing.append(c)
+			if c not in listing:
+				c.replies = c.child_comments
+				listing.append(c)
 
 	board = get_board(1)
 	return render_template("notifications.html",
