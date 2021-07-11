@@ -50,6 +50,8 @@ def messagereply(v, username, id):
 
 @app.route("/songs/<id>", methods=["GET"])
 def songs(id):
+	try: id = int(id)
+	except: return '', 400
 	user = g.db.query(User).filter_by(id=id).first()
 	return send_from_directory('/songs/', f'{user.song}.mp3')
 
