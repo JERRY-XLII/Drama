@@ -133,10 +133,6 @@ def frontlist(v=None, sort="hot", page=1,t="all", ids_only=True, filter_words=''
 	
 	words = [' r-pe', ' r-ping ', ' k-d ', ' k-ds ', ' m-lest', ' s-x ', ' j-p ', ' j-ps ', ' j-pan', ' p-do', ' captainmeta4 ', ' cm4 ', ' dissident001 ', ' ladine ']
 
-	firstrange = 25 * (page - 1)
-	secondrange = firstrange+100
-	posts = posts[firstrange:secondrange]
-
 	for post in posts:
 		if post.author and post.author.admin_level == 0:
 			for word in words:
@@ -145,31 +141,20 @@ def frontlist(v=None, sort="hot", page=1,t="all", ids_only=True, filter_words=''
 					g.db.add(post.author)
 					g.db.commit()
 					break
-
-	if v and v.hidevotedon:
-		posts2 = []
-		for post in posts:
-			if post.voted == 0:
-				posts2.append(post)
-		posts = posts2
-	
-	posts2 = []
-	for post in posts:
-		if not (post.author and post.author.shadowbanned) or (v and v.id == post.author_id):
-			posts2.append(post)
-	posts = posts2
+		if v and v.hidevotedon:
+			if post.voted != 0:
+				posts.remove(post)
+		if post.author and post.author.shadowbanned and not (v and v.id == post.author_id):
+			posts.remove(post)
 
 	if page == 1:
-		sticky = []
-		sticky = g.db.query(Submission).filter_by(stickied=True).all()
-		if sticky:
-			for p in sticky:
-				posts = [p] + posts
+		posts = g.db.query(Submission).filter_by(stickied=True).all() + posts
 
+	firstrange = 25 * (page - 1)
 	secondrange = firstrange+26
 	posts = posts[firstrange:secondrange]
 
-	if random.random() < 0.001:
+	if random.random() < 0.0001:
 		for post in posts:
 			if post.author and post.author.shadowbanned: 
 				rand = random.randint(500,1400)
