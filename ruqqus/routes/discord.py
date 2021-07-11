@@ -128,8 +128,12 @@ def discord_redirect(v):
 
 		if v.admin_level > 0: add_role(v, "admin")
 		else: add_role(v, "newuser")
-
+		
+		time.sleep(0.1)
+		
 		add_role(v, "feedback")
+
+		time.sleep(0.1)
 
 		if v.dramacoins > 100: add_role(v, "linked")
 		else: add_role(v, "norep")
@@ -157,9 +161,3 @@ def discord_redirect(v):
 		#print(url)
 
 	return redirect(f"https://discord.com/channels/{SERVER_ID}/{WELCOME_CHANNEL}")
-
-
-#guilded redirect
-@app.route("/guilded", methods=["GET"])
-def guilded():
-	return redirect("https://www.guilded.gg/i/Y2VP1L8p")
