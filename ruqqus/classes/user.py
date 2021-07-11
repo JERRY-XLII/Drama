@@ -804,11 +804,10 @@ class User(Base, Stndrd, Age_times):
 
 		# Takes care of all functions needed for account reinstatement.
 
-		self.is_banned = 0
-		self.unban_utc = 0
+		self.is_banned = None
+		self.unban_utc = None
 
 		g.db.add(self)
-
 
 	@property
 	def is_suspended(self):
