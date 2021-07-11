@@ -2436,12 +2436,12 @@ fieldset:disabled a.btn {
 .btn-primary:hover {
   color: #E1E1E1;
   background-color: #3e98a7;
-  border-color: #ff3390;
+  border-color: #3e98a7;
 }
 .btn-primary:focus, .btn-primary.focus {
   color: #E1E1E1;
   background-color: #3e98a7;
-  border-color: #ff3390;
+  border-color: #3e98a7;
   box-shadow: 0 0 0 0.2rem rgba(217, 87, 146, 0.5);
 }
 .btn-primary.disabled, .btn-primary:disabled {
@@ -2451,7 +2451,7 @@ fieldset:disabled a.btn {
 }
 .btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active, .show > .btn-primary.dropdown-toggle {
   color: #E1E1E1;
-  background-color: #ff3390;
+  background-color: #3e98a7;
   border-color: #ff2689;
 }
 .btn-primary:not(:disabled):not(.disabled):active:focus, .btn-primary:not(:disabled):not(.disabled).active:focus, .show > .btn-primary.dropdown-toggle:focus {
@@ -4645,7 +4645,7 @@ a.badge:hover, a.badge:focus {
 }
 a.badge-primary:hover, a.badge-primary:focus {
   color: #000000;
-  background-color: #ff3390;
+  background-color: #3e98a7;
 }
 a.badge-primary:focus, a.badge-primary.focus {
   outline: 0;
@@ -6000,7 +6000,7 @@ a.close.disabled {
 a.bg-primary:hover, a.bg-primary:focus,
 button.bg-primary:hover,
 button.bg-primary:focus {
-  background-color: #ff3390 !important;
+  background-color: #3e98a7 !important;
 }
 
 .bg-secondary {
@@ -12811,12 +12811,12 @@ fieldset:disabled a.btn {
 .btn-primary:hover {
   color: #E1E1E1;
   background-color: #3e98a7;
-  border-color: #ff3390;
+  border-color: #3e98a7;
 }
 .btn-primary:focus, .btn-primary.focus {
   color: #E1E1E1;
   background-color: #3e98a7;
-  border-color: #ff3390;
+  border-color: #3e98a7;
   box-shadow: 0 0 0 0.2rem rgba(217, 87, 146, 0.5);
 }
 .btn-primary.disabled, .btn-primary:disabled {
@@ -12826,7 +12826,7 @@ fieldset:disabled a.btn {
 }
 .btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active, .show > .btn-primary.dropdown-toggle {
   color: #E1E1E1;
-  background-color: #ff3390;
+  background-color: #3e98a7;
   border-color: #ff2689;
 }
 .btn-primary:not(:disabled):not(.disabled):active:focus, .btn-primary:not(:disabled):not(.disabled).active:focus, .show > .btn-primary.dropdown-toggle:focus {
@@ -13171,12 +13171,12 @@ fieldset:disabled a.btn {
 .btn-upvote:hover {
   color: #E1E1E1;
   background-color: #3e98a7;
-  border-color: #ff3390;
+  border-color: #3e98a7;
 }
 .btn-upvote:focus, .btn-upvote.focus {
   color: #E1E1E1;
   background-color: #3e98a7;
-  border-color: #ff3390;
+  border-color: #3e98a7;
   box-shadow: 0 0 0 0.2rem rgba(217, 87, 146, 0.5);
 }
 .btn-upvote.disabled, .btn-upvote:disabled {
@@ -13186,7 +13186,7 @@ fieldset:disabled a.btn {
 }
 .btn-upvote:not(:disabled):not(.disabled):active, .btn-upvote:not(:disabled):not(.disabled).active, .show > .btn-upvote.dropdown-toggle {
   color: #E1E1E1;
-  background-color: #ff3390;
+  background-color: #3e98a7;
   border-color: #ff2689;
 }
 .btn-upvote:not(:disabled):not(.disabled):active:focus, .btn-upvote:not(:disabled):not(.disabled).active:focus, .show > .btn-upvote.dropdown-toggle:focus {
@@ -13201,12 +13201,12 @@ fieldset:disabled a.btn {
 .btn-purple:hover {
   color: #E1E1E1;
   background-color: #3e98a7;
-  border-color: #ff3390;
+  border-color: #3e98a7;
 }
 .btn-purple:focus, .btn-purple.focus {
   color: #E1E1E1;
   background-color: #3e98a7;
-  border-color: #ff3390;
+  border-color: #3e98a7;
   box-shadow: 0 0 0 0.2rem rgba(217, 87, 146, 0.5);
 }
 .btn-purple.disabled, .btn-purple:disabled {
@@ -13216,7 +13216,7 @@ fieldset:disabled a.btn {
 }
 .btn-purple:not(:disabled):not(.disabled):active, .btn-purple:not(:disabled):not(.disabled).active, .show > .btn-purple.dropdown-toggle {
   color: #E1E1E1;
-  background-color: #ff3390;
+  background-color: #3e98a7;
   border-color: #ff2689;
 }
 .btn-purple:not(:disabled):not(.disabled):active:focus, .btn-purple:not(:disabled):not(.disabled).active:focus, .show > .btn-purple.dropdown-toggle:focus {
@@ -13261,12 +13261,12 @@ fieldset:disabled a.btn {
 .btn-admin:hover {
   color: #E1E1E1;
   background-color: #3e98a7;
-  border-color: #ff3390;
+  border-color: #3e98a7;
 }
 .btn-admin:focus, .btn-admin.focus {
   color: #E1E1E1;
   background-color: #3e98a7;
-  border-color: #ff3390;
+  border-color: #3e98a7;
   box-shadow: 0 0 0 0.2rem rgba(217, 87, 146, 0.5);
 }
 .btn-admin.disabled, .btn-admin:disabled {
@@ -13276,7 +13276,7 @@ fieldset:disabled a.btn {
 }
 .btn-admin:not(:disabled):not(.disabled):active, .btn-admin:not(:disabled):not(.disabled).active, .show > .btn-admin.dropdown-toggle {
   color: #E1E1E1;
-  background-color: #ff3390;
+  background-color: #3e98a7;
   border-color: #ff2689;
 }
 .btn-admin:not(:disabled):not(.disabled):active:focus, .btn-admin:not(:disabled):not(.disabled).active:focus, .show > .btn-admin.dropdown-toggle:focus {
@@ -16065,7 +16065,7 @@ a.badge:hover, a.badge:focus {
 }
 a.badge-primary:hover, a.badge-primary:focus {
   color: #000000;
-  background-color: #ff3390;
+  background-color: #3e98a7;
 }
 a.badge-primary:focus, a.badge-primary.focus {
   outline: 0;
@@ -16221,7 +16221,7 @@ a.badge-downvote:focus, a.badge-downvote.focus {
 }
 a.badge-upvote:hover, a.badge-upvote:focus {
   color: #000000;
-  background-color: #ff3390;
+  background-color: #3e98a7;
 }
 a.badge-upvote:focus, a.badge-upvote.focus {
   outline: 0;
@@ -16234,7 +16234,7 @@ a.badge-upvote:focus, a.badge-upvote.focus {
 }
 a.badge-purple:hover, a.badge-purple:focus {
   color: #000000;
-  background-color: #ff3390;
+  background-color: #3e98a7;
 }
 a.badge-purple:focus, a.badge-purple.focus {
   outline: 0;
@@ -16260,7 +16260,7 @@ a.badge-gold:focus, a.badge-gold.focus {
 }
 a.badge-admin:hover, a.badge-admin:focus {
   color: #000000;
-  background-color: #ff3390;
+  background-color: #3e98a7;
 }
 a.badge-admin:focus, a.badge-admin.focus {
   outline: 0;
@@ -18161,7 +18161,7 @@ a.close.disabled {
 a.bg-primary:hover, a.bg-primary:focus,
 button.bg-primary:hover,
 button.bg-primary:focus {
-  background-color: #ff3390 !important;
+  background-color: #3e98a7 !important;
 }
 
 .bg-secondary {
@@ -18281,7 +18281,7 @@ button.bg-downvote:focus {
 a.bg-upvote:hover, a.bg-upvote:focus,
 button.bg-upvote:hover,
 button.bg-upvote:focus {
-  background-color: #ff3390 !important;
+  background-color: #3e98a7 !important;
 }
 
 .bg-purple {
@@ -18291,7 +18291,7 @@ button.bg-upvote:focus {
 a.bg-purple:hover, a.bg-purple:focus,
 button.bg-purple:hover,
 button.bg-purple:focus {
-  background-color: #ff3390 !important;
+  background-color: #3e98a7 !important;
 }
 
 .bg-gold {
@@ -18311,7 +18311,7 @@ button.bg-gold:focus {
 a.bg-admin:hover, a.bg-admin:focus,
 button.bg-admin:hover,
 button.bg-admin:focus {
-  background-color: #ff3390 !important;
+  background-color: #3e98a7 !important;
 }
 
 .bg-gray {
