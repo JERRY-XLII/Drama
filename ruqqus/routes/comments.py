@@ -578,7 +578,8 @@ def api_comment(v):
 	for x in notify_users:
 		n = Notification(comment_id=c.id, user_id=x)
 		g.db.add(n)
-
+		try: g.db.flush()
+		except: pass
 
 	# create auto upvote
 	vote = CommentVote(user_id=v.id,
