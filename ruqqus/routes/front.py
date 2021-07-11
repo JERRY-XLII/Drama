@@ -130,25 +130,12 @@ def frontlist(v=None, sort="hot", page=1,t="all", ids_only=True, filter_words=''
 		posts = random.sample(posts, k=len(posts))
 	else:
 		abort(400)
+
+	if v and v.hidevotedon: posts = [x for x in posts if x.voted == 0]
 	
-	words = [' r-pe', ' r-ping ', ' k-d ', ' k-ds ', ' m-lest', ' s-x ', ' j-p ', ' j-ps ', ' j-pan', ' p-do', ' captainmeta4 ', ' cm4 ', ' dissident001 ', ' ladine ']
-
-	for post in posts:
-		if post.author and post.author.admin_level == 0:
-			for word in words:
-				if word in post.title.lower():
-					post.author.shadowbanned = True
-					g.db.add(post.author)
-					g.db.commit()
-					break
-		if v and v.hidevotedon:
-			if post.voted != 0:
-				posts.remove(post)
-		if post.author and post.author.shadowbanned and not (v and v.id == post.author_id):
-			posts.remove(post)
-
-	if page == 1:
-		posts = g.db.query(Submission).filter_by(stickied=True).all() + posts
+	posts = [x for x in posts if not (x.author and x.author.shadowbanned) or (v and v.id == x.author_id)]
+	
+	if page == 1: posts = g.db.query(Submission).filter_by(stickied=True).all() + posts
 
 	firstrange = 25 * (page - 1)
 	secondrange = firstrange+26
