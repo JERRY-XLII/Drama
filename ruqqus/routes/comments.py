@@ -590,7 +590,7 @@ def api_comment(v):
 		except: pass
 
 	response = beams_client.publish_to_interests(
-	  interests=[str(x) for x in notify_users]
+	  interests=[str(x) for x in notify_users],
 	  publish_body={
 		'web': {
 		  'notification': {
