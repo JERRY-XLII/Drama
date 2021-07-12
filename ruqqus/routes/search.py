@@ -55,7 +55,7 @@ def searchlisting(criteria, v=None, page=1, t="None", sort="top", b=None):
 		posts=posts.filter(*words)
 		
 	if 'over18' in criteria:
-		posts = posts.filter_by(over_18=True)
+		posts = posts.filter(Submission.over_18==True)
 
 	if 'author' in criteria:
 		posts=posts.filter(
