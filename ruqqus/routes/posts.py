@@ -827,6 +827,8 @@ def submit_post(v):
 		url = url.replace(rd, "https://old.reddit.com/")
 			
 	url = url.replace("https://mobile.twitter.com", "https://twitter.com")
+	
+	if url.startswith("https://old.reddit.com/") and '/comments/' in url and '?sort=' not in url: url += "?sort=controversial" 
 
 	new_post_aux = SubmissionAux(id=new_post.id,
 								 url=url,
