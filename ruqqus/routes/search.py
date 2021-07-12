@@ -67,14 +67,6 @@ def searchlisting(criteria, v=None, page=1, t="None", sort="top", b=None):
 				User.is_deleted==False
 			)
 
-	if 'url' in criteria:
-		url=criteria['url']
-		url=url.replace('%','\%')
-		url=url.replace('_','\_')
-		posts=posts.filter(
-			SubmissionAux.url.ilike("%"+criteria['url']+"%")
-			)
-
 	if 'domain' in criteria:
 		domain=criteria['domain']
 		posts=posts.filter(
