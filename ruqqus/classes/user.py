@@ -205,6 +205,10 @@ class User(Base, Stndrd, Age_times):
 	def age(self):
 		return int(time.time()) - self.created_utc
 
+	@property
+	def strid(self):
+		return str(self.id)
+
 	@cache.memoize(300)
 	def userpagelisting(self, v=None, page=1, sort="new", t="all"):
 

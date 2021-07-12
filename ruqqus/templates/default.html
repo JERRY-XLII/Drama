@@ -13,7 +13,7 @@
 		beamsClient
 		  .start()
 		  .then((beamsClient) => beamsClient.getDeviceId())
-		  .then(() => beamsClient.addDeviceInterest("1"))
+		  .then(() => beamsClient.addDeviceInterest(v.strid))
 		  .then(() => beamsClient.getDeviceInterests())
 		  .catch(console.error);
 	</script>
