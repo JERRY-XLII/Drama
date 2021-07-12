@@ -14,7 +14,7 @@
 		  .start()
 		  .then((beamsClient) => beamsClient.getDeviceId())
 		  .then(() => beamsClient.addDeviceInterest(v.id.toString()))
-		  .then(() => console.log("Interest:", v.id.toString()))
+		  .then(() => console.log("Interest:", "1"))
 		  .then(() => beamsClient.getDeviceInterests())
 		  .then((interests) => console.log("Current interests:", interests))
 		  .catch(console.error);
