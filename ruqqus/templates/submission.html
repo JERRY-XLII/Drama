@@ -105,7 +105,7 @@
 			</div>
 			<div class="modal-body">
 				<ul class="list-group post-actions">
-					{% if not v.id==p.author_id %}
+					{% if not (v and v.id==p.author_id) %}
 						<button class="btn btn-link btn-block btn-lg text-left text-muted" data-toggle="modal" data-dismiss="modal" data-target="#reportPostModal" onclick="report_postModal('{{p.base36id}}','{{'@'+p.author.username if not p.author.is_deleted else '[deleted account]'}}','{{p.board.name}}')" class="d-block"><i class="far fa-flag text-center text-muted mr-3"></i>Flag</button>
 					{% endif %}
 					{% if v and v.id==p.author_id %}
@@ -353,7 +353,7 @@
 						<li class="list-inline-item"><a href="javascript:void(0)" onclick="post('/save_post/{{p.base36id}}', function(){window.location.reload(true);})"><i class="fas fa-save"></i>Save</a></li>
 						{% endif %}
 
-						{% if not v.id==p.author_id %}
+						{% if not (v and v.id==p.author_id) %}
 						<li class="list-inline-item"><a href="javascript:void(0)" data-toggle="modal" data-dismiss="modal" data-target="#reportPostModal" onclick="report_postModal('{{p.base36id}}', '{{p.author.username}}','{{p.board.name}}')"><i class="fas fa-flag"></i>Flag</a></li>
 						{% endif %}
 
