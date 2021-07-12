@@ -36,7 +36,7 @@ beams_client = PushNotifications(
 @app.route('/pusher/beams-auth', methods=['GET'])
 @auth_required
 def beams_auth(v):
-	beams_token = beams_client.generate_token(v.id)
+	beams_token = beams_client.generate_token(str(v.id))
 	return jsonify(beams_token)
 
 
