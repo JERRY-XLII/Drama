@@ -3,20 +3,25 @@
 <head>
 
 	{% if v %}
+
+	
+	
 	<script src="https://js.pusher.com/beams/1.0/push-notifications-cdn.js"></script>
 	
 	<script>
 		const beamsClient = new PusherPushNotifications.Client({
 			instanceId: '02ddcc80-b8db-42be-9022-44c546b4dce6',
 		});		
-		
-		const beamsTokenProvider = new PusherPushNotifications.TokenProvider({
-		  url: "/pusher/beams-auth",
-		});
-
+		  
 		beamsClient
 		  .start()
-		  .then(() => beamsClient.setUserId("1", beamsTokenProvider))
+		  .then((beamsClient) => beamsClient.getDeviceId())
+		  .then((deviceId) =>
+			console.log("Successfully registered with Beams. Device ID:", deviceId)
+		  )
+		  .then(() => beamsClient.addDeviceInterest("hello"))
+		  .then(() => beamsClient.getDeviceInterests())
+		  .then((interests) => console.log("Current interests:", interests))
 		  .catch(console.error);
 	</script>
 	{% endif %}

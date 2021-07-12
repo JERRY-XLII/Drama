@@ -33,13 +33,6 @@ beams_client = PushNotifications(
 		secret_key=PUSHER_KEY,
 )
 
-@app.route('/pusher/beams-auth', methods=['GET'])
-@auth_required
-def beams_auth(v):
-	beams_token = beams_client.generate_token(str(v.id))
-	return jsonify(beams_token)
-
-
 @app.route("/api/v1/post/<pid>/comment/<cid>", methods=["GET"])
 def comment_cid_api_redirect(cid=None, pid=None):
 	redirect(f'/api/v1/comment/<cid>')
@@ -595,32 +588,21 @@ def api_comment(v):
 		g.db.add(n)
 		try: g.db.flush()
 		except: pass
-		
-	beams_client.publish_to_users(
-		user_ids=["1"],
-		publish_body={
-		'apns': {
-			'aps': {
-			'alert': {
-				'title': f'New reply by @{v.username}',
-				'body': c.body,
-			},
-			},
-		},
-		'fcm': {
-			'notification': {
-				'title': f'New reply by @{v.username}',
-				'body': c.body,
-			},
-		},
+
+	response = beams_client.publish_to_interests(
+	  interests=['hello'],
+	  publish_body={
 		'web': {
-			'notification': {
-				'title': f'New reply by @{v.username}',
-				'body': c.body,
-			},
+		  'notification': {
+			'title': 'Hello',
+			'body': 'Hello, world!',
+			'deep_link': 'https://www.pusher.com',
+		  },
 		},
-		},
+	  },
 	)
+
+	print(response['publishId'])
 
 	# create auto upvote
 	vote = CommentVote(user_id=v.id,
