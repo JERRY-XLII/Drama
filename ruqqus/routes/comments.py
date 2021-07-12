@@ -55,8 +55,8 @@ def post_pid_comment_cid(cid, pid=None, anything=None, v=None):
 	
 	comment = get_comment(cid, v=v)
 	
-	if not comment.parent_submission: abort(403)
-	# prevent api shenanigans
+	if not comment.parent_submission and not (v and comment.parent_comment_id in v.notification_commentlisting): abort(403)
+	
 	if not pid: pid = comment.parent_submission
 	
 	try: pid = int(pid)
