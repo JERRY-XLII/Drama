@@ -18,7 +18,7 @@
 		  .then(() => beamsClient.getDeviceInterests())
 		  .catch(console.error);
 	</script>
-	
+	{% endif %}
 	<script>
 		var upvote = function(event) {
 
@@ -686,7 +686,6 @@ $('.text-expand').click(function(event){
 
 })
 	</script>
-	{% endif %}
 	{% endblock %}
 	
 	<meta charset="utf-8">
