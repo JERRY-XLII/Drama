@@ -1,5 +1,20 @@
 {% extends "default.html" %}
 
+{% block sex %}
+	<script>
+		var userid = document.getElementById("userid").value;
+		if (userid != "nosong")
+		{
+			var audio = new Audio(`/songs/${userid}`);
+			audio.loop=true;
+			audio.play();
+			document.getElementById('userpage').addEventListener('click', () => {
+				if (audio.paused) audio.play(); 
+			}, {once : true});
+		}
+	</script>
+{% endblock %}
+
 {% block pagetype %}userpage{% endblock %}
 
 {% block enlargeThumbJS %}

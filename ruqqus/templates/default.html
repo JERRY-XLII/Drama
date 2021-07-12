@@ -190,6 +190,501 @@
 
 			post(url, callback, "Unable to vote at this time. Please try again later.");
 		}
+		
+
+// comment collapse
+
+// Toggle comment collapse
+
+function collapse_comment(comment_id) {
+
+	var comment = "comment-" + comment_id;
+
+	document.getElementById(comment).classList.toggle("collapsed");
+
+};
+
+//Commenting form
+
+// Expand comment box on focus, hide otherwise
+
+$('.comment-box').focus(function (event) {
+	event.preventDefault();
+
+	$(this).parent().parent().addClass("collapsed");
+
+});
+
+
+toggleEdit=function(id){
+	comment=document.getElementById("comment-text-"+id);
+	form=document.getElementById("comment-edit-"+id);
+	box=document.getElementById('edit-box-comment-'+id);
+	actions = document.getElementById('comment-' + id +'-actions');
+
+	comment.classList.toggle("d-none");
+	form.classList.toggle("d-none");
+	actions.classList.toggle("d-none");
+	autoExpand(box);
+};
+
+// Post edit form
+
+togglePostEdit=function(id){
+
+	body=document.getElementById("post-body");
+	title=document.getElementById("post-title");
+	form=document.getElementById("edit-post-body-"+id);
+	box=document.getElementById("post-edit-box-"+id);
+	box2=document.getElementById("post-edit-box2-"+id);
+
+	body.classList.toggle("d-none");
+	title.classList.toggle("d-none");
+	form.classList.toggle("d-none");
+	autoExpand(box);
+	autoExpand(box2);
+};
+
+//comment modding
+function removeComment(post_id) {
+	url="/api/ban_comment/"+post_id
+
+	callback=function(){
+		document.getElementById("comment-"+post_id+"-only").classList.add("banned");
+
+		button=document.getElementById("moderate-"+post_id);
+		button.onclick=function(){approveComment(post_id)};
+		button.innerHTML='<i class="fas fa-clipboard-check"></i>Approve'
+	}
+	post(url, callback, "Comment has been removed.")
+};
+
+function approveComment(post_id) {
+	url="/api/unban_comment/"+post_id
+
+	callback=function(){
+		document.getElementById("comment-"+post_id+"-only").classList.remove("banned");
+
+		button=document.getElementById("moderate-"+post_id);
+		button.onclick=function(){removeComment(post_id)};
+		button.innerHTML='<i class="fas fa-trash-alt"></i>Remove'
+	}
+
+	post(url, callback, "Comment has been approved.")
+}
+
+admin_comment=function(cid){
+
+
+	var xhr = new XMLHttpRequest();
+	xhr.open("post", "/api/distinguish_comment/"+cid);
+
+	var form = new FormData();
+
+	form.append('formkey', formkey());
+
+	xhr.withCredentials=true;
+	xhr.onload=function(){
+		if (xhr.status==200) {
+			comment=document.getElementById('comment-'+cid+'-only');
+			comment.innerHTML=JSON.parse(xhr.response)["html"];
+		}
+		else {
+			var commentError = document.getElementById("comment-error-text");
+			$('#toast-comment-success').toast('dispose');
+			$('#toast-comment-error').toast('dispose');
+			$('#toast-comment-error').toast('show');
+			commentError.textContent = JSON.parse(xhr.response)["error"];
+		}
+	}
+	xhr.send(form)
+}
+
+//Autoexpand textedit comments
+
+function autoExpand (field) {
+
+	//get current scroll position
+	xpos=window.scrollX;
+	ypos=window.scrollY;
+
+	// Reset field height
+	field.style.height = 'inherit';
+
+	// Get the computed styles for the element
+	var computed = window.getComputedStyle(field);
+
+	// Calculate the height
+	var height = parseInt(computed.getPropertyValue('border-top-width'), 10)
+	+ parseInt(computed.getPropertyValue('padding-top'), 10)
+	+ field.scrollHeight
+	+ parseInt(computed.getPropertyValue('padding-bottom'), 10)
+	+ parseInt(computed.getPropertyValue('border-bottom-width'), 10)
+	+ 32;
+
+	field.style.height = height + 'px';
+
+	//keep window position from changing
+	window.scrollTo(xpos,ypos);
+
+};
+
+// Delete Post
+
+function delete_postModal(id) {
+
+	// Passed data for modal
+
+	document.getElementById("deletePostButton-mobile").addEventListener("click", delete_post);
+
+	document.getElementById("deletePostButton").addEventListener("click", delete_post);
+
+	function delete_post(){	
+
+		this.innerHTML='<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>Deleting post';	
+		this.disabled = true; 
+		post('/delete_post/' + id,
+			callback = function() {
+
+				location.reload();
+			}
+			)
+	}
+
+};
+
+// Delete Comment
+
+function delete_commentModal(id) {
+
+	// Passed data for modal
+
+	document.getElementById("deleteCommentButton").onclick = function() {	
+
+		this.innerHTML='<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>Deleting comment';	
+		this.disabled = true; 
+		post('/delete/comment/' + id,
+			callback = function() {
+
+				location.reload();
+			}
+			)
+	}
+
+};
+
+//flagging
+// Flag Comment
+
+report_commentModal = function(id, author) {
+
+	document.getElementById("comment-author").textContent = author;
+
+	//offtopic.disabled=true;
+
+	document.getElementById("reportCommentButton").onclick = function() {
+
+		this.innerHTML='<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>Reporting comment';
+		this.disabled = true;
+		post('/api/flag/comment/' + id,
+			callback = function() {
+
+				document.getElementById("reportCommentFormBefore").classList.add('d-none');
+				document.getElementById("reportCommentFormAfter").classList.remove('d-none');
+			}
+			)
+	}
+
+};
+
+$('#reportCommentModal').on('hidden.bs.modal', function () {
+
+	var button = document.getElementById("reportCommentButton");
+
+	var beforeModal = document.getElementById("reportCommentFormBefore");
+	var afterModal = document.getElementById("reportCommentFormAfter");
+
+	button.innerHTML='Report comment';
+	button.disabled= false;
+	afterModal.classList.add('d-none');
+
+	if ( beforeModal.classList.contains('d-none') ) {
+		beforeModal.classList.remove('d-none');
+	}
+
+});
+
+
+// Flag Submission
+
+report_postModal = function(id, author, board) {
+
+	document.getElementById("post-author").textContent = author;
+
+	selectbox=document.getElementById('report-type-dropdown');
+	selectbox.value='reason_not_selected';
+
+	submitbutton=document.getElementById("reportPostButton");
+	submitbutton.disabled=true;
+
+	submitbutton.onclick = function() {
+
+		this.innerHTML='<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>Reporting post';
+		this.disabled = true;
+
+		var xhr = new XMLHttpRequest();
+		xhr.open("POST", '/api/flag/post/'+id, true);
+		var form = new FormData()
+		form.append("formkey", formkey());
+
+		dropdown=document.getElementById("report-type-dropdown");
+		form.append("report_type", dropdown.options[dropdown.selectedIndex].value);
+
+		xhr.withCredentials=true;
+
+		xhr.onload=function() {
+			document.getElementById("reportPostFormBefore").classList.add('d-none');
+			document.getElementById("reportPostFormAfter").classList.remove('d-none');
+		};
+
+		xhr.onerror=function(){alert(errortext)};
+		xhr.send(form);
+
+	}
+};
+
+$('#reportPostModal').on('hidden.bs.modal', function () {
+
+	var button = document.getElementById("reportPostButton");
+
+	var beforeModal = document.getElementById("reportPostFormBefore");
+	var afterModal = document.getElementById("reportPostFormAfter");
+
+	button.innerHTML='Report post';
+	button.disabled= false;
+
+	afterModal.classList.add('d-none');
+
+	if ( beforeModal.classList.contains('d-none') ) {
+		beforeModal.classList.remove('d-none');
+	}
+
+});
+
+//enlarge thumbs
+// Enlarge submissionlisting thumbnail
+
+enlarge_thumb = function(post_id) {
+
+	document.getElementById(post_id).classList.toggle("enlarged");
+
+};
+
+
+// Expand Images on Desktop
+
+function expandDesktopImage(image, link) {
+
+// Link text
+
+var linkText = document.getElementById("desktop-expanded-image-link");
+var imgLink = document.getElementById("desktop-expanded-image-wrap-link");
+
+var inlineImage = document.getElementById("desktop-expanded-image");
+
+inlineImage.src = image.replace("100w.gif", "giphy.gif");
+linkText.href = image;
+imgLink.href=image;
+
+if (image.includes("i.ruqqus.ga")) {
+	linkText.textContent = 'Go to website';
+}
+else {
+	linkText.textContent = 'View original';
+}
+};
+
+// When image modal is closed
+
+$('#expandImageModal').on('hidden.bs.modal', function (e) {
+
+	// remove image src and link
+
+	document.getElementById("desktop-expanded-image").src = '';
+
+	document.getElementById("desktop-expanded-image-link").href = '';
+
+});
+
+block_user=function() {
+
+	var exileForm = document.getElementById("exile-form");
+
+	var exileError = document.getElementById("toast-error-message");
+
+	var usernameField = document.getElementById("exile-username");
+
+	var isValidUsername = usernameField.checkValidity();
+
+	username = usernameField.value;
+
+	if (isValidUsername) {
+
+		var xhr = new XMLHttpRequest();
+		xhr.open("post", "/settings/block");
+		xhr.withCredentials=true;
+		f=new FormData();
+		f.append("username", username);
+		f.append("formkey", formkey());
+		xhr.onload=function(){
+			if (xhr.status<300) {
+				window.location.reload(true);
+			}
+			else {
+				$('#toast-exile-error').toast('dispose');
+				$('#toast-exile-error').toast('show');
+				exileError.textContent = JSON.parse(xhr.response)["error"];
+			}
+		}
+		xhr.send(f)
+	}
+
+}
+
+post_comment=function(fullname){
+
+
+	var form = new FormData();
+
+	form.append('formkey', formkey());
+	form.append('parent_fullname', fullname);
+	form.append('submission', document.getElementById('reply-form-submission-'+fullname).value);
+	form.append('body', document.getElementById('reply-form-body-'+fullname).value);
+	form.append('file', document.getElementById('file-upload-reply-'+fullname).files[0]);
+	var xhr = new XMLHttpRequest();
+	xhr.open("post", "/api/comment");
+	xhr.withCredentials=true;
+	xhr.onload=function(){
+		if (xhr.status==200) {
+			commentForm=document.getElementById('comment-form-space-'+fullname);
+			commentForm.innerHTML=JSON.parse(xhr.response)["html"];
+			$('#toast-comment-success').toast('dispose');
+			$('#toast-comment-error').toast('dispose');
+			$('#toast-comment-success').toast('show');
+		}
+		else {
+			var commentError = document.getElementById("comment-error-text");
+			$('#toast-comment-success').toast('dispose');
+			$('#toast-comment-error').toast('dispose');
+			$('#toast-comment-error').toast('show');
+			commentError.textContent = JSON.parse(xhr.response)["error"];
+		}
+	}
+	xhr.send(form)
+
+	document.getElementById('save-reply-to-'+fullname).classList.add('disabled');
+
+}
+
+herald_comment=function(bid,cid){
+
+
+	var xhr = new XMLHttpRequest();
+	xhr.open("post", "/mod/distinguish_comment/"+bid+'/'+cid);
+
+	var form = new FormData();
+
+	form.append('formkey', formkey());
+
+	xhr.withCredentials=true;
+	xhr.onload=function(){
+		if (xhr.status==200) {
+			comment=document.getElementById('comment-'+cid+'-only');
+			comment.innerHTML=JSON.parse(xhr.response)["html"];
+		}
+		else {
+			var commentError = document.getElementById("comment-error-text");
+			$('#toast-comment-success').toast('dispose');
+			$('#toast-comment-error').toast('dispose');
+			$('#toast-comment-error').toast('show');
+			commentError.textContent = JSON.parse(xhr.response)["error"];
+		}
+	}
+	xhr.send(form)
+
+}
+
+
+comment_edit=function(id){
+
+	var commentError = document.getElementById("comment-error-text");
+
+	var form = new FormData();
+
+	form.append('formkey', formkey());
+	form.append('body', document.getElementById('comment-edit-body-'+id).value);
+	form.append('file', document.getElementById('file-edit-reply-'+id).files[0]);
+
+	var xhr = new XMLHttpRequest();
+	xhr.open("post", "/edit_comment/"+id);
+	xhr.withCredentials=true;
+	xhr.onload=function(){
+		if (xhr.status==200) {
+			commentForm=document.getElementById('comment-text-'+id);
+			commentForm.innerHTML=JSON.parse(xhr.response)["html"];
+			document.getElementById('cancel-edit-'+id).click()
+			$('#toast-comment-success').toast('dispose');
+			$('#toast-comment-error').toast('dispose');
+			$('#toast-comment-success').toast('show');
+		}
+		else {
+			$('#toast-comment-success').toast('dispose');
+			$('#toast-comment-error').toast('dispose');
+			$('#toast-comment-error').toast('show');
+			commentError.textContent = JSON.parse(xhr.response)["error"];
+		}
+	}
+	xhr.send(form)
+
+}
+
+
+$('.mention-user').click(function (event) {
+
+	if (event.which != 1) {
+		return
+	}
+
+	event.preventDefault();
+
+	window.location.href='/@' + $(this).data('original-name');
+
+});
+
+$('.expandable-image').click( function(event) {
+
+	if (event.which != 1) {
+		return
+	}
+	event.preventDefault();
+
+	var url= $(this).data('url');
+
+	expandDesktopImage(url,url);
+})
+
+$('.text-expand').click(function(event){
+  if (event.which != 1) {
+    return
+  };
+  id=$(this).data('id');
+
+
+  $('#post-text-'+id).toggleClass('d-none');
+  $('.text-expand-icon-'+id).toggleClass('fa-expand-alt');
+  $('.text-expand-icon-'+id).toggleClass('fa-compress-alt');
+
+})
 	</script>
 	{% endif %}
 	{% endblock %}
