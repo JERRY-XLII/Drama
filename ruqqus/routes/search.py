@@ -57,19 +57,15 @@ def searchlisting(criteria, v=None, page=1, t="None", sort="top", b=None):
 		words=tuple(words)
 		posts=posts.filter(*words)
 		
+	if 'over18' in criteria:
+		if criteria['over18'] == "true":
+			posts = posts.filter(over_18==True)
+
 	if 'author' in criteria:
 		posts=posts.filter(
 				Submission.author_id==get_user(criteria['author']).id,
 				User.is_private==False,
 				User.is_deleted==False
-			)
-
-	if b:
-		posts=posts.filter(Submission.board_id==b.id)
-	elif 'guild' in criteria:
-		board=get_guild(criteria["guild"])
-		posts=posts.filter(
-				Submission.board_id==board.id,
 			)
 
 	if 'url' in criteria:
