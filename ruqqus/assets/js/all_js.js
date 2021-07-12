@@ -493,8 +493,6 @@ report_commentModal = function(id, author) {
 
 	document.getElementById("comment-author").textContent = author;
 
-	//offtopic.disabled=true;
-
 	document.getElementById("reportCommentButton").onclick = function() {
 
 		this.innerHTML='<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>Reporting comment';

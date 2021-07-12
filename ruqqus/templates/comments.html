@@ -257,8 +257,11 @@
 
 						<div class="dropdown-menu border-0 shadow" aria-labelledby="dropdownMoreLink">
 							{% if not (v and v.id==c.author_id) %}
-							<a class="dropdown-item" href="javascript:void(0)" data-toggle="modal" data-target="#reportCommentModal" onclick="report_commentModal('{{c.base36id}}','{{c.author.username if not c.author.is_deleted else '[is_deleted]'}}',)"><i class="fas fa-flag fa-fw"></i>Flag</a>
-
+								{% if v %}
+								<a class="dropdown-item" href="javascript:void(0)" data-toggle="modal" data-target="#reportCommentModal" onclick="report_commentModal('{{c.base36id}}','{{c.author.username if not c.author.is_deleted else '[is_deleted]'}}',)"><i class="fas fa-flag fa-fw"></i>Flag</a>
+								{% else %}
+								<a class="dropdown-item" href="javascript:void(0)" data-toggle="modal" data-target="#reportCommentModal" onclick=""><i class="fas fa-flag fa-fw"></i>Flag</a>
+								{% endif %}
 							{% endif %}
 
 							{% if v and c.parent_submission and c.author_id==v.id %}
