@@ -257,7 +257,7 @@
 						</a>
 
 						<div class="dropdown-menu border-0 shadow" aria-labelledby="dropdownMoreLink">
-							{% if v and v.admin_level==0 and c.parent_submission and not c.author_id==v.id and is_allowed_to_comment %}
+							{% if not c.author_id==v.id %}
 							<a class="dropdown-item" href="javascript:void(0)" data-toggle="modal" data-target="#reportCommentModal" onclick="report_commentModal('{{c.base36id}}','{{c.author.username if not c.author.is_deleted else '[is_deleted]'}}',)"><i class="fas fa-flag fa-fw"></i>Flag</a>
 
 							{% endif %}
@@ -441,7 +441,7 @@
 
 					<li class="list-group-item"><a href="{{c.permalink}}?context=5#context"{% if c.author.is_private %} rel="nofollow"{% endif %}><i class="fas fa-dna"></i>Context</a></li>
 
-					{% if v and v.admin_level==0 and not v.id==c.author_id %}
+					{% if not v.id==c.author_id %}
 					<li class="list-group-item"><a href="javascript:void(0)" data-toggle="modal" data-dismiss="modal" data-target="#reportCommentModal" onclick="report_commentModal('{{c.base36id}}','{{c.author.username if not c.author.is_deleted else '[is_deleted]'}}')" class="d-block"><i class="fas fa-flag"></i>Flag</a></li>
 					{% endif %}
 
