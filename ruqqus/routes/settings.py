@@ -6,6 +6,7 @@ import threading
 import mistletoe
 import re
 from ruqqus.classes import *
+from ruqqus.helpers.alerts import *
 from ruqqus.helpers.wrappers import *
 from ruqqus.helpers.security import *
 from ruqqus.helpers.sanitize import *
