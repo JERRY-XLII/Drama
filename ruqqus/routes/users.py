@@ -19,7 +19,6 @@ from ruqqus.classes import *
 from ruqqus.mail import *
 from flask import *
 from ruqqus.__main__ import app, cache, limiter, db_session
-from pusher_push_notifications import PushNotifications
 
 @app.route("/@<username>/reply/<id>", methods=["POST"])
 @auth_required
