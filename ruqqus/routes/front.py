@@ -407,10 +407,11 @@ def comment_idlist(page=1, v=None, nsfw=False, sort="new", t="all", **kwargs):
 	elif sort == "bottom":
 		comments = comments.order_by(Comment.score.asc()).all()
 
+	comments = [x for x in comments if not (x.author and x.author.shadowbanned) or (v and v.id == x.author_id)]
+
 	firstrange = 25 * (page - 1)
 	secondrange = firstrange+26
 	return [x.id for x in comments[firstrange:secondrange]]
-
 
 @app.route("/comments", methods=["GET"])
 @app.route("/api/v1/front/comments", methods=["GET"])
