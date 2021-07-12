@@ -16,8 +16,8 @@ query_regex=re.compile("(\w+):(\S+)")
 valid_params=[
 	'author',
 	'domain',
-	'guild',
-	'url'
+	'url',
+	'over18'
 ]
 
 def searchparse(text):
@@ -47,8 +47,6 @@ def searchlisting(criteria, v=None, page=1, t="None", sort="top", b=None):
 				Submission.submission_aux,
 			).join(
 				Submission.author
-			).join(
-				Submission.board
 			)
 	
 	if 'q' in criteria:
@@ -91,20 +89,6 @@ def searchlisting(criteria, v=None, page=1, t="None", sort="top", b=None):
 	if v and v.admin_level >= 4:
 		pass
 	elif v:
-		m = g.db.query(ModRelationship.board_id).filter_by(
-			user_id=v.id, invite_rescinded=False).subquery()
-		c = g.db.query(
-			ContributorRelationship.board_id).filter_by(
-			user_id=v.id).subquery()
-		posts = posts.filter(
-			or_(
-				Submission.author_id == v.id,
-				Submission.post_public == True,
-				Submission.board_id.in_(m),
-				Submission.board_id.in_(c)
-			)
-		)
-
 		blocking = g.db.query(
 			UserBlock.target_id).filter_by(
 			user_id=v.id).subquery()
@@ -115,13 +99,7 @@ def searchlisting(criteria, v=None, page=1, t="None", sort="top", b=None):
 		posts = posts.filter(
 			Submission.author_id.notin_(blocking),
 			Submission.author_id.notin_(blocked),
-			Board.is_banned==False,
 		)
-	else:
-		posts = posts.filter(
-			Submission.post_public == True,
-			Board.is_banned==False,
-			)
 
 	if t:
 		now = int(time.time())
@@ -142,7 +120,6 @@ def searchlisting(criteria, v=None, page=1, t="None", sort="top", b=None):
 	posts=posts.options(
 		contains_eager(Submission.submission_aux),
 		contains_eager(Submission.author),
-		contains_eager(Submission.board)
 		)
 
 	if sort == "new":
@@ -237,10 +214,6 @@ def searchposts(v, search_type="posts"):
 
 	sort = request.args.get("sort", "top").lower()
 	t = request.args.get('t', 'all').lower()
-
-
-
-	# posts search
 
 	criteria=searchparse(query)
 	total, ids = searchlisting(criteria, v=v, page=page, t=t, sort=sort)
