@@ -250,28 +250,28 @@ ACTIONTYPES={
 		"title": 'un-pinned post {self.target_post.title}'
 	},
 	"invite_mod":{
-		"str":'invited guildmaster {self.target_link}',
+		"str":'invited badmin {self.target_link}',
 		"icon":"fa-user-crown",
 		"color": "bg-info",
-		"title": 'invited guildmaster @{self.target_user.username}'
+		"title": 'invited badmin @{self.target_user.username}'
 	},
 	"uninvite_mod":{
-		"str":'rescinded guildmaster invitation to {self.target_link}',
+		"str":'rescinded badmin invitation to {self.target_link}',
 		"icon":"fa-user-crown",
 		"color": "bg-muted",
-		"title": 'rescinded guildmaster invitation to @{self.target_user.username}'
+		"title": 'rescinded badmin invitation to @{self.target_user.username}'
 	},
 	"accept_mod_invite":{
-		"str":'accepted guildmaster invitation',
+		"str":'accepted badmin invitation',
 		"icon":"fa-user-crown",
 		"color": "bg-warning",
-		"title": 'accepted guildmaster invitation'
+		"title": 'accepted badmin invitation'
 	},
 	"remove_mod":{
-		"str":'removed guildmaster {self.target_link}',
+		"str":'removed badmin {self.target_link}',
 		"icon":"fa-user-crown",
 		"color": "bg-danger",
-		"title": 'removed guildmaster @{self.target_user.username}'
+		"title": 'removed badmin @{self.target_user.username}'
 	},
 	"dethrone_self":{
 		"str":'stepped down as guildmaster',
@@ -280,10 +280,10 @@ ACTIONTYPES={
 		"title": 'stepped down as guildmaster'
 	},
 	"add_mod":{
-		"str":'added guildmaster {self.target_link}',
+		"str":'added badmin {self.target_link}',
 		"icon":"fa-user-crown",
 		"color": "bg-success",
-		"title": 'added guildmaster @{self.target_user.username}'
+		"title": 'added badmin @{self.target_user.username}'
 	},
 	"update_settings":{
 		"str":'updated setting',
@@ -346,13 +346,13 @@ ACTIONTYPES={
 		"title": "reinstated comment"
 	},
 	"change_perms":{
-		"str": 'changed permissions on guildmaster {self.target_link}',
+		"str": 'changed permissions on badmin {self.target_link}',
 		"icon":"fa-user-cog",
 		"color": "bg-info",
 		"title": "changed permissions on {self.target_user.username}"
 	},
 	"change_invite":{
-		"str": 'changed  permissions on guildmaster invitation to {self.target_link}',
+		"str": 'changed  permissions on badmin invitation to {self.target_link}',
 		"icon":"fa-user-cog",
 		"color": "bg-muted",
 		"title": "changed permissions on invitation to {self.target_user.username}"

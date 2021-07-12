@@ -107,8 +107,7 @@ def mod_invite_username(bid, board, v):
 		kind="invite_mod",
 		user_id=v.id,
 		target_user_id=user.id,
-		board_id=board.id,
-		note=x.permchangelist
+		board_id=1
 		)
 	g.db.add(ma)
 
@@ -136,7 +135,7 @@ def mod_rescind_bid_username(bid, username, board, v):
 		kind="uninvite_mod",
 		user_id=v.id,
 		target_user_id=user.id,
-		board_id=board.id
+		board_id=1
 		)
 	g.db.add(ma)
 	return "", 204
