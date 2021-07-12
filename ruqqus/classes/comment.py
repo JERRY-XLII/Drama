@@ -169,7 +169,7 @@ class Comment(Base, Age_times, Scores, Stndrd, Fuzzing):
 	@lazy
 	def permalink(self):
 		if self.post: return f"{self.post.permalink}/{self.id}/"
-		else: return f"/comments/{self.id}/"
+		else: return f"/comment/{self.id}/"
 
 	@property
 	def any_descendants_live(self):
