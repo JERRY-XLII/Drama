@@ -486,6 +486,8 @@ class Notification(Base):
 	read = Column(Boolean, default=False)
 	followsender = Column(Integer, default=None)
 	unfollowsender = Column(Integer, default=None)
+	blocksender = Column(Integer, default=None)
+	unblocksender = Column(Integer, default=None)
 
 	comment = relationship("Comment", lazy="joined", innerjoin=True)
 	user=relationship("User", innerjoin=True)

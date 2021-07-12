@@ -106,7 +106,57 @@ def send_unfollow_notif(vid, user, text):
 						 unfollowsender=vid)
 	g.db.add(notif)
 	g.db.commit()
+
+def send_block_notif(vid, user, text):
+
+	with CustomRenderer() as renderer:
+		text_html = renderer.render(mistletoe.Document(text))
+	text_html = sanitize(text_html, linkgen=True)
 	
+	new_comment = Comment(author_id=1046,
+						  parent_submission=None,
+						  distinguish_level=6,
+						  )
+	g.db.add(new_comment)
+	g.db.flush()
+
+	new_aux = CommentAux(id=new_comment.id,
+						 body=text,
+						 body_html=text_html,
+						 )
+	g.db.add(new_aux)
+
+	notif = Notification(comment_id=new_comment.id,
+						 user_id=user,
+						 blocksender=vid)
+	g.db.add(notif)
+	g.db.commit()
+	
+def send_unblock_notif(vid, user, text):
+
+	with CustomRenderer() as renderer:
+		text_html = renderer.render(mistletoe.Document(text))
+	text_html = sanitize(text_html, linkgen=True)
+	
+	new_comment = Comment(author_id=1046,
+						  parent_submission=None,
+						  distinguish_level=6,
+						  )
+	g.db.add(new_comment)
+	g.db.flush()
+
+	new_aux = CommentAux(id=new_comment.id,
+						 body=text,
+						 body_html=text_html,
+						 )
+	g.db.add(new_aux)
+
+	notif = Notification(comment_id=new_comment.id,
+						 user_id=user,
+						 unblocksender=vid)
+	g.db.add(notif)
+	g.db.commit()
+
 def send_admin(vid, text):
 
 	with CustomRenderer() as renderer: text_html = renderer.render(mistletoe.Document(text))
