@@ -549,7 +549,8 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
     def flagged_by(self):
         flagger_ids = [x.user_id for x in self.reports]
         
-        return g.db.query(User).filter(User.id.in_(flagger_ids)).all()
+        users = g.db.query(User).filter(User.id.in_(flagger_ids)).all()
+        return users
 
 	@property
 	def is_image(self):
