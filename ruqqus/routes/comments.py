@@ -591,7 +591,7 @@ def api_comment(v):
 		try: g.db.flush()
 		except: pass
 
-	if len(notify_users) > 0:
+	if False:
 		beams_client.publish_to_interests(
 		  interests=[str(x) for x in notify_users],
 		  publish_body={
