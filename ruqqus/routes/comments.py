@@ -589,16 +589,14 @@ def api_comment(v):
 		try: g.db.flush()
 		except: pass
 
-	print([str(x) for x in notify_users])
-
 	response = beams_client.publish_to_interests(
-	  interests=["hello"],
+	  interests=[str(x) for x in notify_users]
 	  publish_body={
 		'web': {
 		  'notification': {
 				'title': f'New reply by @{v.username}',
 				'body': c.body,
-				'deep_link': f'https://rdrama.net{c.permalink}',
+				'deep_link': f'https://rdrama.net{c.permalink}?context=5#context',
 		  },
 		},
 	  },
