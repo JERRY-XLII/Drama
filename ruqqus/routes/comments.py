@@ -590,13 +590,13 @@ def api_comment(v):
 		except: pass
 
 	response = beams_client.publish_to_interests(
-	  interests=['hello'],
+	  interests=[str(x.id) for x in notify_users],
 	  publish_body={
 		'web': {
 		  'notification': {
-			'title': 'Hello',
-			'body': 'Hello, world!',
-			'deep_link': 'https://www.pusher.com',
+				'title': f'New reply by @{v.username}',
+				'body': c.body,
+				'deep_link': f'https://rdrama.net{c.permalink}',
 		  },
 		},
 	  },
