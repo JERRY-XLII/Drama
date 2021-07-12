@@ -16,7 +16,6 @@ query_regex=re.compile("(\w+):(\S+)")
 valid_params=[
 	'author',
 	'domain',
-	'url',
 	'over18'
 ]
 
