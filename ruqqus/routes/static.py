@@ -128,6 +128,10 @@ def brave():
 def googleplayapp():
 	with open(".well-known/assetlinks.json", "r") as f: return Response(f.read(), mimetype='application/json')
 
+@app.route("/service-worker.js")
+def serviceworker():
+	with open(".well-known/service-worker.js", "r") as f: return Response(f.read(), mimetype='text/plain')
+
 @app.route("/badmins", methods=["GET"])
 @auth_desired
 def help_admins(v):
