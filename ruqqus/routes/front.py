@@ -141,16 +141,18 @@ def frontlist(v=None, sort="hot", page=1,t="all", ids_only=True, filter_words=''
 	else:
 		abort(400)
 
+	firstrange = 25 * (page - 1)
+	secondrange = firstrange+100
+	posts = posts[firstrange:secondrange]
+
 	if v and v.hidevotedon: posts = [x for x in posts if x.voted == 0]
 	
 	posts = [x for x in posts if not (x.author and x.author.shadowbanned) or (v and v.id == x.author_id)]
 	
 	if page == 1: posts = g.db.query(Submission).filter_by(stickied=True).all() + posts
 
-	firstrange = 25 * (page - 1)
-	secondrange = firstrange+26
-	posts = posts[firstrange:secondrange]
-
+	posts = posts[:26]
+	
 	if random.random() < 0.01:
 		for post in posts:
 			if post.author and post.author.shadowbanned: 
@@ -407,11 +409,13 @@ def comment_idlist(page=1, v=None, nsfw=False, sort="new", t="all", **kwargs):
 	elif sort == "bottom":
 		comments = comments.order_by(Comment.score.asc()).all()
 
+	firstrange = 25 * (page - 1)
+	secondrange = firstrange+100
+	comments = comments[firstrange:secondrange]
+
 	comments = [x for x in comments if not (x.author and x.author.shadowbanned) or (v and v.id == x.author_id)]
 
-	firstrange = 25 * (page - 1)
-	secondrange = firstrange+26
-	return [x.id for x in comments[firstrange:secondrange]]
+	return [x.id for x in comments[:26]]
 
 @app.route("/comments", methods=["GET"])
 @app.route("/api/v1/front/comments", methods=["GET"])
