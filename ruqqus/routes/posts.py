@@ -112,12 +112,6 @@ def post_base36id(pid, anything=None, v=None):
 
 	board = post.board
 
-	if board.is_banned and not (v and v.admin_level > 3):
-		return render_template("board_banned.html",
-							   v=v,
-							   b=board,
-							   p=True)
-
 	if post.over_18 and not (v and v.over_18) and not session_over18(board):
 		t = int(time.time())
 		return {"html":lambda:render_template("errors/nsfw.html",

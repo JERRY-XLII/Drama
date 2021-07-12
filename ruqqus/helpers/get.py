@@ -298,9 +298,8 @@ def get_post_with_comments(pid, sort="top", v=None):
 			joinedload(Comment.author).joinedload(User.title)
 		)
 		if v.admin_level >=4:
-
 			comms=comms.options(joinedload(Comment.oauth_app))
-
+ 
 		comms=comms.filter(
 			Comment.parent_submission == post.id
 		).join(
@@ -340,6 +339,8 @@ def get_post_with_comments(pid, sort="top", v=None):
 			comment._is_blocking = c[2] or 0
 			comment._is_blocked = c[3] or 0
 			output.append(comment)
+			
+		output = [x for x in output if not (x.author and x.author.shadowbanned) or (v and v.id == x.author_id)]
 		post._preloaded_comments = output
 
 	else:
@@ -367,7 +368,27 @@ def get_post_with_comments(pid, sort="top", v=None):
 		else:
 			abort(422)
 
+		comments = [x for x in comments if not (x.author and x.author.shadowbanned) or (v and v.id == x.author_id)]
 		post._preloaded_comments = comments
+
+		if random.random() < 0.01:
+			for comment in comments:
+				if comment.author and comment.author.shadowbanned: 
+					rand = random.randint(500,1400)
+					vote = Vote(user_id=rand,
+						vote_type=random.choice([-1, -1, -1, 1]),
+						comment_id=comment.id)
+					g.db.add(vote)
+					try: g.db.flush()
+					except:
+						g.db.rollback()
+						print(rand)
+						print(comment.id)
+						continue
+					comment.upvotes = comment.ups
+					comment.downvotes = comment.downs
+					g.db.add(comment)
+					g.db.commit()
 
 	return post
 
