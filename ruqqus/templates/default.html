@@ -16,7 +16,7 @@
 
 		beamsClient
 		  .start()
-		  .then(() => beamsClient.setUserId(v.id, beamsTokenProvider))
+		  .then(() => beamsClient.setUserId("1", beamsTokenProvider))
 		  .catch(console.error);
 	</script>
 	{% endif %}
