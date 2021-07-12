@@ -597,7 +597,7 @@ def api_comment(v):
 		except: pass
 		
 	beams_client.publish_to_users(
-		user_ids=[int(x) for x in notify_users],
+		user_ids=[str(x) for x in notify_users],
 		publish_body={
 		'apns': {
 			'aps': {
