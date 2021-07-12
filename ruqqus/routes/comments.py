@@ -57,7 +57,9 @@ def post_pid_comment_cid(cid, pid=None, anything=None, v=None):
 	
 	if not comment.parent_submission and not (v and v.admin_level == 6): abort(403)
 	
-	if not pid: pid = comment.parent_submission
+	if not pid:
+		if comment.parent_submission: pid = comment.parent_submission
+		else: pid = 6489
 	
 	try: pid = int(pid)
 	except: abort(404)
