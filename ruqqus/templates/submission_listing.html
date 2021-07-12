@@ -342,6 +342,17 @@
 	</div>
 </div>
 
+{% if v and v.admin_level >=3 and p.active_flags %}
+    <div class="alert alert-warning" role="alert">
+        <p><strong>Reported by:</strong></p>
+        <ul>
+            {% for u in p.flagged_by %}
+            <li>@{{ u.username }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endif %}
+
 <!-- Post Actions Modal -->
 <div class="modal fade modal-sm-bottom d-md-none" id="actionsModal-{{p.base36id}}" tabindex="-1" role="dialog" aria-labelledby="actionsModalTitle" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered" role="document">
