@@ -27898,6 +27898,10 @@ img.emoji {
     margin-bottom: 10px !important;
   }
 }
+.btn-primary:focus, .btn-primary.focus {
+  box-shadow: none !important;
+}
+
 * {
   border-color: #80ffff;
 }

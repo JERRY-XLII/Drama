@@ -27899,6 +27899,10 @@ img.emoji {
     margin-bottom: 10px !important;
   }
 }
+.btn-primary:focus, .btn-primary.focus {
+  box-shadow: none !important;
+}
+
 #frontpage .post-title a:visited {
   color: #f0f0f0;
 }
