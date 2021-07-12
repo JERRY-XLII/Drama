@@ -413,9 +413,9 @@ def comment_idlist(page=1, v=None, nsfw=False, sort="new", t="all", **kwargs):
 	secondrange = firstrange+100
 	comments = comments[firstrange:secondrange]
 
-	comments = [x for x in comments if not (x.author and x.author.shadowbanned) or (v and v.id == x.author_id)]
+	comments = [x.id for x in comments if not (x.author and x.author.shadowbanned) or (v and v.id == x.author_id)]
 
-	return [x.id for x in comments[:26]]
+	return comments[:26]
 
 @app.route("/comments", methods=["GET"])
 @app.route("/api/v1/front/comments", methods=["GET"])
