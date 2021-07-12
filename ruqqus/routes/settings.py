@@ -496,7 +496,7 @@ def settings_block_user(v):
 	cache.delete_memoized(frontlist)
 
 	existing = g.db.query(Notification).filter_by(blocksender=v.id, user_id=user.id).first()
-	if not existing: send_block_notif(v.id, target.id, f"@{v.username} has blocked you!")
+	if not existing: send_block_notif(v.id, user.id, f"@{v.username} has blocked you!")
 
 	if request.args.get("notoast"): return "", 204
 	return jsonify({"message": f"@{user.username} blocked."})
@@ -518,7 +518,7 @@ def settings_unblock_user(v):
 	cache.delete_memoized(frontlist)
 
 	existing = g.db.query(Notification).filter_by(unblocksender=v.id, user_id=user.id).first()
-	if not existing: send_unblock_notif(v.id, target.id, f"@{v.username} has unblocked you!")
+	if not existing: send_unblock_notif(v.id, user.id, f"@{v.username} has unblocked you!")
 
 	if request.args.get("notoast"): return "", 204
 	return jsonify({"message": f"@{user.username} unblocked."})
