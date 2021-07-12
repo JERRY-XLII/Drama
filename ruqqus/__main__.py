@@ -106,7 +106,7 @@ app.config["COMMENT_SPAM_COUNT_THRESHOLD"] = int(
 	environ.get("COMMENT_SPAM_COUNT_THRESHOLD", 5))
 
 app.config["CACHE_REDIS_URL"] = environ.get(
-	"REDIS_URL").rstrip().lstrip() if environ.get("REDIS_URL") else None
+	"REDIS_URL").strip().lstrip() if environ.get("REDIS_URL") else None
 app.config["CACHE_DEFAULT_TIMEOUT"] = 60
 app.config["CACHE_KEY_PREFIX"] = "flask_caching_"
 

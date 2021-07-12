@@ -8,9 +8,9 @@ from .mix_ins import *
 
 from ruqqus.__main__ import Base, app
 
-PAYPAL_ID=environ.get("PAYPAL_CLIENT_ID", "").rstrip()
-PAYPAL_SECRET=environ.get("PAYPAL_CLIENT_SECRET", "").rstrip()
-PAYPAL_WEBHOOK_ID=environ.get("PAYPAL_WEBHOOK_ID", "").rstrip()
+PAYPAL_ID=environ.get("PAYPAL_CLIENT_ID", "").strip()
+PAYPAL_SECRET=environ.get("PAYPAL_CLIENT_SECRET", "").strip()
+PAYPAL_WEBHOOK_ID=environ.get("PAYPAL_WEBHOOK_ID", "").strip()
 
 PAYPAL_URL="https://api.paypal.com"
 

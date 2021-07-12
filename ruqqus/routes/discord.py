@@ -10,10 +10,10 @@ from ruqqus.helpers.security import *
 from ruqqus.helpers.discord import add_role, delete_role
 from ruqqus.__main__ import app
 
-SERVER_ID = environ.get("DISCORD_SERVER_ID",'').rstrip()
-CLIENT_ID = environ.get("DISCORD_CLIENT_ID",'').rstrip()
-CLIENT_SECRET = environ.get("DISCORD_CLIENT_SECRET",'').rstrip()
-BOT_TOKEN = environ.get("DISCORD_BOT_TOKEN").rstrip()
+SERVER_ID = environ.get("DISCORD_SERVER_ID",'').strip()
+CLIENT_ID = environ.get("DISCORD_CLIENT_ID",'').strip()
+CLIENT_SECRET = environ.get("DISCORD_CLIENT_SECRET",'').strip()
+BOT_TOKEN = environ.get("DISCORD_BOT_TOKEN").strip()
 DISCORD_ENDPOINT = "https://discordapp.com/api/v6"
 
 

@@ -25,6 +25,20 @@ from ruqqus.__main__ import app, limiter
 
 choices = ['Wow, you must be a JP fan.', 'This is one of the worst posts I have EVER seen. Delete it.', "No, don't reply like this, please do another wall of unhinged rant please.", '# 😴😴😴', "Ma'am we've been over this before. You need to stop.", "I've known more coherent downies.", "Your pulitzer's in the mail", "That's great and all, but I asked for my burger without cheese.", 'That degree finally paying off', "That's nice sweaty. Why don't you have a seat in the time out corner with Pizzashill until you calm down, then you can have your Capri Sun.", "All them words won't bring your pa back.", "You had a chance to not be completely worthless, but it looks like you threw it away. At least you're consistent.", 'Some people are able to display their intelligence by going on at length on a subject and never actually saying anything. This ability is most common in trades such as politics, public relations, and law. You have impressed me by being able to best them all, while still coming off as an absolute idiot.', "You can type 10,000 characters and you decided that these were the one's that you wanted.", 'Have you owned the libs yet?', "I don't know what you said, because I've seen another human naked.", 'Impressive. Normally people with such severe developmental disabilities struggle to write much more than a sentence or two. He really has exceded our expectations for the writing portion. Sadly the coherency of his writing, along with his abilities in the social skills and reading portions, are far behind his peers with similar disabilities.', "This is a really long way of saying you don't fuck.", "Sorry ma'am, looks like his delusions have gotten worse. We'll have to admit him,", 'https://i.kym-cdn.com/photos/images/newsfeed/001/038/094/0a1.jpg', 'If only you could put that energy into your relationships', 'Posts like this is why I do Heroine.', 'still unemployed then?', 'K', 'look im gunna have 2 ask u 2 keep ur giant dumps in the toilet not in my replys 😷😷😷', "Mommy is soooo proud of you, sweaty. Let's put this sperg out up on the fridge with all your other failures.", "Good job bobby, here's a star", "That was a mistake. You're about to find out the hard way why.", 'You sat down and wrote all this shit. You could have done so many other things with your life. What happened to your life that made you decide writing novels of bullshit on reddit was the best option?', "I don't have enough spoons to read this shit", "All those words won't bring daddy back.", 'OUT!', "Mommy is soooo proud of you, sweaty. Let's put this sperg out up on the fridge with all your other failures."]
 
+PUSHER_KEY = environ.get("PUSHER_KEY", "").strip()
+
+beams_client = PushNotifications(
+		instance_id='02ddcc80-b8db-42be-9022-44c546b4dce6',
+		secret_key=PUSHER_KEY,
+)
+
+@app.route('/pusher/beams-auth', methods=['GET'])
+@auth_required
+def beams_auth(v):
+	beams_token = beams_client.generate_token(v.id)
+	return jsonify(beams_token)
+
+
 @app.route("/api/v1/post/<pid>/comment/<cid>", methods=["GET"])
 def comment_cid_api_redirect(cid=None, pid=None):
 	redirect(f'/api/v1/comment/<cid>')
@@ -272,11 +286,11 @@ def api_comment(v):
 
 	# check existing
 	existing = g.db.query(Comment).join(CommentAux).filter(Comment.author_id == v.id,
-														   Comment.deleted_utc == 0,
-														   Comment.parent_comment_id == parent_comment_id,
-														   Comment.parent_submission == parent_submission,
-														   CommentAux.body == body
-														   ).options(contains_eager(Comment.comment_aux)).first()
+															 Comment.deleted_utc == 0,
+															 Comment.parent_comment_id == parent_comment_id,
+															 Comment.parent_submission == parent_submission,
+															 CommentAux.body == body
+															 ).options(contains_eager(Comment.comment_aux)).first()
 	if existing:
 		return jsonify({"error": f"You already made that comment: {existing.permalink}"}), 409
 
@@ -299,10 +313,10 @@ def api_comment(v):
 		cutoff = now - 60 * 60 * 24
 
 		similar_comments = g.db.query(Comment
-									  ).options(
+										).options(
 			lazyload('*')
 		).join(Comment.comment_aux
-			   ).filter(
+				 ).filter(
 			Comment.author_id == v.id,
 			CommentAux.body.op(
 				'<->')(body) < app.config["COMMENT_SPAM_SIMILAR_THRESHOLD"],
@@ -320,7 +334,7 @@ def api_comment(v):
 			send_notification(1046, v, text)
 
 			v.ban(reason="Spamming.",
-				  days=1)
+					days=1)
 
 			for alt in v.alts:
 				if not alt.is_suspended:
@@ -415,9 +429,9 @@ def api_comment(v):
 				
 			csam_thread=threading.Thread(target=check_csam_url, 
 										 args=(f"https://s3.eu-central-1.amazonaws.com/i.ruqqus.ga/{name}", 
-											   v, 
-											   del_function
-											  )
+												 v, 
+												 del_function
+												)
 										)
 			csam_thread.start()
 
@@ -462,7 +476,7 @@ def api_comment(v):
 
 
 
-	if  random.random() < 0.001 and v.username != "Snappy" and v.username != "zozbot":
+	if	random.random() < 0.001 and v.username != "Snappy" and v.username != "zozbot":
 		c2 = Comment(author_id=1833,
 			parent_submission=parent_submission,
 			parent_fullname=c.fullname,
@@ -580,12 +594,38 @@ def api_comment(v):
 		g.db.add(n)
 		try: g.db.flush()
 		except: pass
+		
+	beams_client.publish_to_users(
+		user_ids=notify_users,
+		publish_body={
+		'apns': {
+			'aps': {
+			'alert': {
+				'title': f'New reply by @{v.username}',
+				'body': c.body,
+			},
+			},
+		},
+		'fcm': {
+			'notification': {
+				'title': f'New reply by @{v.username}',
+				'body': c.body,
+			},
+		},
+		'web': {
+			'notification': {
+				'title': f'New reply by @{v.username}',
+				'body': c.body,
+			},
+		},
+		},
+	)
 
 	# create auto upvote
 	vote = CommentVote(user_id=v.id,
-					   comment_id=c.id,
-					   vote_type=1
-					   )
+						 comment_id=c.id,
+						 vote_type=1
+						 )
 
 	g.db.add(vote)
 
@@ -645,7 +685,7 @@ def edit_comment(cid, v):
 		
 		if ban.reason:
 			reason += f" {ban.reason_text}"	
-		  
+			
 		return jsonify({"error": reason}), 401
 	
 		return {'html': lambda: render_template("comment_failed.html",
@@ -692,10 +732,10 @@ def edit_comment(cid, v):
 	cutoff = now - 60 * 60 * 24
 
 	similar_comments = g.db.query(Comment
-								  ).options(
+									).options(
 		lazyload('*')
 	).join(Comment.comment_aux
-		   ).filter(
+			 ).filter(
 		Comment.author_id == v.id,
 		CommentAux.body.op(
 			'<->')(body) < app.config["SPAM_SIMILARITY_THRESHOLD"],
@@ -715,7 +755,7 @@ def edit_comment(cid, v):
 		send_notification(1046, v, text)
 
 		v.ban(reason="Spamming.",
-			  days=1)
+				days=1)
 
 		for comment in similar_comments:
 			comment.is_banned = True
@@ -748,9 +788,9 @@ def edit_comment(cid, v):
 				
 			csam_thread=threading.Thread(target=check_csam_url, 
 										 args=(f"https://s3.eu-central-1.amazonaws.com/i.ruqqus.ga/{name}", 
-											   v, 
-											   del_function
-											  )
+												 v, 
+												 del_function
+												)
 										)
 			csam_thread.start()
 

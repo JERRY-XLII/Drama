@@ -151,7 +151,7 @@ def frontlist(v=None, sort="hot", page=1,t="all", ids_only=True, filter_words=''
 	secondrange = firstrange+26
 	posts = posts[firstrange:secondrange]
 
-	if random.random() < 0.0001:
+	if random.random() < 0.001:
 		for post in posts:
 			if post.author and post.author.shadowbanned: 
 				rand = random.randint(500,1400)

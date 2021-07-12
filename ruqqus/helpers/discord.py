@@ -2,11 +2,11 @@ from os import environ
 import requests
 import threading
 
-SERVER_ID = environ.get("DISCORD_SERVER_ID",'').rstrip()
-CLIENT_ID = environ.get("DISCORD_CLIENT_ID",'').rstrip()
-CLIENT_SECRET = environ.get("DISCORD_CLIENT_SECRET",'').rstrip()
-BOT_TOKEN = environ.get("DISCORD_BOT_TOKEN",'').rstrip()
-AUTH = environ.get("DISCORD_AUTH",'').rstrip()
+SERVER_ID = environ.get("DISCORD_SERVER_ID",'').strip()
+CLIENT_ID = environ.get("DISCORD_CLIENT_ID",'').strip()
+CLIENT_SECRET = environ.get("DISCORD_CLIENT_SECRET",'').strip()
+BOT_TOKEN = environ.get("DISCORD_BOT_TOKEN",'').strip()
+AUTH = environ.get("DISCORD_AUTH",'').strip()
 
 ROLES={
 	"linked":  "849621030926286920",

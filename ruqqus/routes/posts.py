@@ -563,7 +563,7 @@ def submit_post(v):
 	# board
 	board_name = request.form.get("board", "general")
 	board_name = board_name.lstrip("+")
-	board_name = board_name.rstrip()
+	board_name = board_name.strip()
 
 	board = get_guild(board_name, graceful=True)
 

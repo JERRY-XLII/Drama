@@ -2,19 +2,25 @@
 <html lang="en">
 <head>
 
+	{% if v %}
 	<script src="https://js.pusher.com/beams/1.0/push-notifications-cdn.js"></script>
 	
 	<script>
-	  const beamsClient = new PusherPushNotifications.Client({
-		instanceId: '02ddcc80-b8db-42be-9022-44c546b4dce6',
-	  });
+		const beamsClient = new PusherPushNotifications.Client({
+			instanceId: '02ddcc80-b8db-42be-9022-44c546b4dce6',
+		});		
+		
+		const beamsTokenProvider = new PusherPushNotifications.TokenProvider({
+		  url: "/pusher/beams-auth",
+		});
 
-	  beamsClient.start()
-		.then(() => beamsClient.addDeviceInterest('hello'))
-		.then(() => console.log('Successfully registered and subscribed!'))
-		.catch(console.error);
+		beamsClient
+		  .start()
+		  .then(() => beamsClient.setUserId(v.id, beamsTokenProvider))
+		  .catch(console.error);
 	</script>
-
+	{% endif %}
+	
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
