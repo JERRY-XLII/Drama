@@ -130,7 +130,7 @@ def googleplayapp():
 
 @app.route("/service-worker.js")
 def serviceworker():
-	with open(".well-known/service-worker.js", "r") as f: return Response(f.read(), mimetype='text/plain')
+	with open(".well-known/service-worker.js", "r") as f: return Response(f.read(), mimetype='application/javascript')
 
 @app.route("/badmins", methods=["GET"])
 @auth_desired
