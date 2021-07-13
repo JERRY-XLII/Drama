@@ -544,10 +544,10 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
 	@property
 	def embed_template(self):
 		return f"site_embeds/{self.domain_obj.embed_template}.html"
-    
-    @property
-    def flagged_by(self):
-        return [x.user for x in self.reports]
+	
+	@property
+	def flagged_by(self):
+		return [x.user for x in self.reports]
 
 	@property
 	def is_image(self):
