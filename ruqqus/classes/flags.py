@@ -46,6 +46,8 @@ class Report(Base):
 	created_utc = Column(Integer)
 
 	board_id = Column(Integer, server_default=FetchedValue())
+    
+    user = relationship("User", lazy = "joined", primaryjoin = "Report.user_id == User.id", uselist = False)
 
 	def __repr__(self):
 
