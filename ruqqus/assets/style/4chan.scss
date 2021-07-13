@@ -41,7 +41,6 @@ $reddit: #ED4630;
 @import "D:/#D/ruqqus/assets/style/node_modules/bootstrap/scss/bootstrap.scss";
 @import "D:/#D/ruqqus/assets/style/main.scss";
 
-@media (min-width: 992px) {
 html * {
     font-family: arial, helvetica, sans-serif;
     font-size: 12px;
@@ -151,4 +150,3 @@ body, #main-content-col, .sidebar {
 .active.arrow-up::before, .active.arrow-down::before {
     opacity: 1
     }
-}
