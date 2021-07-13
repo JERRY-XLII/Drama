@@ -153,27 +153,35 @@ def frontlist(v=None, sort="hot", page=1,t="all", ids_only=True, filter_words=''
 	
 	if page == 1: posts = g.db.query(Submission).filter_by(stickied=True).all() + posts
 
+	words = [' captainmeta4 ', ' cm4 ', ' dissident001 ', ' ladine ']
+
+	for post in posts:
+		if post.author and post.author.admin_level == 0:
+			for word in words:
+				if word in post.title.lower():
+					posts.remove(post)
+					break
+
 	posts = posts[:26]
 	
-	if random.random() < 0.01:
-		for post in posts:
-			if post.author and post.author.shadowbanned: 
-				rand = random.randint(500,1400)
-				vote = Vote(user_id=rand,
-					vote_type=random.choice([-1, -1, -1, -1, 1]),
-					submission_id=post.id)
-				g.db.add(vote)
-				try: g.db.flush()
-				except:
-					g.db.rollback()
-					print(rand)
-					print(post.id)
-					continue
-				post.upvotes = post.ups
-				post.downvotes = post.downs
-				post.views = post.views + random.randint(7,10)
-				g.db.add(post)
-				g.db.commit()
+	for post in posts:
+		if post.author and post.author.shadowbanned: 
+			rand = random.randint(500,1400)
+			vote = Vote(user_id=rand,
+				vote_type=random.choice([-1, -1, -1, -1, 1]),
+				submission_id=post.id)
+			g.db.add(vote)
+			try: g.db.flush()
+			except:
+				g.db.rollback()
+				print(rand)
+				print(post.id)
+				continue
+			post.upvotes = post.ups
+			post.downvotes = post.downs
+			post.views = post.views + random.randint(7,10)
+			g.db.add(post)
+			g.db.commit()
 
 	if ids_only:
 		posts = [x.id for x in posts]
