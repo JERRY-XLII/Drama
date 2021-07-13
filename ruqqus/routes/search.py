@@ -255,7 +255,8 @@ def searchcomments(v):
 
 	query = request.args.get("q", '').strip()
 
-	page = max(1, int(request.args.get("page", 1)))
+	try: page = max(1, int(request.args.get("page", 1)))
+	except: page = 1
 
 	sort = request.args.get("sort", "top").lower()
 	t = request.args.get('t', 'all').lower()
