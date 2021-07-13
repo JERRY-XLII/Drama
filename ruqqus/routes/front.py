@@ -15,6 +15,8 @@ from ruqqus.classes.categories import CATEGORIES
 def slash_post():
 	return redirect("/")
 
+# this is a test
+
 @app.route("/notifications", methods=["GET"])
 @auth_required
 def notifications(v):
