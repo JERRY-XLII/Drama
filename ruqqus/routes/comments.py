@@ -591,19 +591,19 @@ def api_comment(v):
 		try: g.db.flush()
 		except: pass
 
-	if len(notify_users) > 0:
-		beams_client.publish_to_interests(
-		  interests=[str(x) for x in notify_users],
-		  publish_body={
-			'web': {
-			  'notification': {
-					'title': f'New reply by @{v.username}',
-					'body': c.body,
-					'deep_link': f'https://rdrama.net{c.permalink}?context=5#context',
-			  },
-			},
-		  },
-		)
+	# if len(notify_users) > 0:
+		# beams_client.publish_to_interests(
+		  # interests=[str(x) for x in notify_users],
+		  # publish_body={
+			# 'web': {
+			  # 'notification': {
+					# 'title': f'New reply by @{v.username}',
+					# 'body': c.body,
+					# 'deep_link': f'https://rdrama.net{c.permalink}?context=5#context',
+			  # },
+			# },
+		  # },
+		# )
 
 	# create auto upvote
 	vote = CommentVote(user_id=v.id,
