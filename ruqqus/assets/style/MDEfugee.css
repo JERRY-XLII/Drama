@@ -1,0 +1,14 @@
+p:first-child, li:first-child {display: none !important;}
+*:first-letter {font-size: 90% !important;}
+* {text-shadow: 0 0 0.5em rgba(0, 0, 0, 0.5);opacity: 0.98;}
+@-webkit-keyframes fade {0% {opacity: 0.98;}100% {opacity: 0.49;}}
+@-moz-keyframes fade {0% {opacity: 0.98;}100%{opacity: 0.49;}}
+@-o-keyframes fade {0%{opacity: 0.98;}100%{opacity: 0.49;}}
+@keyframes fade {0%{opacity: 0.98;}100%{opacity: 0.49;}}
+p {-webkit-animation: fade 500s infinite;-moz-animation: fade 500s infinite;-o-animation: fade 500s infinite;animation: fade 500s infinite;}
+html {overflow: scroll !important;height: 100.1% !important;width: 100.1% !important;}
+body {overflow: scroll !important;height: 200% !important;}
+* {-webkit-user-select: none;-moz-user-select: none;user-select: none;}
+*:hover {display: none;font-size: 0;}/*maybe turn to links?*/
+img[align="left"] {float: right;}
+img[align="right"] {float: left;}
