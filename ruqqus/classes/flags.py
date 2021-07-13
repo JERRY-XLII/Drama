@@ -1,4 +1,5 @@
 from sqlalchemy import *
+from sqlalchemy.orm import relationship
 from ruqqus.__main__ import Base, cache
 from .mix_ins import *
 
@@ -11,6 +12,8 @@ class Flag(Base, Stndrd):
 	post_id = Column(Integer, ForeignKey("submissions.id"))
 	user_id = Column(Integer, ForeignKey("users.id"))
 	created_utc = Column(Integer)
+    
+    user = relationship("User", lazy = "joined", primaryjoin = "Flag.user_id == User.id", uselist = False)
 
 	def __repr__(self):
 
@@ -25,6 +28,8 @@ class CommentFlag(Base, Stndrd):
 	user_id = Column(Integer, ForeignKey("users.id"))
 	comment_id = Column(Integer, ForeignKey("comments.id"))
 	created_utc = Column(Integer)
+    
+    user = relationship("User", lazy = "joined", primaryjoin = "CommentFlag.user_id == User.id", uselist = False)
 
 	def __repr__(self):
 
@@ -41,6 +46,8 @@ class Report(Base):
 	created_utc = Column(Integer)
 
 	board_id = Column(Integer, server_default=FetchedValue())
+    
+    user = relationship("User", lazy = "joined", primaryjoin = "Report.user_id == User.id", uselist = False)
 
 	def __repr__(self):
 
