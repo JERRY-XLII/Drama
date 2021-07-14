@@ -66,3 +66,4 @@ yattag==1.14.0
 yarl==1.5.1
 zipp==3.4.0
 pusher_push_notifications
+youtube-dl
