@@ -199,7 +199,7 @@ def sanitize(text, linkgen=False, flair=False):
 	for i in re.finditer('<a href="(https://(streamable|youtube).com/(e|embed)/.*?)"', sanitized):
 		url = i.group(1)
 		replacing = f'<a href="{url}" rel="nofollow noopener" target="_blank">{url}</a>'
-		htmlsource = f'<div style="padding-top:5px; padding-bottom: 10px;"><iframe allowfullscreen="" frameborder="0" src="{url}"></iframe></div>'
+		htmlsource = f'<div style="padding-top:5px; padding-bottom: 10px;"><iframe frameborder="0" src="{url}?controls=0"></iframe></div>'
 		sanitized = sanitized.replace(replacing, htmlsource)
 		
 	for i in re.finditer('<a href="(https://open.spotify.com/embed/.*?)"', sanitized):
