@@ -213,6 +213,8 @@ def sanitize(text, linkgen=False, flair=False):
 	for rd in ["https://reddit.com/", "https://new.reddit.com/", "https://www.reddit.com/", "https://redd.it/"]:
 		sanitized = sanitized.replace(rd, "https://old.reddit.com/")
 
-	# if url.startswith("https://old.reddit.com/") and '/comments/' in url and '?sort=' not in url: url += "?sort=controversial" 
+	for i in re.finditer('/comments/.*?"', sanitized):
+		url = i.group(1)
+		if not "sort=" in url: sanitized = sanitized.replace(url, f"{url}?sort=controversial")
 
 	return sanitized
