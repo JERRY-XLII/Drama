@@ -67,3 +67,4 @@ yarl
 zipp
 pusher_push_notifications
 youtube-dl
+testresources
