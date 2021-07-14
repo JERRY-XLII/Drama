@@ -23759,7 +23759,7 @@ ol > li::before {
 }
 
 .btn-sm, .btn-group-sm > .btn {
-  padding: 0.375rem 0.75rem;
+  padding: 0.75rem;
   font-size: 12px;
 }
 
