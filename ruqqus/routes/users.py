@@ -19,6 +19,7 @@ from ruqqus.classes import *
 from ruqqus.mail import *
 from flask import *
 from ruqqus.__main__ import app, cache, limiter, db_session
+from pusher_push_notifications import PushNotifications
 
 @app.route("/@<username>/reply/<id>", methods=["POST"])
 @auth_required
@@ -88,6 +89,18 @@ def message2(v, username):
 	if user.is_blocked: return jsonify({"error": "This user is blocking you."}), 403
 	message = request.form.get("message", "")
 	send_pm(v.id, user, message)
+	beams_client.publish_to_interests(
+		interests=[user.id],
+		publish_body={
+			'web': {
+				'notification': {
+					'title': f'New message from @{v.username}',
+					'body': message,
+					'deep_link': f'https://rdrama.net/notifications',
+				},
+			},
+		},
+	)
 	return redirect('/notifications?sent=true')
 
 @app.route("/2faqr/<secret>", methods=["GET"])
