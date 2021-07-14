@@ -546,7 +546,7 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
 	
 	@property
 	def flagged_by(self):
-		return [x.user for x in self.reports]
+		return [x.user for x in self.flags]
 
 	@property
 	def is_image(self):

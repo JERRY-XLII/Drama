@@ -419,6 +419,10 @@ class Comment(Base, Age_times, Scores, Stndrd, Fuzzing):
 		return False
 
 	@property
+	def flagged_by(self):
+		return [x.user for x in self.flags]
+
+	@property
 	def self_download_json(self):
 
 		#This property should never be served to anyone but author and admin
