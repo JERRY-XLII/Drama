@@ -342,17 +342,17 @@
 	</div>
 </div>
 
-<!-- {% if p.active_flags %}
-    <div class="alert alert-warning" role="alert">
-        <p><strong>Reported by:</strong></p>
-        <ul>
+{% if p.active_flags %}
+    <div class="flaggers" style="margin: 7px; border: 1px solid #999b2e; padding: 10px; border-radius: 3px;">
+        <strong style="color: #999b2e;"><i class="far fa-fw fa-flag"></i> Reported by:</strong>
+        <ul style="margin-bottom: 0;">
             {% for u in p.flagged_by %}
-            <li>@{{ u.username }}</li>
+            <li><a href="{{ u.url }}">@{{ u.username }}</a></li>
             {% endfor %}
         </ul>
     </div>
 {% endif %}
- -->
+
 <!-- Post Actions Modal -->
 <div class="modal fade modal-sm-bottom d-md-none" id="actionsModal-{{p.base36id}}" tabindex="-1" role="dialog" aria-labelledby="actionsModalTitle" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered" role="document">

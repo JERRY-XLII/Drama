@@ -187,6 +187,17 @@
 			</div>
 			{% endif %}
 
+            {% if c.active_flags %}
+                <div class="flaggers" style="margin-bottom: 10px; border: 1px solid #999b2e; padding: 10px; border-radius: 3px;">
+                    <strong style="color: #999b2e;"><i class="far fa-fw fa-flag"></i> Reported by:</strong>
+                    <ul style="margin-bottom: 0;">
+                        {% for u in c.flagged_by %}
+                        <li><a href="{{ u.url }}">@{{ u.username }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+
 			<div id="comment-{{c.base36id}}-actions" class="comment-actions{% if voted==1 %} upvoted{% elif voted==-1 %} downvoted{% endif %}">
 				<ul class="list-inline text-right text-md-left">
 
