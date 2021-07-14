@@ -7,7 +7,7 @@ boto3
 botocore
 certifi
 chardet
-click>=8
+click
 cycler
 eventlet
 Flask
@@ -24,15 +24,15 @@ idna
 idna-ssl
 ImageHash
 importlib-metadata
-itsdangerous>=2
-Jinja2>=3
+itsdangerous
+Jinja2
 jmespath
 kiwisolver
 libsass
 limits
 lockfile
 Markdown
-MarkupSafe>=2
+MarkupSafe
 matplotlib
 mistletoe
 multidict
@@ -40,7 +40,7 @@ newrelic
 numpy
 piexif
 Pillow
-psutil>=5.7.0
+psutil
 psycogreen
 psycopg2-binary
 py3socket
