@@ -11,7 +11,7 @@ services:
       - REDIS_URL=redis://127.0.0.1
       - DATABASE_URL=postgresql://postgres@127.0.0.1:5432/postgres
       - DATABASE_CONNECTION_POOL_URL=postgresql://postgres@127.0.0.1:5432/postgres
-      - MASTER_KEY=${MASTER_KEY:-vcxvdfgfc6r554etrgd=}
+      - MASTER_KEY=${MASTER_KEY:-KTVciAUQFpFh2WdJ/oiHJlxl6FvzRZp8kYzAAv3l2OA=}
       - SESSION_COOKIE_SECURE=false
       - FLASK_DEBUG=1
       - FLASK_ENV=development
