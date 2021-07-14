@@ -514,6 +514,18 @@
 	</div>
 
 </div>
+
+{% if p.active_flags %}
+    <div class="flaggers" style="width: 95%; margin: 10px auto; border: 1px solid #999b2e; padding: 10px; border-radius: 3px;">
+        <strong style="color: #999b2e;"><i class="far fa-fw fa-flag"></i> Reported by:</strong>
+        <ul style="margin-bottom: 0;">
+            {% for u in p.flagged_by %}
+            <li><a href="{{ u.url }}">@{{ u.username }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endif %}
+
 <div class="row border-md-0 comment-section pb-3">
 	<div class="col border-top">
 		<div class="comments-count py-3">
