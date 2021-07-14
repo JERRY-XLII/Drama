@@ -38,6 +38,14 @@ def submit_contact(v):
 	send_admin(v.id, message)
 	return render_template("contact.html", v=v, msg="Your message has been sent.")
 
+@app.route('/archives/<path:path>')
+@limiter.exempt
+def static_service(path):
+	resp = make_response(send_from_directory('/archives', path))
+	resp.headers.add("Cache-Control", "public")
+	if request.path.endswith('.css'): resp.headers.add("Content-Type", "text/css")
+	return resp
+
 @app.route('/assets/<path:path>')
 @limiter.exempt
 def static_service(path):
