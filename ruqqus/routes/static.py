@@ -40,7 +40,7 @@ def submit_contact(v):
 
 @app.route('/archives/<path:path>')
 @limiter.exempt
-def static_service(path):
+def archives(path):
 	resp = make_response(send_from_directory('/archives', path))
 	resp.headers.add("Cache-Control", "public")
 	if request.path.endswith('.css'): resp.headers.add("Content-Type", "text/css")
