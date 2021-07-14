@@ -129,7 +129,7 @@
 							{% if p.private %}<span class="text-warning"><i class="far fa-eye-slash text-small mr-1"></i>unlisted</span>&nbsp;{% endif %}
 							{% if p.is_repost %}<span class="text-warning"><i class="far fa-sync text-small mr-1"></i><a class="text-warning" href="{{p.reposts.permalink}}">repost</a></span>&nbsp;{% endif %}
 							{% if v and v.admin_level >=3 and p.active_flags %}&nbsp;<span class="text-danger">{{p.active_flags}} Flags</span>{% endif %}
-							{% if p.author.is_deleted %}[deleted account]{% else %}&nbsp;<a href="{{p.author.permalink}}" style="color: #{{p.author.namecolor}}; font-weight: bold;; font-weight: bold;" class="user-name"><img src="{{p.author.profile_url}}" class="profile-pic-20">&nbsp;&nbsp;{{p.author.username}}</a>{% if p.author.customtitle %}<span style="color: #{{p.author.titlecolor}}">&nbsp;&nbsp;{{p.author.customtitle | safe}}</span>{% endif %}
+							{% if p.author.is_deleted %}[deleted account]{% else %}&nbsp;<a href="{{p.author.permalink}}" style="color: #{{p.author.namecolor}}; font-weight: bold;; font-weight: bold;" class="user-name"><img src="{{p.author.profile_url}}" class="profile-pic-20">&nbsp;&nbsp;{{p.author.username}}</a>{% if p.author.customtitle %}<bdi style="color: #{{p.author.titlecolor}}">&nbsp;&nbsp;{{p.author.customtitle | safe}}</bdi>{% endif %}
 							<span data-toggle="tooltip" data-placement="bottom"  title="{{p.created_date}}">&nbsp;{{p.age_string}}</span>
 							{% endif %}&nbsp;({{p.domain}})
 							
@@ -150,7 +150,7 @@
 					{% if p.private %}<span class="badge border-warning border-1 text-small-extra">unlisted</span>{% endif %}
 					{% if p.is_repost %}&nbsp;<span class="badge border-warning border-1 text-small-extra"><a class="text-warning" href="{{p.reposts.permalink}}">repost</a></span>{% endif %}
 					{% if v and v.admin_level >=3 and p.active_flags %}<span class="text-danger">{{p.active_flags}} Flags</span>{% endif %}
-					{% if p.author.is_deleted %}[deleted account]{% else %}&nbsp;<a href="{{p.author.permalink}}" style="color: #{{p.author.namecolor}}; font-weight: bold;" class="user-name"><img src="{{p.author.profile_url}}" class="profile-pic-20">&nbsp;&nbsp;{{p.author.username}}</a>{% if p.author.customtitle %}<span style="color: #{{p.author.titlecolor}}">&nbsp;&nbsp;{{p.author.customtitle | safe}}</span>{% endif %}{% endif %}
+					{% if p.author.is_deleted %}[deleted account]{% else %}&nbsp;<a href="{{p.author.permalink}}" style="color: #{{p.author.namecolor}}; font-weight: bold;" class="user-name"><img src="{{p.author.profile_url}}" class="profile-pic-20">&nbsp;&nbsp;{{p.author.username}}</a>{% if p.author.customtitle %}<bdi style="color: #{{p.author.titlecolor}}">&nbsp;&nbsp;{{p.author.customtitle | safe}}</bdi>{% endif %}{% endif %}
 					<span data-toggle="tooltip" data-placement="bottom"  title="{{p.created_datetime}}">&nbsp;{{p.age_string}}</span>
 					&nbsp;
 					({% if p.url %}<a href="/search?q=domain%3A{{p.domain}}&sort=new&t=all" target="_blank">{{p.domain}}</a>{% else %}text post{% endif %})

@@ -120,7 +120,7 @@
 				{% if c.is_blocking %}<i class="fas fa-user-minus text-warning" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="You're blocking this user, but you can see this comment because {{'it\'s in your guild' if v.admin_level == 6 else 'it\'s an admin comment' if c.distinguish_level else 'you\'re an admin'}}."></i>&nbsp;{% endif %}
 				{% if c.is_blocked %}<i class="fas fa-user-minus text-danger" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="This user is blocking you, but you can see this comment because {{'it\'s in your guild' if v.admin_level == 6 else 'it\'s an admin comment' if c.distinguish_level else 'you\'re an admin'}}."></i>&nbsp;{% endif %}
 
-				{% if c.author.is_deleted %}[deleted account]{% else %}<a style="color:#{{c.author.namecolor}}; font-size:12px; font-weight:bold;" href="/@{{c.author.username}}"><img src="{{c.author.profile_url}}" class="profile-pic-25">&nbsp;&nbsp;{{c.author.username}}</a><span style="color: #{{c.author.titlecolor}}">{% if c.author.customtitle %}	&nbsp;{{c.author.customtitle | safe}}{% endif %}</span>{% endif %}
+				{% if c.author.is_deleted %}[deleted account]{% else %}<a style="color:#{{c.author.namecolor}}; font-size:12px; font-weight:bold;" href="/@{{c.author.username}}"><img src="{{c.author.profile_url}}" class="profile-pic-25">&nbsp;&nbsp;{{c.author.username}}</a>{% if c.author.customtitle %}<bdi style="color: #{{c.author.titlecolor}}">&nbsp;{{c.author.customtitle | safe}}</bdi>{% endif %}{% endif %}
 
 				<span data-toggle="tooltip" data-placement="bottom"  title="{{c.created_datetime}}" class="time-stamp">&nbsp;{{c.age_string}}</span>
 				{% if c.edited_utc %}
@@ -243,8 +243,8 @@
 					{% endif %}
 
 					{% endif %}
-					<li class="list-inline-item text-muted d-none d-md-inline-block"><a href="{{c.permalink}}?context=99#context"{% if c.author.is_private %} rel="nofollow"{% endif %}><i class="fas fa-book-open"></i>Context</a></li>
-					<li class="list-inline-item text-muted d-none d-md-inline-block"><a href="javascript:void(0);" role="button" class="copy-link" data-clipboard-text="{{c.permalink | full_link}}?context=99#context"><i class="fas fa-copy"></i>Copy link</a></li>
+					<li class="list-inline-item text-muted d-none d-md-inline-block"><a href="{{c.permalink}}?context=14#context"{% if c.author.is_private %} rel="nofollow"{% endif %}><i class="fas fa-book-open"></i>Context</a></li>
+					<li class="list-inline-item text-muted d-none d-md-inline-block"><a href="javascript:void(0);" role="button" class="copy-link" data-clipboard-text="{{c.permalink | full_link}}?context=14#context"><i class="fas fa-copy"></i>Copy link</a></li>
 					
 					{% if v and v.admin_level>=3 and request.path.startswith ('/admin') %}
 						<li class="list-inline-item text-muted d-none d-md-inline-block"><a href="javascript:void(0)" onclick="removeComment('{{c.base36id}}')"><i class="fas fa-comment-times fa-fw"></i>Remove</a></li>
