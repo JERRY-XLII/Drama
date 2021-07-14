@@ -10,12 +10,12 @@ chardet
 click
 cycler
 eventlet
-Flask==2.0.0
-Flask-Caching==1.9.0
-Flask-Compress==1.9.0
+Flask
+Flask-Caching
+Flask-Compress
 Flask-Limiter==1.1.0
-Flask-Markdown==0.3
-flask-socketio==5.1.0
+Flask-Markdown
+flask-socketio
 gevent
 gevent-websocket
 greenlet
