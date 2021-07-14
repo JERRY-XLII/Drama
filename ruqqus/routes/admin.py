@@ -24,7 +24,6 @@ import ruqqus.helpers.aws as aws
 from ruqqus.__main__ import app
 
 @app.route("/admin/shadowbanned", methods=["GET"])
-@admin_level_required(6)
 def shadowbanned(v):
 	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
 	if not (v and v.admin_level == 6): abort(404)
