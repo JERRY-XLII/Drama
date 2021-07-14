@@ -38,13 +38,13 @@ That's it! Visit `localhost` in your browser.
 
 Install Docker on your machine.
 
-[Docker installation for Ubuntu 18.04](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-18-04)
+[Docker installation for Ubuntu](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-18-04)
 
 ### Install Docker-compose
 
 Install Docker-compose on your machine.
 
-[Docker-cmpose installation for Ubuntu 18.04](https://www.digitalocean.com/community/tutorials/how-to-install-docker-compose-on-ubuntu-18-04)
+[Docker-compose installation for Ubuntu](https://www.digitalocean.com/community/tutorials/how-to-install-docker-compose-on-ubuntu-18-04)
 
 ### Download Drama
 
