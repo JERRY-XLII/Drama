@@ -63,7 +63,7 @@
 
 			<div class="row">
 
-				<div class="col">
+				<div class="col" style="padding:0">
 
 					<div class="settings">
 
@@ -96,9 +96,9 @@
 				<tbody class="text-muted">
 
 					{% for mod in b.mods_list %}
-					<tr>
+					<tr style="font-size:13px">
 						<td>
-							<a style="font-size:10px;" href="{{mod.user.permalink}}">
+							<a href="{{mod.user.permalink}}">
 								<img src="{{mod.user.profile_url}}" class="profile-pic-20 align-top mr-2">@{{mod.user.username}}</a>
 							</td>
 							<td>{{mod.created_date}}</td>
