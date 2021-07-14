@@ -593,7 +593,7 @@ def api_comment(v):
 
 	if parent.author.id != v.id:
 		beams_client.publish_to_interests(
-		  interests=[parent.author.id],
+		  interests=[str(parent.author.id)],
 		  publish_body={
 			'web': {
 			  'notification': {

@@ -90,7 +90,7 @@ def message2(v, username):
 	message = request.form.get("message", "")
 	send_pm(v.id, user, message)
 	beams_client.publish_to_interests(
-		interests=[user.id],
+		interests=[str(user.id)],
 		publish_body={
 			'web': {
 				'notification': {
