@@ -1,21 +1,10 @@
-from urllib.parse import urlparse
-from sqlalchemy import func
-from bs4 import BeautifulSoup
-import pyotp
 import qrcode
 import io
-import gevent
 from datetime import datetime
 
 from ruqqus.helpers.alerts import *
-from ruqqus.helpers.wrappers import *
-from ruqqus.helpers.base36 import *
 from ruqqus.helpers.sanitize import *
-from ruqqus.helpers.filters import *
-from ruqqus.helpers.embed import *
 from ruqqus.helpers.markdown import *
-from ruqqus.helpers.get import *
-from ruqqus.classes import *
 from ruqqus.mail import *
 from flask import *
 from ruqqus.__main__ import app, cache, limiter, db_session
@@ -34,6 +23,15 @@ def get_css(username):
 	if user.css: css = user.css
 	else: css = ""
 	resp=make_response(css)
+	resp.headers.add("Content-Type", "text/css")
+	return resp
+
+@app.get("/@<username>/profilecss")
+def get_css(username):
+	user = get_user(username)
+	if user.profilecss: profilecss = user.profilecss
+	else: profilecss = ""
+	resp=make_response(profilecss)
 	resp.headers.add("Content-Type", "text/css")
 	return resp
 
@@ -82,20 +80,6 @@ def unsubscribe(v, post_id):
 	sub=g.db.query(Subscription).filter_by(user_id=v.id, submission_id=post_id).first()
 	g.db.delete(sub)
 	return "", 204
-
-@app.route("/leaderboard", methods=["GET"])
-@auth_desired
-def leaderboard(v):
-	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
-	users1, users2 = leaderboard()
-	return render_template("leaderboard.html", v=v, users1=users1, users2=users2)
-
-@cache.memoize(timeout=86400)
-def leaderboard():
-	users = g.db.query(User).options(lazyload('*'))
-	users1= sorted(users, key=lambda x: x.dramacoins, reverse=True)[:100]
-	users2 = sorted(users1, key=lambda x: x.follower_count, reverse=True)[:10]
-	return users1[:25], users2
 
 @app.route("/@<username>/message", methods=["POST"])
 @auth_required

@@ -1,5 +1,11 @@
 {% extends "default.html" %}
 
+{% if u.profilecss %}
+	{% block stylesheets %}
+		<link rel="stylesheet" href="/@{{u.username}}/profilecss">
+	{% endblock %}
+{% endif %}
+
 {% block pagetype %}userpage{% endblock %}
 
 {% block enlargeThumbJS %}
@@ -71,7 +77,7 @@
 								<div class="profile-actions align-middle d-none ml-2">
 								 {% if v and v.id != u.id %}
 								 <div class="dropdown show d-none">
-									<a href="#" role="button" id="dropdownProfileActionsLink" data-toggle="dropdown"
+									<a href="#" role="button" data-toggle="dropdown"
 									aria-haspopup="true" aria-expanded="false">
 									<i class="far fa-ellipsis-h text-lg align-middle text-gray-600"></i>
 								</a>
@@ -427,7 +433,7 @@
 
 		<div class="text-small font-weight-bold ml-3 mr-2">‎</div>
 		<div class="dropdown dropdown-actions">
-			<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			<button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 				{% if sort=="top" %}<i class="fas fa-arrow-alt-circle-up mr-1"></i>{% endif %}
 				{% if sort=="bottom" %}<i class="fas fa-arrow-alt-circle-down mr-1"></i>{% endif %}
 				{% if sort=="new" %}<i class="fas fa-sparkles mr-1"></i>{% endif %}

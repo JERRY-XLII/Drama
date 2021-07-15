@@ -454,6 +454,39 @@ def settings_css(v):
 	g.db.add(v)
 	return render_template("settings_css.html", v=v)
 
+@app.route("/leaderboard", methods=["GET"])
+@auth_desired
+def leaderboard(v):
+	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
+	users1, users2 = leaderboard()
+	return render_template("leaderboard.html", v=v, users1=users1, users2=users2)
+
+@cache.memoize(timeout=86400)
+def leaderboard():
+	users = g.db.query(User).options(lazyload('*'))
+	users1= sorted(users, key=lambda x: x.dramacoins, reverse=True)[:100]
+	users2 = sorted(users1, key=lambda x: x.follower_count, reverse=True)[:10]
+	return users1[:35], users2
+
+@app.route("/settings/profilecss", methods=["GET"])
+@auth_required
+def settings_profilecss_get(v):
+	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
+	cache.delete_memoized(leaderboard)
+	users1, users2 = leaderboard()
+	if v not in users1 and v not in users2: return "You must be in the leaderboard to use profile css."
+	return render_template("settings_profilecss.html", v=v)
+
+@app.route("/settings/profilecss", methods=["POST"])
+@auth_required
+def settings_profilecss(v):
+	users1, users2 = leaderboard()
+	if v not in users1 and v not in users2: return "You must be in the leaderboard to use profile css."
+	profilecss = request.form.get("profilecss").replace('\\', '')[0:50000]
+	v.profilecss = profilecss
+	g.db.add(v)
+	return render_template("settings_profilecss.html", v=v)
+
 @app.route("/settings/block", methods=["POST"])
 @auth_required
 @validate_formkey

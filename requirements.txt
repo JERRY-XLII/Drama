@@ -1,4 +1,3 @@
-aiohttp
 async-timeout
 attrs
 beautifulsoup4
