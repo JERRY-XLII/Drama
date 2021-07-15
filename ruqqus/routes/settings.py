@@ -462,7 +462,7 @@ def settings_blockedpage(v):
 
 @app.route("/settings/css", methods=["GET"])
 @auth_required
-def settings_css(v):
+def settings_css_get(v):
 	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
 
 	return render_template("settings_css.html", v=v)
@@ -474,7 +474,6 @@ def settings_css(v):
 	v.css = css
 	g.db.add(v)
 	return render_template("settings_css.html", v=v)
-
 
 @app.route("/settings/block", methods=["POST"])
 @auth_required
