@@ -362,16 +362,6 @@ def settings_images_profile(v):
 			abort(413)
 
 		v.set_profile(request.files["profile"])
-
-		# anti csam
-		new_thread = threading.Thread(target=check_csam_url,
-									  args=(v.profile_url,
-											v,
-											lambda: board.del_profile()
-											)
-									  )
-		new_thread.start()
-
 		return render_template("settings_profile.html",
 							   v=v, msg="Profile picture successfully updated.")
 
@@ -389,8 +379,6 @@ def settings_images_banner(v):
 			abort(413)
 
 		v.set_banner(request.files["banner"])
-
-		new_thread.start()
 
 		return render_template("settings_profile.html",
 							   v=v, msg="Banner successfully updated.")
