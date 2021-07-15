@@ -2,6 +2,10 @@ from ruqqus.mail import *
 from ruqqus.__main__ import app, limiter
 from ruqqus.helpers.alerts import *
 
+@cache.memoize(timeout=86400)
+def users2():
+	return g.db.query(User).options(lazyload('*')).order_by(User.follower_count.desc()).limit(10).all()
+
 @app.route("/leaderboard", methods=["GET"])
 @auth_desired
 def leaderboard(v):
@@ -9,10 +13,6 @@ def leaderboard(v):
 	users1 = g.db.query(User).options(lazyload('*')).order_by(User.dramacoins.desc()).limit(25).all()
 	users2 = users2()
 	return render_template("leaderboard.html", v=v, users1=users1, users2=users2)
-
-@cache.memoize(timeout=86400)
-def users2():
-	return g.db.query(User).options(lazyload('*')).order_by(User.follower_count.desc()).limit(10).all()
 
 @app.route("/sex")
 def index():
