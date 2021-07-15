@@ -77,10 +77,6 @@ def api_vote_post(post_id, x, v):
 	post.upvotes = post.ups
 	post.downvotes = post.downs
 	g.db.add(post)
-	posts=sum([x[0]-1 for x in g.db.query(Submission.score).options(lazyload('*')).filter_by(author_id = post.author.id, is_banned = False, deleted_utc = 0).all()])
-	comments=sum([x[0]-1 for x in g.db.query(Comment.score).options(lazyload('*')).filter_by(author_id = post.author.id, is_banned = False, deleted_utc = 0).all()])
-	post.author.dramacoins = int(posts+comments)
-	g.db.add(post.author)
 	return "", 204
 
 @app.route("/api/v1/vote/comment/<comment_id>/<x>", methods=["POST"])
