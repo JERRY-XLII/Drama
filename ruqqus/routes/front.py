@@ -40,7 +40,7 @@ def notifications(v):
 		if c.parent_submission:
 			while c.parent_comment:
 				parent = c.parent_comment
-				parent.replies2.append(c)
+				parent.replies2 = parent.replies2 + [c]
 				c = parent
 			c.replies = c.replies2
 			listing.append(c)
