@@ -1,6 +1,6 @@
 {% extends "default.html" %}
 
-{% if u.profilecss %}
+{% if u and u.profilecss %}
 	{% block stylesheets %}
 		{% if v %}
 			<link rel="stylesheet" href="/assets/style/{{v.theme}}_{{v.themecolor}}.css">
