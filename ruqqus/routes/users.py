@@ -21,6 +21,13 @@ from flask import *
 from ruqqus.__main__ import app, cache, limiter, db_session
 from pusher_push_notifications import PushNotifications
 
+@app.get("/@<username>/css")
+def get_css(username):
+    css="@media (min-width: 992px) {\n" + board.css +"\n}"
+    resp=make_response(css)
+    resp.headers.add("Content-Type", "text/css")
+    return resp
+
 @app.route("/@<username>/reply/<id>", methods=["POST"])
 @auth_required
 def messagereply(v, username, id):

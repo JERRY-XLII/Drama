@@ -21,9 +21,10 @@
 	
 	{% block stylesheets %}
 	{% if v %}
-	<link id="css-link" rel="stylesheet" href="/assets/style/{{v.theme}}_{{v.themecolor}}.css">
+		<link rel="stylesheet" href="/assets/style/{{v.theme}}_{{v.themecolor}}.css">
+		{% if v.css %}<link rel="stylesheet" href="/@{{v.username}}/css">{% endif %}
 	{% else %}
-	<link id="css-link" rel="stylesheet" href="/assets/style/dark_ff66ac.css">
+		<link rel="stylesheet" href="/assets/style/dark_ff66ac.css">
 	{% endif %}
 	{% endblock %}
 

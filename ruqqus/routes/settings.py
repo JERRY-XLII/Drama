@@ -460,16 +460,20 @@ def settings_blockedpage(v):
 	return render_template("settings_blocks.html",
 						   v=v)
 
-
-@app.route("/settings/filters", methods=["GET"])
+@app.route("/settings/css", methods=["GET"])
 @auth_required
-def settings_blockedguilds(v):
+def settings_css(v):
 	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
 
-	#users=[x.target for x in v.blocked]
+	return render_template("settings_css.html", v=v)
 
-	return render_template("settings_guildfilter.html",
-						   v=v)
+@app.route("/settings/css", methods=["POST"])
+@auth_required
+def settings_css(v):
+	css = request.form.get("css").replace('\\', '')
+	v.css = css
+	g.db.add(v)
+	return render_template("settings_css.html", v=v)
 
 
 @app.route("/settings/block", methods=["POST"])

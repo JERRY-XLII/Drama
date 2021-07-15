@@ -44,6 +44,7 @@ class User(Base, Stndrd, Age_times):
 	profileurl = Column(String, default=None)
 	bannerurl = Column(String, default=None)
 	email = Column(String, default=None)
+	css = deferred(Column(String(65536), default=None))
 	passhash = deferred(Column(String, default=None))
 	created_utc = Column(Integer, default=0)
 	admin_level = Column(Integer, default=0)

@@ -35,7 +35,8 @@
 
 	<!-- Drama CSS -->
 
-	<link id="css-link" rel="stylesheet" href="/assets/style/{{v.theme}}_{{v.themecolor}}.css">
+	<link rel="stylesheet" href="/assets/style/{{v.theme}}_{{v.themecolor}}.css">
+	{% if v.css %}<link rel="stylesheet" href="/@{{v.username}}/css">{% endif %}
 
 	<!-- Font Awesome -->
 	<link href="/assets/style/fa.css" rel="stylesheet"> <!--load all styles -->

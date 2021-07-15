@@ -285,14 +285,6 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
 			return len(self.flags)
 
 	@property
-	def active_reports(self):
-		if self.mod_approved:
-			return 0
-		else:
-			return self.reports.filter(
-				Report.created_utc > self.accepted_utc).count()
-
-	@property
 	#@lazy
 	def thumb_url(self):
 		
@@ -404,7 +396,7 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
 		data["author"]=self.author.json_core
 		data["guild"]=self.board.json_core
 		data["original_guild"]=self.original_board.json_core if not self.board_id==self.original_board_id else None
-		data["comment_count"]: self.comment_count
+		data["comment_count"]=self.comment_count
 
 	
 		if "replies" in self.__dict__:
