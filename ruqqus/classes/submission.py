@@ -432,14 +432,18 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
 		self.submission_aux.title = x
 		g.db.add(self.submission_aux)
 
-	def url(self, v):
-		if v and not v.oldreddit: return self.submission_aux.url.replace("old.reddit.com", "reddit.com")
+	@property
+	def url(self):
 		return self.submission_aux.url
 
 	@url.setter
 	def url(self, x):
 		self.submission_aux.url = x
 		g.db.add(self.submission_aux)
+
+	def realurl(self, v):
+		if v and not v.oldreddit: return self.submission_aux.url.replace("old.reddit.com", "reddit.com")
+		return self.submission_aux.url
 
 	@property
 	def body(self):
@@ -450,14 +454,18 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
 		self.submission_aux.body = x
 		g.db.add(self.submission_aux)
 
-	def body_html(self, v):
-		if v and not v.oldreddit: return self.submission_aux.body_html.replace("old.reddit.com", "reddit.com")
+	@property
+	def body_html(self):
 		return self.submission_aux.body_html
 
 	@body_html.setter
 	def body_html(self, x):
 		self.submission_aux.body_html = x
 		g.db.add(self.submission_aux)
+
+	def realbody(self, v):
+		if v and not v.oldreddit: return self.submission_aux.body_html.replace("old.reddit.com", "reddit.com")
+		return self.submission_aux.body_html
 
 	@property
 	def ban_reason(self):

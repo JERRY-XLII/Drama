@@ -44,7 +44,7 @@
 <meta property="og:description" name="description" content="{{comment_info.body}}" />
 <meta property="og:author" name="author" content="{{'@'+comment_info.author.username if not comment_info.author.is_deleted else '[deleted account]'}}" />
 <meta property="og:title" content="{{'@'+comment_info.author.username if not comment_info.author.is_deleted else '[deleted account]'}} comments on {{title}} - Drama" />
-<meta property="og:image" content="{% if p.is_image %}{{p.url}}{% elif p.has_thumb%}{{p.thumb_url}}{% else %}{{'/assets/images/preview.png' | full_link}}{% endif %}" />
+<meta property="og:image" content="{% if p.is_image %}{{p.realurl}}{% elif p.has_thumb%}{{p.thumb_url}}{% else %}{{'/assets/images/preview.png' | full_link}}{% endif %}" />
 <meta property="og:url" content="{{comment_info.permalink | full_link}}" />
 <meta property="og:site_name" content="rdrama.net" />
 
@@ -53,7 +53,7 @@
 <meta name="twitter:title" content="{{'@'+comment_info.author.username if not comment_info.author.is_deleted else '[deleted account]'}} comments on {{title}} - Drama" />
 <meta name="twitter:creator" content="{{'@'+comment_info.author.username if not comment_info.author.is_deleted else '[deleted account]'}}">
 <meta name="twitter:description" content="{{comment_info.body}}" />
-<meta name="twitter:image" content="{% if p.is_image %}{{p.url}}{% elif p.has_thumb%}{{p.thumb_url}}{% else %}{{'/assets/images/preview.png' | full_link}}{% endif %}" />
+<meta name="twitter:image" content="{% if p.is_image %}{{p.realurl}}{% elif p.has_thumb%}{{p.thumb_url}}{% else %}{{'/assets/images/preview.png' | full_link}}{% endif %}" />
 <meta name="twitter:url" content="{{p.permalink | full_link}}" />
 
 {% if linked_comment.author.is_private %}
@@ -71,7 +71,7 @@
 <meta property="og:description" name="description" content="{{p.body}}" />
 <meta property="og:author" name="author" content="{{'@'+p.author.username if not p.author.is_deleted else '[deleted account]'}}" />
 <meta property="og:title" content="{{title}} - Drama" />
-<meta property="og:image" content="{% if p.is_image %}{{p.url}}{% elif p.has_thumb%}{{p.thumb_url}}{% else %}{{'/assets/images/preview.png' | full_link}}{% endif %}" />
+<meta property="og:image" content="{% if p.is_image %}{{p.realurl}}{% elif p.has_thumb%}{{p.thumb_url}}{% else %}{{'/assets/images/preview.png' | full_link}}{% endif %}" />
 <meta property="og:url" content="{{p.permalink | full_link}}" />
 <meta property="og:site_name" content="rdrama.net" />
 
@@ -80,7 +80,7 @@
 <meta name="twitter:title" content="{{title}} - Drama" />
 <meta name="twitter:creator" content="{{'@'+p.author.username if not p.author.is_deleted else '[deleted account]'}}">
 <meta name="twitter:description" content="{{p.body}}" />
-<meta name="twitter:image" content="{% if p.is_image %}{{p.url}}{% elif p.has_thumb %}{{p.thumb_url}}{% else %}{{'/assets/images/preview.png' | full_link}}{% endif %}" />
+<meta name="twitter:image" content="{% if p.is_image %}{{p.realurl}}{% elif p.has_thumb %}{{p.thumb_url}}{% else %}{{'/assets/images/preview.png' | full_link}}{% endif %}" />
 <meta name="twitter:url" content="{{p.permalink | full_link}}" />
 
 {% if p.author.is_private %}
@@ -202,7 +202,7 @@
 
 				{% if p.thumb_url and not p.embed_url %}
 				<div class="card-header bg-transparent border-0 d-none d-md-flex flex-row flex-nowrap pl-3 p-0">
-					<a href="{{p.url}}" style="height: fit-content;" {% if v and v.newtabexternal %}target="_blank"{% endif %} rel="nofollow"{% if p.is_image %} data-toggle="modal" data-target="#expandImageModal" onclick="expandDesktopImage('{{p.url}}','{{p.url}}')"{% endif %}><img src="{{p.thumb_url}}" class="post-img d-none d-md-block" alt="Unable to load image"></a>
+					<a href="{{p.realurl}}" style="height: fit-content;" {% if v and v.newtabexternal %}target="_blank"{% endif %} rel="nofollow"{% if p.is_image %} data-toggle="modal" data-target="#expandImageModal" onclick="expandDesktopImage('{{p.realurl}}','{{p.realurl}}')"{% endif %}><img src="{{p.thumb_url}}" class="post-img d-none d-md-block" alt="Unable to load image"></a>
 
 				</div>
 				{% endif %}
@@ -225,7 +225,7 @@
 
 						{% if p.author.is_deleted %}[deleted account]{% else %}&nbsp;<a href="{{p.author.permalink}}" style="color: #{{p.author.namecolor}}; font-weight: bold;" class="user-name"><img src="{{p.author.profile_url}}" class="profile-pic-20">&nbsp;&nbsp;{{p.author.username}}</a>{% if p.author.customtitle %}<bdi style="color: #{{p.author.titlecolor}}">&nbsp;{{p.author.customtitle | safe}}</bdi>{% endif %}{% endif %}
 						<span data-toggle="tooltip" data-placement="bottom"  title="{{p.created_datetime}}">&nbsp;{{p.age_string}}</span>
-						({% if p.url %}<a href="/search/posts/?q=domain%3A{{p.domain}}&sort=new&t=all" {% if v and v.newtabexternal %}target="_blank"{% endif %}>{{p.domain}}</a>{% else %}text post{% endif %})
+						({% if p.realurl %}<a href="/search/posts/?q=domain%3A{{p.domain}}&sort=new&t=all" {% if v and v.newtabexternal %}target="_blank"{% endif %}>{{p.domain}}</a>{% else %}text post{% endif %})
 						
 						
 						{% if p.edited_utc %}&nbsp;&nbsp;Edited <span data-toggle="tooltip" data-placement="bottom"  title="{{edited_datetime}}">{{p.edited_string}}</span>{% endif %}
@@ -253,35 +253,35 @@
 						&nbsp;&nbsp;{{p.views}} views
 					</div>
 
-					{% if p.url %}
-						<h1 id="post-title" class="card-title post-title text-left mb-md-3"><a {% if v and v.newtabexternal %}target="_blank"{% endif %} href="{{p.url}}" rel="nofollow noopener">{{title | safe}}</a></h1>					
+					{% if p.realurl %}
+						<h1 id="post-title" class="card-title post-title text-left mb-md-3"><a {% if v and v.newtabexternal %}target="_blank"{% endif %} href="{{p.realurl}}" rel="nofollow noopener">{{title | safe}}</a></h1>					
 					{% else %}
 						<h1 id="post-title" class="card-title post-title text-left mb-md-3">{{title | safe}}</h1>
 					{% endif %}
 
 					<div id="post-body" class="post-body mt-3">
-						{% if p.url %}
-							{% if "streamable.com/" in p.url %}
-								{% if "streamable.com/e/" in p.url %}
-									{% set streamurl=p.url %}
+						{% if p.realurl %}
+							{% if "streamable.com/" in p.realurl %}
+								{% if "streamable.com/e/" in p.realurl %}
+									{% set streamurl=p.realurl %}
 								{% else %}
-									{% set streamurl=p.url.replace("streamable.com/", "streamable.com/e/") %}
+									{% set streamurl=p.realurl.replace("streamable.com/", "streamable.com/e/") %}
 								{% endif %}
 								<div style="width: 100%; height: 0px; position: relative; padding-bottom: 56.250%;"><iframe src="{{streamurl}}" frameborder="0" width="100%" height="100%" allowfullscreen="" style="width: 100%; height: 100%; position: absolute;"></iframe></div>
 								<pre></pre>
 								
-							{% elif "spotify.com/" in p.url %}
-								{% if "spotify.com/embed/" in p.url %}
-									{% set streamurl=p.url %}
+							{% elif "spotify.com/" in p.realurl %}
+								{% if "spotify.com/embed/" in p.realurl %}
+									{% set streamurl=p.realurl %}
 								{% else %}
-									{% set streamurl=p.url.replace("spotify.com", "spotify.com/embed") %}
+									{% set streamurl=p.realurl.replace("spotify.com", "spotify.com/embed") %}
 								{% endif %}
 								<iframe src="{{streamurl}}" width="100%" height="80" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
 								<pre></pre>
 
 							{% elif not p.embed_url and not p.is_image %}
-							<a href="{{p.url}}" {% if v and v.newtabexternal %}target="_blank"{% endif %}>
-								<div class="d-flex d-md-none justify-content-between align-items-center border rounded p-2{% if p.body_html %} mb-3{% endif %}">
+							<a href="{{p.realurl}}" {% if v and v.newtabexternal %}target="_blank"{% endif %}>
+								<div class="d-flex d-md-none justify-content-between align-items-center border rounded p-2{% if p.realbody %} mb-3{% endif %}">
 									<span>{{p.domain|truncate(30, True)}}</span>
 									<i class="fas fa-external-link-alt text-small"></i>
 								</div>
@@ -290,9 +290,9 @@
 						{% endif %}
 
 						{% if not v or v.slurreplacer %}
-							{{p.body_html.replace(" nigger", " 🏀 ").replace(" Nigger", " 🏀 ").replace(" NIGGER", " 🏀 ").replace(" pedo ", " libertarian  ").replace(" Pedo ", " Libertarian  ").replace(" PEDO ", " LIBERTARIAN  ").replace(" tranny", " 🚄 ").replace(" Tranny", " 🚄 ").replace(" TRANNY", " 🚄 ").replace("  fag ", "  cute twink " ).replace("  Fag ", "  Cute twink " ).replace("  FAG ", "  CUTE TWINK " ).replace(" faggot", " cute twink ").replace(" Faggot", " Cute twink ").replace(" FAGGOT", " CUTE TWINK ").replace(" trump", " DDR ").replace(" Trump", " DDR ").replace(" TRUMP", " DDR ").replace(" biden", " DDD ").replace(" Biden", " DDD ").replace(" BIDEN", " DDD ").replace(" steve akins", " penny verity oaken ").replace(" Steve Akins", " Penny Verity Oaken ").replace(" STEVE AKINS", " PENNY VERITY OAKEN ").replace(" RETARD", " RSLUR ").replace(" rapist", " male feminist ").replace(" Rapist", " Male feminist ").replace(" RAPIST", " MALE FEMINIST ").replace(" RETARD", " RSLUR ").replace(" rapist", " male feminist ").replace(" Rapist", " Male feminist ").replace(" RAPIST", " MALE FEMINIST ").replace(" RETARD", " RSLUR ").replace(" rapist", " male feminist ").replace(" Rapist", " Male feminist ").replace(" RAPIST", " MALE FEMINIST").replace(" kill yourself", " keep yourself safe").replace(" KILL YOURSELF", " KEEP YOURSELF SAFE") | safe}}
+							{{p.realbody.replace(" nigger", " 🏀 ").replace(" Nigger", " 🏀 ").replace(" NIGGER", " 🏀 ").replace(" pedo ", " libertarian  ").replace(" Pedo ", " Libertarian  ").replace(" PEDO ", " LIBERTARIAN  ").replace(" tranny", " 🚄 ").replace(" Tranny", " 🚄 ").replace(" TRANNY", " 🚄 ").replace("  fag ", "  cute twink " ).replace("  Fag ", "  Cute twink " ).replace("  FAG ", "  CUTE TWINK " ).replace(" faggot", " cute twink ").replace(" Faggot", " Cute twink ").replace(" FAGGOT", " CUTE TWINK ").replace(" trump", " DDR ").replace(" Trump", " DDR ").replace(" TRUMP", " DDR ").replace(" biden", " DDD ").replace(" Biden", " DDD ").replace(" BIDEN", " DDD ").replace(" steve akins", " penny verity oaken ").replace(" Steve Akins", " Penny Verity Oaken ").replace(" STEVE AKINS", " PENNY VERITY OAKEN ").replace(" RETARD", " RSLUR ").replace(" rapist", " male feminist ").replace(" Rapist", " Male feminist ").replace(" RAPIST", " MALE FEMINIST ").replace(" RETARD", " RSLUR ").replace(" rapist", " male feminist ").replace(" Rapist", " Male feminist ").replace(" RAPIST", " MALE FEMINIST ").replace(" RETARD", " RSLUR ").replace(" rapist", " male feminist ").replace(" Rapist", " Male feminist ").replace(" RAPIST", " MALE FEMINIST").replace(" kill yourself", " keep yourself safe").replace(" KILL YOURSELF", " KEEP YOURSELF SAFE") | safe}}
 						{% else %}
-							{{p.body_html | safe}}
+							{{p.realbody | safe}}
 						{% endif %}
 
 						{% if p.embed_url and p.domain_obj and p.domain_obj.embed_template %}
@@ -462,7 +462,7 @@
 
 		<div class="row no-gutters d-block d-md-none">
 			<div class="col">
-			 <a {% if v and v.newtabexternal %}target="_blank"{% endif %} rel="noopener noreferrer" href="{{p.url}}">{% if p.is_image %}<img src="{{p.url}}" class="img-fluid" alt="Unable to anonymously load image">
+			 <a {% if v and v.newtabexternal %}target="_blank"{% endif %} rel="noopener noreferrer" href="{{p.realurl}}">{% if p.is_image %}<img src="{{p.realurl}}" class="img-fluid" alt="Unable to anonymously load image">
 				 <div class="post-img-overlay d-block d-md-none">{{p.domain}}<i class="fas fa-external-link-alt text-small ml-2"></i></div>
 				 {% endif %}
 			 </a>
