@@ -17,16 +17,6 @@ beams_client = PushNotifications(
 		secret_key=PUSHER_KEY,
 )
 
-@app.route("/leaderboard", methods=["GET"])
-@auth_desired
-def leaderboard(v):
-	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
-
-	users1 = g.db.query(User).options(lazyload('*')).order_by(User.dramacoins2.desc()).limit(25).all()
-	users2 = sorted(users1, key=lambda x: x.follower_count, reverse=True)[:10]
-
-	return render_template("leaderboard.html", v=v, users1=users1, users2=users2)
-
 @app.get("/@<username>/css")
 def get_css(username):
 	user = get_user(username)

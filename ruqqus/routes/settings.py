@@ -458,13 +458,15 @@ def settings_css(v):
 @auth_required
 def settings_profilecss_get(v):
 	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
-	if v.dramacoins < 1000: return "You must have 1000 dramacoins to set profile css."
+	users = g.db.query(User).options(lazyload('*')).order_by(User.dramacoins.desc()).limit(25).all()
+	if v not in users: return "You must be in the top 25 leaderboard to use profile css https://rdrama.net/leaderboard"
 	return render_template("settings_profilecss.html", v=v)
 
 @app.route("/settings/profilecss", methods=["POST"])
 @auth_required
 def settings_profilecss(v):
-	if v.dramacoins < 1000: return "You must have 1000 dramacoins to set profile css."
+	users = g.db.query(User).options(lazyload('*')).order_by(User.dramacoins.desc()).limit(25).all()
+	if v not in users: return "You must be in the top 25 leaderboard to use profile css https://rdrama.net/leaderboard"
 	profilecss = request.form.get("profilecss").replace('\\', '')[0:50000]
 	v.profilecss = profilecss
 	g.db.add(v)
