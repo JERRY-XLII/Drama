@@ -372,7 +372,7 @@ def get_post_with_comments(pid, sort="top", v=None):
 			if comment.author and comment.author.shadowbanned: 
 				if not (v and v.id == x.author_id): comments.remove(comment)
 				rand = random.randint(500,1400)
-				vote = Vote(user_id=rand,
+				vote = CommentVote(user_id=rand,
 					vote_type=random.choice([-1, -1, -1, 1]),
 					comment_id=comment.id)
 				g.db.add(vote)
