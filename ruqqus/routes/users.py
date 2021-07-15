@@ -27,7 +27,7 @@ def get_css(username):
 	return resp
 
 @app.get("/@<username>/profilecss")
-def get_css(username):
+def get_profilecss(username):
 	user = get_user(username)
 	if user.profilecss: profilecss = user.profilecss
 	else: profilecss = ""
