@@ -43,7 +43,7 @@
 	<tr>
 		<td style="font-weight:bold;">{{users2.index(user)+1}}</td>
 		<td style="font-weight:bold;"><a style="color:#{{user.namecolor}}" href="/@{{user.username}}">{{user.username}}</a></td>
-		<td style="font-weight:bold; text-align:right;">{{followers[users2.index(user)]}}</td>
+		<td style="font-weight:bold; text-align:right;">{{user.follower_count}}</td>
 	</tr>
 {% endfor %}
 </table>

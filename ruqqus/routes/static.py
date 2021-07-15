@@ -2,20 +2,6 @@ from ruqqus.mail import *
 from ruqqus.__main__ import app, limiter
 from ruqqus.helpers.alerts import *
 
-@app.route("/leaderboard", methods=["GET"])
-@auth_desired
-def leaderboard(v):
-	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
-	users1 = sorted(g.db.query(User).options(lazyload('*')), key=lambda x: x.dramacoins, reverse=True)[:25]
-	users2, followers = leaderboard_followers()
-	return render_template("leaderboard.html", v=v, users1=users1, users2=users2, followers=followers)
-
-@cache.memoize(timeout=86400)
-def leaderboard_followers():
-	users2 = g.db.query(User).options(lazyload('*')).order_by(User.follower_count.desc()).limit(10).all()
-	followers = [x.follower_count for x in users2]
-	return users2, followers
-
 @app.route("/sex")
 def index():
     return render_template("index.html", **{"greeting": "Hello from Flask!"})
