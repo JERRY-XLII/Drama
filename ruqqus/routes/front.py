@@ -43,17 +43,19 @@ def notifications(v):
 		comments = get_comments(cids, v=v, sort="new", load_parent=True)
 
 	listing = []
+	alllisting = []
 	for c in comments:
 		c._is_blocked = False
 		c._is_blocking = False
 		if c.parent_submission:
 			if c.parent_comment:
 				parent = c.parent_comment
+				alllisting.append(c)
 				if parent in listing:
 					parent.replies = parent.replies + [c]
 				else:
 					parent.replies = [c]
-					listing.append(parent)
+					if c not in alllisting: listing.append(parent)
 			else: listing.append(c)
 
 		else:
@@ -165,16 +167,18 @@ def frontlist(v=None, sort="hot", page=1,t="all", ids_only=True, filter_words=''
 		if post.author and post.author.shadowbanned:
 			if not (v and v.id == post.author_id): posts.remove(post)
 			rand = random.randint(500,1400)
-			vote = Vote(user_id=rand,
-				vote_type=random.choice([-1, -1, -1, -1, 1]),
-				submission_id=post.id)
-			g.db.add(vote)
-			g.db.flush()
-			post.upvotes = post.ups
-			post.downvotes = post.downs
-			post.views = post.views + random.randint(7,10)
-			g.db.add(post)
-			g.db.commit()
+			if random.random() < 0.25:
+				vote = Vote(user_id=rand,
+					vote_type=random.choice([-1, -1, -1, -1, 1]),
+					submission_id=post.id)
+				g.db.add(vote)
+				try: g.db.flush()
+				except: g.db.rollback()
+				post.upvotes = post.ups
+				post.downvotes = post.downs
+				post.views = post.views + random.randint(7,10)
+				g.db.add(post)
+				g.db.commit()
 
 	posts = posts[:26]
 
