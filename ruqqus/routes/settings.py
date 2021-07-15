@@ -458,15 +458,15 @@ def settings_css(v):
 @auth_required
 def settings_profilecss_get(v):
 	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
-	users = g.db.query(User).order_by(User.dramacoins2.desc()).limit(25).all()
+	users = g.db.query(User).order_by(User.dramacoins.desc()).limit(25).all()
 	if v not in users: return "You must be in the top 25 leaderboard to use profile css."
 	return render_template("settings_profilecss.html", v=v)
 
 @app.route("/settings/profilecss", methods=["POST"])
 @auth_required
 def settings_profilecss(v):
-	users1, users2 = leaderboard()
-	if v not in users1 and v not in users2: return "You must be in the top 25 leaderboard to use profile css."
+	users = g.db.query(User).order_by(User.dramacoins.desc()).limit(25).all()
+	if v not in users: return "You must be in the top 25 leaderboard to use profile css."
 	profilecss = request.form.get("profilecss").replace('\\', '')[0:50000]
 	v.profilecss = profilecss
 	g.db.add(v)
