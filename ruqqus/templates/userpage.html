@@ -2,6 +2,11 @@
 
 {% if u.profilecss %}
 	{% block stylesheets %}
+		{% if v %}
+			<link rel="stylesheet" href="/assets/style/{{v.theme}}_{{v.themecolor}}.css">
+		{% else %}
+			<link rel="stylesheet" href="/assets/style/dark_ff66ac.css">
+		{% endif %}
 		<link rel="stylesheet" href="/@{{u.username}}/profilecss">
 	{% endblock %}
 {% endif %}
