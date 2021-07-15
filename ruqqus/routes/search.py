@@ -184,7 +184,7 @@ def searchcommentlisting(criteria, v=None, page=1, t="None", sort="top"):
 			cutoff = 0
 		comments = comments.filter(Comment.created_utc >= cutoff)
 
-	comments=comments.options(contains_eager(Comment.comment_aux),)
+	comments=comments.options(contains_eager(Comment.comment_aux))
 
 	if sort == "new":
 		comments = comments.order_by(Comment.created_utc.desc()).all()
@@ -197,7 +197,7 @@ def searchcommentlisting(criteria, v=None, page=1, t="None", sort="top"):
 	elif sort == "bottom":
 		comments = comments.order_by(Comment.score.asc()).all()
 
-	total = len(comments)
+	total = len(list(comments))
 	firstrange = 25 * (page - 1)
 	secondrange = firstrange+26
 	comments = comments[firstrange:secondrange]
