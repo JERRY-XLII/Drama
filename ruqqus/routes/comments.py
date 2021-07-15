@@ -109,7 +109,7 @@ def post_pid_comment_cid(cid, pid=None, anything=None, v=None):
 		kind="exile_user"
 		).distinct(ModAction.target_comment_id).subquery()
 
-	for i in range(6 - context):
+	for i in range(99 - context):
 		if v:
 
 			votes = g.db.query(CommentVote).filter(
