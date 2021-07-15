@@ -37,6 +37,7 @@ class User(Base, Stndrd, Age_times):
 	passhash = deferred(Column(String, default=None))
 	created_utc = Column(Integer, default=0)
 	admin_level = Column(Integer, default=0)
+	dramacoins2 = Column(Integer, default=0)
 	changelogsub = Column(Boolean, default=False)
 	is_activated = Column(Boolean, default=False)
 	shadowbanned = Column(Boolean, default=False)
@@ -325,6 +326,8 @@ class User(Base, Stndrd, Age_times):
 		posts=sum([x[0]-1 for x in g.db.query(Submission.score).options(lazyload('*')).filter_by(author_id = self.id, is_banned = False, deleted_utc = 0).all()])
 		comments=sum([x[0]-1 for x in g.db.query(Comment.score).options(lazyload('*')).filter_by(author_id = self.id, is_banned = False, deleted_utc = 0).all()])
 		dramacoins = int(posts+comments)
+		self.dramacoins2 = dramacoins
+		g.db.add(self)
 		return dramacoins
 
 	@property

@@ -6,7 +6,7 @@ from ruqqus.helpers.alerts import *
 @auth_desired
 def leaderboard(v):
 	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
-	users1 = sorted(g.db.query(User).all(), key=lambda x: x.dramacoins, reverse=True)[:25]
+	users1 = g.db.query(User).order_by(User.dramacoins2.desc()).limit(25).all()
 	users2 = g.db.query(User).order_by(User.follower_count.desc()).limit(10).all()
 	return render_template("leaderboard.html", v=v, users1=users1, users2=users2)
 
