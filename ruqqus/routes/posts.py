@@ -518,7 +518,7 @@ def submit_post(v):
 
 	parsed_url = urlparse(url)
 
-	domain = parsed_url.netloc
+	domain = parsed_url.netloc.replace("old.reddit.com", "reddit.com")
 
 	# check ban status
 	domain_obj = get_domain(domain)

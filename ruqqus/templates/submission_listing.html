@@ -153,7 +153,7 @@
 					{% if p.author.is_deleted %}[deleted account]{% else %}&nbsp;<a href="{{p.author.permalink}}" style="color: #{{p.author.namecolor}}; font-weight: bold;" class="user-name"><img src="{{p.author.profile_url}}" class="profile-pic-20">&nbsp;&nbsp;{{p.author.username}}</a>{% if p.author.customtitle %}<bdi style="color: #{{p.author.titlecolor}}">&nbsp;&nbsp;{{p.author.customtitle | safe}}</bdi>{% endif %}{% endif %}
 					<span data-toggle="tooltip" data-placement="bottom"  title="{{p.created_datetime}}">&nbsp;{{p.age_string}}</span>
 					&nbsp;
-					({% if p.realurl(v) %}<a href="/search?q=domain%3A{{p.domain}}&sort=new&t=all" target="_blank">{{p.domain}}</a>{% else %}text post{% endif %})
+					({% if p.realurl(v) %}<a href="/search/posts/?q=domain%3A{{p.domain}}&sort=new&t=all" target="_blank">{{p.domain}}</a>{% else %}text post{% endif %})
 					
 					{% if p.edited_utc %}&nbsp;&nbsp;Edited <span data-toggle="tooltip" data-placement="bottom"  title="{{edited_datetime}}">{{p.edited_string}}</span>{% endif %}
 					&nbsp;&nbsp;{{p.views}} views
