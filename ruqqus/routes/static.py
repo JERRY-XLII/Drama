@@ -7,13 +7,14 @@ from ruqqus.helpers.alerts import *
 def leaderboard(v):
 	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
 	users1 = g.db.query(User).options(lazyload('*')).order_by(User.dramacoins.desc()).limit(25).all()
-	users2 = leaderboard_followers()
-	return render_template("leaderboard.html", v=v, users1=users1, users2=users2)
+	users2, followers = leaderboard_followers()
+	return render_template("leaderboard.html", v=v, users1=users1, users2=users2, followers=followers)
 
 @cache.memoize(timeout=86400)
 def leaderboard_followers():
 	users2 = g.db.query(User).options(lazyload('*')).order_by(User.follower_count.desc()).limit(10).all()
-	return users2
+	followers = [x.follower_count for x in users]
+	return users2, followers
 
 @app.route("/sex")
 def index():
