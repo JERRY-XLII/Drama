@@ -17,9 +17,15 @@ def refresh(v):
 @auth_desired
 def leaderboard(v):
 	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
-	users1 = g.db.query(User).options(lazyload('*')).order_by(User.dramacoins.desc()).limit(25).all()
-	#users2 = g.db.query(User).options(lazyload('*')).order_by(User.follower_count.desc()).limit(10).all()
-	return render_template("leaderboard.html", v=v, users1=users1)
+	users = g.db.query(User).options(lazyload('*')).order_by(User.dramacoins.desc()).limit(25).all()
+	return render_template("leaderboard.html", v=v, users=users)
+
+@app.route("/leaderboard/followers", methods=["GET"])
+@auth_desired
+def leaderboard_followers(v):
+	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
+	users = g.db.query(User).options(lazyload('*')).order_by(User.follower_count.desc()).limit(10).all()
+	return render_template("leaderboard_followers.html", v=v, users=users)
 
 @app.route("/sex")
 def index():
