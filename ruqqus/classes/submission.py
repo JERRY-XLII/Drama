@@ -432,8 +432,8 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
 		self.submission_aux.title = x
 		g.db.add(self.submission_aux)
 
-	@property
-	def url(self):
+	def url(self, v):
+		if v and not v.oldreddit: return self.submission_aux.url.replace("old.reddit.com", "reddit.com")
 		return self.submission_aux.url
 
 	@url.setter
@@ -450,8 +450,8 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
 		self.submission_aux.body = x
 		g.db.add(self.submission_aux)
 
-	@property
-	def body_html(self):
+	def body_html(self, v):
+		if v and not v.oldreddit: return self.submission_aux.body_html.replace("old.reddit.com", "reddit.com")
 		return self.submission_aux.body_html
 
 	@body_html.setter

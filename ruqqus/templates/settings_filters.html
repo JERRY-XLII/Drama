@@ -77,7 +77,7 @@
 			<h2 class="h5">Tab Behaviour</h2>
 
 			<div class="settings-section rounded">
-			
+
 				<div class="d-lg-flex border-bottom">
 
 					<div class="title w-lg-25">
@@ -97,7 +97,7 @@
 
 				</div>
 
-				
+
 				<div class="d-lg-flex border-bottom">
 
 					<div class="title w-lg-25">
@@ -117,109 +117,134 @@
 
 				</div>
 
-				
+
 
 			</div>
 
 
-					<h2 class="h5">Content Filters</h2>
+			<h2 class="h5">Reddit Links</h2>
 
-						<div class="settings-section rounded">
+			<div class="settings-section rounded">
+
+				<div class="d-lg-flex border-bottom">
+
+					<div class="title w-lg-25">
+						<label for="oldreddit">Convert reddit.com links to old.reddit.com links automatically</label>
+					</div>
+
+					<div class="body w-lg-100">
+
+						<div class="custom-control custom-switch">
+							<input type="checkbox" class="custom-control-input" id="oldreddit" name="oldreddit"{% if v.oldreddit %} checked{% endif %} onchange="post_toast('/settings/profile?oldreddit='+document.getElementById('oldreddit').checked);">
+							<label class="custom-control-label" for="oldreddit"></label>
+						</div>
+
+						<span class="text-small-extra text-muted">Enable if you would like to automatically convert reddit.com links to old.reddit.com links.</span>
+
+					</div>
+
+				</div>
 				
-							<div class="d-lg-flex border-bottom">
+			</div>
 
-								<div class="title w-lg-25">
-									<label for="slurreplacer">Disable +18 Warnings</label>
-								</div>
+			<h2 class="h5">Content Filters</h2>
 
-								<div class="body w-lg-100">
+				<div class="settings-section rounded">
 
-									<div class="custom-control custom-switch">
-										<input type="checkbox" class="custom-control-input" id="over18" name="over18"{% if v.over_18 %} checked{% endif %} onchange="post_toast('/settings/profile?over18='+document.getElementById('over18').checked);document.getElementById('filter-nsfw-option').classList.toggle('d-none')">
-										<label class="custom-control-label" for="over18"></label>
-									</div>
+					<div class="d-lg-flex border-bottom">
 
-									<span class="text-small-extra text-muted">Enable if you would like to not get a warning before viewing +18 content.</span>
+						<div class="title w-lg-25">
+							<label for="slurreplacer">Disable +18 Warnings</label>
+						</div>
 
-								</div>
+						<div class="body w-lg-100">
 
+							<div class="custom-control custom-switch">
+								<input type="checkbox" class="custom-control-input" id="over18" name="over18"{% if v.over_18 %} checked{% endif %} onchange="post_toast('/settings/profile?over18='+document.getElementById('over18').checked);document.getElementById('filter-nsfw-option').classList.toggle('d-none')">
+								<label class="custom-control-label" for="over18"></label>
 							</div>
 
-												
-						
-							<div class="d-lg-flex border-bottom">
+							<span class="text-small-extra text-muted">Enable if you would like to not get a warning before viewing +18 content.</span>
 
-								<div class="title w-lg-25">
-									<label for="slurreplacer">Slur Replacer</label>
-								</div>
+						</div>
 
-								<div class="body w-lg-100">
+					</div>
 
-									<div class="custom-control custom-switch">
-										<input type="checkbox" class="custom-control-input" id="slurreplacer" name="slurreplacer"{% if v.slurreplacer %} checked{% endif %} onchange="post_toast('/settings/profile?slurreplacer='+document.getElementById('slurreplacer').checked);">
-										<label class="custom-control-label" for="slurreplacer"></label>
-									</div>
 
-									<span class="text-small-extra text-muted">Enable if you would like to automatically replace slurs with funny r/drama equivalents.</span>
 
-								</div>
+					<div class="d-lg-flex border-bottom">
 
+						<div class="title w-lg-25">
+							<label for="slurreplacer">Slur Replacer</label>
+						</div>
+
+						<div class="body w-lg-100">
+
+							<div class="custom-control custom-switch">
+								<input type="checkbox" class="custom-control-input" id="slurreplacer" name="slurreplacer"{% if v.slurreplacer %} checked{% endif %} onchange="post_toast('/settings/profile?slurreplacer='+document.getElementById('slurreplacer').checked);">
+								<label class="custom-control-label" for="slurreplacer"></label>
 							</div>
 
-						
-							<div class="d-lg-flex border-bottom">
+							<span class="text-small-extra text-muted">Enable if you would like to automatically replace slurs with funny r/drama equivalents.</span>
 
-								<div class="title w-lg-25">
-									<label for="hidevotedon">Hide Posts Voted On</label>
-								</div>
+						</div>
 
-								<div class="body w-lg-100">
+					</div>
 
-									<div class="custom-control custom-switch">
-										<input type="checkbox" class="custom-control-input" id="hidevotedon" name="hidevotedon"{% if v.hidevotedon %} checked{% endif %} onchange="post_toast('/settings/profile?hidevotedon='+document.getElementById('hidevotedon').checked);">
-										<label class="custom-control-label" for="hidevotedon"></label>
-									</div>
 
-									<span class="text-small-extra text-muted">Enable if you would like to automatically hide posts you have voted on from your frontpage.</span>
+					<div class="d-lg-flex border-bottom">
 
-								</div>
+						<div class="title w-lg-25">
+							<label for="hidevotedon">Hide Posts Voted On</label>
+						</div>
 
+						<div class="body w-lg-100">
+
+							<div class="custom-control custom-switch">
+								<input type="checkbox" class="custom-control-input" id="hidevotedon" name="hidevotedon"{% if v.hidevotedon %} checked{% endif %} onchange="post_toast('/settings/profile?hidevotedon='+document.getElementById('hidevotedon').checked);">
+								<label class="custom-control-label" for="hidevotedon"></label>
 							</div>
 
-							<div class="d-lg-flex">
+							<span class="text-small-extra text-muted">Enable if you would like to automatically hide posts you have voted on from your frontpage.</span>
 
-								<div class="title w-lg-25">
-									<label for="filters-text">Custom Filters</label>
+						</div>
+
+					</div>
+
+					<div class="d-lg-flex">
+
+						<div class="title w-lg-25">
+							<label for="filters-text">Custom Filters</label>
+						</div>
+
+						<div class="body w-lg-100">
+							<form id="custom-filter" action="/settings/profile" method="post">
+								<input type="hidden" name="formkey" value="{{v.formkey}}">
+									<small>Hides matching content from Home, All, and Trending, and collapses matching comments.</small>
+								<div class="input-group mb-2">
+									<textarea class="form-control rounded" id="filters-text" aria-label="With textarea"
+									placeholder="Add your own custom content filters."
+									rows="3" name="filters" form="custom-filter" maxlength="1000">{{v.custom_filter_list}}</textarea>
 								</div>
-
-								<div class="body w-lg-100">
-									<form id="custom-filter" action="/settings/profile" method="post">
-										<input type="hidden" name="formkey" value="{{v.formkey}}">
-											<small>Hides matching content from Home, All, and Trending, and collapses matching comments.</small>
-										<div class="input-group mb-2">
-											<textarea class="form-control rounded" id="filters-text" aria-label="With textarea"
-											placeholder="Add your own custom content filters."
-											rows="3" name="filters" form="custom-filter" maxlength="1000">{{v.custom_filter_list}}</textarea>
-										</div>
-										<div class="d-flex">
-											<small>Use a new line for each filter entry. Limit of 1000 characters.</small>
-											<input class="btn btn-primary ml-auto" id="bioSave" type="submit" value="Save Changes">
-										</div>
-									</form>
-
-
+								<div class="d-flex">
+									<small>Use a new line for each filter entry. Limit of 1000 characters.</small>
+									<input class="btn btn-primary ml-auto" id="bioSave" type="submit" value="Save Changes">
 								</div>
-
-							</div>
+							</form>
 
 
 						</div>
+
+					</div>
+
 
 				</div>
 
 		</div>
 
-	</div>
+</div>
+
+</div>
 
 </div>
 

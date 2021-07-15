@@ -56,6 +56,7 @@ class User(Base, Stndrd, Age_times):
 	flairchanged = Column(Boolean, default=False)
 	newtab = Column(Boolean, default=False)
 	newtabexternal = Column(Boolean, default=True)
+	oldreddit = Column(Boolean, default=False)
 	creation_ip = Column(String, default=None)
 	submissions = relationship(
 		"Submission",

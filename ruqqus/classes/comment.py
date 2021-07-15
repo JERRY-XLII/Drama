@@ -371,8 +371,8 @@ class Comment(Base, Age_times, Scores, Stndrd, Fuzzing):
 		self.comment_aux.body = x
 		g.db.add(self.comment_aux)
 
-	@property
-	def body_html(self):
+	def body_html(self, v):
+		if v and not v.oldreddit: return self.comment_aux.body_html.replace("old.reddit.com", "reddit.com")
 		return self.comment_aux.body_html
 
 	@body_html.setter

@@ -47,6 +47,10 @@ def settings_profile_post(v):
 		updated = True
 		v.newtabexternal = request.values.get("newtabexternal", None) == 'true'
 
+	if request.values.get("oldreddit", v.oldreddit) != v.oldreddit:
+		updated = True
+		v.oldreddit = request.values.get("oldreddit", None) == 'true'
+
 	if request.values.get("over18", v.over_18) != v.over_18:
 		updated = True
 		v.over_18 = request.values.get("over18", None) == 'true'
