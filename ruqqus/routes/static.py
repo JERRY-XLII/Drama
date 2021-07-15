@@ -5,7 +5,6 @@ from ruqqus.helpers.alerts import *
 @app.route("/leaderboard", methods=["GET"])
 @auth_desired
 def leaderboard(v):
-	cache.delete_memoized(leaderboard_followers)
 	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
 	users1 = g.db.query(User).options(lazyload('*')).order_by(User.dramacoins.desc()).limit(25).all()
 	users2 = leaderboard_followers()
