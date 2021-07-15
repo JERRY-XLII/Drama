@@ -37,6 +37,7 @@ class User(Base, Stndrd, Age_times):
 	passhash = deferred(Column(String, default=None))
 	created_utc = Column(Integer, default=0)
 	admin_level = Column(Integer, default=0)
+	dramacoins2 = Column(Integer, default=0)
 	changelogsub = Column(Boolean, default=False)
 	is_activated = Column(Boolean, default=False)
 	shadowbanned = Column(Boolean, default=False)
@@ -157,8 +158,6 @@ class User(Base, Stndrd, Age_times):
 	referral_count = deferred(Column(Integer, server_default=FetchedValue()))
 	follower_count = deferred(Column(Integer, server_default=FetchedValue()))
 
-	#dramacoins2 = Column(Integer, default=0)
-
 	def __init__(self, **kwargs):
 
 		if "password" in kwargs:
@@ -169,12 +168,6 @@ class User(Base, Stndrd, Age_times):
 		kwargs["created_utc"] = int(time.time())
 
 		super().__init__(**kwargs)
-
-	@property
-	def dramacoins(self):
-		posts = sum([x.score-1 for x in self.submissions])
-		comments = sum([x.score-1 for x in self.comments])
-		return posts+comments
 
 	def has_block(self, target):
 
@@ -326,6 +319,16 @@ class User(Base, Stndrd, Age_times):
 		z = sorted(z, key=lambda x: x.name)
 
 		return z
+
+	@property
+	@lazy
+	def dramacoins(self):
+		posts=sum([x[0]-1 for x in g.db.query(Submission.score).options(lazyload('*')).filter_by(author_id = self.id, is_banned = False, deleted_utc = 0).all()])
+		comments=sum([x[0]-1 for x in g.db.query(Comment.score).options(lazyload('*')).filter_by(author_id = self.id, is_banned = False, deleted_utc = 0).all()])
+		dramacoins = int(posts+comments)
+		self.dramacoins2 = dramacoins
+		g.db.add(self)
+		return dramacoins
 
 	@property
 	def base36id(self):
