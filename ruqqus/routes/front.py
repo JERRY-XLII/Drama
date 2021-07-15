@@ -1,12 +1,21 @@
+import time
+from flask import *
+from sqlalchemy import *
+from sqlalchemy.orm import lazyload
+import random
+
 from ruqqus.helpers.wrappers import *
 from ruqqus.helpers.get import *
 
 from ruqqus.__main__ import app, cache
 from ruqqus.classes.submission import Submission
+from ruqqus.classes.categories import CATEGORIES
 
 @app.route("/post/", methods=["GET"])
 def slash_post():
 	return redirect("/")
+
+# this is a test
 
 @app.route("/notifications", methods=["GET"])
 @auth_required
@@ -40,12 +49,13 @@ def notifications(v):
 		if c.parent_submission:
 			if c.parent_comment:
 				parent = c.parent_comment
-
 				if parent in listing:
 					parent.replies = parent.replies + [c]
 				else:
 					parent.replies = [c]
 					listing.append(parent)
+			else: listing.append(c)
+
 		else:
 			if c.parent_comment:
 				while c.level > 1:
