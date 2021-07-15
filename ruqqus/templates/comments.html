@@ -250,8 +250,8 @@
 					{% endif %}
 
 					{% endif %}
-					<li class="list-inline-item text-muted d-none d-md-inline-block"><a href="{{c.permalink}}?context=5#context"{% if c.author.is_private %} rel="nofollow"{% endif %}><i class="fas fa-book-open"></i>Context</a></li>
-					<li class="list-inline-item text-muted d-none d-md-inline-block"><a href="javascript:void(0);" role="button" class="copy-link" data-clipboard-text="{{c.permalink | full_link}}?context=5#context"><i class="fas fa-copy"></i>Copy link</a></li>
+					<li class="list-inline-item text-muted d-none d-md-inline-block"><a href="{{c.permalink}}?context=14#context"{% if c.author.is_private %} rel="nofollow"{% endif %}><i class="fas fa-book-open"></i>Context</a></li>
+					<li class="list-inline-item text-muted d-none d-md-inline-block"><a href="javascript:void(0);" role="button" class="copy-link" data-clipboard-text="{{c.permalink | full_link}}?context=14#context"><i class="fas fa-copy"></i>Copy link</a></li>
 					
 					{% if v and v.admin_level>=3 and request.path.startswith ('/admin') %}
 						<li class="list-inline-item text-muted d-none d-md-inline-block"><a href="javascript:void(0)" onclick="removeComment('{{c.base36id}}')"><i class="fas fa-comment-times fa-fw"></i>Remove</a></li>

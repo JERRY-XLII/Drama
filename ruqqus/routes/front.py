@@ -164,19 +164,17 @@ def frontlist(v=None, sort="hot", page=1,t="all", ids_only=True, filter_words=''
 	for post in posts:
 		if post.author and post.author.shadowbanned:
 			if not (v and v.id == post.author_id): posts.remove(post)
-			if random.random() < 0.25:
-				rand = random.randint(500,1400)
-				vote = Vote(user_id=rand,
-					vote_type=random.choice([-1, -1, -1, -1, 1]),
-					submission_id=post.id)
-				g.db.add(vote)
-				try: g.db.flush()
-				except: g.db.rollback()
-				post.upvotes = post.ups
-				post.downvotes = post.downs
-				post.views = post.views + random.randint(7,10)
-				g.db.add(post)
-				g.db.commit()
+			rand = random.randint(500,1400)
+			vote = Vote(user_id=rand,
+				vote_type=random.choice([-1, -1, -1, -1, 1]),
+				submission_id=post.id)
+			g.db.add(vote)
+			g.db.flush()
+			post.upvotes = post.ups
+			post.downvotes = post.downs
+			post.views = post.views + random.randint(7,10)
+			g.db.add(post)
+			g.db.commit()
 
 	posts = posts[:26]
 
