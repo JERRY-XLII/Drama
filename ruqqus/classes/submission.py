@@ -247,7 +247,7 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
 		domain = urlparse(self.url).netloc
 		if domain.startswith("www."):
 			domain = domain.split("www.")[1]
-		return domain
+		return domain.replace("old.reddit.com", "reddit.com")
 
 	def tree_comments(self, comment=None, v=None):
 

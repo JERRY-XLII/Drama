@@ -75,7 +75,11 @@ def searchlisting(criteria, v=None, page=1, t="None", sort="top", b=None):
 				SubmissionAux.url.ilike("https://www."+domain+'/%'),
 				SubmissionAux.url.ilike("https://www."+domain+'/%'),
 				SubmissionAux.url.ilike("https://www."+domain),
-				SubmissionAux.url.ilike("https://www."+domain)
+				SubmissionAux.url.ilike("https://www."+domain),
+				SubmissionAux.url.ilike("https://old." + domain + '/%'),
+				SubmissionAux.url.ilike("https://old." + domain + '/%'),
+				SubmissionAux.url.ilike("https://old." + domain),
+				SubmissionAux.url.ilike("https://old." + domain)
 				)
 			)
 
