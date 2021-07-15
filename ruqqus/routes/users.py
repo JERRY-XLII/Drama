@@ -26,10 +26,9 @@ def leaderboard(v):
 
 @cache.memoize(timeout=86400)
 def leaderboard():
-	users = g.db.query(User).options(lazyload('*'))
-	users1= sorted(users, key=lambda x: x.dramacoins, reverse=True)[:100]
+	users1= sorted(g.db.query(User).options(lazyload('*')), key=lambda x: x.dramacoins, reverse=True)[:25]
 	users2 = g.db.query(User).options(lazyload('*')).order_by(User.follower_count.desc()).limit(10).all()
-	return users1[:25], users2
+	return users1, users2
 
 @app.get("/@<username>/css")
 def get_css(username):
