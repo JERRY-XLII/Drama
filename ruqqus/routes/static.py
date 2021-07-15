@@ -7,7 +7,7 @@ from ruqqus.helpers.alerts import *
 def refresh(v):
 	for u in g.db.query(User).options(lazyload('*')).all():
 		posts = sum([x[0] - 1 for x in g.db.query(Submission.score).options(lazyload('*')).filter_by(author_id=u.id, is_banned=False, deleted_utc=0).all()])
-		comments = sum([x[0] - 1 for x in .db.query(Comment.score).options(lazyload('*')).filter_by(author_id=u.id, is_banned=False, deleted_utc=0).all()])
+		comments = sum([x[0] - 1 for x in g.db.query(Comment.score).options(lazyload('*')).filter_by(author_id=u.id, is_banned=False, deleted_utc=0).all()])
 		u.dramacoins = int(posts + comments)
 		g.db.add(u)
 
