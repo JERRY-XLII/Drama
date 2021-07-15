@@ -1,26 +1,14 @@
-from werkzeug.security import generate_password_hash, check_password_hash
-from flask import *
-import time
-from sqlalchemy import *
-from sqlalchemy.orm import relationship, deferred, joinedload, lazyload, contains_eager, aliased
-from os import environ
+from sqlalchemy.orm import deferred, contains_eager, aliased
 from secrets import token_hex
-import random
 import pyotp
 
-from ruqqus.helpers.base36 import *
-from ruqqus.helpers.security import *
-from ruqqus.helpers.lazy import lazy
-import ruqqus.helpers.aws as aws
-from ruqqus.helpers.discord import add_role, delete_role
-from .votes import Vote
-from .alts import Alt	
+from ruqqus.helpers.discord import delete_role
+from .alts import Alt
 from .titles import Title
-from .submission import Submission, SubmissionAux, SaveRelationship
-from .comment import Comment, Notification
+from .submission import SaveRelationship
+from .comment import Notification
 from .boards import Board
 from .board_relationships import *
-from .mix_ins import *
 from .subscriptions import *
 from .userblock import *
 from .badges import *
@@ -49,6 +37,7 @@ class User(Base, Stndrd, Age_times):
 	passhash = deferred(Column(String, default=None))
 	created_utc = Column(Integer, default=0)
 	admin_level = Column(Integer, default=0)
+	dramacoins2 = Column(Integer, default=0)
 	changelogsub = Column(Boolean, default=False)
 	is_activated = Column(Boolean, default=False)
 	shadowbanned = Column(Boolean, default=False)
@@ -106,6 +95,7 @@ class User(Base, Stndrd, Age_times):
 	is_private = Column(Boolean, default=False)
 	read_announcement_utc = Column(Integer, default=0)
 	unban_utc = Column(Integer, default=0)
+
 	is_deleted = Column(Boolean, default=False)
 	delete_reason = Column(String(500), default='')
 	filter_nsfw = Column(Boolean, default=False)
@@ -329,20 +319,16 @@ class User(Base, Stndrd, Age_times):
 		z = sorted(z, key=lambda x: x.name)
 
 		return z
-		
+
 	@property
 	@lazy
 	def dramacoins(self):
 		posts=sum([x[0]-1 for x in g.db.query(Submission.score).options(lazyload('*')).filter_by(author_id = self.id, is_banned = False, deleted_utc = 0).all()])
 		comments=sum([x[0]-1 for x in g.db.query(Comment.score).options(lazyload('*')).filter_by(author_id = self.id, is_banned = False, deleted_utc = 0).all()])
-		return int(posts+comments)
-
-	@property
-	@cache.memoize(timeout=86400)
-	def dramacoins2(self):
-		posts=sum([x[0]-1 for x in g.db.query(Submission.score).options(lazyload('*')).filter_by(author_id = self.id, is_banned = False, deleted_utc = 0).all()])
-		comments=sum([x[0]-1 for x in g.db.query(Comment.score).options(lazyload('*')).filter_by(author_id = self.id, is_banned = False, deleted_utc = 0).all()])
-		return int(posts+comments)
+		dramacoins = int(posts+comments)
+		self.dramacoins2 = dramacoins
+		g.db.add(self)
+		return dramacoins
 
 	@property
 	def base36id(self):
@@ -421,7 +407,7 @@ class User(Base, Stndrd, Age_times):
 	@property
 	def original_link(self):
 		return f"/@{self.original_username}"
-	
+
 
 	def __repr__(self):
 		return f"<User(username={self.username})>"
@@ -527,7 +513,7 @@ class User(Base, Stndrd, Age_times):
 			output.append(user)
 
 		return output
-	
+
 	def alts_subquery(self):
 		return g.db.query(User.id).filter(
 			or_(
@@ -543,7 +529,7 @@ class User(Base, Stndrd, Age_times):
 				).subquery()
 			)
 		).subquery()
-		
+
 
 	def alts_threaded(self, db):
 
@@ -599,7 +585,7 @@ class User(Base, Stndrd, Age_times):
 
 		self.del_banner()
 		self.banner_nonce += 1
-		
+
 		imageurl = aws.upload_file(name=f"banner.gif", file=file)
 		if imageurl:
 			self.bannerurl =imageurl
@@ -653,7 +639,7 @@ class User(Base, Stndrd, Age_times):
 			else: return f"https://s3.eu-central-1.amazonaws.com/i.ruqqus.ga/uid/{self.base36id}/profile-{self.profile_nonce}.png"
 		else:
 			return self.defaultpicture()
-	
+
 	@property
 	def available_titles(self):
 
@@ -694,7 +680,7 @@ class User(Base, Stndrd, Age_times):
 		# Has 1000 Rep, or 500 for older accounts
 		# if connecting through Tor, must have verified email
 		return (self.has_premium or self.dramacoins >= 0 or (
-			self.created_utc <= 1592974538 and self.dramacoins >= 500)) and (self.is_activated or request.headers.get("cf-ipcountry")!="T1") 
+			self.created_utc <= 1592974538 and self.dramacoins >= 500)) and (self.is_activated or request.headers.get("cf-ipcountry")!="T1")
 
 	@property
 	def can_upload_avatar(self):
@@ -724,7 +710,7 @@ class User(Base, Stndrd, Age_times):
 			data['real_id']=self.real_id
 
 		return data
-	
+
 
 	@property
 	def json_core(self):
@@ -746,7 +732,7 @@ class User(Base, Stndrd, Age_times):
 					'id': self.base36id
 					}
 		return self.json_raw
-		
+
 
 
 	@property
@@ -762,7 +748,7 @@ class User(Base, Stndrd, Age_times):
 		data['comment_count']=self.comment_count
 
 		return data
-	
+
 
 	@property
 	def can_use_darkmode(self):
@@ -780,7 +766,7 @@ class User(Base, Stndrd, Age_times):
 
 		else:
 			return True
-	
+
 
 	def ban(self, admin=None, reason=None,  days=0):
 
@@ -861,7 +847,7 @@ class User(Base, Stndrd, Age_times):
 
 
 	def subscribed_idlist(self, page=1):
-		posts = g.db.query(Subscription.submission_id).filter_by(user_id=self.id).all()		
+		posts = g.db.query(Subscription.submission_id).filter_by(user_id=self.id).all()
 		return [x[0] for x in posts]
 
 
@@ -891,7 +877,7 @@ class User(Base, Stndrd, Age_times):
 			)
 
 		posts=posts.order_by(Submission.created_utc.desc())
-		
+
 		return [x[0] for x in posts.offset(25 * (page - 1)).limit(26).all()]
 
 
@@ -917,14 +903,14 @@ class User(Base, Stndrd, Age_times):
 			)
 
 		comments=comments.order_by(Comment.created_utc.desc())
-		
+
 		return [x[0] for x in comments.offset(25 * (page - 1)).limit(26).all()]
 
 
 
 	def guild_rep(self, guild, recent=0):
 
-		
+
 
 		posts=g.db.query(Submission.score).filter_by(
 			is_banned=False,
@@ -955,7 +941,7 @@ class User(Base, Stndrd, Age_times):
 
 	@property
 	def has_premium(self):
-		
+
 		now=int(time.time())
 
 		if self.negative_balance_cents:
@@ -982,7 +968,7 @@ class User(Base, Stndrd, Age_times):
 
 	@property
 	def has_premium_no_renew(self):
-		
+
 		now=int(time.time())
 
 		if self.negative_balance_cents:
@@ -993,29 +979,29 @@ class User(Base, Stndrd, Age_times):
 			return True
 		else:
 			return False
-	
-	
+
+
 	@property
 	def renew_premium_time(self):
 		return time.strftime("%d %b %Y at %H:%M:%S",
 							 time.gmtime(self.premium_expires_utc))
-	
+
 
 	@property
 	def filter_words(self):
 		l= [i.strip() for i in self.custom_filter_list.split('\n')] if self.custom_filter_list else []
 		l=[i for i in l if i]
 		return l
-							 
+
 	@property
 	def boards_modded_ids(self):
 		return [x.id for x in self.boards_modded]
 
 	@property
 	def txn_history(self):
-		
+
 		return self._transactions.filter(PayPalTxn.status!=1).order_by(PayPalTxn.created_utc.desc()).all()
-	
+
 
 	@property
 	def json_admin(self):
@@ -1031,7 +1017,7 @@ class User(Base, Stndrd, Age_times):
 	@property
 	def can_upload_comment_image(self):
 		return self.dramacoins >= 0 and (request.headers.get("cf-ipcountry")!="T1" or self.is_activated)
-	
+
 	@property
 	def can_change_name(self):
 		return True
