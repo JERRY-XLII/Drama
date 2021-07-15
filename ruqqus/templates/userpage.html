@@ -7,7 +7,9 @@
 		{% else %}
 			<link rel="stylesheet" href="/assets/style/dark_ff66ac.css">
 		{% endif %}
-		<link rel="stylesheet" href="/@{{u.username}}/profilecss">
+		{% if u.profilecss %}
+			<link rel="stylesheet" href="/@{{u.username}}/profilecss">
+		{% endif %}
 	{% endblock %}
 {% endif %}
 
