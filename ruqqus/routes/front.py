@@ -47,15 +47,15 @@ def notifications(v):
 		c._is_blocked = False
 		c._is_blocking = False
 		if c.parent_submission:
-			if c.parent_comment and c.parent_comment.author_id == v.id:
-				c.replies = []
-				while c.level > 1:
-					c.parent_comment.replies = [c]
-					c = c.parent_comment
-			else: c.replies = []
-			if c not in listing: listing.append(c)
-			
-		else:
+            parent = c.parent_comment
+
+            if parent in listing:
+                parent.replies = parent.replies + [c]
+            else:
+                parent.replies = [c]
+                listing.append(parent)
+
+        else:
 			if c.parent_comment and c.parent_comment.author_id == v.id:
 				while c.level > 1:
 					c = c.parent_comment
@@ -99,7 +99,7 @@ def frontlist(v=None, sort="hot", page=1,t="all", ids_only=True, filter_words=''
 		for word in filter_words:
 			posts=posts.filter(not_(SubmissionAux.title.ilike(f'%{word}%')))
 
-	if t != 'all': 
+	if t != 'all':
 		cutoff = 0
 		now = int(time.time())
 		if t == 'hour':
@@ -148,9 +148,9 @@ def frontlist(v=None, sort="hot", page=1,t="all", ids_only=True, filter_words=''
 	posts = posts[firstrange:secondrange]
 
 	if v and v.hidevotedon: posts = [x for x in posts if x.voted == 0]
-	
+
 	posts = [x for x in posts if not (x.author and x.author.shadowbanned) or (v and v.id == x.author_id)]
-	
+
 	if page == 1: posts = g.db.query(Submission).filter_by(stickied=True).all() + posts
 
 	words = [' captainmeta4 ', ' cm4 ', ' dissident001 ', ' ladine ']
@@ -163,9 +163,9 @@ def frontlist(v=None, sort="hot", page=1,t="all", ids_only=True, filter_words=''
 					break
 
 	posts = posts[:26]
-	
+
 	for post in posts:
-		if post.author and post.author.shadowbanned: 
+		if post.author and post.author.shadowbanned:
 			rand = random.randint(500,1400)
 			vote = Vote(user_id=rand,
 				vote_type=random.choice([-1, -1, -1, -1, 1]),
@@ -244,7 +244,7 @@ def front_all(v):
 def changeloglist(v=None, sort="new", page=1 ,t="all", **kwargs):
 
 	posts = g.db.query(Submission).options(lazyload('*')).filter_by(is_banned=False,stickied=False,private=False,).filter(Submission.deleted_utc == 0)
-			
+
 	if v and v.admin_level == 0:
 		blocking = g.db.query(
 			UserBlock.target_id).filter_by(
@@ -256,11 +256,11 @@ def changeloglist(v=None, sort="new", page=1 ,t="all", **kwargs):
 			Submission.author_id.notin_(blocking),
 			Submission.author_id.notin_(blocked)
 		)
-		
+
 	posts=posts.join(Submission.submission_aux).join(Submission.author)
 	posts=posts.filter(SubmissionAux.title.ilike(f'%[changelog]%', User.admin_level == 6))
 
-	if t != 'all': 
+	if t != 'all':
 		cutoff = 0
 		now = int(time.time())
 		if t == 'hour':
