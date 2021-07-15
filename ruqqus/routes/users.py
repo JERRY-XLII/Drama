@@ -20,7 +20,7 @@ beams_client = PushNotifications(
 
 @app.route("/refresh/leaderboard", methods=["GET"])
 @auth_desired
-def leaderboard(v):
+def refresh_leaderboard(v):
 	cache.delete_memoized(leaderboard)
 	return "sex"
 
