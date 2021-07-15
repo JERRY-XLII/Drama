@@ -47,13 +47,14 @@ def notifications(v):
 		c._is_blocked = False
 		c._is_blocking = False
 		if c.parent_submission:
-			parent = c.parent_comment
-
-			if parent in listing:
-				parent.replies = parent.replies + [c]
-			else:
-				parent.replies = [c]
-				listing.append(parent)
+			if c.level > 1 and c.parent_comment and c.parent_comment.author_id == v.id:
+				parent = c.parent_comment
+				if parent in listing:
+					parent.replies = parent.replies + [c]
+				else:
+					parent.replies = [c]
+					listing.append(parent)
+			else: listing.append(c)
 
 		else:
 			if c.parent_comment and c.parent_comment.author_id == v.id:
