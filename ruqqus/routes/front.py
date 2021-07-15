@@ -38,12 +38,14 @@ def notifications(v):
 		c._is_blocked = False
 		c._is_blocking = False
 		if c.parent_submission:
-			while c.parent_comment:
+			if c.parent_comment:
 				parent = c.parent_comment
-				parent.replies2 = parent.replies2 + [c]
-				c = parent
-			c.replies = c.replies2
-			listing.append(c)
+
+				if parent in listing:
+					parent.replies = parent.replies + [c]
+				else:
+					parent.replies = [c]
+					listing.append(parent)
 		else:
 			if c.parent_comment:
 				while c.level > 1:
