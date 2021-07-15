@@ -134,12 +134,8 @@
 			{% endif %}
 
 			<div id="comment-text-{{c.base36id}}" class="comment-text mb-0">
-				{% if not v or v.slurreplacer %}
-					{{c.body_html.replace(" nigger", " 🏀 ").replace(" Nigger", " 🏀 ").replace(" NIGGER", " 🏀 ").replace(" pedo ", " libertarian  ").replace(" Pedo ", " Libertarian  ").replace(" PEDO ", " LIBERTARIAN  ").replace(" tranny", " 🚄 ").replace(" Tranny", " 🚄 ").replace(" TRANNY", " 🚄 ").replace("  fag ", "  cute twink " ).replace("  Fag ", "  Cute twink " ).replace("  FAG ", "  CUTE TWINK " ).replace(" faggot", " cute twink ").replace(" Faggot", " Cute twink ").replace(" FAGGOT", " CUTE TWINK ").replace(" trump", " DDR ").replace(" Trump", " DDR ").replace(" TRUMP", " DDR ").replace(" biden", " DDD ").replace(" Biden", " DDD ").replace(" BIDEN", " DDD ").replace(" steve akins", " penny verity oaken ").replace(" Steve Akins", " Penny Verity Oaken ").replace(" STEVE AKINS", " PENNY VERITY OAKEN ").replace(" RETARD", " RSLUR ").replace(" rapist", " male feminist ").replace(" Rapist", " Male feminist ").replace(" RAPIST", " MALE FEMINIST ").replace(" RETARD", " RSLUR ").replace(" rapist", " male feminist ").replace(" Rapist", " Male feminist ").replace(" RAPIST", " MALE FEMINIST ").replace(" RETARD", " RSLUR ").replace(" rapist", " male feminist ").replace(" Rapist", " Male feminist ").replace(" RAPIST", " MALE FEMINIST").replace(" kill yourself", " keep yourself safe").replace(" KILL YOURSELF", " KEEP YOURSELF SAFE") | safe}}
-				{% else %}
-					{{c.body_html | safe}}
-				{% endif %}
-				
+				{{c.realbody(v) | safe}}
+
 				{% if not c.parent_submission and c.author_id!=1046 and c.author_id!=2360 and c.author_id!=v.id %}
 					<a class="btn btn-primary" href="javascript:void(0)" onclick="document.getElementById('reply-to-{{c.base36id}}').classList.toggle('d-none')">Reply</a>
 					<pre></pre>

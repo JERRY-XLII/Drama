@@ -289,11 +289,7 @@
 							{% endif %}
 						{% endif %}
 
-						{% if not v or v.slurreplacer %}
-							{{p.realbody(v).replace(" nigger", " 🏀 ").replace(" Nigger", " 🏀 ").replace(" NIGGER", " 🏀 ").replace(" pedo ", " libertarian  ").replace(" Pedo ", " Libertarian  ").replace(" PEDO ", " LIBERTARIAN  ").replace(" tranny", " 🚄 ").replace(" Tranny", " 🚄 ").replace(" TRANNY", " 🚄 ").replace("  fag ", "  cute twink " ).replace("  Fag ", "  Cute twink " ).replace("  FAG ", "  CUTE TWINK " ).replace(" faggot", " cute twink ").replace(" Faggot", " Cute twink ").replace(" FAGGOT", " CUTE TWINK ").replace(" trump", " DDR ").replace(" Trump", " DDR ").replace(" TRUMP", " DDR ").replace(" biden", " DDD ").replace(" Biden", " DDD ").replace(" BIDEN", " DDD ").replace(" steve akins", " penny verity oaken ").replace(" Steve Akins", " Penny Verity Oaken ").replace(" STEVE AKINS", " PENNY VERITY OAKEN ").replace(" RETARD", " RSLUR ").replace(" rapist", " male feminist ").replace(" Rapist", " Male feminist ").replace(" RAPIST", " MALE FEMINIST ").replace(" RETARD", " RSLUR ").replace(" rapist", " male feminist ").replace(" Rapist", " Male feminist ").replace(" RAPIST", " MALE FEMINIST ").replace(" RETARD", " RSLUR ").replace(" rapist", " male feminist ").replace(" Rapist", " Male feminist ").replace(" RAPIST", " MALE FEMINIST").replace(" kill yourself", " keep yourself safe").replace(" KILL YOURSELF", " KEEP YOURSELF SAFE") | safe}}
-						{% else %}
-							{{p.realbody(v) | safe}}
-						{% endif %}
+						{{p.realbody(v) | safe}}
 
 						{% if p.embed_url and p.domain_obj and p.domain_obj.embed_template %}
 							{% if p.domain == "twitter.com" and session.get("light_mode_enabled")	%}
