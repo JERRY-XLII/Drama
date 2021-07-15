@@ -1,15 +1,5 @@
-import time
-import jinja2
-import pyotp
-import pprint
-from flask import *
-
-from ruqqus.helpers.wrappers import *
-import ruqqus.classes
-from ruqqus.classes import *
 from ruqqus.mail import *
 from ruqqus.__main__ import app, limiter
-from ruqqus.helpers.get import get_account
 from ruqqus.helpers.alerts import *
 
 @app.route("/leaderboard", methods=["GET"])
@@ -18,7 +8,7 @@ def leaderboard(v):
 	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
 	users1 = sorted(g.db.query(User).all(), key=lambda x: x.dramacoins, reverse=True)[:25]
 	users2 = g.db.query(User).order_by(User.follower_count.desc()).limit(10).all()
-	return render_template("leaderboard.html", v=v, users1=users1, coins=coins, users2=users2)
+	return render_template("leaderboard.html", v=v, users1=users1, users2=users2)
 
 @app.route("/sex")
 def index():
