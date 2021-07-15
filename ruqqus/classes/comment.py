@@ -167,7 +167,9 @@ class Comment(Base, Age_times, Scores, Stndrd, Fuzzing):
 
 	@property
 	def replies2(self):
-		return self.__dict__.get("replies2", None)
+		r = self.__dict__.get("replies2", None)
+		if r is None: r = []
+		return r
 
 	@replies2.setter
 	def replies2(self, value):
