@@ -28,7 +28,7 @@ def leaderboard(v):
 def leaderboard():
 	users = g.db.query(User).options(lazyload('*'))
 	users1= sorted(users, key=lambda x: x.dramacoins, reverse=True)[:100]
-	users2 = sorted(users1, key=lambda x: x.follower_count, reverse=True)[:10]
+	users2 = g.db.query(User).options(lazyload('*')).order_by(User.follower_count.desc()).limit(10).all()
 	return users1[:25], users2
 
 @app.get("/@<username>/css")
