@@ -279,7 +279,7 @@
 									<p>Your original username will always stay reserved for you: <code>{{v.original_username}}</code></p>
 
 
-									<form id="profile-settings" action="/settings/name_change" method="post">
+									<form action="/settings/name_change" method="post">
 										<input type="hidden" name="formkey" value="{{v.formkey}}">
 										<input type="text" name="name" class="form-control" value="{{v.username}}">
 										<small>3-25 characters, including letters, numbers, _ , and -</small>
@@ -298,7 +298,7 @@
 								<div class="w-lg-100">
 									<p>Must be a youtube video link.</p>
 
-									<form id="profile-settings" action="/settings/song_change" method="post">
+									<form action="/settings/song_change" method="post">
 										<input type="hidden" name="formkey" value="{{v.formkey}}">
 										<input type="text" name="song" class="form-control" value="{% if v.song %}https://youtu.be/{{v.song}}{% endif %}" placeholder='Enter a youtube video link here' >
 										<br><small>In some browsers, users have to click at least once anywhere in the profile page for the anthem to play.</small>
