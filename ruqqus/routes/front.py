@@ -163,7 +163,7 @@ def frontlist(v=None, sort="hot", page=1,t="all", ids_only=True, filter_words=''
 
 	for post in posts:
 		if post.author and post.author.shadowbanned:
-			if not (v and v.id == x.author_id): posts.remove(post)
+			if not (v and v.id == post.author_id): posts.remove(post)
 			rand = random.randint(500,1400)
 			vote = Vote(user_id=rand,
 				vote_type=random.choice([-1, -1, -1, -1, 1]),
