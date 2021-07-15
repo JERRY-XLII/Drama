@@ -376,7 +376,8 @@ def get_post_with_comments(pid, sort="top", v=None):
 					vote_type=random.choice([-1, -1, -1, 1]),
 					comment_id=comment.id)
 				g.db.add(vote)
-				g.db.flush()
+				try: g.db.flush()
+				except: pass
 				comment.upvotes = comment.ups
 				comment.downvotes = comment.downs
 				g.db.add(comment)

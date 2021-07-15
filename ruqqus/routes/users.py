@@ -21,6 +21,13 @@ from flask import *
 from ruqqus.__main__ import app, cache, limiter, db_session
 from pusher_push_notifications import PushNotifications
 
+PUSHER_KEY = environ.get("PUSHER_KEY", "").strip()
+
+beams_client = PushNotifications(
+		instance_id='02ddcc80-b8db-42be-9022-44c546b4dce6',
+		secret_key=PUSHER_KEY,
+)
+
 @app.get("/@<username>/css")
 def get_css(username):
 	user = get_user(username)
