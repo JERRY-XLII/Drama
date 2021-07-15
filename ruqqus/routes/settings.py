@@ -454,14 +454,6 @@ def settings_css(v):
 	g.db.add(v)
 	return render_template("settings_css.html", v=v)
 
-@app.route("/leaderboard", methods=["GET"])
-@auth_desired
-def leaderboard(v):
-	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
-	users1 = g.db.query(User).order_by(User.dramacoins2.desc()).limit(25).all()
-	users2 = g.db.query(User).order_by(User.follower_count.desc()).limit(10).all()
-	return render_template("leaderboard.html", v=v, users1=users1, users2=users2)
-
 @app.route("/settings/profilecss", methods=["GET"])
 @auth_required
 def settings_profilecss_get(v):
