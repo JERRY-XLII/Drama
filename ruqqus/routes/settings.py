@@ -80,8 +80,6 @@ def settings_profile_post(v):
 	if request.values.get("bio") is not None:
 		bio = request.values.get("bio")[0:1500]
 
-		#bio=preprocess(bio)
-
 		if bio == v.bio:
 			return render_template("settings_profile.html",
 								   v=v,
@@ -463,7 +461,7 @@ def settings_css_get(v):
 @app.route("/settings/css", methods=["POST"])
 @auth_required
 def settings_css(v):
-	css = request.form.get("css").replace('\\', '')
+	css = request.form.get("css").replace('\\', '')[0:50000]
 	v.css = css
 	g.db.add(v)
 	return render_template("settings_css.html", v=v)
