@@ -166,6 +166,14 @@ class Comment(Base, Age_times, Scores, Stndrd, Fuzzing):
 		self.__dict__["replies"] = value
 
 	@property
+	def replies2(self):
+		return self.__dict__.get("replies2", None)
+
+	@replies2.setter
+	def replies2(self, value):
+		self.__dict__["replies2"] = value
+
+	@property
 	@lazy
 	def permalink(self):
 		if self.post: return f"{self.post.permalink}/{self.id}/"
