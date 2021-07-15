@@ -57,7 +57,7 @@ def notifications(v):
 			else: listing.append(c)
 
 		else:
-			if c.parent_comment and c.parent_comment.author_id == v.id:
+			if c.parent_comment:
 				while c.level > 1:
 					c = c.parent_comment
 
