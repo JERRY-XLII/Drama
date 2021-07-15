@@ -105,6 +105,7 @@ class User(Base, Stndrd, Age_times):
 	coin_balance=Column(Integer, default=0)
 	premium_expires_utc=Column(Integer, default=0)
 	negative_balance_cents=Column(Integer, default=0)
+	dramacoins2=Column(Integer, default=0)
 
 	is_nofollow = Column(Boolean, default=False)
 	custom_filter_list=Column(String(1000), default="")
@@ -613,7 +614,10 @@ class User(Base, Stndrd, Age_times):
 	def dramacoins(self):
 		posts=sum([x[0]-1 for x in g.db.query(Submission.score).options(lazyload('*')).filter_by(author_id = self.id, is_banned = False, deleted_utc = 0).all()])
 		comments=sum([x[0]-1 for x in g.db.query(Comment.score).options(lazyload('*')).filter_by(author_id = self.id, is_banned = False, deleted_utc = 0).all()])
-		return int(posts+comments)
+		coins = int(posts+comments)
+		self.dramacoins2 = coins
+		g.db.add(self)
+		return coins
 
 	@property
 	def banner_url(self):
