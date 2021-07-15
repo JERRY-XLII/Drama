@@ -392,13 +392,6 @@ def settings_images_banner(v):
 
 		v.set_banner(request.files["banner"])
 
-		# anti csam
-		new_thread = threading.Thread(target=check_csam_url,
-									  args=(v.banner_url,
-											v,
-											lambda: board.del_banner()
-											)
-									  )
 		new_thread.start()
 
 		return render_template("settings_profile.html",

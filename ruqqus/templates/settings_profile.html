@@ -26,7 +26,9 @@
 							<div class="input-group mb2">
 								<select id='theme' class="form-control" form="profile-settings" name="theme" onchange="post('/settings/profile?theme='+document.getElementById('theme').value, function(){window.location.reload(true);})">
 								 {% for entry in ["dark", "light", "coffee", "tron", "4chan"] %}
-								 <option value="{{entry}}"{{' selected' if v.theme==entry else ''}}>{{entry}}</option>
+									 <option value="{{entry}}" {% if v.theme==entry %} selected {% endif %}>
+										{{entry}}
+									</option>
 								 {% endfor %}
 							 </select>
 							</div>
