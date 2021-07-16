@@ -37842,6 +37842,10 @@ blockquote {
   color: #433434;
 }
 
+.dropdown-item:hover, .dropdown-item:focus, .dropdown-item.active {
+  background-color: #bda78e !important;
+}
+
 html * {
   font-family: arial, helvetica, sans-serif;
   color: #800000;
@@ -37877,10 +37881,6 @@ body, #main-content-col, .sidebar {
   border-color: #D9BFB7 !important;
 }
 
-.comment-actions a, .post-actions a, .comment-actions *, .post-actions * {
-  color: #00E !important;
-}
-
 .comment .comment-collapse::before {
   border-color: #D9BFB7 !important;
 }
@@ -37891,14 +37891,6 @@ body, #main-content-col, .sidebar {
 
 .post-actions *:hover, .comment-actions *:hover, .comment-actions .copy-link:hover {
   color: #F00 !important;
-}
-
-.active.arrow-up::before, .active.arrow-down::before {
-  color: #00E !important;
-}
-
-.score-up, .score-down {
-  color: #00E !important;
 }
 
 /*# sourceMappingURL=4chan_80ffff.css.map */
