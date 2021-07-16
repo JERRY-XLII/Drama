@@ -118,9 +118,7 @@ class Age_times:
 
 	@property
 	def edited_datetime(self):
-		return time.strftime("%d %B %Y at %H:%M:%S",
-							 time.gmtime(self.edited_utc))
-
+		return str(time.strftime("%d/%B/%Y %H:%M:%S UTC", time.gmtime(self.edited_utc)))
 
 class Scores:
 
