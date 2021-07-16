@@ -57,10 +57,10 @@ def notifications(v):
 					if parent not in alllisting:
 						if parent.id == 68652: print(alllisting)
 						listing.append(parent)
-				alllisting.append(parent.replies)
+				alllisting = alllisting + parent.replies
 			else:
 				listing.append(c)
-				alllisting.append(c.replies)
+				alllisting = alllisting + parent.replies
 		else:
 			if c.parent_comment:
 				while c.level > 1:
