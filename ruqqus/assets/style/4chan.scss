@@ -68,9 +68,6 @@ body, #main-content-col, .sidebar {
 .form-control {
     border-color: #D9BFB7 !important;
     }
-.comment-actions a, .post-actions a, .comment-actions *, .post-actions * {
-    color: #00E !important;
-    }
 .comment .comment-collapse::before {
     border-color: #D9BFB7 !important;
     }
@@ -79,10 +76,4 @@ body, #main-content-col, .sidebar {
     }
 .post-actions *:hover, .comment-actions *:hover, .comment-actions .copy-link:hover {
     color: #F00 !important
-    }
-.active.arrow-up::before, .active.arrow-down::before {
-    color: #00E !important
-    }
-.score-up, .score-down {
-    color: #00E !important
     }

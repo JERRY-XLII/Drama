@@ -62,3 +62,7 @@ blockquote {
 .navbar-light .navbar-nav .nav-link .fa, .navbar-light .navbar-nav .nav-link .fas, .navbar-light .navbar-nav .nav-link .far, .navbar-light .navbar-nav .nav-link .fab {
 	color: $black;
 }
+
+.dropdown-item:hover, .dropdown-item:focus, .dropdown-item.active {
+    background-color: #bda78e !important;
+}
