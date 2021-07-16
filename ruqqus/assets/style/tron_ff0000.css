@@ -27900,8 +27900,8 @@ img.emoji {
     margin-bottom: 10px !important;
   }
 
-  .comment-actions .list-inline .list-inline-item {
-    margin-top: -10px;
+  .comment-actions {
+    margin-top: -5px;
   }
 }
 .btn-primary:focus, .btn-primary.focus {
