@@ -54,6 +54,7 @@ def notifications(v):
 			if c not in listing:
 				listing.append(c)
 				c.replies = c.replies2
+				c.replies2 = []
 		else:
 			if c.parent_comment:
 				while c.level > 1:
@@ -63,7 +64,6 @@ def notifications(v):
 				c.replies = c.child_comments
 				listing.append(c)
 
-	board = get_board(1)
 	return render_template("notifications.html",
 						   v=v,
 						   notifications=listing,
