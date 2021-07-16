@@ -588,7 +588,7 @@ def api_comment(v):
 		n = Notification(comment_id=c.id, user_id=x)
 		g.db.add(n)
 		try: g.db.flush()
-		except: pass
+		except: g,db.rollback()
 
 	if parent.author.id != v.id:
 		beams_client.publish_to_interests(
