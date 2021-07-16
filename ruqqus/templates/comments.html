@@ -2,10 +2,13 @@
 <!---beginning of comment {{c.id}}--->
 
 <script>
+window.onload = function(){
+    document.getElementById('timestamp').title = "sex";
+};
+</script>
+
 <!--	var cdate = new Date(c.created_datetime);-->
 <!--	cdate.toString()-->
-var cdate = "sex";
-</script>
 
 {% set ups=c.upvotes %}
 {% set downs=c.downvotes %}
@@ -129,7 +132,7 @@ var cdate = "sex";
 
 				{% if c.author.is_deleted %}[deleted account]{% else %}<a style="color:#{{c.author.namecolor}}; font-size:12px; font-weight:bold;" href="/@{{c.author.username}}"><img src="{{c.author.profile_url}}" class="profile-pic-25">&nbsp;&nbsp;{{c.author.username}}</a>{% if c.author.customtitle %}<bdi style="color: #{{c.author.titlecolor}}">&nbsp;{{c.author.customtitle | safe}}</bdi>{% endif %}{% endif %}
 
-				<span data-toggle="tooltip" data-placement="bottom" title="{{cdate}}" class="time-stamp">&nbsp;{{c.age_string}}</span>
+				<span id="timestamp" data-toggle="tooltip" data-placement="bottom" title="" class="time-stamp">&nbsp;{{c.age_string}}</span>
 				{% if c.edited_utc %}
 				<span class="time-edited"><span>&#183;</span> <span class="font-italic">Edited {{c.edited_string}}</span></span>
 				{% endif %}
