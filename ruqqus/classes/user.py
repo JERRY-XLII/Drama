@@ -37,7 +37,6 @@ class User(Base, Stndrd, Age_times):
 	passhash = deferred(Column(String, default=None))
 	created_utc = Column(Integer, default=0)
 	admin_level = Column(Integer, default=0)
-	dramacoins = Column(Integer, default=0)
 	changelogsub = Column(Boolean, default=False)
 	is_activated = Column(Boolean, default=False)
 	shadowbanned = Column(Boolean, default=False)
@@ -168,6 +167,19 @@ class User(Base, Stndrd, Age_times):
 		kwargs["created_utc"] = int(time.time())
 
 		super().__init__(**kwargs)
+
+	@property
+	@lazy
+	def dramacoins(self):
+		posts=sum([x[0]-1 for x in g.db.query(Submission.score).options(lazyload('*')).filter_by(author_id = self.id, is_banned = False, deleted_utc = 0).all()])
+		comments=sum([x[0]-1 for x in g.db.query(Comment.score).options(lazyload('*')).filter_by(author_id = self.id, is_banned = False, deleted_utc = 0).all()])
+		return int(posts+comments)
+
+	@property
+	@lazy
+	@cache.memoize(timeout=86400)
+	def dramacoins2(self):
+		return self.dramacoins
 
 	def has_block(self, target):
 

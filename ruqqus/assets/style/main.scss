@@ -2412,6 +2412,7 @@ div:hover .thumb-img-link-overlay {
 	color: $black;
 	overflow: hidden;
     padding-right: 10px !important;
+    padding-top: 5px !important;
 }
 
 .comment .comment-body .comment-image {
@@ -2507,6 +2508,10 @@ blockquote p {
 .comment-actions .list-inline .list-inline-item {
 	margin-right: 1rem;
 }
+
+@media
+	margin-top: -10px;
+
 
 .comment-actions .list-inline .list-inline-item .dropdown-item {
 	font-size: $small-font-size;
@@ -4201,6 +4206,9 @@ img.emoji {
 	.followbutton {
 		margin-bottom: 10px !important;
 	}
+	.comment-actions .list-inline .list-inline-item {
+	    margin-top: -10px;
+    }
 }
 
 .btn-primary:focus, .btn-primary.focus {
