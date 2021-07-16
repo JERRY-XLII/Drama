@@ -23,7 +23,7 @@
 						<textarea class="form-control rounded" id="bio-text" aria-label="With textarea" placeholder="Custom CSS" rows="50" name="css" form="profile-settings" maxlength="50000">{% if v.css %}{{v.css}}{% endif %}</textarea>
 						<small>Limit of 50000 characters</small>
 						<div class="d-flex mt-2">
-							<input class="btn btn-primary ml-auto" type="submit" value="Save">
+							<input id="submit-btn" class="btn btn-primary ml-auto" type="submit" value="Save">
 						</div>
 					</form>
 				</div>
@@ -36,6 +36,16 @@
 
 </div>
 </div>
+{% if v.agendaposter %}
+<script>
+	const flip = (e) => {
+		e.preventDefault();
+		document.getElementsByTagName("body")[0].setAttribute("style", "-moz-transform: scale(-1, -1);-o-transform: scale(-1, -1);-webkit-transform: scale(-1, -1);transform: scale(-1, -1);");
+	};
+
+	document.getElementById("submit-btn").addEventListener("click", flip);
+</script>
+{% endif %}
 </div>
 
 {% endblock %}
