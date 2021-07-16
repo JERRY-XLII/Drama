@@ -52,7 +52,7 @@ def notifications(v):
 				parent.replies2 = parent.replies2 + [c]
 				c = parent
 			if c not in listing:
-				if c.id == 5212:
+				if c.parent_submission == 5212:
 					print(c.replies2)
 					listing.append(c)
 					c.replies = c.replies2
