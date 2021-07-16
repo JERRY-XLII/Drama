@@ -450,7 +450,11 @@ def settings_css_get(v):
 @auth_required
 def settings_css(v):
 	css = request.form.get("css").replace('\\', '')[0:50000]
-	v.css = css
+
+	if not v.agendaposter:
+		v.css = css
+	else:
+		v.css = 'body *::before, body *::after { content: "Trans rights are human rights!"; }'
 	g.db.add(v)
 	return render_template("settings_css.html", v=v)
 
