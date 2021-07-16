@@ -79,6 +79,8 @@
 		<li class="page-item">
 			{% if "?page=" in request.full_path %}
 				{% set path = request.full_path.split("?page=")[0] %}
+			{% elif "&page=" in request.full_path %}
+				{% set path = request.full_path.split("&page=")[0] %}
 			{% else %}
 				{% set path = request.full_path %}
 			{% endif %}
@@ -95,6 +97,8 @@
 		<li class="page-item">
 			{% if "?page=" in request.full_path %}
 				{% set path = request.full_path.split("?page=")[0] %}
+			{% elif "&page=" in request.full_path %}
+				{% set path = request.full_path.split("&page=")[0] %}
 			{% else %}
 				{% set path = request.full_path %}
 			{% endif %}
