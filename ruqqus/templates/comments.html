@@ -2,12 +2,10 @@
 <!---beginning of comment {{c.id}}--->
 
 <script>
-document.getElementById('timestamp').title = "sex";
-console.log("bruh");
+	var cdate = new Date(c.created_datetime);
+	document.getElementById('timestamp').title = cdate.toString();
 </script>
 
-<!--	var cdate = new Date(c.created_datetime);-->
-<!--	cdate.toString()-->
 
 {% set ups=c.upvotes %}
 {% set downs=c.downvotes %}
