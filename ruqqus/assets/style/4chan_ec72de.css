@@ -27143,81 +27143,45 @@ img.emoji {
 
 html * {
   font-family: arial, helvetica, sans-serif;
-  font-size: 12px;
-  font-weight: 400;
   color: #800000;
 }
 
 body, #main-content-col, .sidebar {
   background-color: #FFE;
-  background-image: linear-gradient(to bottom, #fed6af 0, #FFE 200px);
-  background-repeat: no-repeat;
-}
-
-.bg-white {
-  background: transparent !important;
 }
 
 .border-right, .border-left, .border-top, .border-bottom, .border {
   border-color: #D9BFB7 !important;
 }
 
-.btn {
-  border-radius: 0;
-  padding: 2px;
-}
-
 .card-header {
-  background: transparent !important;
   border-color: #D9BFB7 !important;
 }
 
 #guild .pseudo-submit-form.card {
   background-color: #F0E0D6 !important;
   border: 1px solid #D9BFB7 !important;
-  border-style: none solid solid none !important;
-  padding: 0 !important;
-  border-radius: 0;
 }
 
 .post-title a {
   color: #800000 !important;
-  font-size: 16px !important;
-  font-weight: normal !important;
-  margin-bottom: 1px !important;
 }
 
 .comment, .card {
   background-color: #F0E0D6 !important;
-  border: 1px solid #D9BFB7 !important;
-  border-style: none solid solid none !important;
-  border-radius: 0 !important;
-  padding: 2px !important;
+  border-color: #D9BFB7 !important;
 }
 
 .form-control {
-  border: 1px solid #D9BFB7 !important;
-  border-style: none solid solid none !important;
-  border-radius: 0 !important;
-  padding: 2px !important;
-}
-
-.comment .comment-body .user-info {
-  margin-top: 0;
+  border-color: #D9BFB7 !important;
 }
 
 .comment-actions a, .post-actions a, .comment-actions *, .post-actions * {
   color: #00E !important;
-  text-transform: capitalize;
-  font-weight: normal;
-}
-
-.comment-section {
-  background: transparent;
 }
 
 .comment .comment-collapse::before {
-  border-left: 2px solid #D9BFB7;
+  border-color: #D9BFB7 !important;
 }
 
 .comment .comment-collapse:hover::before {
@@ -27228,45 +27192,12 @@ body, #main-content-col, .sidebar {
   color: #F00 !important;
 }
 
-.sidebar-section {
-  background: transparent !important;
-}
-
-.sidebar .sidebar-section .body {
-  border: 0 !important;
-}
-
-.post-img {
-  border-radius: 0;
-  border: 0;
-}
-
-.profile-pic-20, .profile-pic-25 {
-  border-radius: 0;
-}
-
 .active.arrow-up::before, .active.arrow-down::before {
   color: #00E !important;
 }
 
 .score-up, .score-down {
   color: #00E !important;
-}
-
-.arrow-up::before {
-  content: "▲";
-  opacity: 0;
-}
-
-.arrow-down::before {
-  content: "▲";
-  display: inline-block;
-  transform: rotate(180deg);
-  opacity: 0;
-}
-
-.active.arrow-up::before, .active.arrow-down::before {
-  opacity: 1;
 }
 
 /*# sourceMappingURL=4chan_ec72de.css.map */
