@@ -340,8 +340,7 @@ def get_post_with_comments(pid, sort="top", v=None):
 			comment._is_blocked = c[3] or 0
 			output.append(comment)
 			
-		output = [x for x in output if not (x.author and x.author.shadowbanned) or (v and v.id == x.author_id)]
-		post._preloaded_comments = output
+		post._preloaded_comments = [x for x in output if not (x.author and x.author.shadowbanned) or (v and v.id == x.author_id)]
 
 	else:
 		comms = g.db.query(
@@ -368,22 +367,22 @@ def get_post_with_comments(pid, sort="top", v=None):
 		else:
 			abort(422)
 
-		for comment in comments:
-			if comment.author and comment.author.shadowbanned: 
-				if not (v and v.id == comment.author_id): comments.remove(comment)
-				rand = random.randint(500,1400)
-				vote = CommentVote(user_id=rand,
-					vote_type=random.choice([-1, -1, -1, 1]),
-					comment_id=comment.id)
-				g.db.add(vote)
-				try: g.db.flush()
-				except: g.db.rollback()
-				comment.upvotes = comment.ups
-				comment.downvotes = comment.downs
-				g.db.add(comment)
-				g.db.commit()
 
-		post._preloaded_comments = comments
+		if random.random() < 0.1:
+			for comment in comments:
+				if comment.author and comment.author.shadowbanned:
+					rand = random.randint(500,1400)
+					vote = CommentVote(user_id=rand,
+						vote_type=random.choice([-1, 1]),
+						comment_id=comment.id)
+					g.db.add(vote)
+					try: g.db.flush()
+					except: g.db.rollback()
+					comment.upvotes = comment.ups
+					comment.downvotes = comment.downs
+					g.db.add(comment)
+
+		post._preloaded_comments = [x for x in comments if not (x.author and x.author.shadowbanned) or (v and v.id == x.author_id)]
 
 	return post
 
