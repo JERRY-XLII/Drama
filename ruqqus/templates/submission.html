@@ -222,7 +222,7 @@
 						{% if p.is_nsfl %}<span class="badge text-black border-danger border-1 text-small-extra">nsfl</span>{% endif %}
 						{% if p.private %}<span class="badge border-warning border-1 text-small-extra">unlisted</span>{% endif %}
 						{% if p.is_repost %}<span class="badge border-warning border-1 text-small-extra"><a class="text-warning" href="{{p.reposts.permalink}}">repost</a></span>{% endif %}
-						{% if p.active_flags %}<a class="btn btn-primary" href="javascript:void(0)" style="padding:1px 5px;" onclick="document.getElementById('flaggers-{{p.id}}').classList.toggle('d-none')">{{p.active_flags}} Flags</a>{% endif %}
+						{% if p.active_flags %}<a class="btn btn-primary" href="javascript:void(0)" style="padding:1px 5px;" onclick="document.getElementById('flaggers').classList.toggle('d-none')">{{p.active_flags}} Flags</a>{% endif %}
 						{% if p.author.is_deleted %}[deleted account]{% else %}&nbsp;<a href="{{p.author.permalink}}" style="color: #{{p.author.namecolor}}; font-weight: bold;" class="user-name"><img src="{{p.author.profile_url}}" class="profile-pic-20">&nbsp;&nbsp;{{p.author.username}}</a>{% if p.author.customtitle %}<bdi style="color: #{{p.author.titlecolor}}">&nbsp;{{p.author.customtitle | safe}}</bdi>{% endif %}{% endif %}
 						<span data-toggle="tooltip" data-placement="bottom"  title="{{p.created_datetime}}">&nbsp;{{p.age_string}}</span>
 						({% if p.realurl(v) %}<a href="/search/posts/?q=domain%3A{{p.domain}}&sort=new&t=all" {% if v and v.newtabexternal %}target="_blank"{% endif %}>{{p.domain}}</a>{% else %}text post{% endif %})
@@ -242,7 +242,7 @@
 						{% if p.is_nsfl %}<span class="badge text-black border-danger border-1 text-small-extra">nsfl</span>&nbsp;{% endif %}
 						{% if p.private %}<span class="text-warning"><i class="far fa-eye-slash text-small mr-1"></i>unlisted</span>&nbsp;{% endif %}
 						{% if p.is_repost %}<span class="text-warning"><i class="far fa-sync text-small mr-1"></i><a class="text-warning" href="{{p.reposts.permalink}}">repost</a></span>&nbsp;{% endif %}
-						{% if p.active_flags %}&nbsp;<a class="btn btn-primary" style="padding:1px 5px;" href="javascript:void(0)" onclick="document.getElementById('flaggers-{{p.id}}').classList.toggle('d-none')">{{p.active_flags}} Flags</a>{% endif %}
+						{% if p.active_flags %}&nbsp;<a class="btn btn-primary" style="padding:1px 5px;" href="javascript:void(0)" onclick="document.getElementById('flaggers').classList.toggle('d-none')">{{p.active_flags}} Flags</a>{% endif %}
 						{% if p.is_bot %} <i class="fad fa-robot text-info" data-toggle="tooltip" data-placement="bottom" data-original-title="Bot"></i>{% endif %}
 						{% if not p.is_public %}&nbsp;<i class="fas fa-eye-slash text-warning" data-toggle="tooltip" data-placement="bottom" title="Private post, visible because {{p.visibility_reason(v)}}"></i>{% endif %}
 						
@@ -512,8 +512,8 @@
 
 </div>
 
-{% if False %}
-    <div class="flaggers" style="width: 95%; margin: 10px auto; border: 1px solid #999b2e; padding: 10px; border-radius: 3px;">
+{% if p.active_flags %}
+    <div id="flaggers" class="flaggers d-none" style="margin: 7px; border: 1px solid #999b2e; padding: 10px; border-radius: 3px;">
         <strong style="color: #999b2e;"><i class="far fa-fw fa-flag"></i> Reported by:</strong>
         <ul style="margin-bottom: 0;">
             {% for u in p.flagged_by %}
