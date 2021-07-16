@@ -367,7 +367,6 @@ def get_post_with_comments(pid, sort="top", v=None):
 		else:
 			abort(422)
 
-
 		if random.random() < 0.1:
 			for comment in comments:
 				if comment.author and comment.author.shadowbanned:
