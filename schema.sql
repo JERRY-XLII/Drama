@@ -789,7 +789,10 @@ CREATE TABLE public.users (
     newtabexternal boolean,
     customtitleplain text,
     themecolor text,
-    changelogsub boolean
+    changelogsub boolean,
+    oldreddit boolean DEFAULT false,
+    css text,
+    profilecss text
 );
 
 
