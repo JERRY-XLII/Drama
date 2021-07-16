@@ -177,6 +177,12 @@ ACTIONTYPES={
 		"color": "bg-muted",
 		"title": 'approved all content of {self.target_user.username}'
 	},
+	"agendaposter": {
+		"str": "set {self.target_link}'s theme to 'agendaposter'",
+		"icon": "fa-user-slash",
+		"color": "bg-muted",
+		"title": "set {self.target_link}'s theme to 'agendaposter'"
+	},
 	"set_flair_locked":{
 		"str":"set {self.target_link}'s flair (locked)",
 		"icon": "fa-user-slash",

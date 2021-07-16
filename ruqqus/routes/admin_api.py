@@ -21,6 +21,14 @@ def agendaposter(user_id, v):
 	for alt in user.alts:
 		alt.agendaposter = not user.agendaposter
 		g.db.add(alt)
+
+	ma = ModAction(
+		kind="agendaposter",
+		user_id=v.id,
+		target_user_id=user.id,
+		board_id=1,
+	)
+	g.db.add(ma)
 	return "", 204
 
 @app.route("/disablesignups", methods=["POST"])
