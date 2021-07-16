@@ -11,7 +11,7 @@ from .front import frontlist
 
 from ruqqus.__main__ import app, cache
 
-@app.route("/agendaposter>/<user_id>", methods=["POST"])
+@app.route("/agendaposter/<user_id>", methods=["POST"])
 @admin_level_required(6)
 @validate_formkey
 def agendaposter(user_id, v):
@@ -665,7 +665,7 @@ def admin_csam_nuke(pid, v):
 		alt.is_banned = v.id
 		g.db.add(alt)
 
-@app.route("/admin/dump_cache", methods=["POST"])
+@app.route("/admin/dump_cache", methods=["GET"])
 @admin_level_required(3)
 @validate_formkey
 def admin_dump_cache(v):
@@ -673,8 +673,6 @@ def admin_dump_cache(v):
 	cache.clear()
 
 	return jsonify({"message": "Internal cache cleared."})
-
-
 
 @app.route("/admin/ban_domain", methods=["POST"])
 @admin_level_required(4)
