@@ -37851,10 +37851,6 @@ html * {
   color: #800000;
 }
 
-body, #main-content-col, .sidebar {
-  background-color: #FFE;
-}
-
 .border-right, .border-left, .border-top, .border-bottom, .border {
   border-color: #D9BFB7 !important;
 }
