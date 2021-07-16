@@ -43,24 +43,16 @@ def notifications(v):
 		comments = get_comments(cids, v=v, sort="new", load_parent=True)
 
 	listing = []
-	alllisting = []
 	for c in comments:
 		c._is_blocked = False
 		c._is_blocking = False
 		if c.parent_submission:
-			if c.parent_comment:
+			while c.parent_comment:
 				parent = c.parent_comment
-				if parent in listing:
-					parent.replies = parent.replies + [c]
-				else:
-					parent.replies = [c]
-					if parent not in alllisting:
-						if parent.id == 68652: print(alllisting)
-						listing.append(parent)
-				alllisting = alllisting + parent.replies
-			else:
-				listing.append(c)
-				alllisting = alllisting + parent.child_comments
+				parent.replies2 = parent.replies2 + [c]
+				c = parent
+			listing.append(c)
+			c.replies = c.replies2
 		else:
 			if c.parent_comment:
 				while c.level > 1:
