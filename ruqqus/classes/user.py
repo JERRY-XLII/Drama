@@ -175,12 +175,6 @@ class User(Base, Stndrd, Age_times):
 		comments=sum([x[0]-1 for x in g.db.query(Comment.score).options(lazyload('*')).filter_by(author_id = self.id, is_banned = False, deleted_utc = 0).all()])
 		return int(posts+comments)
 
-	@property
-	@lazy
-	@cache.memoize(timeout=86400)
-	def dramacoins2(self):
-		return self.dramacoins
-
 	def has_block(self, target):
 
 		return g.db.query(UserBlock).filter_by(
