@@ -2,7 +2,7 @@
 <!---beginning of comment {{c.id}}--->
 
 <script>
-	var date = new Date({{c.created_datetime}});
+	var date = new Date({{c.created_datetime.toString()}});
 	document.getElementById('timestamp').title = date.toString();
 </script>
 
