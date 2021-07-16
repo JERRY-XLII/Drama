@@ -2,9 +2,8 @@
 <!---beginning of comment {{c.id}}--->
 
 <script>
-function timestamp() {
-	var cdate = new Date({{c.created_datetime}});
-	document.getElementById('timestamp').title = cdate.toString();
+	var date = new Date({{c.created_datetime}});
+	document.getElementById('timestamp').title = date.toString();
 </script>
 
 {% set ups=c.upvotes %}
