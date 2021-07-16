@@ -49,8 +49,9 @@ def notifications(v):
 		if c.parent_submission:
 			while c.parent_comment:
 				parent = c.parent_comment
-				parent.replies2.add(c)
-				parent.replies = parent.replies2
+				if c not in parent.replies2:
+					parent.replies2 = parent.replies2 + [c]
+					parent.replies = parent.replies2
 				c = parent
 			if c not in listing:
 				listing.append(c)
