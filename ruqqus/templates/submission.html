@@ -381,10 +381,10 @@
 
 						{% if v.admin_level >=3 %}
 							{% if p.is_banned or p.active_flags %}
-							<li class="list-inline-item"><a href="javascript:void(0)" onclick="post('/api/unban_post/{{p.base36id}}',callback=function(){window.location.reload(true);})"><i class="fas fa-check"></i>Approve</a></li>
+								<li class="list-inline-item"><a href="javascript:void(0)" onclick="post('/api/unban_post/{{p.base36id}}',callback=function(){window.location.reload(true);})"><i class="fas fa-check"></i>Approve</a></li>
 							{% endif %}
 							{% if not p.is_banned or p.active_flags %}
-							<li class="list-inline-item"><a href="javascript:void(0)" onclick="post('/api/ban_post/{{p.base36id}}',callback=function(){window.location.reload(true);})"><i class="fas fa-ban"></i>Remove</a></li>
+								<li class="list-inline-item"><a href="javascript:void(0)" onclick="post('/api/ban_post/{{p.base36id}}',callback=function(){window.location.reload(true);})"><i class="fas fa-ban"></i>Remove</a></li>
 							{% endif %}
 						{% endif %}
 
