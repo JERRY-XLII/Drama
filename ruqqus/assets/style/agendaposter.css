@@ -19,7 +19,7 @@ body {
     font-size: 11px !important
 }
 .nav-item .text-small-extra.text-purple::after {
-    content: "[dramacoins removed]";
+    content: "-9999 Dramacoins";
     font-size: 11px !important
 }
 
