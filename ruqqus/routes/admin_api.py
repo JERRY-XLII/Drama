@@ -665,17 +665,6 @@ def admin_csam_nuke(pid, v):
 		alt.is_banned = v.id
 		g.db.add(alt)
 
-	if post.domain == "i.ruqqus.ga":
-
-		x = requests.get(url)
-		# load image into PIL
-		# take phash
-		# add phash to db
-
-		name = urlparse(post.url).path.lstrip('/')
-		delete_file(name)  # this also dumps cloudflare
-
-
 @app.route("/admin/dump_cache", methods=["POST"])
 @admin_level_required(3)
 @validate_formkey

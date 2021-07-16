@@ -117,7 +117,7 @@ def post_pid_comment_cid(cid, pid=None, anything=None, v=None):
 
 			blocking = v.blocking.subquery()
 			blocked = v.blocked.subquery()
-/
+
 
 			comms = g.db.query(
 				Comment,
