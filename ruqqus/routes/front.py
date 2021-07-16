@@ -60,8 +60,7 @@ def notifications(v):
 				alllisting = alllisting + parent.replies
 			else:
 				listing.append(c)
-
-				alllisting = alllisting + parent.replies
+				alllisting = alllisting + parent.child_comments
 		else:
 			if c.parent_comment:
 				while c.level > 1:
