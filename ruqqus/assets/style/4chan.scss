@@ -45,6 +45,9 @@ html * {
     font-family: arial, helvetica, sans-serif;
     color: #800000
     }
+body, #main-content-col, .sidebar {
+    background-color: #F0E0D6 !important;
+    }
 .border-right, .border-left, .border-top, .border-bottom, .border {
     border-color: #D9BFB7 !important
     }
