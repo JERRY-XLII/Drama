@@ -49,16 +49,13 @@ def notifications(v):
 		if c.parent_submission:
 			while c.parent_comment:
 				parent = c.parent_comment
-				if c.parent_submission == 5212: print(parent.replies2)
 				parent.replies2 = parent.replies2 + [c]
-				if c.parent_submission == 5212: print(parent.replies2)
+				parent.replies = parent.replies2
 				c = parent
 			if c not in listing:
 				if c.parent_submission == 5212:
-					print(c.replies2)
 					listing.append(c)
 					c.replies = c.replies2
-					c.replies2 = []
 		else:
 			if c.parent_comment:
 				while c.level > 1:
