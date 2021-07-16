@@ -52,17 +52,17 @@ def notifications(v):
 				parent.replies2 = parent.replies2 + [c]
 				c = parent
 			if c not in listing:
-				listing.append(c)
-				c.replies = c.replies2
-				c.replies2 = []
+				if c.id == 5212:
+					print(c.replies2)
+					listing.append(c)
+					c.replies = c.replies2
+					c.replies2 = []
 		else:
 			if c.parent_comment:
 				while c.level > 1:
 					c = c.parent_comment
 
-			if c not in listing:
-				c.replies = c.child_comments
-				listing.append(c)
+			if c not in listing: listing.append(c)
 
 	return render_template("notifications.html",
 						   v=v,
