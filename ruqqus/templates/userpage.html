@@ -196,6 +196,8 @@
 							</form>
 						{% endif %}
 
+						<pre></pre>
+
 						{% if u.shadowbanned %} 
 							<a class="btn btn-success" href="javascript:void(0)" onclick="post('/unshadowban/{{u.id}}', function(){window.location.reload(true);})">Unshadowban</a>
 						{% else %}
@@ -366,6 +368,8 @@
 								<input type="submit" class="btn btn-danger" value="Lock Agendaposter Theme" />
 							</form>
 						{% endif %}
+
+						<pre></pre>
 
 						{% if u.shadowbanned %} 
 							<a class="btn btn-danger" href="javascript:void(0)" onclick="post('/unshadowban/{{u.id}}', function(){window.location.reload(true);})">Unshadowban</a>
