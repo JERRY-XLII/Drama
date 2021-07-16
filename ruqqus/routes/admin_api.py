@@ -1,25 +1,27 @@
-import time
 import calendar
-from flask import *
-import imagehash
-from PIL import Image
-from os import remove
-from sqlalchemy import func
-
-from ruqqus.classes import *
 from ruqqus.helpers.wrappers import *
 from ruqqus.helpers.aws import delete_file
-from ruqqus.helpers.base36 import *
 from ruqqus.helpers.alerts import *
 from ruqqus.helpers.sanitize import *
 from ruqqus.helpers.markdown import *
 from ruqqus.helpers.security import *
 from urllib.parse import urlparse
-from secrets import token_hex
 import matplotlib.pyplot as plt
 from .front import frontlist
 
 from ruqqus.__main__ import app, cache
+
+@app.route("/agendaposter>/<user_id>", methods=["POST"])
+@admin_level_required(6)
+@validate_formkey
+def agendaposter(user_id, v):
+	user = g.db.query(User).filter_by(id=user_id).first()
+	user.agendaposter = not user.agendaposter
+	g.db.add(user)
+	for alt in user.alts:
+		alt.agendaposter = not alt.agendaposter
+		g.db.add(alt)
+	return "", 204
 
 @app.route("/disablesignups", methods=["POST"])
 @admin_level_required(6)
@@ -41,7 +43,6 @@ def shadowban(user_id, v):
 	for alt in user.alts:
 		alt.shadowbanned = True
 		g.db.add(alt)
-	g.db.commit()
 	cache.delete_memoized(frontlist)
 	return "", 204
 
@@ -56,7 +57,6 @@ def unshadowban(user_id, v):
 	for alt in user.alts:
 		alt.shadowbanned = False
 		g.db.add(alt)
-	g.db.commit()
 	cache.delete_memoized(frontlist)
 	return "", 204
 

@@ -186,8 +186,14 @@
 						
 						<pre></pre>
 
+						{% if u.agendaposter %}
+							<a class="btn btn-success" href="javascript:void(0)" onclick="post('/agendaposter/{{u.id}}', function(){window.location.reload(true);})">Disable Agendaposter Theme</a>
+						{% else %}
+							<a class="btn btn-danger" href="javascript:void(0)" onclick="post('/agendaposter/{{u.id}}', function(){window.location.reload(true);})">Enable Agendaposter Theme</a>
+						{% endif %}
+
 						{% if u.shadowbanned %} 
-							<a class="btn btn-danger" href="javascript:void(0)" onclick="post('/unshadowban/{{u.id}}', function(){window.location.reload(true);})">Unshadowban</a>
+							<a class="btn btn-success" href="javascript:void(0)" onclick="post('/unshadowban/{{u.id}}', function(){window.location.reload(true);})">Unshadowban</a>
 						{% else %}
 							<a class="btn btn-danger" href="javascript:void(0)" onclick="post('/shadowban/{{u.id}}', function(){window.location.reload(true);})">Shadowban</a>
 						{% endif %}

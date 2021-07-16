@@ -117,7 +117,7 @@ def post_pid_comment_cid(cid, pid=None, anything=None, v=None):
 
 			blocking = v.blocking.subquery()
 			blocked = v.blocked.subquery()
-
+/
 
 			comms = g.db.query(
 				Comment,
@@ -611,12 +611,6 @@ def api_comment(v):
 						 )
 
 	g.db.add(vote)
-
-	c.post.score_activity = c.post.rank_activity
-	g.db.add(c.post)
-
-	g.db.commit()
-
 	c=get_comment(c.id, v=v)
 
 
