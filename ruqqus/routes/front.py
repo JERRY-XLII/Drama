@@ -55,7 +55,7 @@ def notifications(v):
 				else:
 					parent.replies = [c]
 					if parent not in alllisting:
-						if parent.id == "68652": print(alllisting)
+						if parent.id == 68652: print(alllisting)
 						listing.append(parent)
 				alllisting.append(parent.replies)
 			else:
