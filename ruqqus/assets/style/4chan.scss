@@ -39,7 +39,7 @@ $gold: #ECC94B;
 $reddit: #ED4630;
 
 @import "D:/#D/ruqqus/assets/style/node_modules/bootstrap/scss/bootstrap.scss";
-@import "D:/#D/ruqqus/assets/style/main.scss";
+@import "D:/#D/ruqqus/assets/style/light.scss";
 
 html * {
     font-family: arial, helvetica, sans-serif;
@@ -108,12 +108,6 @@ body, #main-content-col, .sidebar {
     }
 .comment .comment-collapse:hover::before {
     border-left-color: #800000 !important
-    }
-.comment-actions .fa, .comment-actions .fas, .comment-actions .far {
-    display: none !important
-    }
-.post-actions .fa, .post-actions .fas, .post-actions .far {
-    display: none !important
     }
 .post-actions *:hover, .comment-actions *:hover, .comment-actions .copy-link:hover {
     color: #F00 !important
