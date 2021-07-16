@@ -22,8 +22,11 @@ def agendaposter(user_id, v):
 		alt.agendaposter = not user.agendaposter
 		g.db.add(alt)
 
+	if user.agendaposter: kind = "unagendaposter"
+	else: kind = "agendaposter"
+
 	ma = ModAction(
-		kind="agendaposter",
+		kind=kind,
 		user_id=v.id,
 		target_user_id=user.id,
 		board_id=1,

@@ -178,10 +178,16 @@ ACTIONTYPES={
 		"title": 'approved all content of {self.target_user.username}'
 	},
 	"agendaposter": {
-		"str": "set {self.target_link}'s theme to 'agendaposter'",
+		"str": "set 'agendaposter' theme on {self.target_link}",
 		"icon": "fa-user-slash",
 		"color": "bg-muted",
-		"title": "set {self.target_link}'s theme to 'agendaposter'"
+		"title": "set 'agendaposter' theme on {self.target_link}"
+	},
+	"unagendaposter": {
+		"str": "removed 'agendaposter' theme from {self.target_link}",
+		"icon": "fa-user-slash",
+		"color": "bg-muted",
+		"title": "removed 'agendaposter' theme from {self.target_link}"
 	},
 	"set_flair_locked":{
 		"str":"set {self.target_link}'s flair (locked)",
