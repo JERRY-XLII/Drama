@@ -28,7 +28,7 @@ def agendaposter(user_id, v):
 	user.agendaposter_expires_utc = expiry
 	g.db.add(user)
 	for alt in user.alts:
-		alt.agendaposter = not user.agendaposter
+		alt.agendaposter = user.agendaposter
 		alt.agendaposter_expires_utc = expiry
 		g.db.add(alt)
 
