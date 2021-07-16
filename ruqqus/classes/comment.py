@@ -364,7 +364,8 @@ class Comment(Base, Age_times, Scores, Stndrd, Fuzzing):
 
 	@property
 	def body(self):
-		return self.comment_aux.body
+		if self.comment_aux: return self.comment_aux.body
+		else: return ""
 
 	@body.setter
 	def body(self, x):
