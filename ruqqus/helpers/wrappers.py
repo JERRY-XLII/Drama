@@ -61,6 +61,12 @@ def get_logged_in_user(db=None):
 			is_deleted=False
 			).first()
 
+		if v and v.agendaposter_expires_utc and v.agendaposter_expires_utc < g.timestamp:
+			v.agendaposter_expires_utc = 0
+			v.agendaposter = False
+
+			g.db.add(v)
+
 		if v and (nonce < v.login_nonce):
 			x= (None, None)
 		else:
