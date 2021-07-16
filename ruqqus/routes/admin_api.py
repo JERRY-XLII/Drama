@@ -19,7 +19,7 @@ def agendaposter(user_id, v):
 	user.agendaposter = not user.agendaposter
 	g.db.add(user)
 	for alt in user.alts:
-		alt.agendaposter = not alt.agendaposter
+		alt.agendaposter = not user.agendaposter
 		g.db.add(alt)
 	return "", 204
 
