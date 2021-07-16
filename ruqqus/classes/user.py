@@ -38,6 +38,7 @@ class User(Base, Stndrd, Age_times):
 	created_utc = Column(Integer, default=0)
 	admin_level = Column(Integer, default=0)
 	agendaposter = Column(Boolean, default=False)
+	agendaposter_expires_utc = Column(Integer, default = 0)
 	changelogsub = Column(Boolean, default=False)
 	is_activated = Column(Boolean, default=False)
 	shadowbanned = Column(Boolean, default=False)
