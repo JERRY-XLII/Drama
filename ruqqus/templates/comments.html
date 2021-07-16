@@ -1,11 +1,11 @@
 {% macro single_comment(c, level=1) %}
 <!---beginning of comment {{c.id}}--->
 
-<script>
-	var cdate = new Date(c.created_datetime);
-	document.getElementById('timestamp').title = cdate.toString();
-</script>
-
+<!--<script>-->
+<!--function timestamp() {-->
+<!--	var cdate = new Date(c.created_datetime);-->
+<!--	document.getElementById('timestamp').title = cdate.toString();-->
+<!--</script>-->
 
 {% set ups=c.upvotes %}
 {% set downs=c.downvotes %}
