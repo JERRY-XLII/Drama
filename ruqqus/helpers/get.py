@@ -295,15 +295,13 @@ def get_post_with_comments(pid, sort="top", v=None):
 			blocking.c.id,
 			blocked.c.id,
 		).options(
-			joinedload(Comment.author).joinedload(User.shadowbanned)
+			joinedload(Comment.author)
 		)
 		if v.admin_level >=4:
 			comms=comms.options(joinedload(Comment.oauth_app))
  
 		comms=comms.filter(
 			Comment.parent_submission == post.id
-		).filter(
-			User.shadowbanned == False
 		).join(
 			votes,
 			votes.c.comment_id == Comment.id,
@@ -336,13 +334,14 @@ def get_post_with_comments(pid, sort="top", v=None):
 
 		output = []
 		for c in comments:
+			if comment.author and comment.author.shadowbanned and not (v and v.id == comment.author_id): continue
 			comment = c[0]
 			comment._voted = c[1] or 0
 			comment._is_blocking = c[2] or 0
 			comment._is_blocked = c[3] or 0
 			output.append(comment)
-			
-		post._preloaded_comments = [x for x in output if not (x.author and x.author.shadowbanned) or (v and v.id == x.author_id)]
+
+		post._preloaded_comments = output
 
 	else:
 		comms = g.db.query(
