@@ -1,4 +1,3 @@
-import hmac
 from werkzeug.security import *
 from os import environ
 
