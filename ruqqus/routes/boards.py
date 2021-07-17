@@ -230,7 +230,7 @@ def board_about_mods(v):
 
 	me = board.has_mod(v)
 
-	if request.path == "/badmins": render_template("mods.html", v=v, b=board, me=me)
+	if request.path == "/badmins": return render_template("mods.html", v=v, b=board, me=me)
 	else: return jsonify({"data":[x.json for x in board.mods_list]})
 
 @app.route("/log", methods=["GET"])

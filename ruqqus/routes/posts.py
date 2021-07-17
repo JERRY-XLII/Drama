@@ -11,13 +11,13 @@ from ruqqus.helpers.embed import *
 from ruqqus.helpers.markdown import *
 from ruqqus.helpers.session import *
 from ruqqus.helpers.thumbs import *
-from ruqqus.helpers.aws import *
 from ruqqus.helpers.alerts import send_notification
 from ruqqus.helpers.discord import send_message
 from ruqqus.classes import *
 from .front import frontlist
 from flask import *
 from ruqqus.__main__ import app, limiter, cache, db_session
+from PIL import Image as IImage
 
 BAN_REASONS = ['',
 			   "URL shorteners are not permitted.",
