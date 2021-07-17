@@ -4,6 +4,7 @@ from ruqqus.helpers.wrappers import *
 from ruqqus.helpers.filters import *
 from ruqqus.helpers.alerts import *
 from ruqqus.helpers.aws import *
+from ruqqus.helpers.session import *
 from ruqqus.classes import *
 from ruqqus.routes.front import comment_idlist
 from pusher_push_notifications import PushNotifications

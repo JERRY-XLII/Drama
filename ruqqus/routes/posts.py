@@ -9,6 +9,7 @@ from ruqqus.helpers.sanitize import *
 from ruqqus.helpers.filters import *
 from ruqqus.helpers.embed import *
 from ruqqus.helpers.markdown import *
+from ruqqus.helpers.session import *
 from ruqqus.helpers.thumbs import *
 from ruqqus.helpers.aws import *
 from ruqqus.helpers.alerts import send_notification
