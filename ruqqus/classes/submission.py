@@ -7,7 +7,6 @@ from .mix_ins import *
 from ruqqus.helpers.base36 import *
 from ruqqus.helpers.lazy import lazy
 from ruqqus.__main__ import Base
-from .badwords import *
 
 class SubmissionAux(Base):
 
