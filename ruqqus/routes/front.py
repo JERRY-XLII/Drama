@@ -24,7 +24,6 @@ def notifications(v):
 		comments = g.db.query(Comment).filter(or_(Comment.author_id==v.id, Comment.sentto==v.id)).filter(Comment.parent_submission == None).offset(25 * (page - 1)).limit(26).all()
 		next_exists = (len(comments) == 26)
 		comments = comments[:25]
-		print(comments)
 	if posts:
 		cids = v.notification_subscriptions(page=page, all_=all_)
 		next_exists = (len(cids) == 26)
@@ -57,6 +56,7 @@ def notifications(v):
 
 			if c not in listing: listing.append(c)
 
+	print(listing)
 	return render_template("notifications.html",
 						   v=v,
 						   notifications=listing,
