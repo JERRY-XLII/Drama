@@ -24,7 +24,7 @@ def notifications(v):
 		comments = g.db.query(Comment).filter(or_(Comment.author_id==v.id, Comment.sentto==v.id, Comment.sentto==0)).filter(Comment.parent_submission == None).offset(25 * (page - 1)).limit(26).all()
 		next_exists = (len(comments) == 26)
 		comments = comments[:25]
-	if posts:
+	elif posts:
 		cids = v.notification_subscriptions(page=page, all_=all_)
 		next_exists = (len(cids) == 26)
 		cids = cids[:25]
@@ -40,7 +40,6 @@ def notifications(v):
 		c._is_blocked = False
 		c._is_blocking = False
 		if c.parent_submission:
-			print(c)
 			while c.parent_comment:
 				parent = c.parent_comment
 				if c not in parent.replies2:
