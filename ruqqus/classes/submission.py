@@ -1,11 +1,13 @@
-from flask import render_template, request, g
+from flask import render_template, request, abort, g
 from sqlalchemy import *
 from sqlalchemy.orm import relationship, deferred
+import re
 from urllib.parse import urlparse
 from .mix_ins import *
 from ruqqus.helpers.base36 import *
 from ruqqus.helpers.lazy import lazy
-from ruqqus.__main__ import Base
+from ruqqus.__main__ import Base, cache
+from .badwords import *
 
 class SubmissionAux(Base):
 
