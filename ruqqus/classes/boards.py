@@ -45,12 +45,9 @@ class Board(Base, Stndrd, Age_times):
 	stored_subscriber_count=Column(Integer, default=1)
 	all_opt_out=Column(Boolean, default=False)
 	is_siegable=Column(Boolean, default=True)
-	is_locked_category = Column(Boolean, default=False)
-	subcat_id=Column(Integer, ForeignKey("subcategories.id"), default=0)
 	secondary_color=Column(String(6), default="cfcfcf")
 	motd = Column(String(1000), default='')
 
-	subcat=relationship("SubCategory")
 	moderators=relationship("ModRelationship")
 	submissions=relationship("Submission", primaryjoin="Board.id==Submission.board_id")
 	contributors=relationship("ContributorRelationship", lazy="dynamic")

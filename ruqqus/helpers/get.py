@@ -611,39 +611,12 @@ def get_comments(cids, v=None, nSession=None, sort="new",
 
 def get_board(bid, graceful=False):
 
-	x = g.db.query(Board).options(
-		joinedload(Board.moderators).joinedload(ModRelationship.user),
-		joinedload(Board.subcat).joinedload(SubCategory.category)
-		).filter_by(
-				id=base36decode(bid)).first()
-	if not x:
-		if graceful:
-			return None
-		else:
-			abort(404)
-	return x
+	return g.db.query(Board).first()
 
 
 def get_guild(name, graceful=False):
 
-	name = name.lstrip('+')
-
-	name = name.replace('\\', '')
-	name = name.replace('_', '\_')
-	name = name.replace('%', '')
-
-	x = g.db.query(Board).options(
-		joinedload(Board.moderators).joinedload(ModRelationship.user),
-		joinedload(Board.subcat).joinedload(SubCategory.category)
-			).filter(
-				Board.name.ilike(name)
-				).first()
-	if not x:
-		if not graceful:
-			abort(404)
-		else:
-			return None
-	return x
+	return g.db.query(Board).first()
 
 
 def get_domain(s):

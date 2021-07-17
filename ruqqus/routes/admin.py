@@ -610,56 +610,6 @@ def admin_domain_domain(domain_name, v):
 		reasons=REASONS
 		)
 
-@app.route("/admin/category", methods=["POST"])
-@admin_level_required(4)
-@validate_formkey
-def admin_category_lock(v):
-
-	board=get_guild(request.form.get("board"))
-
-	cat_id=int(request.form.get("category"))
-
-	sc=g.db.query(SubCategory).filter_by(id=cat_id).first()
-	if not sc:
-		abort(400)
-
-	board.subcat_id=cat_id
-	lock=bool(request.form.get("lock"))
-
-	g.db.add(board)
-
-	ma1=ModAction(
-		board_id=board.id,
-		user_id=v.id,
-		kind="update_settings",
-		note=f"category={sc.category.name} / {sc.name} | admin action"
-		)
-	g.db.add(ma1)
-
-	if lock != board.is_locked_category:
-		board.is_locked_category = lock
-		ma2=ModAction(
-			board_id=board.id,
-			user_id=v.id,
-			kind="update_settings",
-			note=f"category_locked={lock} | admin action"
-			)
-		g.db.add(ma2)
-
-	return redirect(f"{board.permalink}/mod/log")
-
-
-@app.route("/admin/category", methods=["GET"])
-@admin_level_required(4)
-def admin_category_get(v):
-
-	return render_template(
-		"admin/category.html", 
-		v=v,
-		categories=CATEGORIES,
-		b=get_board(request.args.get("guild"), graceful=True)
-		)
-
 @app.route("/admin/user_data", methods=["GET"])
 @admin_level_required(5)
 def admin_user_data_get(v):
