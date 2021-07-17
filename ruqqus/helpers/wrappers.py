@@ -425,7 +425,7 @@ def no_cors(f):
 # f should return {'api':lambda:some_func(), 'html':lambda:other_func()}
 
 
-def public():
+def public(*scopes, no_ban=False):
 
 	def wrapper_maker(f):
 
