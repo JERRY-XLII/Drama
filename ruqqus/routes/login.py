@@ -21,9 +21,6 @@ from ruqqus.__main__ import app, limiter
 
 valid_username_regex = re.compile("^[a-zA-Z0-9_\-]{3,25}$")
 valid_password_regex = re.compile("^.{8,100}$")
-# valid_email_regex=re.compile("(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)")
-
-# login form
 
 
 @app.route("/login", methods=["GET"])

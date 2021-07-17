@@ -241,17 +241,14 @@ def mod_remove_username(bid, username, board, v):
 @app.route("/api/vue/mod/mods",  methods=["GET"])
 @app.route("/api/v1/mod/mods", methods=["GET"])
 @auth_desired
-@api("read")
 def board_about_mods(v):
 
 	board = get_guild("general")
 
 	me = board.has_mod(v)
 
-	return {
-		"html":lambda:render_template("mods.html", v=v, b=board, me=me),
-		"api":lambda:jsonify({"data":[x.json for x in board.mods_list]})
-		}
+	if request.path == "/": render_template("mods.html", v=v, b=board, me=me)
+	else: return jsonify({"data":[x.json for x in board.mods_list]})
 
 @app.route("/log", methods=["GET"])
 @app.route("/api/v1/mod_log", methods=["GET"])
