@@ -1,5 +1,5 @@
 from flask import *
-from time import time, strftime, gmtime
+from time import time
 from sqlalchemy import *
 from sqlalchemy.orm import relationship
 
