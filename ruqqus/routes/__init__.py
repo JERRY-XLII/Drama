@@ -5,6 +5,7 @@ from .boards import *
 from .comments import *
 from .discord import *
 from .errors import *
+from .feeds import *
 from .flagging import *
 from .front import *
 from .login import *
@@ -15,4 +16,3 @@ from .settings import *
 from .static import *
 from .users import *
 from .votes import *
-from .feeds import *

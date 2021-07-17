@@ -1,17 +1,18 @@
-import boto3
-import requests
-from os import environ, remove
-import piexif
-import time
-from urllib.parse import urlparse
-from PIL import Image as IImage
-import imagehash
-from sqlalchemy import func
-from os import remove
 import base64
 import io
-from ruqqus.classes.images import *
+import time
+from os import environ
+from os import remove
+from urllib.parse import urlparse
+
+import boto3
+import imagehash
+import piexif
+import requests
+from PIL import Image as IImage
+
 from ruqqus.__main__ import db_session
+from ruqqus.classes.images import *
 from .base36 import hex2bin
 
 BUCKET = "i.ruqqus.ga"

@@ -1,27 +1,13 @@
-from urllib.parse import urlparse
-import time
-import calendar
-from sqlalchemy import func
-from sqlalchemy.orm import lazyload
-import threading
-import subprocess
-import imagehash
 from os import remove
+
+import imagehash
 from PIL import Image as IMAGE
 
-from ruqqus.helpers.wrappers import *
-from ruqqus.helpers.alerts import *
-from ruqqus.helpers.base36 import *
-from ruqqus.helpers.sanitize import *
-from ruqqus.helpers.get import *
-from ruqqus.classes import *
-from ruqqus.classes.domains import reasons as REASONS
-from ruqqus.routes.admin_api import create_plot, user_stat_data
-from ruqqus.classes.categories import CATEGORIES
-from flask import *
-
 import ruqqus.helpers.aws as aws
-from ruqqus.__main__ import app
+from ruqqus.classes.domains import reasons as REASONS
+from ruqqus.helpers.wrappers import *
+from ruqqus.routes.admin_api import user_stat_data
+
 
 @app.route("/admin/shadowbanned", methods=["GET"])
 @auth_required
@@ -608,33 +594,6 @@ def admin_domain_domain(domain_name, v):
 		domain_name=domain_name,
 		domain=domain,
 		reasons=REASONS
-		)
-
-@app.route("/admin/user_data", methods=["GET"])
-@admin_level_required(5)
-def admin_user_data_get(v):
-
-	name=request.values.get("username",'')
-
-	user=get_user(user, graceful=True)
-
-	if not name or not user:
-		return render_template("admin/user_data.html", v=v)
-
-	post_ids = [x[0] for x in g.db.query(Submission.id).filter_by(author_id=user.id).order_by(Submission.created_utc.desc()).all()]
-	posts=get_posts(post_ids)
-
-	comment_ids=[x[0] for x in g.db.query(Comment.id).filter_by(author_id=user.id).order_by(Comment.created_utc.desc()).all()]
-	comments=get_comments(comment_ids)
-
-
-
-	return jsonify(
-		{
-		"submissions":[x.json_admin for x in posts],
-		"comments":[x.json_admin for x in comments],
-		"user":user.json_admin
-			}
 		)
 		
 @app.route("/admin/image_purge", methods=["POST"])

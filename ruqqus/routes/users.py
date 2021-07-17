@@ -1,14 +1,14 @@
-import qrcode
 import io
 from datetime import datetime
 
-from ruqqus.helpers.alerts import *
-from ruqqus.helpers.sanitize import *
-from ruqqus.helpers.markdown import *
-from ruqqus.mail import *
-from flask import *
-from ruqqus.__main__ import app, cache, limiter, db_session
+import qrcode
 from pusher_push_notifications import PushNotifications
+
+from ruqqus.__main__ import cache, limiter
+from ruqqus.helpers.alerts import *
+from ruqqus.helpers.markdown import *
+from ruqqus.helpers.sanitize import *
+from ruqqus.mail import *
 
 PUSHER_KEY = environ.get("PUSHER_KEY", "").strip()
 

@@ -1,15 +1,12 @@
-from flask import *
-import hmac
 import html
-from .front import frontlist
 from datetime import datetime
-from ruqqus.classes import *
-from ruqqus.helpers.security import *
-from ruqqus.helpers.jinja2 import full_link
-from ruqqus.helpers.get import *
+
 from yattag import Doc
 
-from ruqqus.__main__ import app, limiter
+from ruqqus.helpers.get import *
+from ruqqus.helpers.jinja2 import full_link
+from .front import frontlist
+
 
 @app.route('/rss/<sort>/<t>', methods=["GET"])
 def feeds_user(sort='hot', t='all'):

@@ -1,6 +1,7 @@
-from ruqqus.mail import *
-from ruqqus.__main__ import app, limiter
+from ruqqus.__main__ import limiter
 from ruqqus.helpers.alerts import *
+from ruqqus.mail import *
+
 
 @app.route("/sex")
 def index():

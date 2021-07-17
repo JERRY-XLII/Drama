@@ -1,14 +1,7 @@
-from os import environ
-import requests
-import pprint
-
-from flask import *
-
-from ruqqus.classes import *
-from ruqqus.helpers.wrappers import *
-from ruqqus.helpers.security import *
-from ruqqus.helpers.discord import add_role, delete_role
 from ruqqus.__main__ import app
+from ruqqus.helpers.discord import add_role
+from ruqqus.helpers.security import *
+from ruqqus.helpers.wrappers import *
 
 SERVER_ID = environ.get("DISCORD_SERVER_ID",'').strip()
 CLIENT_ID = environ.get("DISCORD_CLIENT_ID",'').strip()

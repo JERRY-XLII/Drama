@@ -1,15 +1,8 @@
-import time
-import json
-from os import environ, path
-from sqlalchemy import text, func
-from flask import g
 import calendar
-
-from ruqqus.classes.user import User
-from .get import *
-import requests
+from os import path
 
 from ruqqus.__main__ import app, cache
+from .get import *
 
 
 @app.template_filter("total_users")

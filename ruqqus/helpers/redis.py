@@ -1,8 +1,7 @@
+import hashlib
+
 import flask_caching
 from flask_caching import backends
-import redis
-from os import environ
-import hashlib
 
 
 class CustomCache(backends.rediscache.RedisCache):

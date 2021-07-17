@@ -1,6 +1,7 @@
 from sqlalchemy import *
 from sqlalchemy.orm import relationship
-from ruqqus.__main__ import Base, cache
+
+from ruqqus.__main__ import Base
 from .mix_ins import *
 
 

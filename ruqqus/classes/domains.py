@@ -1,5 +1,6 @@
 from sqlalchemy import *
-from ruqqus.__main__ import Base, cache
+
+from ruqqus.__main__ import Base
 
 reasons = {
 	1: "URL shorteners are not allowed.",

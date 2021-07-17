@@ -1,17 +1,11 @@
 from flask import *
-import time
-from sqlalchemy import *
-from sqlalchemy.orm import relationship, deferred
 from sqlalchemy.ext.associationproxy import association_proxy
-from random import randint
-import math
-from .mix_ins import *
-from ruqqus.helpers.base36 import *
-from ruqqus.helpers.lazy import lazy
-from ruqqus.__main__ import Base, cache
-from .votes import CommentVote
-from .flags import CommentFlag
+from sqlalchemy.orm import relationship, deferred
+
+from ruqqus.__main__ import Base
 from .badwords import *
+from .mix_ins import *
+from .votes import CommentVote
 
 
 class CommentAux(Base):
@@ -115,6 +109,10 @@ class Comment(Base, Age_times, Scores, Stndrd, Fuzzing):
 	def __repr__(self):
 
 		return f"<Comment(id={self.id})>"
+
+	@property
+	def children(self):
+		children = sorted([x for x in self.child_comments if not x.author.shadowbanned], key=lambda x: x.score_top, reverse=True)
 
 	@property
 	@lazy

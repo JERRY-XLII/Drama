@@ -1,16 +1,6 @@
-from ruqqus.classes import *
-from ruqqus.helpers.wrappers import *
-from urllib.parse import quote
-import re
-
-from sqlalchemy import *
-
-from flask import *
+from ruqqus.__main__ import cache
 from ruqqus.classes.domains import reasons as REASONS
-from ruqqus.__main__ import app, cache
-import random
-
-
+from ruqqus.helpers.wrappers import *
 
 query_regex=re.compile("(\w+):(\S+)")
 valid_params=[

@@ -1,10 +1,7 @@
-from .get import *
-
-from mistletoe.span_token import SpanToken
 from mistletoe.html_renderer import HTMLRenderer
-import re
+from mistletoe.span_token import SpanToken
 
-from flask import g
+from .get import *
 
 #preprocess re
 

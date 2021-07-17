@@ -1,20 +1,21 @@
-from sqlalchemy.orm import deferred, contains_eager, aliased
 from secrets import token_hex
-import pyotp
 
+import pyotp
+from sqlalchemy.orm import deferred, contains_eager, aliased
+
+from ruqqus.__main__ import Base, cache
 from ruqqus.helpers.discord import delete_role
 from .alts import Alt
-from .titles import Title
-from .submission import SaveRelationship
-from .comment import Notification
-from .boards import Board
-from .board_relationships import *
-from .subscriptions import *
-from .userblock import *
 from .badges import *
+from .board_relationships import *
+from .boards import Board
 from .clients import *
+from .comment import Notification
 from .paypal import PayPalTxn
-from ruqqus.__main__ import Base, cache
+from .submission import SaveRelationship
+from .subscriptions import *
+from .titles import Title
+from .userblock import *
 
 
 class User(Base, Stndrd, Age_times):

@@ -1,10 +1,8 @@
-from flask import *
 from sqlalchemy import *
 from sqlalchemy.orm import relationship
 
-import ruqqus.helpers.aws as aws
+from ruqqus.__main__ import Base
 from .mix_ins import *
-from ruqqus.__main__ import Base, cache
 
 
 class UserBlock(Base, Stndrd, Age_times):

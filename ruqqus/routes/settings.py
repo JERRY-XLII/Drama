@@ -1,23 +1,15 @@
 from __future__ import unicode_literals
-from flask import *
-from sqlalchemy import func
-import time
-import threading
-import mistletoe
-import re
-from ruqqus.classes import *
+
+import youtube_dl
+
+from ruqqus.__main__ import app, cache
 from ruqqus.helpers.alerts import *
-from ruqqus.helpers.wrappers import *
-from ruqqus.helpers.security import *
-from ruqqus.helpers.sanitize import *
+from ruqqus.helpers.discord import remove_user, set_nick
 from ruqqus.helpers.filters import filter_comment_html
 from ruqqus.helpers.markdown import *
-from ruqqus.helpers.discord import remove_user, set_nick
-from ruqqus.helpers.aws import *
+from ruqqus.helpers.sanitize import *
 from ruqqus.mail import *
 from .front import frontlist
-from ruqqus.__main__ import app, cache
-import youtube_dl
 
 valid_username_regex = re.compile("^[a-zA-Z0-9_\-]{3,25}$")
 valid_title_regex = re.compile("^((?!<).){3,100}$")

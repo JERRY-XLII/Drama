@@ -1,10 +1,6 @@
-from .base36 import *
-from .sqla_values import *
-from ruqqus.classes import *
-from flask import g
-from sqlalchemy.orm import joinedload, aliased
+from sqlalchemy.orm import joinedload
 
-import re
+from ruqqus.classes import *
 
 
 def get_user(username, v=None, nSession=None, graceful=False):

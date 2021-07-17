@@ -1,4 +1,5 @@
 from sqlalchemy import *
+
 from ruqqus.__main__ import Base
 
 
