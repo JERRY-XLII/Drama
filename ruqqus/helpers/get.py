@@ -295,7 +295,7 @@ def get_post_with_comments(pid, sort="top", v=None):
 			blocking.c.id,
 			blocked.c.id,
 		).options(
-			joinedload(Comment.author).joinedload(User.title).joinedload(User.shadowbanned)
+			joinedload(Comment.author).joinedload(User.shadowbanned)
 		)
 		if v.admin_level >=4:
 			comms=comms.options(joinedload(Comment.oauth_app))
