@@ -243,7 +243,7 @@ def board_mod_log(v):
 
 	page=int(request.args.get("page",1))
 
-	actions=g.db.query(ModAction).filter("shadowban" not in ModAction.kind).order_by(ModAction.id.desc()).offset(25*(page-1)).limit(26).all()
+	actions=g.db.query(ModAction).filter_by(kind!="shadowban", kind!="shadowban").order_by(ModAction.id.desc()).offset(25*(page-1)).limit(26).all()
 	actions=[i for i in actions]
 
 	next_exists=len(actions)==26
