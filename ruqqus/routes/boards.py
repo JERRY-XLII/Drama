@@ -1,9 +1,7 @@
 from ruqqus.helpers.wrappers import *
 from ruqqus.helpers.alerts import *
 from ruqqus.classes import *
-from ruqqus.classes.rules import *
 from flask import *
-
 from ruqqus.__main__ import app, limiter, cache
 
 valid_board_regex = re.compile("^[a-zA-Z0-9][a-zA-Z0-9_]{2,24}$")
