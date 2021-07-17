@@ -334,8 +334,8 @@ def get_post_with_comments(pid, sort="top", v=None):
 
 		output = []
 		for c in comments:
-			if c.author and c.author.shadowbanned and not (v and v.id == c.author_id): continue
 			comment = c[0]
+			if comment.author and comment.author.shadowbanned and not (v and v.id == comment.author_id): continue
 			comment._voted = c[1] or 0
 			comment._is_blocking = c[2] or 0
 			comment._is_blocked = c[3] or 0
