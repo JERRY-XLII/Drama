@@ -615,7 +615,7 @@ def settings_name_change(v):
 def settings_song_change(v):
 	song=request.form.get("song").strip()
 
-	if song = "" and v.song and os.path.isfile(f"/songs/{v.song}.mp3") and g.db.query(User).filter_by(song=v.song).count() == 1:
+	if song == "" and v.song and os.path.isfile(f"/songs/{v.song}.mp3") and g.db.query(User).filter_by(song=v.song).count() == 1:
 		os.remove(f"/songs/{v.song}.mp3")
 		v.song=None
 		g.db.add(v)
