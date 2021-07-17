@@ -435,8 +435,6 @@ def public(*scopes, no_ban=False):
 
 				v = kwargs.get('v')
 
-				kwargs.pop('c')
-
 				result = f(*args, **kwargs)
 
 				if isinstance(result, dict):
