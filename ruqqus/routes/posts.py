@@ -17,7 +17,7 @@ from ruqqus.classes import *
 from .front import frontlist
 from flask import *
 from ruqqus.__main__ import app, limiter, cache, db_session
-from PIL import Image as IImage
+from PIL import Image as PILimage
 
 BAN_REASONS = ['',
 			   "URL shorteners are not permitted.",
