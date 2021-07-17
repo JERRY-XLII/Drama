@@ -425,6 +425,57 @@ def no_cors(f):
 # f should return {'api':lambda:some_func(), 'html':lambda:other_func()}
 
 
+def public():
+
+	def wrapper_maker(f):
+
+		def wrapper(*args, **kwargs):
+
+			if request.path.startswith(('/api/v1','/api/v2')):
+
+				v = kwargs.get('v')
+
+				kwargs.pop('c')
+
+				result = f(*args, **kwargs)
+
+				if isinstance(result, dict):
+					resp = result['api']()
+				else:
+					resp = result
+
+				if not isinstance(resp, RespObj):
+					resp = make_response(resp)
+
+				resp.headers.add("Cache-Control", "private")
+				resp.headers.add(
+					"Access-Control-Allow-Origin",
+					app.config["SERVER_NAME"])
+				return resp
+
+			else:
+
+				result = f(*args, **kwargs)
+
+				if not isinstance(result, dict):
+					return result
+
+				try:
+					if request.path.startswith('/inpage/'):
+						return result['inpage']()
+					elif request.path.startswith(('/api/vue/','/test/')):
+						return result['api']()
+					else:
+						return result['html']()
+				except KeyError:
+					return result
+
+		wrapper.__name__ = f.__name__
+		return wrapper
+
+	return wrapper_maker
+
+
 def api(*scopes, no_ban=False):
 
 	def wrapper_maker(f):
