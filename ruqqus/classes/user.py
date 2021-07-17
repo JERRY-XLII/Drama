@@ -3,6 +3,7 @@ from secrets import token_hex
 import pyotp
 
 from ruqqus.helpers.discord import delete_role
+from ruqqus.helpers.aws import *
 from .alts import Alt
 from .titles import Title
 from .submission import SaveRelationship
@@ -571,7 +572,7 @@ class User(Base, Stndrd, Age_times):
 		self.del_profile()
 		self.profile_nonce += 1
 
-		imageurl = aws.upload_file(name=f"profile.gif", file=file)
+		imageurl = upload_file(name=f"profile.gif", file=file)
 		if imageurl:
 			self.profileurl = imageurl
 			self.has_profile = True
@@ -585,7 +586,7 @@ class User(Base, Stndrd, Age_times):
 		self.del_banner()
 		self.banner_nonce += 1
 
-		imageurl = aws.upload_file(name=f"banner.gif", file=file)
+		imageurl = upload_file(name=f"banner.gif", file=file)
 		if imageurl:
 			self.bannerurl = imageurl
 			self.has_banner = True
