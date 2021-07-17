@@ -182,7 +182,7 @@ ACTIONTYPES={
 		"title": 'shadowbanned {self.target_user.username}'
 	},
 	"unshadowban": {
-		"str": 'unshadowbanned of {self.target_link}',
+		"str": 'unshadowbanned {self.target_link}',
 		"icon": "fa-user-slash",
 		"color": "bg-muted",
 		"title": 'unshadowbanned {self.target_user.username}'
