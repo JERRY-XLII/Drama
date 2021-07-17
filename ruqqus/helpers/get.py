@@ -302,6 +302,8 @@ def get_post_with_comments(pid, sort="top", v=None):
  
 		comms=comms.filter(
 			Comment.parent_submission == post.id
+		).filter_by(
+			author.shadowbanned = False
 		).join(
 			votes,
 			votes.c.comment_id == Comment.id,
@@ -345,6 +347,8 @@ def get_post_with_comments(pid, sort="top", v=None):
 	else:
 		comms = g.db.query(
 			Comment
+		).filter_by(
+			author.shadowbanned = False
 		).options(
 			joinedload(Comment.author).joinedload(User.title)
 		).filter(
