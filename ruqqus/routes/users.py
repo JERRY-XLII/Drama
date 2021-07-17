@@ -205,7 +205,7 @@ def followers(username, v):
 @app.route("/@<username>", methods=["GET"])
 @app.route("/api/v1/user/<username>/listing", methods=["GET"])
 @auth_desired
-@public
+@public("read")
 def u_username(username, v=None):
 	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
 
