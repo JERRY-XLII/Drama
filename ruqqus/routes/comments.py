@@ -338,17 +338,6 @@ def api_comment(v):
 			g.db.commit()
 			return jsonify({"error": "Too much spam!"}), 403
 
-	badwords=g.db.query(BadWord).all()
-	if badwords:
-		for x in badwords:
-			if x.check(body):
-				is_offensive = True
-				break
-			else:
-				is_offensive = False
-	else:
-		is_offensive=False
-
 	# check badlinks
 	soup = BeautifulSoup(body_html, features="html.parser")
 	links = [x['href'] for x in soup.find_all('a') if x.get('href')]
@@ -378,7 +367,6 @@ def api_comment(v):
 				level=level,
 				over_18=post.over_18 or request.form.get("over_18","")=="true",
 				is_nsfl=post.is_nsfl or request.form.get("is_nsfl","")=="true",
-				is_offensive=is_offensive,
 				original_board_id=parent_post.board_id,
 				is_bot=is_bot,
 				app_id=v.client.application.id if v.client else None,
@@ -661,14 +649,6 @@ def edit_comment(cid, v):
 												),
 				'api': lambda: ({'error': f'A blacklisted domain was used.'}, 400)
 				}
-
-	for x in g.db.query(BadWord).all():
-		if x.check(body):
-			c.is_offensive = True
-			break
-
-		else:
-			c.is_offensive = False
 
 	# check badlinks
 	soup = BeautifulSoup(body_html, features="html.parser")

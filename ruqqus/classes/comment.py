@@ -240,16 +240,6 @@ class Comment(Base, Age_times, Scores, Stndrd, Fuzzing):
 		elif v.admin_level >= 4:
 			return "you are a Drama admin."
 
-	def determine_offensive(self):
-
-		for x in g.db.query(BadWord).all():
-			if x.check(self.body):
-				self.is_offensive = True
-
-				break
-		else:
-			self.is_offensive = False
-
 	@property
 	def json_raw(self):
 		data= {
