@@ -697,7 +697,8 @@ class User(Base, Stndrd, Age_times):
 				'banner_url': self.banner_url,
 				'title': self.title.json if self.title else None,
 				'bio': self.bio,
-				'bio_html': self.bio_html
+				'bio_html': self.bio_html,
+				'flair': self.customtitle
 				}
 
 		if self.real_id:
