@@ -93,8 +93,6 @@ class Comment(Base, Age_times, Scores, Stndrd, Fuzzing):
 	rank_fiery = deferred(Column(Float, server_default=FetchedValue()))
 	rank_hot = deferred(Column(Float, server_default=FetchedValue()))
 
-	#flag_count=deferred(Column(Integer, server_default=FetchedValue()))
-
 	board_id = deferred(Column(Integer, server_default=FetchedValue()))
 
 	def __init__(self, *args, **kwargs):
@@ -122,7 +120,7 @@ class Comment(Base, Age_times, Scores, Stndrd, Fuzzing):
 
 	@property
 	def children(self):
-		return [x for x in self.child_comments if not x.author.shadowbanned]
+		return sorted([x for x in self.child_comments if not x.author.shadowbanned], key=lambda x: x.score, reverse=True)
 
 	@property
 	@lazy
