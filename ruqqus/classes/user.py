@@ -439,7 +439,7 @@ class User(Base, Stndrd, Age_times):
 
 	def notification_messagelisting(self, page=1, all_=False):
 
-		notifications = self.notifications.join(Notification.comment).filter(Comment.sentto != None).options(contains_eager(Notification.comment)).all() + g.db.query(Comment).filter_by(author=v).filter(Comment.parent_submission == None).all()
+		notifications = self.notifications.join(Notification.comment).filter(Comment.sentto != None).options(contains_eager(Notification.comment)).all() + g.db.query(Comment).filter_by(author_id=self.id).filter(Comment.parent_submission == None).all()
 
 		notifications = sorted(notifications, key=lambda x: x.created_utc, reverse=True)
 
