@@ -121,6 +121,10 @@ class Comment(Base, Age_times, Scores, Stndrd, Fuzzing):
 		return f"t3_{self.base36id}"
 
 	@property
+	def children(self):
+		return [x for x in self.child_comments if not x.author.shadowbanned]
+
+	@property
 	@lazy
 	def is_deleted(self):
 		return bool(self.deleted_utc)
