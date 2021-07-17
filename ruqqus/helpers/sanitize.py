@@ -107,7 +107,7 @@ _clean_w_links = bleach.Cleaner(tags=_allowed_tags,
 								)
 
 
-def sanitize(text, linkgen=False, flair=False, bio=False):
+def sanitize(text, linkgen=False, flair=False):
 
 	text = text.replace("\ufeff", "").replace("m.youtube.com", "youtube.com")
 	
@@ -199,8 +199,7 @@ def sanitize(text, linkgen=False, flair=False, bio=False):
 	for i in re.finditer('<a href="(https://(streamable|youtube).com/(e|embed)/.*?)"', sanitized):
 		url = i.group(1)
 		replacing = f'<a href="{url}" rel="nofollow noopener" target="_blank">{url}</a>'
-		if bio: htmlsource = f'<div style="padding-top:5px; padding-bottom: 10px;"><iframe frameborder="0" src="{url}?controls=0&autoplay=1"></iframe></div>'
-		else: htmlsource = f'<div style="padding-top:5px; padding-bottom: 10px;"><iframe frameborder="0" src="{url}?controls=0"></iframe></div>'
+		htmlsource = f'<div style="padding-top:5px; padding-bottom: 10px;"><iframe frameborder="0" src="{url}?controls=0"></iframe></div>'
 		sanitized = sanitized.replace(replacing, htmlsource)
 		
 	for i in re.finditer('<a href="(https://open.spotify.com/embed/.*?)"', sanitized):
