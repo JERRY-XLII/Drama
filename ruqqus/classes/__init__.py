@@ -1,6 +1,5 @@
 from .alts import *
 from .badges import *
-from .badwords import *
 from .boards import *
 from .board_relationships import *
 from .clients import *
