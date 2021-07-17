@@ -1,19 +1,10 @@
-from sqlalchemy import *
-from sqlalchemy.orm import relationship, deferred, lazyload
-from sqlalchemy.types import Enum
-import time
-
-from ruqqus.helpers.base36 import *
-from ruqqus.helpers.security import *
-from ruqqus.helpers.lazy import *
-from ruqqus.helpers.session import *
-import ruqqus.helpers.aws as aws
+from sqlalchemy.orm import lazyload
 from .userblock import *
 from .submission import *
 from .board_relationships import *
 from .comment import Comment
 from .mix_ins import *
-from ruqqus.__main__ import Base, cache, r
+from ruqqus.__main__ import Base, cache
 
 
 class Board(Base, Stndrd, Age_times):
