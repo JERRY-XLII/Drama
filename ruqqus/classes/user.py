@@ -596,27 +596,13 @@ class User(Base, Stndrd, Age_times):
 
 	def del_profile(self):
 
-		if self.profile_set_utc > 1616443200:
-			aws.delete_file(name=f"uid/{self.base36id}/profile-{self.profile_nonce}.png")
-		else:
-			aws.delete_file(name=f"users/{self.username}/profile-{self.profile_nonce}.png")
 		self.has_profile = False
-		try:
-			g.db.add(self)
-		except:
-			pass
+		g.db.add(self)
 
 	def del_banner(self):
 
-		if self.banner_set_utc > 1616443200:
-			aws.delete_file(name=f"uid/{self.base36id}/banner-{self.banner_nonce}.png")
-		else:
-			aws.delete_file(name=f"users/{self.username}/banner-{self.banner_nonce}.png")
 		self.has_banner = False
-		try:
-			g.db.add(self)
-		except:
-			pass
+		g.db.add(self)
 
 	@property
 	def banner_url(self):
