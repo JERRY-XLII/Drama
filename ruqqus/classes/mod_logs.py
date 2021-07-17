@@ -4,7 +4,6 @@ from ruqqus.__main__ import Base
 from .mix_ins import *
 import time
 
-
 class ModAction(Base, Stndrd, Age_times):
 	__tablename__ = "modactions"
 	id = Column(BigInteger, primary_key=True)

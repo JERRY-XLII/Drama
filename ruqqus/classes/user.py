@@ -15,7 +15,7 @@ from .badges import *
 from .clients import *
 from .paypal import PayPalTxn
 from ruqqus.__main__ import Base, cache
-
+from ruqqus.helpers.security import *
 
 class User(Base, Stndrd, Age_times):
 	__tablename__ = "users"

@@ -3,7 +3,6 @@ from sqlalchemy.orm import relationship
 from ruqqus.__main__ import Base
 from .mix_ins import *
 
-
 class Flag(Base, Stndrd):
 
 	__tablename__ = "flags"
