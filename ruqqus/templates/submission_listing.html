@@ -4,9 +4,11 @@
 	var date = new Date('{{p.created_datetime}}');
 	document.getElementById('timestamp-{{p.id}}').title = date.toString();
 	document.getElementById('timestamp-{{p.id}}-2').title = date.toString();
-	var date = new Date('{{p.edited_datetime}}');
-	document.getElementById('edited_timestamp-{{p.id}}').title = date.toString();
-	document.getElementById('edited_timestamp-{{p.id}}-2').title = date.toString();
+	{% if p.edited_utc %}
+		var date = new Date('{{p.edited_datetime}}');
+		document.getElementById('edited_timestamp-{{p.id}}').title = date.toString();
+		document.getElementById('edited_timestamp-{{p.id}}-2').title = date.toString();
+	{% endif %}
 </script>
 
 {% set ups=p.upvotes_fuzzed %}
