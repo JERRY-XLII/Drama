@@ -619,6 +619,7 @@ def settings_song_change(v):
 		os.remove(f"/songs/{v.song}.mp3")
 		v.song=None
 		g.db.add(v)
+		return redirect("/settings/profile")
 
 	song = song.replace("https://music.youtube.com", "https://youtube.com")
 	if song.startswith(("https://www.youtube.com/watch?v=", "https://youtube.com/watch?v=", "https://m.youtube.com/watch?v=")):
