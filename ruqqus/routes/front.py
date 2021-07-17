@@ -183,8 +183,8 @@ def frontlist(v=None, sort="hot", page=1,t="all", ids_only=True, filter_words=''
 @app.route("/", methods=["GET"])
 @app.route("/api/v1/listing", methods=["GET"])
 @auth_desired
-@api("read")
 def front_all(v):
+	print(request.path)
 	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
 
 	page = int(request.args.get("page") or 1)
@@ -218,19 +218,7 @@ def front_all(v):
 	# check if ids exist
 	posts = get_posts(ids, sort=sort, v=v)
 
-	return {'html': lambda: render_template("home.html",
-											v=v,
-											listing=posts,
-											next_exists=next_exists,
-											sort=sort,
-											t=t,
-											page=page,
-											),
-			'api': lambda: jsonify({"data": [x.json for x in posts],
-									"next_exists": next_exists
-									}
-								   )
-			}
+	return render_template("home.html", v=v, listing=posts, next_exists=next_exists, sort=sort, t=t, page=page)
 
 @cache.memoize(timeout=1500)
 def changeloglist(v=None, sort="new", page=1 ,t="all", **kwargs):
