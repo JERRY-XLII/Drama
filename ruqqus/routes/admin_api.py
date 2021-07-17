@@ -93,6 +93,13 @@ def unshadowban(user_id, v):
 		alt.shadowbanned = False
 		g.db.add(alt)
 
+	ma = ModAction(
+		kind="unshadowban",
+		user_id=v.id,
+		target_user_id=user.id,
+		board_id=1,
+	)
+	g.db.add(ma)
 	cache.delete_memoized(frontlist)
 	return "", 204
 
