@@ -295,15 +295,15 @@ def get_post_with_comments(pid, sort="top", v=None):
 			blocking.c.id,
 			blocked.c.id,
 		).options(
-			joinedload(Comment.author).joinedload(User.title)
+			joinedload(Comment.author).joinedload(User.title).joinedload(User.shadowbanned)
 		)
 		if v.admin_level >=4:
 			comms=comms.options(joinedload(Comment.oauth_app))
  
 		comms=comms.filter(
 			Comment.parent_submission == post.id
-		).filter_by(
-			author.shadowbanned = False
+		).filter(
+			User.shadowbanned == False
 		).join(
 			votes,
 			votes.c.comment_id == Comment.id,
@@ -347,8 +347,6 @@ def get_post_with_comments(pid, sort="top", v=None):
 	else:
 		comms = g.db.query(
 			Comment
-		).filter_by(
-			author.shadowbanned = False
 		).options(
 			joinedload(Comment.author).joinedload(User.title)
 		).filter(
