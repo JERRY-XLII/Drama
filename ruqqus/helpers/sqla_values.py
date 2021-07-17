@@ -1,4 +1,5 @@
 from sqlalchemy.ext.compiler import compiles
+from sqlalchemy.sql import column
 from sqlalchemy.sql.expression import FromClause
 
 

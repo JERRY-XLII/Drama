@@ -2,10 +2,10 @@ from flask import *
 from sqlalchemy import *
 from sqlalchemy.orm import relationship, lazyload
 
-from ruqqus.__main__ import Base
-from .comment import Comment
 from .mix_ins import Stndrd
 from .submission import Submission
+from .comment import Comment
+from ruqqus.__main__ import app, Base
 
 
 class OauthApp(Base, Stndrd):

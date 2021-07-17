@@ -1,7 +1,5 @@
-import time
-
 from flask import *
-
+import time
 from .security import *
 
 

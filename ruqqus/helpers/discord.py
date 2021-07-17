@@ -1,7 +1,6 @@
-import threading
 from os import environ
-
 import requests
+import threading
 
 SERVER_ID = environ.get("DISCORD_SERVER_ID",'').strip()
 CLIENT_ID = environ.get("DISCORD_CLIENT_ID",'').strip()

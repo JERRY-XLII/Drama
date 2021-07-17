@@ -1,9 +1,9 @@
-from urllib.parse import urlparse
-
 from bs4 import BeautifulSoup
 from flask import *
-
+from os import environ
+from urllib.parse import urlparse
 from ruqqus.classes import Domain
+from ruqqus.__main__ import app
 
 
 def filter_comment_html(html_text):

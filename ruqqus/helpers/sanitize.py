@@ -1,12 +1,10 @@
-import os.path
-from functools import partial
-from urllib.parse import ParseResult, urlunparse
-
 import bleach
-from bleach.linkifier import LinkifyFilter
 from bs4 import BeautifulSoup
-
+from bleach.linkifier import LinkifyFilter
+from urllib.parse import urlparse, ParseResult, urlunparse
+from functools import partial
 from .get import *
+import os.path
 
 _allowed_tags = tags = ['b',
 						'blockquote',

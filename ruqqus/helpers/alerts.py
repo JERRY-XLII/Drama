@@ -1,5 +1,7 @@
 import mistletoe
 
+from ruqqus.classes import *
+from flask import g
 from .markdown import *
 from .sanitize import *
 

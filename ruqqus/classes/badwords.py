@@ -1,6 +1,5 @@
-import re
-
 from sqlalchemy import *
+import re
 
 from ruqqus.__main__ import Base
 

@@ -1,15 +1,15 @@
 import calendar
-
-import matplotlib.pyplot as plt
-
-from ruqqus.__main__ import cache
-from ruqqus.helpers.alerts import *
-from ruqqus.helpers.markdown import *
-from ruqqus.helpers.sanitize import *
-from ruqqus.helpers.security import *
 from ruqqus.helpers.wrappers import *
+from ruqqus.helpers.aws import delete_file
+from ruqqus.helpers.alerts import *
+from ruqqus.helpers.sanitize import *
+from ruqqus.helpers.markdown import *
+from ruqqus.helpers.security import *
+from urllib.parse import urlparse
+import matplotlib.pyplot as plt
 from .front import frontlist
 
+from ruqqus.__main__ import app, cache
 
 @app.route("/agendaposter/<user_id>", methods=["POST"])
 @admin_level_required(6)
