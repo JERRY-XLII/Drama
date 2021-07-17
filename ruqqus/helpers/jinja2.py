@@ -1,14 +1,6 @@
-import time
-import json
 from os import environ, path
-from sqlalchemy import text, func
-from flask import g
 import calendar
-
-from ruqqus.classes.user import User
 from .get import *
-import requests
-
 from ruqqus.__main__ import app, cache
 
 

@@ -1,11 +1,4 @@
-from flask import *
-from os import environ
-import requests
 from werkzeug.wrappers.response import Response as RespObj
-import time
-import random
-
-from ruqqus.classes import *
 from .get import *
 from .alerts import send_notification
 from ruqqus.__main__ import Base, app, db_session

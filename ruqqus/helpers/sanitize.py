@@ -1,7 +1,7 @@
 import bleach
 from bs4 import BeautifulSoup
 from bleach.linkifier import LinkifyFilter
-from urllib.parse import urlparse, ParseResult, urlunparse
+from urllib.parse import ParseResult, urlunparse
 from functools import partial
 from .get import *
 import os.path

@@ -1,14 +1,4 @@
-import requests
-from os import environ, remove
-from urllib.parse import urlparse
-from bs4 import BeautifulSoup
-from PIL import Image as PILimage
-from flask import g
-from io import BytesIO
-import time
-
 from .get import *
-from ruqqus.__main__ import app, db_session
 
 def expand_url(post_url, fragment_url):
 

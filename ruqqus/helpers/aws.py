@@ -1,12 +1,11 @@
 import boto3
 import requests
-from os import environ, remove
+from os import environ
 import piexif
 import time
 from urllib.parse import urlparse
 from PIL import Image as IImage
 import imagehash
-from sqlalchemy import func
 from os import remove
 import base64
 import io
