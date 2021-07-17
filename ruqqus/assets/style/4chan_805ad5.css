@@ -27921,6 +27921,10 @@ blockquote {
   color: #433434 !important;
 }
 
+.text-white {
+  color: primary !important;
+}
+
 .modal .comment-actions a {
   color: #F0E0D6;
 }
