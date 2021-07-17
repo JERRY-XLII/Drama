@@ -118,7 +118,6 @@ class Comment(Base, Age_times, Scores, Stndrd, Fuzzing):
 	def fullname(self):
 		return f"t3_{self.base36id}"
 
-	@property
 	def children(self, v):
 		return sorted([x for x in self.child_comments if not x.author.shadowbanned or (v and v.id == x.author_id)], key=lambda x: x.score, reverse=True)
 
