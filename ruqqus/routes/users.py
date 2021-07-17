@@ -307,7 +307,7 @@ def u_username(username, v=None):
 @app.route("/@<username>/comments", methods=["GET"])
 @app.route("/api/v1/user/<username>/comments", methods=["GET"])
 @auth_desired
-@api("read")
+@public("read")
 def u_username_comments(username, v=None):
 	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
 
@@ -386,7 +386,7 @@ def u_username_comments(username, v=None):
 
 @app.route("/api/v1/user/<username>/info", methods=["GET"])
 @auth_desired
-@api("read")
+@public("read")
 def u_username_info(username, v=None):
 
 	user=get_user(username, v=v)
