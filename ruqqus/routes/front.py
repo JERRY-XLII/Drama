@@ -40,6 +40,7 @@ def notifications(v):
 		c._is_blocked = False
 		c._is_blocking = False
 		if c.parent_submission:
+			print(c)
 			while c.parent_comment:
 				parent = c.parent_comment
 				if c not in parent.replies2:
@@ -50,13 +51,11 @@ def notifications(v):
 				listing.append(c)
 				c.replies = c.replies2
 		else:
-			print(c)
 			if c.parent_comment:
 				while c.level > 1:
 					c = c.parent_comment
 
 			if c not in listing:
-				print(c.id)
 				listing.append(c)
 
 	return render_template("notifications.html",
