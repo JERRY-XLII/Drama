@@ -7,8 +7,6 @@ from ruqqus.helpers.base36 import *
 from ruqqus.helpers.lazy import lazy
 from ruqqus.__main__ import Base
 from .votes import CommentVote
-from .badwords import *
-
 
 class CommentAux(Base):
 
