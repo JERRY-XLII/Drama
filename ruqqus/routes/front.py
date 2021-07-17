@@ -21,7 +21,7 @@ def notifications(v):
 	messages = request.args.get('messages', False)
 	posts = request.args.get('posts', False)
 	if messages:
-		comments = g.db.query(Comment).filter(or_(Comment.author_id==v.id, Comment.sentto==v.id, Comment.sentto==0)).filter(Comment.parent_submission == None).offset(25 * (page - 1)).limit(26).all()
+		comments = g.db.query(Comment).filter(or_(Comment.author_id==v.id, Comment.sentto==v.id, Comment.sentto==0)).filter(Comment.parent_submission == None).order_by(Comment.created_utc.desc()).offset(25 * (page - 1)).limit(26).all()
 		next_exists = (len(comments) == 26)
 		comments = comments[:25]
 	elif posts:
