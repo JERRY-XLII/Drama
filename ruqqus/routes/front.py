@@ -21,12 +21,9 @@ def notifications(v):
 	messages = request.args.get('messages', False)
 	posts = request.args.get('posts', False)
 	if messages:
-		cids = g.db.query(Comment.id).filter(Comment.author_id==v.id).filter(Comment.parent_submission == None).offset(25 * (page - 1)).limit(26).all()
-		cids = [x[0] for x in cids]
-		print(cids)
-		next_exists = (len(cids) == 26)
-		cids = cids[:25]
-		comments = get_comments(cids, v=v, sort="new", load_parent=True)
+		cids = g.db.query(Comment).filter(or_(Comment.author_id==v.id, Comment.sentto==v.id)).filter(Comment.parent_submission == None).offset(25 * (page - 1)).limit(26).all()
+		next_exists = (len(comments) == 26)
+		comments = comments[:25]
 	if posts:
 		cids = v.notification_subscriptions(page=page, all_=all_)
 		next_exists = (len(cids) == 26)
