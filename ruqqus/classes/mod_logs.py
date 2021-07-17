@@ -1,8 +1,6 @@
-from ruqqus.helpers.base36 import *
-from ruqqus.helpers.security import *
 from sqlalchemy import *
 from sqlalchemy.orm import relationship
-from ruqqus.__main__ import Base, cache
+from ruqqus.__main__ import Base
 from .mix_ins import *
 import time
 
@@ -176,6 +174,18 @@ ACTIONTYPES={
 		"icon": "fa-user-slash",
 		"color": "bg-muted",
 		"title": 'approved all content of {self.target_user.username}'
+	},
+	"shadowban": {
+		"str": 'shadowbanned {self.target_link}',
+		"icon": "fa-user-slash",
+		"color": "bg-danger",
+		"title": 'shadowbanned {self.target_user.username}'
+	},
+	"unshadowban": {
+		"str": 'unshadowbanned of {self.target_link}',
+		"icon": "fa-user-slash",
+		"color": "bg-muted",
+		"title": 'unshadowbanned {self.target_user.username}'
 	},
 	"agendaposter": {
 		"str": "set agendaposter theme on {self.target_link}",
