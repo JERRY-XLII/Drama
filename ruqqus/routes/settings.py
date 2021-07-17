@@ -620,7 +620,8 @@ def settings_song_change(v):
 		return render_template("settings_profile.html",
 					v=v,
 					error=f"Not a youtube link.")
-	
+
+	if "?" in id: id = id.split("?")[0]
 	if "&" in id: id = id.split("&")[0]
 
 	if os.path.isfile(f'/songs/{id}.mp3'): 
