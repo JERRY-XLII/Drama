@@ -17,7 +17,6 @@ from ruqqus.helpers.get import *
 from ruqqus.classes import *
 from ruqqus.classes.domains import reasons as REASONS
 from ruqqus.routes.admin_api import create_plot, user_stat_data
-from ruqqus.classes.categories import CATEGORIES
 from flask import *
 
 import ruqqus.helpers.aws as aws
