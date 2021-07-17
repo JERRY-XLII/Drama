@@ -218,7 +218,7 @@ def front_all(v):
 	# check if ids exist
 	posts = get_posts(ids, sort=sort, v=v)
 
-	if request_path == "/": return render_template("home.html", v=v, listing=posts, next_exists=next_exists, sort=sort, t=t, page=page)
+	if request.path == "/": return render_template("home.html", v=v, listing=posts, next_exists=next_exists, sort=sort, t=t, page=page)
 	else: return jsonify({"data": [x.json for x in posts], "next_exists": next_exists})
 
 @cache.memoize(timeout=1500)
