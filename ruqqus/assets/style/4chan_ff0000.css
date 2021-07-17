@@ -27922,7 +27922,7 @@ blockquote {
 }
 
 .text-white {
-  color: primary !important;
+  color: #ff0000 !important;
 }
 
 .modal .comment-actions a {
