@@ -30,6 +30,14 @@ def shadowbanned(v):
 	users = [x for x in g.db.query(User).filter(User.shadowbanned == True).all()]
 	return render_template("banned.html", v=v, users=users)
 
+@app.route("/admin/agendaposters", methods=["GET"])
+@auth_required
+def agendaposters(v):
+	if v and v.is_banned and not v.unban_utc: return render_template("seized.html")
+	if not (v and v.admin_level == 6): abort(404)
+	users = [x for x in g.db.query(User).filter(User.agendaposter == True).all()]
+	return render_template("banned.html", v=v, users=users)
+
 @app.route("/admin/flagged/posts", methods=["GET"])
 @admin_level_required(3)
 def flagged_posts(v):
