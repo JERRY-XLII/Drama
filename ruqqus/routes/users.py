@@ -64,7 +64,7 @@ def messagereply(v, username, id):
 							parent_fullname=parent.fullname,
 							parent_comment_id=id,
 							level=parent.level + 1,
-							sentto=user.username
+							sentto=user.id
 							)
 	g.db.add(new_comment)
 	g.db.flush()

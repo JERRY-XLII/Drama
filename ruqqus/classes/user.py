@@ -437,25 +437,6 @@ class User(Base, Stndrd, Age_times):
 		g.db.commit()
 		return output
 
-	def notification_messagelisting(self, page=1, all_=False):
-
-		notifications = self.notifications.join(Notification.comment).filter(Comment.sentto != None).options(contains_eager(Notification.comment)).all()
-
-		notifications = [x[0] for x in notifications] + g.db.query(Comment).filter_by(author_id=self.id).filter(Comment.parent_submission == None).all()
-
-		notifications = sorted(notifications, key=lambda x: x.created_utc, reverse=True)
-
-		firstrange = 25 * (page - 1)
-		secondrange = firstrange + 26
-		notifications = notifications[firstrange:secondrange]
-
-		output = []
-		for x in notifications:
-			x.read = True
-			g.db.add(x)
-			output.append(x.comment_id)
-		return output
-
 	def notification_commentlisting(self, page=1, all_=False):
 
 		notifications = self.notifications.join(Notification.comment).filter(
