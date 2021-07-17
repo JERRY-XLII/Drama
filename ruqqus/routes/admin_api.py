@@ -26,6 +26,7 @@ def agendaposter(user_id, v):
 	user.agendaposter_expires_utc = expiry
 	g.db.add(user)
 	for alt in user.alts:
+		if alt.admin_level > 0: break
 		alt.agendaposter = user.agendaposter
 		alt.agendaposter_expires_utc = expiry
 		g.db.add(alt)
@@ -69,6 +70,7 @@ def shadowban(user_id, v):
 	user.shadowbanned = True
 	g.db.add(user)
 	for alt in user.alts:
+		if alt.admin_level > 0: break
 		alt.shadowbanned = True
 		g.db.add(alt)
 	ma = ModAction(
