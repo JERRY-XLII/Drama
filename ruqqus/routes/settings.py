@@ -615,6 +615,11 @@ def settings_name_change(v):
 def settings_song_change(v):
 	song=request.form.get("song").strip()
 
+	if song = "" and v.song and os.path.isfile(f"/songs/{v.song}.mp3") and g.db.query(User).filter_by(song=v.song).count() == 1:
+		os.remove(f"/songs/{v.song}.mp3")
+		v.song=None
+		g.db.add(v)
+
 	song = song.replace("https://music.youtube.com", "https://youtube.com")
 	if song.startswith(("https://www.youtube.com/watch?v=", "https://youtube.com/watch?v=", "https://m.youtube.com/watch?v=")):
 		id = song.split("v=")[1]
@@ -680,7 +685,6 @@ def settings_song_change(v):
 
 	v.song=id
 	g.db.add(v)
-	g.db.commit()
 
 	return redirect("/settings/profile")
 
