@@ -1,8 +1,5 @@
-import time
-from ruqqus.classes import *
 from ruqqus.helpers.wrappers import *
 from ruqqus.helpers.get import *
-from ruqqus.helpers.base36 import *
 from flask import g
 from ruqqus.__main__ import app
 

@@ -1,11 +1,3 @@
-from urllib.parse import urlparse
-import re
-import sass
-import threading
-import time
-import os.path
-from bs4 import BeautifulSoup
-
 from ruqqus.helpers.wrappers import *
 from ruqqus.helpers.alerts import *
 from ruqqus.classes import *
@@ -240,7 +232,7 @@ def board_about_mods(v):
 
 	me = board.has_mod(v)
 
-	if request.path == "/": render_template("mods.html", v=v, b=board, me=me)
+	if request.path == "/badmins": render_template("mods.html", v=v, b=board, me=me)
 	else: return jsonify({"data":[x.json for x in board.mods_list]})
 
 @app.route("/log", methods=["GET"])

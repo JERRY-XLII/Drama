@@ -1,11 +1,9 @@
 import calendar
 from ruqqus.helpers.wrappers import *
-from ruqqus.helpers.aws import delete_file
 from ruqqus.helpers.alerts import *
 from ruqqus.helpers.sanitize import *
 from ruqqus.helpers.markdown import *
 from ruqqus.helpers.security import *
-from urllib.parse import urlparse
 import matplotlib.pyplot as plt
 from .front import frontlist
 

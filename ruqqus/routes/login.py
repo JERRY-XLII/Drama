@@ -1,21 +1,4 @@
-from flask import *
-import time
-import hmac
-from os import environ
-import re
-import random
 from urllib.parse import urlencode
-
-from ruqqus.classes import *
-from ruqqus.helpers.wrappers import *
-from ruqqus.helpers.base36 import *
-from ruqqus.helpers.security import *
-from ruqqus.helpers.alerts import *
-from ruqqus.helpers.get import *
-from ruqqus.mail import send_verification_email
-from secrets import token_hex
-
-
 from ruqqus.mail import *
 from ruqqus.__main__ import app, limiter
 

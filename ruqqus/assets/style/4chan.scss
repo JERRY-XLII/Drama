@@ -97,3 +97,6 @@ body, #main-content-col, .sidebar {
 .post-actions *:hover, .comment-actions *:hover, .comment-actions .copy-link:hover {
     color: #F00 !important
     }
+a {
+    color: $primary !important;
+}
