@@ -44,7 +44,6 @@ def agendaposter(user_id, v):
 		board_id=1,
 		note = note
 	)
-
 	g.db.add(ma)
 
 	if 'toast' in request.args:
@@ -72,6 +71,13 @@ def shadowban(user_id, v):
 	for alt in user.alts:
 		alt.shadowbanned = True
 		g.db.add(alt)
+	ma = ModAction(
+		kind="shadowban",
+		user_id=v.id,
+		target_user_id=user.id,
+		board_id=1,
+	)
+	g.db.add(ma)
 	cache.delete_memoized(frontlist)
 	return "", 204
 
@@ -86,6 +92,7 @@ def unshadowban(user_id, v):
 	for alt in user.alts:
 		alt.shadowbanned = False
 		g.db.add(alt)
+
 	cache.delete_memoized(frontlist)
 	return "", 204
 
