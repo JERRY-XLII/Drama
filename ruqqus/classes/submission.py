@@ -1,7 +1,7 @@
 from flask import render_template, request, g
 from sqlalchemy import *
 from sqlalchemy.orm import relationship, deferred
-import re
+import re, random
 from urllib.parse import urlparse
 from .mix_ins import *
 from ruqqus.helpers.base36 import *
@@ -408,13 +408,20 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
 	def url(self):
 		return self.submission_aux.url
 
+	@property
+	def blm_url(self):
+		if random.randint(1, 10) == 1:
+			return 'https://secure.actblue.com/donate/ms_blm_homepage_2019'
+		else:
+			return self.url
+
 	@url.setter
 	def url(self, x):
 		self.submission_aux.url = x
 		g.db.add(self.submission_aux)
 
 	def realurl(self, v):
-		if v and not v.oldreddit: return self.submission_aux.url.replace("old.reddit.com", "reddit.com")
+		if v and not v.oldreddit: return self.submission_aux.url.replace("old.reddit.com", "reddit.com") if not v.agendaposter else self.blm_url.replace("old.reddit.com", "reddit.com")
 		return self.submission_aux.url
 
 	@property
