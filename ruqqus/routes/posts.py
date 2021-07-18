@@ -16,6 +16,7 @@ from ruqqus.helpers.discord import send_message
 from ruqqus.classes import *
 from .front import frontlist
 from flask import *
+from io import BytesIO
 from ruqqus.__main__ import app, limiter, cache, db_session
 from PIL import Image as PILimage
 
